@@ -1,0 +1,146 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e78cabb3d4a08a3c022963612f6df39b, type: 3}
+  m_Name: Example
+  m_EditorClassIdentifier: 
+  document:
+    formatVersion: 1
+    id: plotweave_demo
+    title: "\u7EC7\u5E55\u6F14\u793A \u4ECE\u8D44\u4EA7\u5230\u8868\u683C"
+    entryNodeId: welcome
+    nodes:
+    - id: welcome
+      title: "\u6B22\u8FCE"
+      position: {x: 80, y: 100}
+      sceneId: 
+      actorId: guide
+      text: 
+      textKey: welcome.line
+      nextNodeId: route
+      choices: []
+      commands:
+      - key: background
+        arguments:
+        - key: key
+          value: demo_evening
+      - key: actor.show
+        arguments:
+        - key: id
+          value: guide
+        - key: position
+          value: 0.5
+    - id: route
+      title: "\u9009\u62E9\u8DEF\u7EBF"
+      position: {x: 400, y: 100}
+      sceneId: 
+      actorId: guide
+      text: "\u4F60\u60F3\u5148\u63A2\u7D22\u54EA\u90E8\u5206\uFF1F"
+      textKey: 
+      nextNodeId: 
+      choices:
+      - label: "\u67E5\u770B\u5267\u60C5\u4E8B\u4EF6"
+        textKey: 
+        targetNodeId: events
+        conditionVariable: 
+        conditionValue: true
+      - label: "\u76F4\u63A5\u7ED3\u675F"
+        textKey: 
+        targetNodeId: end
+        conditionVariable: 
+        conditionValue: true
+      commands: []
+    - id: events
+      title: "\u4E8B\u4EF6\u4E0E\u53D8\u91CF"
+      position: {x: 730, y: 60}
+      sceneId: 
+      actorId: guide
+      text: "${player}\uFF0C\u4E8B\u4EF6\u3001\u6587\u672C\u548C\u5206\u652F\u4ECD\u7136\u7531\u540C\u4E00\u5957\u64AD\u653E\u6838\u5FC3\u5904\u7406\u3002"
+      textKey: 
+      nextNodeId: end
+      choices: []
+      commands:
+      - key: set
+        arguments:
+        - key: name
+          value: player
+        - key: value
+          value: "\u63A2\u7D22\u8005"
+      - key: wait
+        arguments:
+        - key: seconds
+          value: 0.3
+      - key: actor.emote
+        arguments:
+        - key: id
+          value: guide
+        - key: emote
+          value: "\u5FAE\u7B11"
+      - key: signal
+        arguments:
+        - key: name
+          value: demo.visited
+    - id: end
+      title: "\u7ED3\u675F"
+      position: {x: 1060, y: 180}
+      sceneId: 
+      actorId: 
+      text: "\u6F14\u793A\u7ED3\u675F\u3002\u4F60\u53EF\u4EE5\u4FEE\u6539\u8282\u70B9\u3001\u8FDE\u7EBF\u548C\u8868\u683C\uFF0C\u9A8C\u8BC1\u81EA\u5DF1\u7684\u5DE5\u4F5C\u6D41\u3002"
+      textKey: 
+      nextNodeId: 
+      choices: []
+      commands: []
+    actors:
+    - id: guide
+      name: "\u5411\u5BFC"
+      resourceKey: demo_guide
+    texts:
+    - key: welcome.line
+      value: "\u4F60\u597D\uFF0C${player}\u3002\u8FD9\u6BB5\u5267\u60C5\u53EF\u4EE5\u76F4\u63A5\u9884\u89C8\uFF0C\u4E5F\u53EF\u4EE5\u5BFC\u6210\u8868\u683C\u518D\u7F16\u56DE
+        JSON\u3002"
+    variables:
+    - key: player
+      value: "\u65C5\u4EBA"
+    commands:
+    - key: wait
+      displayName: "\u7B49\u5F85"
+      parameters:
+      - key: seconds
+        displayName: "\u79D2\u6570"
+        type: 2
+        enumKey: 
+        defaultValue: 0
+        required: 1
+    - key: set
+      displayName: "\u8BBE\u7F6E\u53D8\u91CF"
+      parameters:
+      - key: name
+        displayName: 
+        type: 0
+        enumKey: 
+        defaultValue: 
+        required: 1
+      - key: value
+        displayName: 
+        type: 0
+        enumKey: 
+        defaultValue: 
+        required: 0
+    - key: signal
+      displayName: "\u6E38\u620F\u4E8B\u4EF6"
+      parameters:
+      - key: name
+        displayName: 
+        type: 0
+        enumKey: 
+        defaultValue: 
+        required: 1
+    enums: []

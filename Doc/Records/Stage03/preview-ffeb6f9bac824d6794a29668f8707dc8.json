@@ -1,0 +1,10 @@
+{
+    "id": "ffeb6f9bac824d6794a29668f8707dc8",
+    "phase": "failed",
+    "previousStartScene": "",
+    "image": "Doc/Records/Stage03/Images/authoring-ffeb6f9bac824d6794a29668f8707dc8.png",
+    "error": "System.TimeoutException: 制作场景截图检查超时\r\n  at PlotWeave.Authoring.PlotAuthoringPreviewVerification.Update () [0x0002e] in .\\Packages\\com.plotweave.core\\Editor\\AuthoringUI\\PlotAuthoringPreviewVerification.cs:73 ",
+    "deadline": 6800.2025281999995,
+    "nodeCount": 3,
+    "nodePool": 3
+}

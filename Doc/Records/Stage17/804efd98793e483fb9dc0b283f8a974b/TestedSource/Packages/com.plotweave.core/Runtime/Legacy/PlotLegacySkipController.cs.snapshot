@@ -1,0 +1,32 @@
+using System;
+using PlotWeave.Playback;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace PlotWeave.Legacy
+{
+    public sealed class PlotLegacySkipController:MonoBehaviour
+    {
+        public Button skipButton;
+        public GameObject popupPrefab;
+        public string skipMessage="跳过本节剧情？";
+        private PlotPlayerCore _core;
+        private GameObject _popup;
+        private bool _wasPaused,_showing;
+        public bool IsShowing=>_showing;
+        public void Bind(PlotPlayerCore core)
+        {Cancel();if(_core!=null)_core.OnClosed-=Closed;_core=core;_core.OnClosed+=Closed;PlotLegacyWidgets.Click(skipButton,Show);}
+        public void Show()
+        {
+            if(_core==null||_showing||(_core.State!=PlotPlayerState.Playing&&_core.State!=PlotPlayerState.WaitingForChoice&&_core.State!=PlotPlayerState.Idle))return;
+            if(popupPrefab==null)throw new InvalidOperationException("缺少跳过确认弹窗");
+            _wasPaused=_core.IsPaused;_core.Pause();_showing=true;
+            if(_popup==null){_popup=Instantiate(popupPrefab,transform,false);PlotLegacyWidgets.Click(PlotLegacyWidgets.Find<Button>(_popup.transform,"ConfirmBtn"),Confirm);PlotLegacyWidgets.Click(PlotLegacyWidgets.Find<Button>(_popup.transform,"CancelBtn"),Cancel);var close=PlotLegacyWidgets.Find<Button>(_popup.transform,"Close");if(close!=null)PlotLegacyWidgets.Click(close,Cancel);}
+            var rect=(RectTransform)_popup.transform;rect.anchorMin=Vector2.zero;rect.anchorMax=Vector2.one;rect.offsetMin=rect.offsetMax=Vector2.zero;PlotLegacyWidgets.OpenLayout(_popup);_popup.transform.SetAsLastSibling();PlotLegacyWidgets.Caption(PlotLegacyWidgets.Find<TMPro.TMP_Text>(_popup.transform,"ContentText"),skipMessage);
+        }
+        public void Cancel(){if(!_showing)return;_showing=false;if(_popup!=null)_popup.SetActive(false);if(_core!=null&&!_wasPaused)_core.Resume();}
+        public void Confirm(){if(!_showing)return;_showing=false;if(_popup!=null)_popup.SetActive(false);if(!_wasPaused)_core.Resume();_core.Skip();}
+        private void Closed(){_showing=false;if(_popup!=null)_popup.SetActive(false);}
+        private void OnDestroy(){if(_core!=null)_core.OnClosed-=Closed;}
+    }
+}

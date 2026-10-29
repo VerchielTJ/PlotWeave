@@ -1,0 +1,104 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using ValueType = PlotWeave.Authoring.PlotEventTypeAsset.ValueType;
+
+namespace PlotWeave.Authoring
+{
+    [CreateAssetMenu(menuName = "PlotWeave/数据/节点表头")]
+    public sealed class PlotAtomDataHeaderAsset : PlotAuthoringAsset
+    {
+        [Serializable] public sealed class ColumnDefinition
+        {
+            public string columnName = "";
+            public string description = "";
+            public bool IsList;
+            public ValueType valueType = ValueType.String;
+            public string typeKey = "";
+            public int columnIndex = 1;
+            public int members = 1;
+        }
+        public List<ColumnDefinition> sheets = new List<ColumnDefinition>();
+        public Color headerColor = Color.white;
+        public Color contentColor = Color.white;
+        public PlotEnumAsset parameterEnums;
+        public PlotEventTypeAsset parameterBean;
+        public ColumnDefinition GetColumnByName(string columnName) => sheets?.Find(x => x != null && x.columnName == columnName);
+        public ColumnDefinition GetColumnByIndex(int columnIndex) => sheets?.Find(x => x != null && x.columnIndex == columnIndex);
+        public string[] GetAllColumnNames() => sheets?.Where(x => x != null).Select(x => x.columnName).ToArray() ?? Array.Empty<string>();
+        public int[] GetAllColumnIndices() => sheets?.Where(x => x != null).Select(x => x.columnIndex).ToArray() ?? Array.Empty<int>();
+        public ValueType GetColumnValueType(string columnName) => GetColumnByName(columnName)?.valueType ?? ValueType.String;
+        public string GetColumnTypeKey(string columnName) => GetColumnByName(columnName)?.typeKey ?? "";
+        public string GetColumnEnumType(string columnName) => GetColumnValueType(columnName) == ValueType.CustomEnum ? GetColumnTypeKey(columnName) : "";
+        public string GetColumnEventType(string columnName) => GetColumnValueType(columnName) == ValueType.CustomBean ? GetColumnTypeKey(columnName) : "";
+        public List<ColumnDefinition> GetColumnsByEventType(string key) => Columns(x => x.valueType == ValueType.CustomBean && x.typeKey == key);
+        public List<ColumnDefinition> GetColumnsByEnumType(string key) => Columns(x => x.valueType == ValueType.CustomEnum && x.typeKey == key);
+        private List<ColumnDefinition> Columns(Func<ColumnDefinition, bool> predicate) => sheets?.Where(x => x != null && predicate(x)).ToList() ?? new List<ColumnDefinition>();
+        public List<ColumnDefinition> GetListTypeColumns() => Columns(x => x.IsList);
+        public List<ColumnDefinition> GetEventTypeColumns() => Columns(x => x.valueType == ValueType.CustomBean);
+        public List<ColumnDefinition> GetEnumTypeColumns() => Columns(x => x.valueType == ValueType.CustomEnum);
+        public List<PlotEventTypeAsset.EventParameter> GetColumnEventParameters(string name) => parameterBean?.GetEventTypeByKey(GetColumnEventType(name))?.parameters ?? new List<PlotEventTypeAsset.EventParameter>();
+        public Dictionary<string, string> GetColumnNameDescriptionMap() => Columns(x => true).ToDictionary(x => x.columnName, x => x.description, StringComparer.Ordinal);
+        public Dictionary<int, string> GetColumnIndexNameMap() => Columns(x => true).ToDictionary(x => x.columnIndex, x => x.columnName);
+        public int GetColumnEventParameterCount(string name) => GetColumnEventParameters(name).Count;
+        public string[] GetColumnEventParameterKeys(string name) => GetColumnEventParameters(name).Where(x => x != null).Select(x => x.paramKey).ToArray();
+        public ValueType GetColumnEventParameterType(string name, string key) => GetColumnEventParameters(name).Find(x => x != null && x.paramKey == key)?.valueType ?? ValueType.String;
+        public string GetColumnEventParameterEnumName(string name, string key) => GetColumnEventParameters(name).Find(x => x != null && x.paramKey == key)?.enumType ?? "";
+        public Dictionary<string, string> GetColumnEventParameterDisplayAndKeyNameMap(string name) => parameterBean?.GetEventParameterDisplayAndKeyNameMap(GetColumnEventType(name)) ?? new Dictionary<string, string>();
+        public Dictionary<string, string> GetColumnEventParameterKeyAndDisplayNameMap(string name) => parameterBean?.GetEventParameterKeyAndDisplayNameMap(GetColumnEventType(name)) ?? new Dictionary<string, string>();
+        public void SyncCustomBeanMembersCount()
+        {
+            foreach (var column in GetEventTypeColumns())
+            {
+                var bean = parameterBean?.GetEventTypeByKey(column.typeKey);
+                if (bean?.parameters != null) column.members = bean.parameters.Count;
+            }
+        }
+        public void CheckAndFixInvalidTypeKeys()
+        {
+            foreach (var column in Columns(x => true))
+            {
+                if (column.valueType == ValueType.CustomEnum && parameterEnums?.GetEnum(column.typeKey) == null)
+                    column.typeKey = parameterEnums?.GetAllEnumNames().FirstOrDefault() ?? "";
+                else if (column.valueType == ValueType.CustomBean && parameterBean?.GetEventTypeByKey(column.typeKey) == null)
+                    column.typeKey = parameterBean?.GetAllEventKeys().FirstOrDefault() ?? "";
+                else if (column.valueType != ValueType.CustomEnum && column.valueType != ValueType.CustomBean) column.typeKey = "";
+            }
+        }
+        public override AuthoringValidationResult Validate()
+        {
+            var result = new AuthoringValidationResult();
+            if (sheets == null) { result.Errors.Add("列定义为空引用"); return result; }
+            if (parameterEnums != null) result.Include("枚举", parameterEnums.Validate());
+            if (parameterBean != null) result.Include("Bean", parameterBean.Validate());
+            if (parameterBean != null && parameterBean.parameterEnums != null && parameterEnums != parameterBean.parameterEnums)
+                result.Errors.Add("表头与Bean必须引用同一枚举资产");
+            var names = new HashSet<string>(StringComparer.Ordinal);
+            var occupied = new HashSet<int>();
+            foreach (var c in sheets)
+            {
+                if (c == null) { result.Errors.Add("列定义为空引用"); continue; }
+                result.Unique(names, c.columnName, "列名");
+                result.Require(c.columnIndex >= 0, c.columnName + "列索引不能为负数");
+                result.Require(c.members > 0, c.columnName + "成员数必须大于零");
+                result.Require(Enum.IsDefined(typeof(ValueType), c.valueType), c.columnName + "类型无效");
+                if (c.members > 16384 || (long)c.columnIndex + c.members > 16384) result.Errors.Add(c.columnName + "超出Excel列范围");
+                else for (var offset = 0; offset < c.members; offset++)
+                    if (!occupied.Add(c.columnIndex + offset)) result.Errors.Add(c.columnName + "成员列重叠: " + (c.columnIndex + offset));
+                if (c.valueType == ValueType.CustomEnum)
+                    result.Require(parameterEnums?.GetEnum(c.typeKey) != null, c.columnName + "枚举类型不存在: " + c.typeKey);
+                if (c.valueType == ValueType.CustomBean)
+                {
+                    var bean = parameterBean?.GetEventTypeByKey(c.typeKey);
+                    result.Require(bean != null, c.columnName + "Bean类型不存在: " + c.typeKey);
+                    if (bean?.parameters != null) result.Require(c.members == bean.parameters.Count, c.columnName + "成员数与Bean参数数不一致");
+                }
+                else result.Require(c.members == 1, c.columnName + "简单类型或枚举列的成员数应为1");
+                if (c.valueType != ValueType.CustomEnum && c.valueType != ValueType.CustomBean)
+                    result.Require(string.IsNullOrEmpty(c.typeKey), c.columnName + "简单类型不能设置自定义类型键");
+            }
+            return result;
+        }
+    }
+}

@@ -1,0 +1,23 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace PlotWeave.Legacy.Editor
+{
+    [Serializable] public sealed class PlotLegacyUiNode
+    { public string id, name, transformId, parentId, transformJson; public bool active, rect; public int layer, order; }
+    [Serializable] public sealed class PlotLegacyUiComponent
+    { public string id, ownerId, kind, sourceScript, sourceScriptGuid, json; }
+    [Serializable] public sealed class PlotLegacyUiLayout
+    { public string source, name; public List<PlotLegacyUiNode> nodes = new List<PlotLegacyUiNode>(); public List<PlotLegacyUiComponent> components = new List<PlotLegacyUiComponent>(); }
+    [Serializable] public sealed class PlotLegacyRect { public float x,y,width,height; }
+    [Serializable] public sealed class PlotLegacyResourceObject { public string id,json; public int type; }
+    [Serializable] public sealed class PlotLegacyResource
+    { public string key,source,fileID,kind; public bool hasRect; public PlotLegacyRect rect; public Vector2 pivot = Vector2.one * .5f; public Vector4 border; public float pixelsPerUnit = 100; public List<PlotLegacyResourceObject> objects = new List<PlotLegacyResourceObject>(); }
+    [Serializable] public sealed class PlotLegacyUiBundle
+    { public int formatVersion; public List<PlotLegacyUiLayout> layouts = new List<PlotLegacyUiLayout>(); public List<PlotLegacyResource> resources = new List<PlotLegacyResource>(); public List<PlotLegacySourceHash> sources = new List<PlotLegacySourceHash>(); }
+    [Serializable] public sealed class PlotLegacyUiIssue { public string source,kind,detail; }
+    [Serializable] public sealed class PlotLegacyUiOutput { public string source,asset; public int nodes,components,proxies; }
+    [Serializable] public sealed class PlotLegacyUiReport
+    { public string id,status,root,error; public List<PlotLegacyUiOutput> layouts = new List<PlotLegacyUiOutput>(); public List<PlotLegacyUiIssue> issues = new List<PlotLegacyUiIssue>(); public List<string> resources = new List<string>(); }
+}

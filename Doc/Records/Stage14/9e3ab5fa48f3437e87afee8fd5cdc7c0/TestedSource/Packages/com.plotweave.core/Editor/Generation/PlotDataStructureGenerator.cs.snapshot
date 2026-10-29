@@ -1,0 +1,315 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using PlotWeave.Authoring;
+using ValueType = PlotWeave.Authoring.PlotEventTypeAsset.ValueType;
+
+namespace PlotWeave.Generation
+{
+    [Serializable] public sealed class PlotTableGeneration
+    {
+        public PlotTableAsset Asset;
+        public string Name;
+        public string KeyName = "ID";
+        public string KeyType = "int";
+        public bool IsThespianTable;
+    }
+    [Serializable] public sealed class PlotKeyValueGeneration
+    {
+        public string Name;
+        public string KeyName = "key";
+        public string ValueName = "value";
+        public string KeyType = "string";
+        public string ValueType = "string";
+        public bool IsMultiLanguage = true;
+    }
+    public sealed class PlotGeneratedBundle
+    {
+        public readonly Dictionary<string, string> Files = new Dictionary<string, string>(StringComparer.Ordinal);
+        [Serializable] private sealed class Manifest { public List<Entry> files = new List<Entry>(); }
+        [Serializable] private sealed class Entry { public string path; public string sha256; }
+        private static string Hash(byte[] bytes)
+        { using (var hash = SHA256.Create()) return BitConverter.ToString(hash.ComputeHash(bytes)).Replace("-", "").ToLowerInvariant(); }
+        /// <summary>只覆盖本生成器拥有且未经人工修改的文件；不清空目录。</summary>
+        public void Write(string folder)
+        {
+            var full = Path.GetFullPath(folder);
+            var manifestPath = Path.Combine(full, "plotweave-generation.json");
+            var previous = File.Exists(manifestPath) ? UnityEngine.JsonUtility.FromJson<Manifest>(File.ReadAllText(manifestPath)) : new Manifest();
+            foreach (var file in Files)
+            {
+                if (Path.GetFileName(file.Key) != file.Key) throw new ArgumentException("生成文件名无效");
+                var path = Path.Combine(full, file.Key);
+                if (!File.Exists(path) || File.ReadAllText(path) == file.Value) continue;
+                var owned = previous?.files?.Find(e => e.path == file.Key);
+                if (owned == null || owned.sha256 != Hash(File.ReadAllBytes(path))) throw new IOException("生成文件包含人工改动，拒绝覆盖: " + path);
+            }
+            Directory.CreateDirectory(full);
+            var next = new Manifest();
+            foreach (var file in Files)
+            {
+                var path = Path.Combine(full, file.Key);
+                if (!File.Exists(path) || File.ReadAllText(path) != file.Value) File.WriteAllText(path, file.Value, new UTF8Encoding(false));
+                next.files.Add(new Entry { path = file.Key, sha256 = Hash(File.ReadAllBytes(path)) });
+            }
+            File.WriteAllText(manifestPath, UnityEngine.JsonUtility.ToJson(next, true), new UTF8Encoding(false));
+        }
+    }
+    /// <summary>从表头、Bean与通用表生成共同契约及两端适配器；不引用固定cfg类型。</summary>
+    public static class PlotDataStructureGenerator
+    {
+        private sealed class Field
+        {
+            public string Name;
+            public string Type;
+            public bool IsList;
+            public bool IsBean;
+            public bool IsKey;
+        }
+        private sealed class Builder
+        {
+            public readonly StringBuilder Types = new StringBuilder();
+            public readonly StringBuilder Editor = new StringBuilder();
+            public readonly StringBuilder Game = new StringBuilder();
+            public readonly HashSet<string> Names = new HashSet<string>(new[] { "List", "IEnumerable", "IPlotValueSource", "PlotValueReader", "PlotDataAdapter", "PlotItemTable", "IPlotItemTable", "AuthoringPlotValueSource", "PlotTextEntry", "PlotTableAsset", "PlotAtomRowData", "ArgumentNullException" }, StringComparer.Ordinal);
+            public PlotAtomDataHeaderAsset Header;
+            public void Register(string name) { Identifier(name); if (!Names.Add(name)) throw new FormatException("生成类型名冲突: " + name); }
+        }
+        public static PlotGeneratedBundle GenerateAllDataStructures(PlotAtomDataHeaderAsset header,
+            IEnumerable<PlotTableGeneration> tables = null, IEnumerable<PlotKeyValueGeneration> texts = null,
+            string targetNamespace = "PlotWeave.Generated", string nodeName = "PlotAtomData")
+        {
+            var ns = Namespace(targetNamespace);
+            var b = new Builder { Header = header };
+            if (header != null)
+            {
+                header.Validate().ThrowIfInvalid();
+                GenerateEnumsAndBeans(b);
+                GenerateNode(b, header, nodeName);
+            }
+            if (tables != null) foreach (var table in tables) GenerateTable(b, table);
+            if (texts != null) foreach (var text in texts) GenerateText(b, text);
+            var bundle = new PlotGeneratedBundle();
+            bundle.Files.Add("DataContracts.g.cs", Wrap(ns, b.Types));
+            bundle.Files.Add("EditorAdapters.g.cs", Wrap(ns, b.Editor));
+            bundle.Files.Add("GameAdapters.g.cs", Wrap(ns, b.Game));
+            return bundle;
+        }
+        public static PlotGeneratedBundle GenerateSingleColumnTableStructure(PlotKeyValueGeneration definition,
+            string targetNamespace = "PlotWeave.Generated")
+            => GenerateAllDataStructures(null, texts: new[] { definition }, targetNamespace: targetNamespace);
+        public static PlotGeneratedBundle GeneratePlotTableAssetStructure(PlotTableGeneration definition,
+            string targetNamespace = "PlotWeave.Generated")
+            => GenerateAllDataStructures(null, new[] { definition }, targetNamespace: targetNamespace);
+
+        private static string Wrap(string ns, StringBuilder body) => "// <auto-generated by PlotWeave />\nusing System;\nusing System.Collections;\nusing System.Collections.Generic;\nusing UnityEngine;\nusing PlotWeave.Data;\nusing PlotWeave.Authoring;\n\nnamespace " + ns + "\n{\n" + body + "}\n";
+        private static void GenerateEnumsAndBeans(Builder b)
+        {
+            if (b.Header.parameterEnums != null)
+                foreach (var item in b.Header.parameterEnums.dynamicLists)
+                {
+                    b.Register(item.enumName);
+                    if (item.values.Count == 0) throw new FormatException("生成枚举至少需要一个值: " + item.enumName);
+                    b.Types.AppendLine("    public enum " + Identifier(item.enumName) + "\n    {");
+                    for (var i = 0; i < item.values.Count; i++)
+                    {
+                        if (item.values[i].key == "value__") throw new FormatException("枚举键value__为C#保留成员");
+                        b.Types.AppendLine("        " + Identifier(item.values[i].key) + " = " + i.ToString(CultureInfo.InvariantCulture) + ",");
+                    }
+                    b.Types.AppendLine("    }");
+                }
+            if (b.Header.parameterBean == null) return;
+            foreach (var bean in b.Header.parameterBean.eventTypes)
+            {
+                b.Register(bean.eventKey); b.Register("I" + bean.eventKey);
+                var fields = bean.parameters.Select(p => FieldFor(p.paramKey, p.valueType, p.valueType == ValueType.CustomBean ? p.beanType : p.enumType, false)).ToList();
+                CheckFields(fields, bean.eventKey, "I" + bean.eventKey);
+                Interface(b.Types, "I" + bean.eventKey, fields, null);
+                b.Types.AppendLine("    public sealed class " + Identifier(bean.eventKey) + " : " + Identifier("I" + bean.eventKey) + "\n    {");
+                foreach (var f in fields) b.Types.AppendLine("        public " + CsType(f) + " " + Identifier(f.Name) + " { get; }");
+                b.Types.AppendLine("        public " + Identifier(bean.eventKey) + "(IPlotValueSource source)\n        {\n            if (source == null) throw new ArgumentNullException(nameof(source));");
+                foreach (var f in fields) b.Types.AppendLine("            " + Identifier(f.Name) + " = " + Read(f, "source") + ";");
+                b.Types.AppendLine("        }\n    }");
+            }
+        }
+        private static Field FieldFor(string name, ValueType type, string typeKey, bool isList)
+        {
+            string cs;
+            switch (type)
+            {
+                case ValueType.Int: cs = "int"; break;
+                case ValueType.Float: cs = "float"; break;
+                case ValueType.Bool: cs = "bool"; break;
+                case ValueType.String: cs = "string"; break;
+                case ValueType.Vector3: cs = "UnityEngine.Vector3"; break;
+                case ValueType.CustomEnum: case ValueType.CustomBean: cs = Identifier(typeKey); break;
+                default: throw new FormatException("未知字段类型: " + type);
+            }
+            return new Field { Name = name.TrimStart('*'), Type = cs, IsList = isList, IsBean = type == ValueType.CustomBean };
+        }
+        private static Field TableField(Builder b, string name, string type)
+        {
+            switch (type)
+            {
+                case "int": case "float": case "bool": case "string": return new Field { Name = name, Type = type };
+                case "vector3": case "Vector3": return new Field { Name = name, Type = "UnityEngine.Vector3" };
+                default:
+                    if (b.Header?.parameterEnums?.GetEnum(type) != null) return new Field { Name = name, Type = Identifier(type) };
+                    if (b.Header?.parameterBean?.GetEventTypeByKey(type) != null) throw new FormatException("通用表单元格Bean需要结构转换绑定，不能将字符串自动当作Bean: " + type);
+                    throw new FormatException("通用表生成类型未绑定: " + type);
+            }
+        }
+        private static string CsType(Field f) => f.IsList ? "List<" + f.Type + ">" : f.Type;
+        private static string Read(Field f, string source)
+        {
+            var key = Quote(f.Name);
+            if (f.IsList) return "PlotValueReader.List(" + source + ", " + key + ", value => " + (f.IsBean ? "new " + f.Type + "(PlotValueReader.Wrap(value))" : "PlotValueReader.ConvertValue<" + f.Type + ">(value)") + ")";
+            if (f.IsBean) return "PlotValueReader.Bean(" + source + ", " + key + ", value => new " + f.Type + "(value))";
+            return "PlotValueReader." + (f.IsKey ? "Required" : "Value") + "<" + f.Type + ">(" + source + ", " + key + ")";
+        }
+        private static void Interface(StringBuilder code, string name, List<Field> fields, string parent)
+        {
+            code.AppendLine("    public interface " + Identifier(name) + (parent == null ? "" : " : " + parent) + "\n    {");
+            foreach (var f in fields) code.AppendLine("        " + CsType(f) + " " + Identifier(f.Name) + " { get; }");
+            code.AppendLine("    }");
+        }
+        private static void GenerateNode(Builder b, PlotAtomDataHeaderAsset header, string name)
+        {
+            Identifier(name);
+            var contract = "I" + name;
+            var editorName = "Editor" + name + "Adapter";
+            var gameName = "Game" + name + "Adapter";
+            foreach (var type in new[] { contract, editorName, gameName }) b.Register(type);
+            var fields = header.sheets.Select(c => FieldFor(c.columnName, c.valueType, c.typeKey, c.IsList)).ToList();
+            CheckFields(fields, contract, editorName, gameName);
+            Interface(b.Types, contract, fields, "global::PlotWeave.Data.IPlotDataBase");
+            Adapter(b.Editor, editorName, contract, fields, "Editor",
+                "        public " + Identifier(editorName) + "(PlotAtomRowData row) : this(AuthoringPlotValueSource.FromRow(row)) { }\n");
+            Adapter(b.Game, gameName, contract, fields, "GameRuntime", "");
+        }
+        private static void Adapter(StringBuilder code, string name, string contract, List<Field> fields, string source, string extra)
+        {
+            code.AppendLine("    public sealed class " + Identifier(name) + " : global::PlotWeave.Data.PlotDataAdapter, " + Identifier(contract) + "\n    {");
+            code.AppendLine("        public " + Identifier(name) + "(IPlotValueSource source) : base(source, " + Quote(source) + ") { }");
+            code.AppendLine("        public " + Identifier(name) + "(object source) : this(PlotValueReader.Wrap(source)) { }");
+            code.Append(extra);
+            foreach (var f in fields) code.AppendLine("        public " + CsType(f) + " " + Identifier(f.Name) + " => " + Read(f, "Source") + ";");
+            code.AppendLine("    }");
+        }
+        private static void GenerateTable(Builder b, PlotTableGeneration spec)
+        {
+            if (spec?.Asset == null) throw new ArgumentNullException(nameof(spec));
+            spec.Asset.Validate().ThrowIfInvalid();
+            var name = spec.Name ?? (string.IsNullOrEmpty(spec.Asset.customDataName) ? spec.Asset.tableName : spec.Asset.customDataName);
+            var key = Key(spec.KeyName, spec.KeyType);
+            var fields = new List<Field> { key };
+            foreach (var column in spec.Asset.headers)
+            {
+                if (column.columnName == spec.KeyName)
+                {
+                    if (column.columnType != spec.KeyType) throw new FormatException("主键列类型不一致");
+                }
+                else fields.Add(TableField(b, column.columnName, column.columnType));
+            }
+            var item = name.EndsWith("Data", StringComparison.Ordinal) ? name + "Item" : name + "DataItem";
+            if (spec.IsThespianTable && !(fields.Any(f => f.Name == "ID" && f.Type == "int") && fields.Any(f => f.Name == "Name" && f.Type == "string") && fields.Any(f => f.Name == "Thespian" && f.Type == "string")))
+                throw new FormatException("角色表契约要求int ID、string Name和string Thespian");
+            GenerateItemAndTables(b, name, item, fields, key, null,
+                "PlotTableAsset asset", "asset.Validate().ThrowIfInvalid(); foreach (var row in asset.rows)", "AuthoringPlotValueSource.FromTableRow(row, " + Quote(key.Name) + ")", spec.IsThespianTable);
+        }
+        private static Field Key(string name, string type)
+        {
+            if (type != "int" && type != "string") throw new FormatException("主键支持int或string，请显式选择");
+            return new Field { Name = name, Type = type, IsKey = true };
+        }
+        private static void GenerateText(Builder b, PlotKeyValueGeneration spec)
+        {
+            if (spec == null) throw new ArgumentNullException(nameof(spec));
+            var key = Key(spec.KeyName, spec.KeyType);
+            var value = TableField(b, spec.ValueName, spec.ValueType); value.IsList = spec.IsMultiLanguage;
+            var fields = new List<Field> { key, value };
+            var item = spec.Name + "DataItem";
+            GenerateItemAndTables(b, spec.Name, item, fields, key, value,
+                "IEnumerable<PlotTextEntry> records", "foreach (var row in records)", "AuthoringPlotValueSource.FromText(row, " + Quote(key.Name) + ", " + Quote(value.Name) + ", " + (spec.IsMultiLanguage ? "true" : "false") + ")");
+        }
+        private static void GenerateItemAndTables(Builder b, string name, string item, List<Field> fields, Field key, Field textValue,
+            string editorParameter, string editorLoop, string rowSource, bool thespian = false)
+        {
+            var contract = "I" + item; var tableContract = "I" + name + "Table";
+            var editor = "Editor" + item + "Adapter"; var game = "Game" + item + "Adapter";
+            var editorTable = "Editor" + name + "TableAdapter"; var gameTable = "Game" + name + "TableAdapter";
+            foreach (var type in new[] { contract, tableContract, editor, game, editorTable, gameTable }) b.Register(type);
+            CheckFields(fields, contract, editor, game);
+            var contractFields = thespian ? fields.Where(f => f.Name != "ID" && f.Name != "Name" && f.Name != "Thespian").ToList() : fields;
+            Interface(b.Types, contract, contractFields, thespian ? "global::PlotWeave.Data.IPlotThespianData" : "global::PlotWeave.Data.IPlotDataBase");
+            b.Types.AppendLine("    public interface " + Identifier(tableContract) + " : IPlotItemTable<" + key.Type + ", " + Identifier(contract) + ">\n    {");
+            if (textValue != null)
+            {
+                b.Types.AppendLine("        bool HasKey(" + key.Type + " key);\n        List<" + key.Type + "> GetAllKeys();");
+                b.Types.AppendLine("        " + textValue.Type + " GetValue(" + key.Type + " key" + (textValue.IsList ? ", int languageIndex = 0" : "") + ");");
+            }
+            b.Types.AppendLine("    }");
+            Adapter(b.Editor, editor, contract, fields, "Editor", "");
+            Adapter(b.Game, game, contract, fields, "GameRuntime", "");
+            foreach (var side in new[] { "Editor", "Game" })
+            {
+                var code = side == "Editor" ? b.Editor : b.Game;
+                var className = side == "Editor" ? editorTable : gameTable;
+                var itemName = side == "Editor" ? editor : game;
+                var textBridge = textValue != null && key.Type == "string" && textValue.Type == "string" && textValue.IsList;
+                code.AppendLine("    public sealed class " + Identifier(className) + " : PlotItemTable<" + key.Type + ", " + Identifier(contract) + ">, " + Identifier(tableContract) + (textBridge ? ", global::PlotWeave.Data.IPlotTextData" : "") + "\n    {");
+                code.AppendLine("        public " + Identifier(className) + "() { }");
+                if (side == "Editor")
+                    code.AppendLine("        public " + Identifier(className) + "(" + editorParameter + ")\n        {\n            " + editorLoop + " { var item = new " + Identifier(itemName) + "(" + rowSource + "); AddItem(item." + Identifier(key.Name) + ", item); }\n        }");
+                else
+                    code.AppendLine("        public " + Identifier(className) + "(IEnumerable records)\n        {\n            foreach (var row in records) { var item = new " + Identifier(itemName) + "(row); AddItem(item." + Identifier(key.Name) + ", item); }\n        }");
+                if (textValue != null)
+                {
+                    code.AppendLine("        public bool HasKey(" + key.Type + " key) => HasId(key);\n        public List<" + key.Type + "> GetAllKeys() => GetAllIds();");
+                    code.AppendLine("        public " + textValue.Type + " GetValue(" + key.Type + " key" + (textValue.IsList ? ", int languageIndex = 0" : "") + ")\n        {\n            var item = GetItem(key);");
+                    var access = "item." + Identifier(textValue.Name);
+                    if (textValue.IsList) code.AppendLine("            if (item == null || languageIndex < 0) return default;\n            var values = " + access + ";\n            return languageIndex < values.Count ? values[languageIndex] : default;");
+                    else code.AppendLine("            return item == null ? default : " + access + ";");
+                    code.AppendLine("        }");
+                    if (textBridge)
+                        code.AppendLine("        public string GetText(string key, int languageType = 0) => GetValue(key, languageType);\n        string[] global::PlotWeave.Data.IPlotTextData.GetAllKeys() => GetAllKeys().ToArray();");
+                }
+                code.AppendLine("    }");
+            }
+        }
+        private static void CheckFields(List<Field> fields, params string[] owners)
+        {
+            var used = new HashSet<string>(StringComparer.Ordinal) { "IsValid", "DataSource", "Source" };
+            foreach (var f in fields)
+            {
+                Identifier(f.Name);
+                if (!used.Add(f.Name) || owners.Contains(f.Name, StringComparer.Ordinal)) throw new FormatException("生成成员名冲突: " + f.Name);
+            }
+        }
+        private static string Namespace(string name)
+        {
+            if (string.IsNullOrWhiteSpace(name)) throw new FormatException("命名空间不能为空");
+            return string.Join(".", name.Split('.').Select(Identifier));
+        }
+        private static readonly HashSet<string> Keywords = new HashSet<string>(("abstract as base bool break byte case catch char checked class const continue decimal default delegate do double else enum event explicit extern false finally fixed float for foreach goto if implicit in int interface internal is lock long namespace new null object operator out override params private protected public readonly ref return sbyte sealed short sizeof stackalloc static string struct switch this throw true try typeof uint ulong unchecked unsafe ushort using virtual void volatile while").Split(' '), StringComparer.Ordinal);
+        private static string Identifier(string name)
+        {
+            if (string.IsNullOrEmpty(name) || !(name[0] == '_' || char.IsLetter(name[0]))) throw new FormatException("无效C#标识符: " + name);
+            if (name.Any(c => c != '_' && !char.IsLetterOrDigit(c))) throw new FormatException("无效C#标识符: " + name);
+            return Keywords.Contains(name) ? "@" + name : name;
+        }
+        private static string Quote(string text)
+        {
+            var result = new StringBuilder("\"");
+            foreach (var c in text)
+                if (c == '\\' || c == '"') result.Append('\\').Append(c);
+                else if (char.IsControl(c)) result.Append("\\u").Append(((int)c).ToString("x4", CultureInfo.InvariantCulture));
+                else result.Append(c);
+            return result.Append('"').ToString();
+        }
+    }
+}

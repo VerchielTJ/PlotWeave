@@ -1,0 +1,101 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using PlotWeave.Legacy;
+
+namespace PlotWeave.Playback
+{
+    public interface IPlotEventPresentation
+    { IPlotOperation ExecuteEvent(PlotEventJsonData data, PlotEventContext context); }
+    public sealed class PlotEventContext
+    {
+        public PlotPlayerCore Player { get; internal set; }
+        public int NodeID { get; internal set; }
+        public IPlotPlayerDataProvider Data { get; internal set; }
+        public IPlotTextProcessor Text { get; internal set; }
+        public IPlotEventPresentation Presentation { get; internal set; }
+        public IDictionary<string, string> Variables { get; internal set; }
+        public Action<string, string> Signal { get; internal set; }
+        public string Expand(string text)
+        { var value = text ?? ""; foreach (var item in Variables) value = value.Replace("${" + item.Key + "}", item.Value ?? ""); return value; }
+        public string Parameter(PlotEventJsonData data, int index, string fallback = "") => Expand(data.GetParameter(index, fallback));
+        public float Number(PlotEventJsonData data, int index, float fallback = 0)
+        { var value = Parameter(data, index, fallback.ToString(CultureInfo.InvariantCulture)); var number = float.Parse(value, NumberStyles.Float, CultureInfo.InvariantCulture); if (float.IsNaN(number) || float.IsInfinity(number)) throw new FormatException("事件数值必须有限"); return number; }
+    }
+    public sealed class PlotEventRegistry
+    {
+        private readonly Dictionary<string, Func<PlotEventJsonData, PlotEventContext, IPlotOperation>> _handlers = new Dictionary<string, Func<PlotEventJsonData, PlotEventContext, IPlotOperation>>(StringComparer.Ordinal);
+        public PlotEventRegistry()
+        {
+            Register("wait", (data, context) => new PlotTweenOperation(context.Number(data, 0)));
+            Register("signal", (data, context) => { context.Signal?.Invoke(context.Parameter(data, 0), context.Parameter(data, 1)); return null; });
+            Register("set", (data, context) => { var key = context.Parameter(data, 0); if (string.IsNullOrWhiteSpace(key)) throw new FormatException("变量名为空"); context.Variables[key] = context.Parameter(data, 1); return null; });
+            foreach (var key in new[] { "actor.show", "actor.hide", "actor.move", "actor.emote", "actor.animate", "background", "bgm", "sound", "effect", "PlacementRole", "ChangeRole", "MoveRole", "RemoveRole", "SetBackground", "SetBackgroundEffect", "SetBGM", "SetSoundEffect", "SetEffect" })
+                Register(key, (data, context) => context.Presentation != null ? context.Presentation.ExecuteEvent(data, context) : throw new InvalidOperationException("当前表现层不支持事件: " + data.eventName));
+        }
+        public void Register(string name, Func<PlotEventJsonData, PlotEventContext, IPlotOperation> handler, bool replace = false)
+        { if (string.IsNullOrWhiteSpace(name) || handler == null) throw new ArgumentException("事件名或处理器为空"); if (!replace && _handlers.ContainsKey(name)) throw new InvalidOperationException("事件已有处理器: " + name); _handlers[name] = handler; }
+        public bool HasHandler(string name) => name != null && _handlers.ContainsKey(name);
+        public IPlotOperation Execute(PlotEventJsonData data, PlotEventContext context)
+            => _handlers.TryGetValue(data.eventName, out var handler) ? handler(data, context) : throw new KeyNotFoundException("未注册事件: " + data.eventName);
+    }
+
+    /// <summary>-1为根事件；非负executionOrder为回调ID。根按列表顺序，回调按声明顺序深度优先执行。</summary>
+    public sealed class PlotEventScheduler : IDisposable
+    {
+        private readonly Stack<PlotEventJsonData> _queue = new Stack<PlotEventJsonData>();
+        private readonly Dictionary<int, PlotEventJsonData> _callbacks;
+        private readonly Func<PlotEventJsonData, IPlotOperation> _execute;
+        private IPlotOperation _active;
+        private PlotEventJsonData _activeEvent;
+        private int _executed, _revision;
+        private bool _disposed;
+        public string Error { get; private set; } = "";
+        public bool IsFaulted => Error != "";
+        public bool IsCompleted => !_disposed && !IsFaulted && _queue.Count == 0 && _active == null;
+        public bool IsCancelled => _disposed;
+        public PlotEventScheduler(IEnumerable<PlotEventJsonData> events, Func<PlotEventJsonData, IPlotOperation> execute)
+        {
+            _execute = execute ?? throw new ArgumentNullException(nameof(execute)); var data = events?.Select(e => e?.Clone()).ToList() ?? throw new ArgumentNullException(nameof(events));
+            Validate(data); _callbacks = data.Where(e => e.executionOrder >= 0).ToDictionary(e => e.executionOrder);
+            foreach (var root in data.Where(e => e.executionOrder == -1).Reverse()) _queue.Push(root);
+        }
+        public static void Validate(IList<PlotEventJsonData> events)
+        {
+            var container = new PlotEventsJsonContainer { events = events == null ? null : new List<PlotEventJsonData>(events) }; container.Validate().ThrowIfInvalid();
+            if (events.Count > 4096) throw new FormatException("单节点事件定义超过4096项");
+            var callbacks = new Dictionary<int, PlotEventJsonData>();
+            foreach (var data in events.Where(e => e.executionOrder >= 0)) if (callbacks.ContainsKey(data.executionOrder)) throw new FormatException("重复回调ID: " + data.executionOrder); else callbacks.Add(data.executionOrder, data);
+            foreach (var data in events) foreach (var id in data.GetCallbackIds()) if (!callbacks.ContainsKey(id)) throw new FormatException("回调ID不存在: " + id);
+            var visiting = new HashSet<int>(); var visited = new HashSet<int>();
+            void Walk(int id, int depth)
+            {
+                if (depth > 128) throw new FormatException("回调嵌套超过128层"); if (visited.Contains(id)) return; if (!visiting.Add(id)) throw new FormatException("回调存在循环: " + id);
+                foreach (var child in callbacks[id].GetCallbackIds()) Walk(child, depth + 1); visiting.Remove(id); visited.Add(id);
+            }
+            foreach (var id in callbacks.Keys) Walk(id, 0);
+        }
+        private void FinishActive()
+        { var operation = _active; var data = _activeEvent; _active = null; _activeEvent = null; operation?.Dispose(); if (_disposed) return; foreach (var id in data.GetCallbackIds().AsEnumerable().Reverse()) _queue.Push(_callbacks[id]); }
+        public void Tick(float deltaTime)
+        {
+            if (_disposed || IsFaulted || IsCompleted) return;
+            try
+            {
+                var revision = _revision;
+                if (_active != null) { _active.Tick(deltaTime); if (_disposed || revision != _revision) return; if (!_active.IsCompleted) return; FinishActive(); }
+                for (var budget = 0; budget < 64 && _queue.Count > 0 && !_disposed; budget++)
+                {
+                    if (++_executed > 4096) throw new InvalidOperationException("单节点事件执行次数超过4096，可能存在重复扩展");
+                    var data = _queue.Pop(); var operation = _execute(data);
+                    if (_disposed || revision != _revision) { operation?.Dispose(); return; }
+                    _activeEvent = data; _active = operation;
+                    if (_active != null && !_active.IsCompleted) return; FinishActive();
+                }
+            }
+            catch (Exception error) { Error = error.Message; _active?.Dispose(); _active = null; _queue.Clear(); }
+        }
+        public void Dispose() { if (_disposed) return; _disposed = true; _revision++; _active?.Dispose(); _active = null; _queue.Clear(); }
+    }
+}

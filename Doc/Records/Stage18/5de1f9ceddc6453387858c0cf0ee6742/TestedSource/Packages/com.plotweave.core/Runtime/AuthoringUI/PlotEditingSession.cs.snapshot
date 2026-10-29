@@ -1,0 +1,238 @@
+#if UNITY_EDITOR
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using UnityEngine;
+
+namespace PlotWeave.Authoring.UI
+{
+    public enum UnsavedChoice { Save, Discard, Cancel }
+    public interface IPlotAuthoringStore
+    {
+        PlotAuthoringProject Project { get; }
+        List<PlotAtomRowData> ListRows(int? from = null, int? to = null);
+        PlotAtomRowData FindRow(int id);
+        PlotAtomRowData CreateRow(int id);
+        void SaveChanges(PlotAtomRowData target, PlotAtomRowData working, PlotDialogKeyAsset dialogs, PlotConstantKeyAsset constants);
+        PlotAtomRowData RenameRow(int oldId, int newId);
+        bool DeleteRow(int id);
+    }
+    /// <summary>面板共享的编辑事务。工作副本与持久化资产隔离，离开前明确保存/丢弃/取消。</summary>
+    public sealed class PlotEditingSession : IDisposable
+    {
+        [Serializable] private sealed class Draft
+        {
+            public int version = 1;
+            public int nodeId;
+            public string rowTitle;
+            public List<PlotAtomRowData.SerializedColumnData> columns;
+            public List<PlotDialogKeyAsset.DialogKeyData> dialogs;
+            public List<PlotConstantKeyAsset.ConstantKeyData> constants;
+        }
+        public IPlotAuthoringStore Store { get; }
+        public PlotAtomRowData CurrentAsset { get; private set; }
+        public PlotAtomRowData WorkingRow { get; private set; }
+        public PlotDialogKeyAsset Dialogs { get; private set; }
+        public PlotConstantKeyAsset Constants { get; private set; }
+        public bool HasUnsavedChanges { get; private set; }
+        private string _rowBaseline;
+        private string _dialogBaseline;
+        private string _constantBaseline;
+        public event Action Changed;
+        public event Action SelectionChanged;
+        public PlotEditingSession(IPlotAuthoringStore store)
+        {
+            Store = store ?? throw new ArgumentNullException(nameof(store));
+            ResetTexts();
+        }
+        private static T Copy<T>(T source) where T : ScriptableObject
+        {
+            if (source == null) return null;
+            var copy = UnityEngine.Object.Instantiate(source); copy.hideFlags = HideFlags.HideAndDontSave; return copy;
+        }
+        private static void Release(UnityEngine.Object value) { if (value != null) UnityEngine.Object.DestroyImmediate(value); }
+        private static string Snapshot(UnityEngine.Object value) => value == null ? "" : JsonUtility.ToJson(value);
+        private void ResetTexts()
+        {
+            Release(Dialogs); Release(Constants);
+            Dialogs = Copy(Store.Project.dialogs); Constants = Copy(Store.Project.constants);
+            _dialogBaseline = Snapshot(Store.Project.dialogs);
+            _constantBaseline = Snapshot(Store.Project.constants);
+        }
+        public void MarkChanged() { HasUnsavedChanges = true; Changed?.Invoke(); }
+        public bool ResolveUnsaved(Func<UnsavedChoice> choose)
+        {
+            if (!HasUnsavedChanges) return true;
+            var choice = choose == null ? UnsavedChoice.Cancel : choose();
+            if (choice == UnsavedChoice.Cancel) return false;
+            if (choice == UnsavedChoice.Save) Save(); else Discard();
+            return true;
+        }
+        public bool Select(int id, Func<UnsavedChoice> choose)
+        {
+            var target = Store.FindRow(id);
+            if (target == null) throw new KeyNotFoundException("节点不存在: " + id);
+            if (target == CurrentAsset) return true;
+            if (!ResolveUnsaved(choose)) return false;
+            ResetTexts();
+            Release(WorkingRow); CurrentAsset = target; WorkingRow = Copy(target);
+            _rowBaseline = Snapshot(target);
+            HasUnsavedChanges = false; SelectionChanged?.Invoke(); Changed?.Invoke(); return true;
+        }
+        public bool Create(int id, Func<UnsavedChoice> choose)
+        {
+            if (!ResolveUnsaved(choose)) return false;
+            var row = Store.CreateRow(id);
+            return Select(int.Parse(row.GetColumnSingleValue(Store.Project.idColumn), CultureInfo.InvariantCulture), null);
+        }
+        public void SetValue(string column, int rowIndex, int memberIndex, string value)
+        {
+            if (WorkingRow == null) throw new InvalidOperationException("请先选择节点");
+            var definition = WorkingRow.headerDefinition.GetColumnByName(column) ?? throw new ArgumentException("列不存在: " + column);
+            if (rowIndex < 0 || (!definition.IsList && rowIndex != 0) || memberIndex < 0 || memberIndex >= definition.members) throw new ArgumentOutOfRangeException();
+            var rows = WorkingRow.GetColumnRows(column);
+            if (!definition.IsList && rows.Count == 0)
+            {
+                WorkingRow.SetColumnRowValues(column, DefaultValues(definition, WorkingRow.headerDefinition));
+                rows = WorkingRow.GetColumnRows(column);
+            }
+            if (rowIndex >= rows.Count) throw new ArgumentOutOfRangeException(nameof(rowIndex));
+            var defaults = DefaultValues(definition, WorkingRow.headerDefinition);
+            while (rows[rowIndex].values.Count < definition.members) rows[rowIndex].values.Add(defaults[rows[rowIndex].values.Count]);
+            rows[rowIndex].values[memberIndex] = value ?? ""; MarkChanged();
+        }
+        public void AddListRow(string column)
+        {
+            var definition = WorkingRow?.headerDefinition.GetColumnByName(column) ?? throw new ArgumentException("列不存在");
+            if (!definition.IsList) throw new InvalidOperationException("该列不是列表");
+            WorkingRow.AddRowToColumn(column, DefaultValues(definition, WorkingRow.headerDefinition));
+            MarkChanged(); SelectionChanged?.Invoke();
+        }
+        public void RemoveListRow(string column, int index)
+        {
+            var definition = WorkingRow?.headerDefinition.GetColumnByName(column) ?? throw new ArgumentException("列不存在");
+            if (!definition.IsList) throw new InvalidOperationException("该列不是列表");
+            var rows = WorkingRow.GetColumnRows(column);
+            if (index < 0 || index >= rows.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            rows.RemoveAt(index); MarkChanged(); SelectionChanged?.Invoke();
+        }
+        public static List<string> DefaultValues(PlotAtomDataHeaderAsset.ColumnDefinition column, PlotAtomDataHeaderAsset header)
+        {
+            var values = new List<string>();
+            if (column.valueType == PlotEventTypeAsset.ValueType.CustomBean)
+                foreach (var leaf in PlotBeanLayout.Leaves(header.parameterBean, column.typeKey))
+                    values.Add(DefaultValue(leaf.Parameter.valueType, header.parameterBean.parameterEnums, leaf.Parameter.enumType, leaf.Parameter.enumValue));
+            else values.Add(DefaultValue(column.valueType, header.parameterEnums, column.typeKey, ""));
+            return values;
+        }
+        private static string DefaultValue(PlotEventTypeAsset.ValueType type, PlotEnumAsset enums, string name, string configured)
+        {
+            switch (type)
+            {
+                case PlotEventTypeAsset.ValueType.Int: case PlotEventTypeAsset.ValueType.Float: return "0";
+                case PlotEventTypeAsset.ValueType.Bool: return "false";
+                case PlotEventTypeAsset.ValueType.Vector3: return "0,0,0";
+                case PlotEventTypeAsset.ValueType.CustomEnum:
+                    if (!string.IsNullOrEmpty(configured)) return configured;
+                    var keys = enums?.GetEnumKeys(name); return keys != null && keys.Length > 0 ? keys[0] : "";
+                default: return "";
+            }
+        }
+        public void SetDialogKey(string key)
+        {
+            if (WorkingRow == null) throw new InvalidOperationException("请先选择节点");
+            WorkingRow.SetColumnSingleValue(Store.Project.dialogColumn, key); MarkChanged();
+            SelectionChanged?.Invoke();
+        }
+        public string CurrentDialogKey => WorkingRow?.GetColumnSingleValue(Store.Project.dialogColumn) ?? "";
+        public string GenerateDialogKey()
+        {
+            if (WorkingRow == null || Dialogs == null) throw new InvalidOperationException("节点或对话表尚未加载");
+            var key = "PlotDialog_" + WorkingRow.GetColumnSingleValue(Store.Project.idColumn);
+            if (!Dialogs.HasKey(key)) Dialogs.AddDialogKey(key);
+            SetDialogKey(key); return key;
+        }
+        public void SetText(bool constant, string key, int languageIndex, string text)
+        {
+            var count = constant ? Constants?.GetLanguageCount(key) ?? 0 : Dialogs?.GetLanguageCount(key) ?? 0;
+            if (languageIndex < 0 || languageIndex >= (count == 0 ? 5 : count)) throw new ArgumentOutOfRangeException(nameof(languageIndex));
+            if (constant)
+            {
+                if (Constants == null) throw new InvalidOperationException("没有常量表");
+                if (!Constants.HasKey(key)) Constants.AddConstantKey(key);
+                Constants.SetConstantContent(key, languageIndex, text);
+            }
+            else
+            {
+                if (Dialogs == null) throw new InvalidOperationException("没有对话表");
+                if (!Dialogs.HasKey(key)) Dialogs.AddDialogKey(key);
+                Dialogs.SetDialogContent(key, languageIndex, text);
+            }
+            MarkChanged();
+        }
+        public void RemoveText(bool constant, string key)
+        {
+            if (constant) Constants?.RemoveConstantKey(key);
+            else { Dialogs?.RemoveDialogKey(key); if (CurrentDialogKey == key) WorkingRow.SetColumnSingleValue(Store.Project.dialogColumn, ""); }
+            MarkChanged(); SelectionChanged?.Invoke();
+        }
+        public void Save()
+        {
+            if (CurrentAsset == null || WorkingRow == null) throw new InvalidOperationException("请先选择节点");
+            if (_rowBaseline != Snapshot(CurrentAsset) || _dialogBaseline != Snapshot(Store.Project.dialogs) || _constantBaseline != Snapshot(Store.Project.constants))
+                throw new InvalidOperationException("源资产已被其他窗口修改；请先保留当前编辑内容并重新加载，避免覆盖外部修改");
+            Store.SaveChanges(CurrentAsset, WorkingRow, Dialogs, Constants);
+            _rowBaseline = Snapshot(CurrentAsset); _dialogBaseline = Snapshot(Store.Project.dialogs); _constantBaseline = Snapshot(Store.Project.constants);
+            HasUnsavedChanges = false; Changed?.Invoke();
+        }
+        public void Discard()
+        {
+            Release(WorkingRow); WorkingRow = Copy(CurrentAsset); ResetTexts();
+            _rowBaseline = Snapshot(CurrentAsset);
+            HasUnsavedChanges = false; SelectionChanged?.Invoke(); Changed?.Invoke();
+        }
+        public bool Rename(int newId, Func<UnsavedChoice> choose)
+        {
+            if (CurrentAsset == null) throw new InvalidOperationException("请先选择节点");
+            if (!ResolveUnsaved(choose)) return false;
+            var oldId = int.Parse(CurrentAsset.GetColumnSingleValue(Store.Project.idColumn), CultureInfo.InvariantCulture);
+            var row = Store.RenameRow(oldId, newId);
+            CurrentAsset = row; Release(WorkingRow); WorkingRow = Copy(row);
+            _rowBaseline = Snapshot(row);
+            SelectionChanged?.Invoke(); Changed?.Invoke(); return true;
+        }
+        public bool Delete(Func<UnsavedChoice> choose)
+        {
+            if (CurrentAsset == null) return false;
+            if (!ResolveUnsaved(choose)) return false;
+            var id = int.Parse(CurrentAsset.GetColumnSingleValue(Store.Project.idColumn), CultureInfo.InvariantCulture);
+            if (!Store.DeleteRow(id)) return false;
+            Release(WorkingRow); WorkingRow = null; CurrentAsset = null;
+            SelectionChanged?.Invoke(); Changed?.Invoke(); return true;
+        }
+        public string ExportDraft()
+        {
+            if (WorkingRow == null) throw new InvalidOperationException("没有可导出的节点草稿");
+            return JsonUtility.ToJson(new Draft
+            {
+                nodeId = int.Parse(WorkingRow.GetColumnSingleValue(Store.Project.idColumn), CultureInfo.InvariantCulture),
+                rowTitle = WorkingRow.rowTitle, columns = WorkingRow.columns,
+                dialogs = Dialogs?.dialogKeyDataList, constants = Constants?.constantKeyDataList
+            }, true);
+        }
+        public void RestoreDraft(string json)
+        {
+            if (HasUnsavedChanges) throw new InvalidOperationException("请先处理当前未保存的修改");
+            var draft = JsonUtility.FromJson<Draft>(json);
+            if (draft == null || draft.version != 1 || draft.columns == null) throw new FormatException("不支持的制作草稿格式");
+            if (!Select(draft.nodeId, () => UnsavedChoice.Cancel)) throw new InvalidOperationException("请先处理当前未保存的修改");
+            Release(WorkingRow); WorkingRow = Copy(CurrentAsset); ResetTexts(); _rowBaseline = Snapshot(CurrentAsset);
+            WorkingRow.rowTitle = draft.rowTitle; WorkingRow.columns = draft.columns;
+            if (Dialogs != null && draft.dialogs != null) Dialogs.dialogKeyDataList = draft.dialogs;
+            if (Constants != null && draft.constants != null) Constants.constantKeyDataList = draft.constants;
+            MarkChanged(); SelectionChanged?.Invoke();
+        }
+        public void Dispose() { Release(WorkingRow); Release(Dialogs); Release(Constants); WorkingRow = null; Dialogs = null; Constants = null; Changed = null; SelectionChanged = null; }
+    }
+}
+#endif

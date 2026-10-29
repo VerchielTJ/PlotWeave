@@ -1,0 +1,16 @@
+{
+  "scope": "actual-main-entry-startup",
+  "requestId": "dddc7e8a70564782bd87f2aa913c323e",
+  "queuedAtUtc": "2026-10-29T11:08:07.9246602Z",
+  "requestStatus": "passed",
+  "readinessVerified": true,
+  "readyEvent": "PLOTWEAVE_AUTHORING_READY workspace=Workspace node=10000",
+  "windowTitles": [
+    "Administrator: PlotWeave - OriginalAuthoring - Windows, Mac, Linux - Unity 2022.3.62f3c1* <DX11>"
+  ],
+  "scene": "Assets/PlotWeaveLocal/OriginalUI/Import_bd3086775b/Interactive_392c3521/OriginalAuthoring.unity",
+  "evidenceMethod": "Fresh Unity Editor log event after the queued main-entry request; startup bootstrap emits READY only after editor session and preview/exchange wiring complete.",
+  "screenshotCaptured": false,
+  "limits": "Startup readiness only; does not promote targeted tests or matrix to historical full acceptance."
+}
+

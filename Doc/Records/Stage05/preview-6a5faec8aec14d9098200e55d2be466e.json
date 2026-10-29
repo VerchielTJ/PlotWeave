@@ -1,0 +1,24 @@
+{
+  "id": "6a5faec8aec14d9098200e55d2be466e",
+  "mode": "json",
+  "scene": "Assets/PlotWeaveMigration/Stage05_Playback/JsonPlayback.unity",
+  "phase": "captured",
+  "image": "本地原布局截图不随公开版本分发；历史验证摘要保留。",
+  "error": "",
+  "previousScene": "",
+  "playerState": "Playing",
+  "text": "欢迎使用类型与数据迁移样例。",
+  "background": "demo.stage",
+  "previousBackground": false,
+  "previousMaximized": false,
+  "hadView": true,
+  "ready": true,
+  "node": 1001,
+  "actors": 2,
+  "deadline": 41077.2183607,
+  "captureAfter": 40991.18347,
+  "publicExport": {
+    "originalSha256": "7a78739c63420af79878f9da54fa5cc8f8a33dfe40203659ddf6ca539e6bd0d7",
+    "note": "公开整理副本：省略本地原布局截图及本机根路径；未重新执行历史验收。"
+  }
+}

@@ -1,0 +1,22 @@
+using System;
+using System.IO;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+
+namespace PlotWeave.Legacy.Editor
+{
+    public static class PlotLegacyWorkspaceMenus
+    {
+        private static void Open(string scene)
+        {if(string.IsNullOrEmpty(scene)||!scene.StartsWith("Assets/PlotWeaveLocal/",StringComparison.Ordinal)||!File.Exists(scene))throw new FileNotFoundException("请先生成本地迁移场景",scene);if(EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())EditorSceneManager.OpenScene(scene);}
+        [MenuItem("Tools/PlotWeave/本地原布局/打开制作界面")]
+        public static void OpenAuthoring()=>Open(JsonUtility.FromJson<PlotLegacyInteractionMigration.Report>(File.ReadAllText(PlotLegacyInteractionMigration.LatestPath)).authoringScene);
+        [MenuItem("Tools/PlotWeave/本地原布局/打开剧情播放")]
+        public static void OpenPlayback()=>Open(JsonUtility.FromJson<PlotLegacyInteractionMigration.Report>(File.ReadAllText(PlotLegacyInteractionMigration.LatestPath)).playbackScene);
+        [MenuItem("Tools/PlotWeave/本地原布局/打开章节与奖励浏览")]
+        public static void OpenCampaign()=>Open(JsonUtility.FromJson<PlotLegacyCampaignMigration.Report>(File.ReadAllText(PlotLegacyCampaignMigration.LatestPath)).scene);
+        [MenuItem("Tools/PlotWeave/本地原布局/打开完整Luban二进制播放")]
+        public static void OpenLuban()=>Open(JsonUtility.FromJson<PlotLegacyLubanPlaybackMigration.Report>(File.ReadAllText(PlotLegacyLubanPlaybackMigration.LatestPath)).scene);
+    }
+}

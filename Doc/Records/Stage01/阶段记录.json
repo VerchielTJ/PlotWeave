@@ -1,0 +1,67 @@
+{
+  "stage": "01",
+  "scope": "类型定义与数据容器；不包括完整定制编辑UI、双端适配器、Excel工具链或播放集成",
+  "verifiedOnClientDate": "2026-10-28",
+  "status": "data-model-implemented-and-tested",
+  "unity": "2022.3.62f3c1",
+  "testReport": "Unity/9f6c75e5d5c14d9690eefe14027f2131-tests.json",
+  "totalPassed": 37,
+  "totalFailed": 0,
+  "authoringMigrationCases": 22,
+  "prototypeRegressionCases": 15,
+  "verifiedStageSources": [
+    {
+      "path": "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringAssetEditor.cs",
+      "sha256": "6d11465f410c261d830a0b1a042c693316f7d73f197e4b8c79bd7a4bd3dc4ff3"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringExample.cs",
+      "sha256": "cff9d15fee0b7352f8d704de4e999065323a62ad816b77ce393ff73fcbb805be"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs",
+      "sha256": "da51e82572ae55978fb44f6a9f4e544766c25a92c909cee754194d5c27e9331e"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomRowData.cs",
+      "sha256": "21a4128b2a2949431582eb7bdb1a300c812479386158935dff9379d4f889aa62"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAuthoringAsset.cs",
+      "sha256": "063a896940162e6d0a3ce8542e5dd9babf3fd0f545a6692052f61f1418aa2a37"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotConstantKeyAsset.cs",
+      "sha256": "a3bf0df843bd6a97bfa198ec88e5bcd7fc8304b52feb6cc2cf884c839cdccf62"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotDialogKeyAsset.cs",
+      "sha256": "53a34d597a99191f70f7cc270186b153921791a2acc99e63d977c7bb22d47733"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEnumAsset.cs",
+      "sha256": "64f389952e0b07b0eafe1d5d37672eff33550412bd4c2cdcf518aba125f3fab7"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs",
+      "sha256": "afcd3e93341e851f7a06086ae18a8ca9d0c23491a926c0e2eb9d07e4f55334cd"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotTableAsset.cs",
+      "sha256": "957de10695b408e61f2b84a91bed6eeb46b9920e1e35d61ccb61b9aaefc08fd6"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotTextKeyAsset.cs",
+      "sha256": "59c536f48ad0e56605148f8c80220578dfa335497d15d4a78f88f6177226d726"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringTests.cs",
+      "sha256": "7a4674b80d1f027724a7fc04169bb59894c4341833c20162c0f07bb3f51c1b21"
+    }
+  ],
+  "notes": [
+    "阶段源码哈希逐项核对暂存与目标工程，均与原始测试报告一致。",
+    "原始报告同时保存当次全包源码摘要；阶段通过范围仅为verifiedStageSources。",
+    "样例生成与后续基础设施变更不冒充本轮已运行测试。"
+  ]
+}

@@ -1,0 +1,93 @@
+using System;
+using System.IO;
+using System.Linq;
+using NUnit.Framework;
+using PlotWeave.Authoring;
+using PlotWeave.Authoring.Excel;
+using UnityEditor;
+using UnityEngine;
+
+namespace PlotWeave.Tests
+{
+    public sealed class PlotExcelExchangeTests
+    {
+        private string _folder, _export;
+        private PlotAuthoringProject _project;
+        [SetUp] public void SetUp()
+        {
+            _folder = "Assets/PlotWeaveExchangeTest_" + Guid.NewGuid().ToString("N");
+            _project = PlotAuthoringBootstrap.CreateWorkspace(_folder + "/Workspace"); _export = _folder + "/Workbooks";
+            PlotExcelExchange.Export(_project, _export);
+        }
+        [TearDown] public void TearDown()
+        {
+            Undo.FlushUndoRecordObjects();
+            if (_folder != null && AssetDatabase.IsValidFolder(_folder)) foreach (var guid in AssetDatabase.FindAssets("t:ScriptableObject", new[] { _folder }))
+            { var value = AssetDatabase.LoadAssetAtPath<ScriptableObject>(AssetDatabase.GUIDToAssetPath(guid)); if (value != null) Undo.ClearUndo(value); }
+            if (_folder != null && _folder.StartsWith("Assets/PlotWeaveExchangeTest_", StringComparison.Ordinal) && AssetDatabase.IsValidFolder(_folder)) AssetDatabase.DeleteAsset(_folder);
+        }
+        private string NodePath => Path.Combine(_export, PlotExcelExchange.NodeFile);
+        private PlotEditorManager Store => new PlotEditorManager(_project);
+        [Test] public void InspectionDoesNotWriteAndCommitPreservesGuidAndListData()
+        {
+            var node = Store.FindRow(1001); var before = EditorJsonUtility.ToJson(node); var path = AssetDatabase.GetAssetPath(node); var guid = AssetDatabase.AssetPathToGUID(path);
+            var sheet = PlotExcelFile.Read(NodePath); sheet.Set(3, 2, "102"); PlotExcelFile.Write(NodePath, sheet);
+            using (var plan = PlotExcelExchange.PlanImport(_project, _export))
+            {
+                Assert.That(EditorJsonUtility.ToJson(node), Is.EqualTo(before)); Assert.That(plan.UpdatedNodes, Is.EqualTo(3));
+                plan.Commit(_folder + "/Backups"); Assert.That(Directory.EnumerateFiles(plan.LastBackupDirectory, "*.asset").Count(), Is.EqualTo(9));
+            }
+            Assert.That(AssetDatabase.AssetPathToGUID(path), Is.EqualTo(guid)); Assert.That(Store.FindRow(1001).GetColumnSingleValue("PlotRoleID"), Is.EqualTo("102"));
+            Assert.That(Store.FindRow(1001).GetColumnRows("*RoleAction")[1].values[1], Is.EqualTo("Shake"));
+        }
+        [Test] public void ChangedWorkbookInvalidatesPreviouslyCheckedPlan()
+        {
+            using (var plan = PlotExcelExchange.PlanImport(_project, _export))
+            { var sheet = PlotExcelFile.Read(NodePath); sheet.Set(3, 2, "102"); PlotExcelFile.Write(NodePath, sheet); Assert.Throws<InvalidOperationException>(() => plan.Commit(_folder + "/Backups")); }
+            Assert.That(Store.FindRow(1001).GetColumnSingleValue("PlotRoleID"), Is.EqualTo("101"));
+        }
+        [Test] public void ChangedAssetInvalidatesPreviouslyCheckedPlan()
+        {
+            using (var plan = PlotExcelExchange.PlanImport(_project, _export))
+            { Store.FindRow(1001).SetColumnSingleValue("PlotRoleID", "999"); Assert.Throws<InvalidOperationException>(() => plan.Commit(_folder + "/Backups")); }
+            Assert.That(Store.FindRow(1001).GetColumnSingleValue("PlotRoleID"), Is.EqualTo("999"));
+        }
+        [Test] public void NewNodeInvalidatesPreviouslyCheckedSchemaPlan()
+        {
+            using (var plan = PlotExcelExchange.PlanImport(_project, _export))
+            { Store.CreateRow(1004); Assert.Throws<InvalidOperationException>(() => plan.Commit(_folder + "/Backups")); }
+            Assert.That(Store.FindRow(1004), Is.Not.Null);
+        }
+        [Test] public void InvalidLateWorkbookCannotPartiallyApplyEarlierWorkbooks()
+        {
+            var before = EditorJsonUtility.ToJson(_project.header.parameterEnums);
+            var path = Path.Combine(_export, PlotExcelExchange.ActorFile); var sheet = PlotExcelFile.Read(path); sheet.Rows.Add((string[])sheet.Rows[3].Clone()); PlotExcelFile.Write(path, sheet);
+            Assert.Throws<FormatException>(() => { using (PlotExcelExchange.PlanImport(_project, _export)) { } });
+            Assert.That(EditorJsonUtility.ToJson(_project.header.parameterEnums), Is.EqualTo(before)); Assert.That(Store.ListRows().Count, Is.EqualTo(3));
+        }
+        [Test] public void ImportAddsNewNodesAndRetainsNodesAbsentFromWorkbook()
+        {
+            var original = Store.FindRow(1001); var added = UnityEngine.Object.Instantiate(original);
+            try
+            {
+                added.SetColumnSingleValue("ScenesID", "1004");
+                PlotExcelFile.Write(NodePath, PlotAuthoringExcel.ExportNodes(_project.header, new[] { original, added }));
+                using (var plan = PlotExcelExchange.PlanImport(_project, _export))
+                { Assert.That(plan.CreatedNodes, Is.EqualTo(1)); Assert.That(plan.RetainedNodes, Is.EqualTo(2)); plan.Commit(_folder + "/Backups"); }
+                Assert.That(Store.ListRows().Count, Is.EqualTo(4)); Assert.That(Store.FindRow(1004).GetColumnSingleValue("PlotRoleID"), Is.EqualTo("101")); Assert.That(Store.FindRow(1003), Is.Not.Null);
+            }
+            finally { UnityEngine.Object.DestroyImmediate(added); }
+        }
+        [Test] public void LubanHandoffCopiesOnlyKnownFilesAndBacksUpPreviousVersions()
+        {
+            var destination = _folder + "/LubanData"; Directory.CreateDirectory(destination);
+            var previous = Path.Combine(destination, PlotExcelExchange.EnumFile); File.WriteAllText(previous, "previous version"); File.WriteAllText(Path.Combine(destination, "OtherTable.xlsx"), "unrelated");
+            var backup = PlotExcelExchange.CopyToLubanData(_export, destination, _folder + "/Backups");
+            Assert.That(File.ReadAllText(Path.Combine(backup, PlotExcelExchange.EnumFile)), Is.EqualTo("previous version"));
+            Assert.That(File.ReadAllText(Path.Combine(destination, "OtherTable.xlsx")), Is.EqualTo("unrelated"));
+            foreach (var name in PlotExcelExchange.FileNames) CollectionAssert.AreEqual(File.ReadAllBytes(Path.Combine(_export, name)), File.ReadAllBytes(Path.Combine(destination, name)));
+        }
+        [Test] public void ExportRefusesToOverwriteNonEmptyDirectory()
+        { var before = File.ReadAllBytes(NodePath); Assert.Throws<IOException>(() => PlotExcelExchange.Export(_project, _export)); CollectionAssert.AreEqual(before, File.ReadAllBytes(NodePath)); }
+    }
+}

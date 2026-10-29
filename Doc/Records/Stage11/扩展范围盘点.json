@@ -1,0 +1,3077 @@
+{
+  "date": "2026-10-28",
+  "sourceRoot": "I:\\model",
+  "nodeCount": 485,
+  "nodesByFolder": {
+    "0-1": 51,
+    "0-2": 28,
+    "1-1": 65,
+    "1-2": 42,
+    "1-3": 40,
+    "1-4": 67,
+    "1-5": 40,
+    "1-6": 62,
+    "1-7": 38,
+    "1-8": 52
+  },
+  "dialogKeys": 480,
+  "constantKeys": 23,
+  "actors": 23,
+  "tables": [
+    {
+      "source": "[local metadata omitted]",
+      "rows": 4,
+      "header": [
+        [
+          "##var",
+          "ID",
+          "Name",
+          "Desc",
+          "PlotIDs",
+          "UnlockAreaType",
+          "UnlockDate",
+          "ThumbnailPath",
+          "Background"
+        ],
+        [
+          "##type",
+          "int",
+          "string",
+          "string",
+          "(list#sep=,),int",
+          "AreaType",
+          "string",
+          "string",
+          "string"
+        ],
+        [
+          "##",
+          "章节ID",
+          "章节名字",
+          "章节介绍",
+          "所有剧情小节",
+          "解锁战斗区域",
+          "可阅读(解锁日期）",
+          "章节缩略图",
+          "章节背景"
+        ]
+      ]
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 5,
+      "header": [
+        [
+          "##var",
+          "ID",
+          "Name",
+          "Desc",
+          "AwardID",
+          "TopTitle",
+          "BottomTitle",
+          "AtomTargetID",
+          "SkipKey"
+        ],
+        [
+          "##type",
+          "int",
+          "string",
+          "string",
+          "int",
+          "string",
+          "string",
+          "int",
+          "string"
+        ],
+        [
+          "##",
+          "小节剧情ID",
+          "剧情名字",
+          "剧情介绍",
+          "奖励池ID",
+          "上标题",
+          "下标题",
+          "剧情基本节点ID",
+          "剧情跳过提示"
+        ]
+      ]
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 9,
+      "header": [
+        [
+          "##var",
+          "ID",
+          "Name",
+          "Desc",
+          "PlotIDs",
+          "UnlockDate",
+          "ThumbnailPath",
+          "Background"
+        ],
+        [
+          "##type",
+          "int",
+          "string",
+          "string",
+          "(list#sep=,),int",
+          "string",
+          "string",
+          "string"
+        ],
+        [
+          "##",
+          "章节ID",
+          "章节名字",
+          "章节介绍",
+          "所有剧情小节",
+          "可阅读(解锁日期）",
+          "章节缩略图",
+          "章节背景"
+        ]
+      ]
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 7,
+      "header": [
+        [
+          "##var",
+          "ID",
+          "Name",
+          "Desc",
+          "AwardID",
+          "TopTitle",
+          "BottomTitle",
+          "AtomTargetID"
+        ],
+        [
+          "##type",
+          "int",
+          "string",
+          "string",
+          "int",
+          "string",
+          "string",
+          "int"
+        ],
+        [
+          "##",
+          "剧情ID",
+          "剧情名字",
+          "剧情介绍",
+          "奖励池ID",
+          "上标题",
+          "下标题",
+          "剧情基本节点ID"
+        ]
+      ]
+    },
+    {
+      "source": "Datas/剧情奖励表.xlsx",
+      "rows": 14,
+      "header": [
+        [
+          "##var",
+          "ID",
+          "*Awards_Prop"
+        ],
+        [
+          "##type",
+          "int",
+          "list,FixedAward"
+        ],
+        [
+          "##",
+          "奖励ID",
+          "道具ID",
+          "数量"
+        ]
+      ]
+    }
+  ],
+  "ui": [
+    {
+      "source": "Assets/Scenes/PlotEditorScene.unity",
+      "objects": 16475,
+      "types": {
+        "29": 1,
+        "104": 1,
+        "157": 1,
+        "196": 1,
+        "1": 3904,
+        "224": 3902,
+        "114": 5373,
+        "95": 83,
+        "222": 3196,
+        "223": 2,
+        "81": 1,
+        "20": 1,
+        "4": 2,
+        "225": 6,
+        "1660057539": 1
+      },
+      "roots": [
+        "PlotEditorCanvas",
+        "Camera",
+        "EventSystem"
+      ],
+      "scripts": {
+        "Assets/PlotEditor/PlotComponent/Scripts/PlotNodeButton.cs": 30,
+        "Assets/PlotEditor/PlotComponent/Scripts/Parameter.cs": 170,
+        "Assets/PlotEditor/PlotComponent/Scripts/ParameterEditor.cs": 10,
+        "Assets/PlotEditor/PlotComponent/Scripts/EvtListParameterEditor.cs": 10,
+        "Assets/PlotEditor/PlotComponent/Scripts/RowUnit.cs": 10,
+        "Assets/PlotEditor/PlotComponent/Scripts/NodeCreater.cs": 2,
+        "Assets/PlotEditor/PlotComponent/Scripts/TestPlayerButton.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/NodeListLoader.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/PlotNodeView.cs": 1,
+        "Assets/HotUpdate/MainAssemble/LoopScrollRect/LoopVerticalScrollRect.cs": 2,
+        "Assets/PlotEditor/PlotComponent/Scripts/ParameterList.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/DiaLogKeyEditor.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/NodeRowDataEditor.cs": 1,
+        "Assets/HotUpdate/MainAssemble/Pool/ObjectPool.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/PlotEditorPanel.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/CurrentNodeEditor.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/EditorPlotPlayerUI.cs": 1
+      }
+    },
+    {
+      "source": "Assets/Prefabs/UI/PlotPlayerUI/PlotButton.prefab",
+      "objects": 16,
+      "types": {
+        "1": 3,
+        "224": 3,
+        "222": 3,
+        "114": 6,
+        "95": 1
+      },
+      "roots": [
+        "PlotButton"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/Prefabs/UI/PlotPlayerUI/PlotPlayerUI.prefab",
+      "objects": 402,
+      "types": {
+        "1": 98,
+        "224": 98,
+        "222": 92,
+        "114": 103,
+        "225": 6,
+        "95": 4,
+        "223": 1
+      },
+      "roots": [
+        "PlotPlayerUI"
+      ],
+      "scripts": {
+        "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI.cs": 1
+      }
+    },
+    {
+      "source": "Assets/Prefabs/UI/PlotPlayerUI/WindowMask.prefab",
+      "objects": 391,
+      "types": {
+        "1": 97,
+        "224": 97,
+        "222": 91,
+        "114": 95,
+        "225": 6,
+        "95": 4,
+        "223": 1
+      },
+      "roots": [
+        "WindowMask"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/Prefabs/UI/PlotMianUI/PlotMianUI.prefab",
+      "objects": 45,
+      "types": {
+        "1": 11,
+        "224": 12,
+        "225": 5,
+        "114": 10,
+        "222": 4,
+        "223": 1,
+        "95": 1,
+        "1001": 1
+      },
+      "roots": [
+        "PlotMianUI",
+        ""
+      ],
+      "scripts": {
+        "Assets/HotUpdate/MainAssemble/UI/BtnGroup.cs": 1,
+        "Assets/HotUpdate/UI/PlotMianUI/PlotMianUI.cs": 1,
+        "Assets/HotUpdate/MainAssemble/LoopScrollRect/LoopHorizontalScrollRect.cs": 1
+      }
+    },
+    {
+      "source": "Assets/Prefabs/UI/PlotChapterUI/PlotChapterUI.prefab",
+      "objects": 99,
+      "types": {
+        "1": 24,
+        "224": 25,
+        "222": 12,
+        "114": 29,
+        "95": 2,
+        "225": 5,
+        "223": 1,
+        "1001": 1
+      },
+      "roots": [
+        "PlotChapterUI",
+        ""
+      ],
+      "scripts": {
+        "Assets/HotUpdate/MainAssemble/UI/BtnGroup.cs": 2,
+        "Assets/HotUpdate/MainAssemble/LoopScrollRect/LoopVerticalScrollRect.cs": 1,
+        "Assets/HotUpdate/UI/PlotChapterUI/PlotChapterUI.cs": 1,
+        "Assets/HotUpdate/MainAssemble/LoopScrollRect/LoopHorizontalScrollRect.cs": 1
+      }
+    },
+    {
+      "source": "Assets/Prefabs/UI/PlotSkipTop/PlotSkipTop.prefab",
+      "objects": 77,
+      "types": {
+        "1": 16,
+        "224": 16,
+        "222": 14,
+        "114": 23,
+        "95": 4,
+        "225": 3,
+        "223": 1
+      },
+      "roots": [
+        "PlotSkipTop"
+      ],
+      "scripts": {
+        "Assets/HotUpdate/UI/PlotSkipTop/PlotSkipTop.cs": 1
+      }
+    },
+    {
+      "source": "Assets/Prefabs/PrefabDynamicLoad/UI/ScrollItem/PlotItemNode.prefab",
+      "objects": 44,
+      "types": {
+        "1": 11,
+        "224": 11,
+        "222": 11,
+        "114": 9,
+        "95": 1,
+        "225": 1
+      },
+      "roots": [
+        "PlotItemNode"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/Prefabs/PrefabDynamicLoad/UI/ScrollItem/PlotItemSelect.prefab",
+      "objects": 39,
+      "types": {
+        "1": 9,
+        "224": 9,
+        "222": 9,
+        "114": 10,
+        "95": 1,
+        "225": 1
+      },
+      "roots": [
+        "PlotItemSelect"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1001.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1001"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1002.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1002"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1003.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1003"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1004.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1004"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1005.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1005"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1006.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1006"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1007.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1007"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1008.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1008"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1009.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1009"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1010.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1010"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1011.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1011"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1012.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1012"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1013.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1013"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1014.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1014"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1015.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1015"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1016.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1016"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1017.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1017"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1018.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1018"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1019.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1019"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1020.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1020"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1021.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1021"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1022.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1022"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1023.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian1023"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2001.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian2001"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2002.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian2002"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2003.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian2003"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2004.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian2004"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2005.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian2005"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2006.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian2006"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2007.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian2007"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2008.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian2008"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2009.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian2009"
+      ],
+      "scripts": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2010.prefab",
+      "objects": 8,
+      "types": {
+        "1": 2,
+        "224": 2,
+        "222": 2,
+        "114": 2
+      },
+      "roots": [
+        "Thespian2010"
+      ],
+      "scripts": {}
+    }
+  ],
+  "additionalSourceFiles": [
+    "Assets/HotUpdate/UI/PlotMianUI/IChapterData.cs",
+    "Assets/HotUpdate/UI/PlotMianUI/PlotMianUI.cs",
+    "Assets/HotUpdate/UI/PlotMianUI/PlotMianUI_NodeClass.cs",
+    "Assets/HotUpdate/UI/PlotChapterUI/IPlotData.cs",
+    "Assets/HotUpdate/UI/PlotChapterUI/PlotChapterUI.cs",
+    "Assets/HotUpdate/UI/PlotChapterUI/PlotChapterUI_NodeClass.cs",
+    "Assets/HotUpdate/UI/PlotSkipTop/PlotSkipTop.cs",
+    "Assets/HotUpdate/UI/PlotSkipWD.cs",
+    "Assets/HotUpdate/UI/UIComponent/UIItemClass/UIItemPlotRewards.cs",
+    "Assets/HotUpdate/MainAssemble/DataManager/PlotProgressDataMgr.cs",
+    "Assets/HotUpdate/MainAssemble/DataManager/PlotDataMgr.cs"
+  ],
+  "sources": [
+    {
+      "path": "Assets/PlotEditor/Data/PlotDataAsset/PlotEnum.asset",
+      "sha256": "d2d4e0cb325aca59dc3bd3bc37ae34c42e8a32da24c618a0b35c0c640aba22da"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/PlotDataAsset/PlotBean.asset",
+      "sha256": "73a1aabafdc808ea4281c618ad7bba89f48ee6c92ba7dd590f72464c1d020029"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/PlotDataAsset/PlotAtomDataHeader.asset",
+      "sha256": "5635260e2b2abbf9a022eb54cdce11c52792b3c325e60293e610ceb88f5f320e"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/PlotDataAsset/PlotDialogKeyAsset.asset",
+      "sha256": "84f06d73b3b335dbd09774dae9a17d7e1f934e528cbecfca69dbf0ed28123942"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/PlotDataAsset/PlotConstantKeyAsset.asset",
+      "sha256": "3bead1fc6fc77042a303545ad2557c4ae7651a73375871b8087e44d381703306"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/PlotDataAsset/PlotThespianDataAsset.asset",
+      "sha256": "41100677ff5e3309286305eeda2401e2b98357269625f29ea4b06b3c275e1362"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20000.asset",
+      "sha256": "bf59e91cd8746e9d81afbe69ef9cd20a4d2e78d5b4650aaab91eba764724d588"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20001.asset",
+      "sha256": "44c19f3a5ab33e395488d909a6207b1f4f742ac51cc23a3544d12d6710169b24"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20002.asset",
+      "sha256": "92ff71f4dc0dff0a4519811f7ca53ad08834a35759f89af22fbdcc11b0f45719"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20003.asset",
+      "sha256": "b548728e8e4805ed8d3588f711d561bb6628d0de2dbc51246e29fba742a17682"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20004.asset",
+      "sha256": "2cbb053251ad10c933a828b935bb426ecf4d69d024420d7775fb67ceb572fee6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20005.asset",
+      "sha256": "7eb4698c2935cde3262bfe1019666acc8716b144fc18057ca4d7da560fd6f0a7"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20006.asset",
+      "sha256": "c8f974a2265347d515913c413e40f515aec16eff33bcddab350fdbf78f78e1fc"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20007.asset",
+      "sha256": "2ae314f0b6cb35a0795d9e17598824d643766d3c211aafd03b2ebc6a763cae46"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20008.asset",
+      "sha256": "6863a81cdbe00a61773b421857bf7651d0478d99cf4ec8499f3901b79b30ff44"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20009.asset",
+      "sha256": "24822292801ee0ce9d87671ca395de7aa84e01cedb10ed2ded89cae8da44365d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20010.asset",
+      "sha256": "82e53077df263f922e51013f0a1f23d66beeeb487160d48249365c0013505a90"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20011.asset",
+      "sha256": "752f8849bb00f770b88c3d01f6e3ff4acde8a865130034806649e3b292b23790"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20012.asset",
+      "sha256": "2034f797ba621cdfec872cf9b972e1dae7804d7e83d5268e63ab2765d6a35eca"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20013.asset",
+      "sha256": "f4289f5105c2070c07f3226b44eed05544ceb22317968b3374890695f37a7299"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20014.asset",
+      "sha256": "62ec2f1e43605128efe3be7bbdd8f2920992605cdddf4674985cd111066d1cb6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20015.asset",
+      "sha256": "ffc0f32f6213ed43a2b9ab6b8eb85e9a10931d4ccd7b5e819dbabd4408f7215f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20016.asset",
+      "sha256": "4900029d564135c2712af19480b746d641f026d644b3322c048e3b5e4c071585"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20017.asset",
+      "sha256": "67d61ac5ae071d2365e7d2cbe9ea4a0b7a4c9c57fbbd08c64b40dcf718a15fde"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20018.asset",
+      "sha256": "723a0d2b6adc54259287800cfca1db9b4cd60034bf79538dad9585a0d332fddf"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20019.asset",
+      "sha256": "348886ad46747ffdbc8146e283a28200f0db639ef346c10e8408b1d2be997206"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20020.asset",
+      "sha256": "556760189c5b49de1d332205e8226deceaee91999315a10328bc0869f0ef0a7f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20021.asset",
+      "sha256": "958341316d64b5960b6064a304ab6763086d9f9fa6ac80a42375fafe1159db21"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20022.asset",
+      "sha256": "259b6ec2daa70e75cf8bd6cfb800c2cd6b91cf86859794ca924dcc23bb7ec044"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20023.asset",
+      "sha256": "2b7d879daf3faf83a7595d40400bfde7c85a8ab5512cefc6a305887aad368b67"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20024.asset",
+      "sha256": "724b56e61820f399f7c32c13a9f43b820dfadb6e86fa0fd1b32c68cf33e4653f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20025.asset",
+      "sha256": "ae9b35e1f992f5194d2b9a0cefe0c3181aeb6a71ff7e31ba860fd5130017ea47"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20026.asset",
+      "sha256": "ffd563caf4113ad8ba7827bbb57ca8f1634703d68ddfe00aafe509f2747c1e0e"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20027.asset",
+      "sha256": "72e7fbcafedeffac7112e4cb0b3ab1aaac4d781c9532b2d2bd81a9639f317e4d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20028.asset",
+      "sha256": "fd6f087f072a780529338ec56fca6adae37ddacc934beb4e2d5d2a0468ed7d6c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20030.asset",
+      "sha256": "4a1b4639fc35853e6f61d8a33e4960ec4cbd97cfcecca6ba5031e603b261700f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20031.asset",
+      "sha256": "2333426b1d09d92203656253ff299242d2b6e92428b9952d91cb9f43dcfcbb1e"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20032.asset",
+      "sha256": "6ecc104922a621e489e37e9e185d8f01a39ca5b94d258cd99e5822e8c265979f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20033.asset",
+      "sha256": "0d63cd1df570e991dab0749262f5bfde6e1c478792193a3e713add802536d800"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20034.asset",
+      "sha256": "09f6a8015da97772a168e76a87694557f9ee39d8874e4a658fc96144b91341d9"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20035.asset",
+      "sha256": "89a43ca131cc7700716f71bb05b4ef46e33f331ed46f045281c61c9a1809cf12"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20036.asset",
+      "sha256": "5984a724369f7a3f44dd6e37b9d6973501435ddf411369e26b82f262f0419705"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20037.asset",
+      "sha256": "b0fd6a7b64e3516219cba401d522cc738be5171bb5836ab5e510c0cc870320e0"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20038.asset",
+      "sha256": "2ab3b6ad6a1e79ac58f97bfb236935316b8e6b16a53057bd7505493db245656d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20039.asset",
+      "sha256": "344f981203a31efe48194d1e97d4b480037afe167447fdd00b690777f234c1b3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20040.asset",
+      "sha256": "241041aed22103c3cc5894983b91414ee24a94d8aad63d2fb3d81dd41d731605"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20041.asset",
+      "sha256": "516083688331affcaf3a66ae34456ec0d040a49549e434fec2754ebbc915f7f5"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20042.asset",
+      "sha256": "a306b2926fe859522ce4b9b52612351a7e7c1afd35385098bc8f7c569d4f813f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20043.asset",
+      "sha256": "3d85ef70c3afe3947db1d0aac7225c7a98c5ac0552550af76ec34ce653e9beed"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20044.asset",
+      "sha256": "0152b6fb936f3eb8221a5fb87be3d8c3d81f57b191d197dec28e37930ad44950"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20045.asset",
+      "sha256": "bcfe632e7c1451a09af15d8b9d17a585425a8fce435c1614373afd27f6cd23b6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20046.asset",
+      "sha256": "1973eb9ba76523c70b9698bb05887f9656aabf7c35d4a13a7b0a76948272687f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20047.asset",
+      "sha256": "78dbad77561911200e9c9b35d408a71a564bcdc4af8473fb45a6871705c64573"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20048.asset",
+      "sha256": "bd62bec499225e758fb0dd85d900a4fd7aef86c2b95ceace2a58ed40f6f493e6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20049.asset",
+      "sha256": "249b870da879ea4a7db9232693044df5952de17ff227cb1631ee63cb3524331f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20050.asset",
+      "sha256": "a8bb206e8422227b1b83a084980bb6fbd6212e2d8f1b2f085cb550fcbfb93202"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-1/20051.asset",
+      "sha256": "0dbfaa3f83418839311fe46e2cf80d92ca952fe79e992aa8129e2d1188b2e847"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20053.asset",
+      "sha256": "4494a16024f64ab1d0f4917eef3ac4dfcf203095dfc9973b0eab45076fcfd8aa"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20054.asset",
+      "sha256": "115d4e61a39f012920f3b39fe824fc3824d514066ad6549c268177566a5d12c0"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20055.asset",
+      "sha256": "a23b33e9e1ec17762314820856dd3507a3226e738209cc17e64be07fa215649d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20056.asset",
+      "sha256": "fe51084951886fcbe6f1e32f13f675bc0f55922a3dba7cfffecf0d21053970ef"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20057.asset",
+      "sha256": "38b1b50ee4971aa0166742bbd293cb87f75b6b333c2aa4b1c3694b3265ddb716"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20058.asset",
+      "sha256": "f0740129c94f125d2e0745560def2a7a85928a86eaed9188e7e3374d81048d5d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20059.asset",
+      "sha256": "67151332e382c7aeb2c9b337a6824f7ff7e2b334f3320567efe7f6a7a7dfa31d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20060.asset",
+      "sha256": "04ff2b8c649e1dfe0d5e2128ee6d047cfe1bd0ec9e017948c334b0dd27fdd2f1"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20061.asset",
+      "sha256": "a4378eee95b19b1d95bb9aa0ac00af66f499c378d0a1ae2b0cfce8bab623c6b7"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20062.asset",
+      "sha256": "5c2d22ec0bc9da1042847ea33817a1fbcd7b013eed2573612fc173a4ebb5b91a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20063.asset",
+      "sha256": "296832821a8be6254fcc78a31723d28db748fc12fbd1b482feea94ccb776c6ad"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20064.asset",
+      "sha256": "19503e1e0d092500dfed510cf3842e098e9ea3831b72a7dc3627a2a628de73b7"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20065.asset",
+      "sha256": "282274f556be14484f9c3db6cf3dc6b039fdca1d95d95e33589d141d2dfc1031"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20066.asset",
+      "sha256": "604cb1cd8febcae4aaa2f650adf63b69d70f52daf04c712057a1f558f3092b22"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20067.asset",
+      "sha256": "bc57a43b516b27ac41795459bcb88dc978255221da300399eece7ea3fe5b3dac"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20068.asset",
+      "sha256": "728be0e943965bff1d1276025977f0567627ff929a1ae5d3a78980843abaa316"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20069.asset",
+      "sha256": "93ef51adc3099fd96b30c45049cba897ec5112e0823063a19902a485fd434c29"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20070.asset",
+      "sha256": "dc2460eb4af56fa6acc012e07bcef9730909072d2c6af0c4b625bbedde344130"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20071.asset",
+      "sha256": "6855a6c79246427cec4b87984ffb2f87a45b5ec0a203c7848920910872a2b9c3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20072.asset",
+      "sha256": "7cbaf9217420cb02eba3ef33306e4711fe5471faabbc11195d85c84f568e005b"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20073.asset",
+      "sha256": "1f1a93ac974a5a37e66d346543ebd335703a1fa8a75e046b99dec6ec688bdb14"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20074.asset",
+      "sha256": "aed566d44ba544f932768eda73fec9998c159e24a94e854f06ef9141afba544a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20075.asset",
+      "sha256": "9ccb14c3a37ada21cf8eb6ab585bd5a31a72432f82fa77de6b3030110d8ec872"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20076.asset",
+      "sha256": "32c52dba51e46af15b4954d1218b74e3fb47ea2ce26ffeccad146eda22276173"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20077.asset",
+      "sha256": "0d65898bd61fa19f83b2297a81c673c30a1e05ab299925ab513737a5172f2090"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20078.asset",
+      "sha256": "eb6a9ab83a3def181590cf82a9c21964a4ce7cd8b9f9c57f9cdaeae5fb8c372f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20079.asset",
+      "sha256": "5e927882ac9a6b9b877df22109991609632f4507805b980a8c3b5b5c3cb0ae15"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/0-2/20080.asset",
+      "sha256": "d4008adf40deab8665f7a91978ee1e5d972df3ed83d0859499108bf76098b8e9"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10000.asset",
+      "sha256": "6062356d0ed2a248a38a3ab545b4642e1996431f645aaf58124c48bf3fc8d3d3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10001.asset",
+      "sha256": "eee9e78b139657e1790e12deb5bf7a119250bbe2d779359479f43722fca5972a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10002.asset",
+      "sha256": "6bca70696d328350e16f64622e117025ac73f7b7a85207fbc0bbda3430305e89"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10003.asset",
+      "sha256": "ebc5b583b102abcab9a753631bbf52220b1888f50d36fc613f74c16b625a5ff5"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10004.asset",
+      "sha256": "5e72450509ebe5e7f9a3596c5207890b1232220ba0e395039adc8e9f903672ea"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10005.asset",
+      "sha256": "692bcd90f90a31538516a9e5f485afb90df1a733e65a4777d338dd7aeb58e331"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10006.asset",
+      "sha256": "072ccefab4db0e68c1a416dedd51437035df8e3dfb42e11d5bc30d7448641483"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10007.asset",
+      "sha256": "93898e779b8582f24313905f1bf12d6cc7aca86723265feb740ced1c8ed10730"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10008.asset",
+      "sha256": "c379ce6934fe0c4583fdd833a451ee540599de88140da83e77c48d5ebd3caa3d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10009.asset",
+      "sha256": "b20ad747a61353e4259640e9e57ed6adfd4e5849f3bcfc1e0cfd3bef680fe5ca"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10010.asset",
+      "sha256": "c00aafd6977daec64353d69608204b4e51669b47b893e84d0bc8d614b1be4e1c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10011.asset",
+      "sha256": "b9243a75ccd73deaef4d15814efa110213280f03c2a4d799e04c10b956b6518f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10012.asset",
+      "sha256": "9ddbd375b6d899decd686b9ec83ee7f4a6cc0c90153bd66374b984c28c0f5705"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10013.asset",
+      "sha256": "22ba951ecb1d9e5afdb69c82b387116ab5616611b23200fe42da7da6147dc763"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10014.asset",
+      "sha256": "6ee02fb6935fa5685dc5cbd625104c2b85ac628da4ba9ec07d10469540c4d0c0"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10015.asset",
+      "sha256": "9602d8c5d75a5f7bc1149dc8c6b67f65be53ca5085d06687c55dc3707c998490"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10016.asset",
+      "sha256": "17a006f509791f3e7395a0b9aac6745d1e03c4c94f0e1b8445370862415afc06"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10017.asset",
+      "sha256": "6b2f9383b319312212929c09290e4fc526a8ba9639a18b7b48338faa8ebc0f9c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10018.asset",
+      "sha256": "19dbea4018ec9a7764345cb2beec714e15d0a9eb5473b1141232b9cafb719e1c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10019.asset",
+      "sha256": "0ae61fd53fc08c657d4be9f16fcdf44293c7bd1ce096dc28092e70f19ae3e254"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10020.asset",
+      "sha256": "002692fccced00dce64d08bfa5b0038f743a6636529adbecd274cb1a5c070530"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10021.asset",
+      "sha256": "d48988ff0752c67a2eccfa102c73a569c5730cedd5da2e5f431bfbfe624da5b4"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10022.asset",
+      "sha256": "1507293fe810ce2dce02c509c05df81c443156c0f098bb8b4046ddc0cf52a551"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10023.asset",
+      "sha256": "bfc6ad79bfe14e57ee1576ecb83147fef154711269e797e724660cd1ace16e20"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10024.asset",
+      "sha256": "ca2db4c03168390ce337b5b689f8379d51baf4dc7e651d34a86827409bb1fc3f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10025.asset",
+      "sha256": "d92e86c9982912f2f1f535f6f49a2d175cdca3f61ed63b6c41054ea148af8a27"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10026.asset",
+      "sha256": "a18bce42e1f167fab5b3fe23d48f33d019b10dbb6f8b02c1ca04b2a59f49c4e8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10027.asset",
+      "sha256": "22d1b54ab12907f9bee8bf5891bd1625114de90cf029dd5cb6d370bb6507b9ef"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10028.asset",
+      "sha256": "bc1691fea3b9eb691f609ab5bddfe9fdab2d76b7d4ba1e642fca6a945d1683c7"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10029.asset",
+      "sha256": "52eb475938a6ba20bcd3322f71eb7120c3badb961ad69a65d193b1413935e442"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10030.asset",
+      "sha256": "161329bc8568a83936e065755722a652fdbc2955f488f842952800e28fa5d7f3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10031.asset",
+      "sha256": "dd9d12ab9fea1743511d5e133757686cf022687f8a305b10514f47b851ca466a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10032.asset",
+      "sha256": "49e598b41d4444c3cf79b871a678c7bb0218e51378d784f2648c79353de6e349"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10033.asset",
+      "sha256": "bb70011d199e7239e2e28f2aab943594e781f6cb011e76762d4c16237b637a99"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10034.asset",
+      "sha256": "6d346d7f270183f890493a00674e12a8f928d968666beb416d7a4e6e62481c11"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10035.asset",
+      "sha256": "e6b32ff83ec56469789f519da3bda8a9b9766ad1310e052bd39ac78b6e2de039"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10036.asset",
+      "sha256": "4621cfee136e3fef81b4d6b6c2385914529e3d55b483696d7a96a955d6a02385"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10037.asset",
+      "sha256": "0beb5daae18688ddb5d476a2fe57310ca90945bd7dee6e8624439ef702693937"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10038.asset",
+      "sha256": "61e0865d24ac729b417bb741c72055252c28533cd1c525a47ea9e29807ff63f9"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10039.asset",
+      "sha256": "f3de0475430bea4e36c1855b55ce9336a97431de6b3d492a02a975e7d0126d28"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10040.asset",
+      "sha256": "78d7b1bcc63422a327edd6da6192564d84e9e774df2bbac6cfd65ddd68538ebd"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10041.asset",
+      "sha256": "51f4a73e41cb8749ab8d322c68991c6e033c07457ffaae28bfedd3a3438eac94"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10042.asset",
+      "sha256": "6f22e3226ca49cc08291ea19416bb109419c9d18cd4d923a7ece8257b91bb5f5"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10043.asset",
+      "sha256": "1717fe7c0ff07923daefbff67c545dbfc84548270d28f66a83df574d06f29671"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10044.asset",
+      "sha256": "aa53ab2ca385270bd2d1454f865bbb61b2ac693dba6edc19d109f496c79631eb"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10045.asset",
+      "sha256": "e190a5acc9887e5820d93468fe15dcd414a1c4eaa218829fd6149431e04b5231"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10046.asset",
+      "sha256": "e5484ceab1ef745e845de16d542648f6adc694666b685369d81a2effa689c6c6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10047.asset",
+      "sha256": "cceb2d9c85e7c94c93efce9d3c72b97367477ddaf08802d751c98fea42074ad6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10048.asset",
+      "sha256": "59b50070731c43c49fc6e8b419c61c27b20ac79d373bf454cadb3d886a3370a4"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10049.asset",
+      "sha256": "09abb121acb32f71184b0162a9c0c33656d9e693c72c613013fad1bba775e09d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10050.asset",
+      "sha256": "5a18fb875d5773d2249ff0a364994ab33eaaca7c95aaa4d6bd340fb2b0252fea"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10051.asset",
+      "sha256": "ea397dd5d97b30742e88b77e791819aa1572cf975123fff05e23b50ff18ec71e"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10052.asset",
+      "sha256": "046bcec175b81e2e771ebd0252a0b61bf96185ac8241e366099cbd47c979a546"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10053.asset",
+      "sha256": "c1c30ee74c495f576b1b19cd5101cc9d0d6f2e52a7dff21785c9edecef627ee3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10054.asset",
+      "sha256": "f26c535094091cfc993849b5c5ee5270dcdc81e0c2c90a8da73d79923634a4b4"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10055.asset",
+      "sha256": "4e0bcd491feb51013a2871c704772c1bd1d90385dba7d3070d4df097dcd3c0fe"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10056.asset",
+      "sha256": "5b44bafe7f49f9d876c1e5f46ca2e83a0244c8f42075feb438ed0c2b82c870b7"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10057.asset",
+      "sha256": "11456c685faf013d766b077b0462da945a55d2c3b9735a490d2af2412ad1568e"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10058.asset",
+      "sha256": "dccf718541ae4fd94956e489705986173317e99f76bd3327090599e6d92f756a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10059.asset",
+      "sha256": "181ed4359f764e53b794809eb635698598a97c8269693cb27a77b1df7b814377"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10060.asset",
+      "sha256": "51c2ff6824f23da7b8ee0c61bc85443cca6a044f51878703e99090e9cb8975ab"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10061.asset",
+      "sha256": "0df647af9f72618a1978bacb67622c8dfeb1055740b897d7f3971a12a795c184"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10062.asset",
+      "sha256": "22fa2678ae0afda689bdbeda31b6b3e8e8b406955ba0558aa831768c318c333b"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10063.asset",
+      "sha256": "7970c14bb5948d0d238ee509d9b5c4a84ad70d63e4b6e87f3290d576446bfb76"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-1/10064.asset",
+      "sha256": "9ee0b5a35292715a84adf96994e5f9b0e95b394ce205acc339811cf689f84eaa"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10065.asset",
+      "sha256": "00effc3797ac23a7c819a2d9a3d12c3005828c3fc711b2b0b0a48fe8f6a11b7c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10066.asset",
+      "sha256": "61d96e4f22f84c7258fdc2a4e637f9a7138182fd4d1c3db1a21f60084eac6d93"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10067.asset",
+      "sha256": "e88a85d10f5e3ac242c44baf0e0e09ba70c0af34a554300883a4e10ea9878ce5"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10068.asset",
+      "sha256": "f33a82e0345e04e6de173b7cb1bd36ce7f50a68aade6b900aed66ced457fd05f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10069.asset",
+      "sha256": "725070d4ee4ae6dd5d8758e58c6c581700f9b3a0eb5d13bf76b95fd47a24b5a2"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10070.asset",
+      "sha256": "129af3589f15015da0a8bc622a2164ad072ffd82a2e70f6f1dbd19986313c706"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10071.asset",
+      "sha256": "44d06ff7f1339c802c0431b56377dba36f6129ddac97a12cb369d31433d77636"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10072.asset",
+      "sha256": "cc19cb92d68249638f32ebdb57d8afb2276568fd856cdbba561276cc1a3513ca"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10073.asset",
+      "sha256": "a50990e0f16a58066d26987d3027284b24d25fc934c4f34c2c8b163c500383ac"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10074.asset",
+      "sha256": "de9f5629c0eb134c8203b032fbe9ec8e3877527b1f7948699817f2e501196474"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10075.asset",
+      "sha256": "d20e4aeffa18ab460d42a68de86a697314ec8a8fe4edf9d6e072a6e1c0706ea0"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10076.asset",
+      "sha256": "cd1bb22a765c5b07198c9aadb0ec2c875a543960b560515ed15a985fc377193e"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10077.asset",
+      "sha256": "191b7f77e5c565310f14ed015bb3e11bc1fa8e72a3e2801fd125d0baae0fe7dd"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10078.asset",
+      "sha256": "9424c2a29824cb5223565f5935589fda5b63c98eb74f2f93795b3534195e03dc"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10079.asset",
+      "sha256": "e260b5b76e5cfab40e57afa279fa648462771b261aaad1fde62f4c220311cb37"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10080.asset",
+      "sha256": "77abdb0a6f751448f3e304a1f66f8b78fd79a3f87588f15971fad0c34c6bd7d9"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10081.asset",
+      "sha256": "1c2137881067ee840affd52767a03dda4b8c8e100a395a273f5841bcfe614fb0"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10082.asset",
+      "sha256": "5a2c5522719363db9616b0e3e86243c18502eb6d8dad4fa3abf0e7e4b864aceb"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10083.asset",
+      "sha256": "6b754d647d2bcfd4841dbfc5c99a15e920b1c2b49be4464acceccbfb62a3061a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10084.asset",
+      "sha256": "754642c563d8e0a6479a2cb35bc8c8e471da19f08f923f32a90c77669323b7b0"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10085.asset",
+      "sha256": "e19f4e983a01b961f14c40fa9ce0b43935095ab9bf6e1fe3082bb0bae9e224ed"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10086.asset",
+      "sha256": "e4fe9f81cadf4b6c835c8442c6838b13888189641ca4d5d60f17fea10d51a14d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10087.asset",
+      "sha256": "3f0fe4627f4426632b8ae492538a7ad4c78245a7f3f1286ff26b89634ec025b1"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10088.asset",
+      "sha256": "588f36fa2b0f920b2850e6455e3432b84551431e7c9d13775acfb233d43fc87e"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10089.asset",
+      "sha256": "4addd550badd5f69089715e89cc2953ba36da8e6f4d1f168777ad124d31a8900"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10090.asset",
+      "sha256": "b0f2ae51756c134d8a9f24e6d5d24a6c7ad9180d8f5e2504072a22064632aae6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10091.asset",
+      "sha256": "daf9a3a45e890d64758a869d8d0251c94668cd38686643e1a7ad738c131bc186"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10092.asset",
+      "sha256": "c8225ef7a1ede45aa38e23b299a256d3c9414baed394505c7c4dcd7fedf0a3bc"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10093.asset",
+      "sha256": "2fffa7924165c6680ff702ba7aaf546ce027892017844b47e5af584f2369693b"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10094.asset",
+      "sha256": "6a3d9ed85e1bd290ef9e20be0eb0a93605f7b029cc1ad6c447d66bbd55efe733"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10095.asset",
+      "sha256": "2dc7724ad4ed08dc95867d2328b4a04dd7296e0f129f3e8fe6a69bd8cd252a90"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10096.asset",
+      "sha256": "2a7d82d4f197efc68de50d9882c5dceb1b742db1f8bc63e01b25b5eef2d707dd"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10097.asset",
+      "sha256": "15fdc0b92ec41f9b77f6e319a7e3d512eb520c88f392f537a09b59a79d3304cd"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10098.asset",
+      "sha256": "0e4b8ed1a8f1fd0616078fa389ea453eea33b2c41ad32aaaf414734274193463"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10099.asset",
+      "sha256": "00c2fdc6c8546429d01d6149c7d4214a8334e150c2c7a9017f023ef939f35b05"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10100.asset",
+      "sha256": "1a2cdc2935b9913b76f9851bdb00d7ff9d53ac0a6f1267c597df44e2a8f1214a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10101.asset",
+      "sha256": "44db4d0f790dc9e9c5f85114d812ee605b64fcc0c843fb86892df90d10345033"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10102.asset",
+      "sha256": "86a9f34b19fc48fd0809ceb7de1098b823dc1bca2c2cea83085e168abf319dae"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10103.asset",
+      "sha256": "276701fda1415d43448f9dd1e77718d0f69dd2397f17d469d6ea7234fea6b6d8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10104.asset",
+      "sha256": "24cc9cb898110c43ea9b0d6f392939bb27c1f1a5ca6bbd7632a492046e8af001"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10105.asset",
+      "sha256": "7b970c1ca86912363912a686acc33add710dc57cd68bf72ecbe9bd9b6b332766"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-2/10106.asset",
+      "sha256": "1b5823179189e03b04fc39fb3996525b80bc6b65abde4d9d6ea3fccea28ba73e"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10107.asset",
+      "sha256": "7ffefbba7e6b8140aabb6cb70f39fab3e1ac5413f6e452cb4a9549aedb8bbcb3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10108.asset",
+      "sha256": "6edc342092af27813a11a0dfe4f5ac69e7a662dd04e7358aeffe10cb4b0ae231"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10109.asset",
+      "sha256": "5c7f9612b4c40902b207d3b23a9a7066195c2f303a3ddab755eea44b39a23581"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10110.asset",
+      "sha256": "867fcb3286b0c8607c54697027bd7bca31279f8b7ca47d7346af1ac1bda06e61"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10111.asset",
+      "sha256": "299e48b612615cd65eff6b552fdaeb5ce3bb6d5f73d526ee144682030a09cc38"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10112.asset",
+      "sha256": "c73db563271e993aad14a8d428c36732429f9016ced22afb6398f655f60d4e01"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10113.asset",
+      "sha256": "5577a48460738ccbc33fded3b82a5e0b2578b6cb3091a3bc291e9ddb1f0fd958"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10114.asset",
+      "sha256": "cadaac72115efb0ff7ecea6868987239660f7462dc4c0a2a6168493c10c937fd"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10115.asset",
+      "sha256": "fc868c81caec6bf4164e2f4bc1d18f28b3429265fe9a3fc3d88d887f3234746b"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10116.asset",
+      "sha256": "3c11b87a402cf70de458e181530b2117e3bc78301630fd44991f5a4ee8fe697c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10117.asset",
+      "sha256": "a8e9a3632ea31f471822dc7237071c5100584651ea21c14ca0e178da88f72297"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10118.asset",
+      "sha256": "86b37719c08ff2047596b5058aa8d508ac96658b7c30be02d4b7bdc7ab0cfb74"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10119.asset",
+      "sha256": "1aa66825b5f3944da1ed4b7326700e68707bcb4816339f8ec48393621e0b45e4"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10120.asset",
+      "sha256": "160ed055624ea350b0665d4fc20a48e431be5fcf80f21e691ce12f99c7e0a187"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10121.asset",
+      "sha256": "59d9a156d4c07cc163b52c58aacbfb7ccde0b172e3435109e8cd389b2e4d5ae3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10122.asset",
+      "sha256": "9046207fcc98a2999cf320eae80efe83df201f0c6ea01828263cc14e8cdaecd7"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10123.asset",
+      "sha256": "d5192d5af849e706709b63e6fabb47afc5aee2bbff27d73c81f2ee32b17b2c7c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10124.asset",
+      "sha256": "0c09e33da3de574f65c7126976a8fc22ef6797a72fd6d11f922171d755da777d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10125.asset",
+      "sha256": "d3e144dbb609b59a888129fd1a58f2322188547ebbce24e25c4503cbc775e915"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10126.asset",
+      "sha256": "a6987c546a44ce660b21527cc0220d8b8c16f247359eb348115b12b2320c4380"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10127.asset",
+      "sha256": "1c95087808bd9be2ae444cb09b83765dea31101d95977ad4a9959d63ffafa7a3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10128.asset",
+      "sha256": "16ae4e0373b9e9e3045cca039806b40c40ddf23859d7e87fa863b2c25f4e8662"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10129.asset",
+      "sha256": "5573486461eecbb7c250e8280fd96036dd448605bf926730361a87967256223a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10130.asset",
+      "sha256": "17fbba51e37f45c2d301b3184f72dd372534798a915b89ae041e1bd4115f0ba1"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10131.asset",
+      "sha256": "4b42a50e9fae71e70e6c711a2eb68ffc06045a4a96fcfcc1b4e88a2626f2a7f6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10132.asset",
+      "sha256": "94e7685c9cb62c3c3b4dbad54eaa76dabcc550efdae861607a6696d191a0c549"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10133.asset",
+      "sha256": "c49784a746126bcfd5d99adc21196d431f4a280fcc710cc1f4385117e65cd238"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10134.asset",
+      "sha256": "455aa8919e1fe1ec45a3f129ef23f77e866cdf5550018ec75443517bc6de4ad8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10135.asset",
+      "sha256": "ab3601275c6219905f68e4ef23db6d3c4da5cee7520c90d1f530175fff07ab28"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10136.asset",
+      "sha256": "64ae0010bdea868998e26efab4d4a2013668ef95345716c711d9976c4253ee87"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10137.asset",
+      "sha256": "ae4502c09ed6c377441c54618b1f98b847a2d8699cb5bf3455e71b59b4a12468"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10138.asset",
+      "sha256": "666988abe08b0427a8154fd1b70315c773eadd4012456420d10a3021349141d6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10139.asset",
+      "sha256": "840f71b7935b90ad7ea02fde5a07557fdf867db8b1e7054ab034ea081e638000"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10140.asset",
+      "sha256": "7ecfb3a18f8ba1eaec5a79a47d3f0f8ad2b1fa0c357297d0a1eabf54a4b2e984"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10141.asset",
+      "sha256": "fb42322a580a994cb8322eb4c4f4382f4f20b0487fef973cd99a4a7408c62a35"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10142.asset",
+      "sha256": "9b56dd68a547ee0f580cd27c97a41a9a13820a3adb0a0aa1d5b401d85c8ccb35"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10143.asset",
+      "sha256": "6cd13212b991f823fe5ba3d7b55647afe93072f4e6b0592914a98c074ef7ee6d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10144.asset",
+      "sha256": "b7fb2823a7edf5c994ea43da611d75837225c05f310a1c0992319ccfdae0b0da"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10145.asset",
+      "sha256": "90c3b16a31aedbd35c6fbbbb3a627473e27cef6173c6294d1a4bae5c629ca0f5"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-3/10146.asset",
+      "sha256": "6972a4a4ecabc25b85bc0c4b9019f430fd4940ee5f8659b1c33ab1287e1614da"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10147.asset",
+      "sha256": "56313887460cd1e2a1918ca0115224fa761a892ec3593583b2082f7ae5f5105a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10148.asset",
+      "sha256": "268dc8742e63090085608031998c6d5b92e52e4e885c5776473ffc1888c7bcb6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10149.asset",
+      "sha256": "e574fd8c932273a9d5d521b48c113d74bf338fcaeb7550ead262a7770f6b4bcb"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10150.asset",
+      "sha256": "ed5da0b2518b4d12945a7ed1b3c2f67d06cedb3ce6fefbf1d01f4ea37fb783b4"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10151.asset",
+      "sha256": "05faffa78b82b23ef764744b50cebd549f9b679a5cdcee8685f1db0ce5bb1c6b"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10152.asset",
+      "sha256": "916c72ee76c7737ed36284d4d03e9b55ae47c7f41be7921579e582ecc5d080f4"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10153.asset",
+      "sha256": "197663f0d217a8f8f2d9cb577c729cf33091119d1d366737e7d03808a141eecb"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10154.asset",
+      "sha256": "31f676eeb231a3abae6a4abf903848b426d469ab006438a7afd10823c87e0a84"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10155.asset",
+      "sha256": "4f5bf22262bc8eaecd4472e65b0e2e6912dbf36dc97e7cf69f56b31ba7a24b93"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10156.asset",
+      "sha256": "1e399e0941f78654b59b68fa9794f89a2cda505d2da04a6aa2f6320974f72730"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10157.asset",
+      "sha256": "5234ffb4549e60cfc71b6c25b55220d69fc46edc237123d164ba7d5046ba15c8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10158.asset",
+      "sha256": "7e7ffba91b20511f91145c660eb562de329ef54d875a13e74fa2f6273055528b"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10159.asset",
+      "sha256": "f35e7161d290e734d1dff965307ca770ca0541fbb9ebe32bca9bc9c9e276ebe8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10160.asset",
+      "sha256": "389f38044aae7a2d12a2baa6b131028866a8971fb6bd84e664171c6d9a993ce6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10161.asset",
+      "sha256": "ec1ccd6c7ae267731cf7d019b748e196995a80f3b503cf5f0b36b60e145199c8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10162.asset",
+      "sha256": "7dba28e68dc02441da87d2be88afc9424fbe9eb4ba822d5795eae3956e7fe287"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10163.asset",
+      "sha256": "e86a0d2b5d597989907d718932bba51c31b523efc8045160b4a39930ed1f561c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10164.asset",
+      "sha256": "dfb4e6bf121da9c2f7f2f5e8bdd527ee9bcc0730d57b5c3d91832ffbbc99b81c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10165.asset",
+      "sha256": "74858d8c69c3d24a710391e63a536c27069afd2ac1b8158b5abe675900089436"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10166.asset",
+      "sha256": "8d1c18943e70c6a557b676f269a63c5e38efa9cc8055981fd0b0ac1f187c7b66"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10167.asset",
+      "sha256": "2d6133f0a2b3350315e77808ac209df942098e91594a4da1c98f6af48b991aea"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10168.asset",
+      "sha256": "f7c1f4a37361559b124c4070faf32a26ad3fa4831de5467fcceab1118348d7a2"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10169.asset",
+      "sha256": "c2584b5ce9b5b73fca934de94c605f3c3c6d1cc70f25bee2dfd209d28b0f90dc"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10170.asset",
+      "sha256": "4a6dd3fcf5d4abdc68e95b829f4f2d22fb8797fdd951d1d80054ca26f04bf99d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10171.asset",
+      "sha256": "ed5e9da6ae487ca72e73f0338970e8a8fdd29545fc63f72bfa52d69a7103eea8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10172.asset",
+      "sha256": "c0ae72189800c24ddfd0c40b0b2f10f6dd484983874f2c436e4e8ee956d755e8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10173.asset",
+      "sha256": "ee7109716628871345c6b93dea503a15c0f31aba5b38f2fd2101b43a35da5969"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10174.asset",
+      "sha256": "719af0633f167d2ad4884c47c3edc1af00d809c5445e1658fc7ecfef129eb9be"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10175.asset",
+      "sha256": "e3e61f404151ce578e80e859264baec1673c908333c07a96cff62861dab4366a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10176.asset",
+      "sha256": "1c48993d148c6f071345e2877393dff41b7f91d13a5cec4fece93020354b3508"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10177.asset",
+      "sha256": "d80edc0d0f9467c4870a2f9bccec24cd2725704135e63d4055e7d70c22e2fb41"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10178.asset",
+      "sha256": "0fff476c024a891e1515c835612f99b660cca435cf0b5ed628a77d8abf329710"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10179.asset",
+      "sha256": "700ac06550875879729aaae8a81e8b4ca1375defa20635755e42c512bd2f28f2"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10180.asset",
+      "sha256": "ce3c6a86f217a5e0bc5c42101f36cff4293bfe97dda03874eee70dc919d0218f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10181.asset",
+      "sha256": "bdd6896240d6d99d8fd18c16948cff3218daa9eb300ba757eae15543641d8fc2"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10182.asset",
+      "sha256": "6bfdb52eba183ff5716384cf3b9d996d1b0334ab844e7da9f6aece604fec38f1"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10183.asset",
+      "sha256": "247d3ce4abb5cfec3b99484e9cf0a7e462492577ee9b76246d54721fdb53965f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10184.asset",
+      "sha256": "2c2c42dc139e50fa3f9b23b4c7b2df23ef179c1fc9b2319d7be14177f8755a6d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10185.asset",
+      "sha256": "8e406581ce6652dfe5f76491018bbc4c79d4118c991ce1787c2e46e4ba5f08af"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10186.asset",
+      "sha256": "e12a1041739f0f3cca71a2f0a8fb76c708342bdb0edb7a351d437832f77adb1c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10187.asset",
+      "sha256": "766c9c0d8e03faf477dc78fc4e03a5792a68ff0ca1951ec65502c8f6dc7e5ad9"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10188.asset",
+      "sha256": "bc7b78b127a1fca8387cd9745c6f0072c07e87b13067851226d93163107c30c8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10189.asset",
+      "sha256": "4b8b29fa8b73a74936c840bfc262c5f5cb2b7dd0db8b1bf7cb32c7168e0c3294"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10190.asset",
+      "sha256": "30d9b9c0be6b796a22a859991469fa0191eea20e75378854a8b7aba0bb1f3df9"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10191.asset",
+      "sha256": "b2698a05b10e5c25b06bb5e97c70e0ee0642997104496ed59e1af613adbc1a30"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10192.asset",
+      "sha256": "5b50971cd760d6215cbfaf19bae118f3189a23b488ce7f124c986097b293ead9"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10193.asset",
+      "sha256": "025b6e8e5cd69fa30907d012199521324e3c2db8244783f8443c9f1fde7b5991"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10194.asset",
+      "sha256": "e10ff6977767941605d669e4b19e20b5f6b0f014e2535325b00429d4230adcab"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10195.asset",
+      "sha256": "69038c35363cb753a88348adc049f096918ff752fec44525420b2358611eecc6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10196.asset",
+      "sha256": "7ff9048533f19dc548f0b914b5e08bdb4829f3719774351863499607da73c180"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10197.asset",
+      "sha256": "128fbbfc006747446690d6ce4c93ff16c873cc373e0e7d9a173e0b2a6244474a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10198.asset",
+      "sha256": "4a41c40a67256facf7a3c3d00bcf39c8536de423383f767b07ae40550d33bc03"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10199.asset",
+      "sha256": "a0663632d492f835edef8500c726931267602f6ef4589fd5c534a43bc2ff2b52"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10200.asset",
+      "sha256": "849dddc74469eed28025163e153c8f4f0731c22f3c8171b9e417e30d12f45651"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10201.asset",
+      "sha256": "bbbd8b2098cd92a83c5de51d8efc1b8f421a47bbb8b75ec715e3b5c6ed51fc0c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10202.asset",
+      "sha256": "e7da1111797f921dc0042b862070e8b326e11005380b5c25eb44cf6b74e693c8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10203.asset",
+      "sha256": "d597d60a9180eb4063fe53ea5ff85673ecd71f79c38cea30ac0b4758a644a785"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10204.asset",
+      "sha256": "065ea31541b310c4c6a6bb790db084957e236330f08d9c71eb223ead7e1926c2"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10205.asset",
+      "sha256": "3ebeb5ff29d6eca35668bb1abe22a0457c0b1351470389c91047b4e2911d50f7"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10206.asset",
+      "sha256": "a67fab79ba83f55bf68da613001bc577468a9b378bdd790e92774bc777e12f62"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10207.asset",
+      "sha256": "3a3bfddf391dd76c3e9e82271e77df26f83a1a566f9a6aea43eba4b67887de1d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10208.asset",
+      "sha256": "d4d8f69ef4ec1bdad53e3981c6d2e180b1b002e86942af86038fac3167d1fda8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10209.asset",
+      "sha256": "0d5b7369c5653e399b3293d3f5d07b0c723fff2e7702b7de80c4318a6d0cecf1"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10210.asset",
+      "sha256": "da17dd9982f3bb088c8a75b569d4ae30e575892e562ba15b26f1b347d35910eb"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10211.asset",
+      "sha256": "ade9a553535704f0b4b60c65c1ed293dd161627ab868fb8ed98e782ec7458242"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10212.asset",
+      "sha256": "1e16c3809b4947a5480f3d4e11196e52436e0552a72c66a95b31cc1f16a72127"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-4/10213.asset",
+      "sha256": "e35e47d50fbe9fe91ce49cde425c1e533e98955efbf12a13e14e3523f49afe53"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10214.asset",
+      "sha256": "49f0003b71d7f10eea9ae095bbdb6900520e491a71dac77c64db5fee00208253"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10215.asset",
+      "sha256": "a8a5f2274a3e9a3f5b1946ab43c03b6526d655f22acf4ccb0b8b46b264f13ea5"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10216.asset",
+      "sha256": "7289f07be167e0413e75fcbc6e83236525c8122029ab76e586a894e5c1130e50"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10217.asset",
+      "sha256": "747d21b85b4065e11d45f602e38b327a6f5d77c3f299223c719afe21c4db9fc6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10218.asset",
+      "sha256": "d21c364ba362f36cff9bcb8292d05944d722fb844542a4d0c5971bef8eea6b0e"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10219.asset",
+      "sha256": "d84b8734e58c5d46ec6c8898f45356ab6ec4455b46a536d8953998821671396d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10220.asset",
+      "sha256": "346de8470c0c4822f8343cf6ed11d33e49a8255ebab692d6edc718785b00c0aa"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10221.asset",
+      "sha256": "e1d8b42f2d6541cbc9be1e792892f0dad1b789f7d33ad85e62b38b9c507fcac0"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10222.asset",
+      "sha256": "6c96ec1781dd2834144f234c8fefe7cc0695ae9850b23f997240ec27cc1303e9"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10223.asset",
+      "sha256": "dbc12e2b77f7729bf8e6ae69802fcba498827ac5edd93deb2b00a80588038942"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10224.asset",
+      "sha256": "9ccab8eba0269505847187ab01828cd7f0b6122e70d5032f00c2a77b08b2262c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10225.asset",
+      "sha256": "cea925b41c7a620f06c521bfcfde40a91233edde2697cfa261c418e20bf9a8da"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10226.asset",
+      "sha256": "7a6644593382b121d6724ad0e6edf7c887ec97f933314fc4b7f8e0f462b6c14d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10227.asset",
+      "sha256": "c250eefd34bba5b45f950a64d04a24a5dbf16fe7f6827f0c0d977a9219d58549"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10228.asset",
+      "sha256": "24fb66515a43c96f0ea33539c0850b69b6c04bc883b145e0f0c4acc3e3675cb9"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10229.asset",
+      "sha256": "f59e3b519f116f944b7733feea571766cd0aa61b773b9b92668e97fa774b7cee"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10230.asset",
+      "sha256": "b9a4ebbd7c51816668067b01d08c6b15b6ae66c48f6c51f3b8e49a9d513e6a49"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10231.asset",
+      "sha256": "4f13215644e1f855db77e53b52e41419831af28336afa577c5866479fcae2fcc"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10232.asset",
+      "sha256": "e6e7698020bf89a87f33c3cfca1de3454262829111a6def0844e4c111c5a4b20"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10233.asset",
+      "sha256": "11e6a1899b057132850156cfb2ffd7e7e64e541492cdd2456905dc09e7a73b01"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10234.asset",
+      "sha256": "d77909c47ebabcaa4b67d1445b1ae118bf4f3092bf63cb430b24a8b7b3da595f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10235.asset",
+      "sha256": "7642520b96c596b3cd825909f79057c3d23b1149a35749fc3ca6ee6c06af3e62"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10236.asset",
+      "sha256": "157ae50d0ede471f63973cebbb0aad78171112f8ee70514e6b95a29017517174"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10237.asset",
+      "sha256": "e7ba024f6ac98695f1ec44c13212621ab0ec14d9255d22669ca0843c2a74e9c3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10238.asset",
+      "sha256": "5c00b84d2dce361d09d875f4cfdad0f4a7d9d7bd02a4d3a4290c323fb9326f39"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10239.asset",
+      "sha256": "7a29ece1d83af712a06b9199c3b126c57f75b612596d6245847ba65fba5048e9"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10240.asset",
+      "sha256": "743b023ef99e8be5a9449939a70511ee5c917dff34992f366dfc06e717eecf1a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10241.asset",
+      "sha256": "40cf3797ebb93edf8bc7ba07c9aa722a8942f1e20eed618ca3aae0a0099ecd60"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10242.asset",
+      "sha256": "6b248a3d9b3e0e3cf93e10c6e9e12241e56368dff0928c6d37191731ae34b115"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10243.asset",
+      "sha256": "69e16ca079bb6b62ff3bfcc5a39c97c283cc1941625cbf2db29c5031b2a30d8f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10244.asset",
+      "sha256": "b6818a5766dcb0c41d54562abf9ff49c2d86e70b63e9c7846832da490b8f43e1"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10245.asset",
+      "sha256": "04860dc8c641ad0d447ffee6d0c3e1c0a64d71a573db68af00e3bef29a88e9f0"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10246.asset",
+      "sha256": "7cde3f29abc13f52dd57cd559484b6e9564d9e923c758121b409afe94cd7bfc1"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10247.asset",
+      "sha256": "f602affe105dd497d80eda6b7b23a0b8701549123eae19a81e93c300e2bb1e2f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10248.asset",
+      "sha256": "23dff7aa1a7726d5ea6eca1e01573740335102ea71c27e9c96fbd8151fc1ebe9"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10249.asset",
+      "sha256": "ae9d0f28193e99f95fbadbb51dbe92d511889272b93202ad37a9ba8d67151cea"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10250.asset",
+      "sha256": "2ed21ee716dfe10b3b22cf7470b94f9599e00a799c79a7b75e8cfe8ce96c7f8b"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10251.asset",
+      "sha256": "1861e00b2b6249085ec88e46cdf938d3ee6bea589a7dd1710393d7eceb32979c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10252.asset",
+      "sha256": "06f7c01302ebcc0d4750b9fdf2299a4630d2a4eaa320592a6c657bda8984de7f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-5/10253.asset",
+      "sha256": "bd0a3ea363e44f654cfc464ac73820ff934e08315ef53efafc770e7b2b103156"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10254.asset",
+      "sha256": "bd3bd633898e9b30fad8d094b8b3b0cbff3c0940008e700074c0610eba81588a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10255.asset",
+      "sha256": "8e62cf91a7d5a4fea5099bc398d226d3d95ed5b7605286cb03960c9f22d5b98d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10256.asset",
+      "sha256": "59791659e2c47614d60bf4453aad050e2f67d92bbed159bd25fe10f268278e8b"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10257.asset",
+      "sha256": "7007ad046adbf8444e45207ba53b32f269ab6691be0789f3b09ecda1168a0cf4"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10258.asset",
+      "sha256": "396aebb847fa4348b1629c573c1811522b99df03008091f15107a723af398789"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10259.asset",
+      "sha256": "6fd5e7e200636ffae467ac0dc20a41126fbaacd3107f27777707b428aeeb7f62"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10260.asset",
+      "sha256": "cf12b4d11cd9a32bb3306e14da41a256c4a829928dd6c2a7003fb7257c96f013"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10261.asset",
+      "sha256": "c97362b07cf096a90f08d47a0675bf0e95f2e2b9787cf8293533ac13e56ffba2"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10262.asset",
+      "sha256": "6a268bebcf719de988d7561f70da591cb238822436b04ce7ccd378c991cbe2ff"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10263.asset",
+      "sha256": "d5a42fe324cbf71d4ad3dedf9480504d2110e4972a0ebc73d465604eb3055ad2"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10264.asset",
+      "sha256": "2aa714c843d35a755b0f7818a1e4af9281a8a08223e30c16b94364159f4808b2"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10265.asset",
+      "sha256": "c1ac0644f2352c10edd6668f8e933278da575e73c699e51012527fdaf2664e08"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10266.asset",
+      "sha256": "ea0dcb48962535a0db07d7f5d7930ed4d5ba7e87be731c52208c6feb02dc61c3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10267.asset",
+      "sha256": "b231eb2f5f0c958208c6d07ae434cd4f5607bb034ffa988bc38f128f8426fdce"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10268.asset",
+      "sha256": "4c103491397ce7713d972dccb8191850f7125b09137c4258de56a8f9f8601f75"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10269.asset",
+      "sha256": "5d5a2ecc7e27d27ad7a0fa7d0dcd6ac631fd902e151da7d5415dd88888b61777"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10270.asset",
+      "sha256": "4bdb5ca7684cc682ff8bf1fd8ae730dfdc988876b73499c937e9a99a1a77fbd6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10271.asset",
+      "sha256": "f2febc7e7982b2613a3f0c0cbd79e28e5082e667d838f88b4e61f09ca2a71ca8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10272.asset",
+      "sha256": "f5749573d878c6075d5c9c555dc4c1fe520eb460a1fb7c023304d6120e978a2f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10273.asset",
+      "sha256": "4c565fce09a27af49ec9b1b0b741403f313a5c8b63e15ebe19deecfdea9e8b59"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10274.asset",
+      "sha256": "5fd124477807cdd2b356a958b0edb69b20d9570e0617a808380c50bc56dd1691"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10275.asset",
+      "sha256": "abe418aa78aeb46d3763dfb2b58b528a6914440c4c2b6156b9ae5389d9829768"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10276.asset",
+      "sha256": "90e0b3669caa48adfd6aeb50c65c5d310204bd5a7a263e21d887ca4a858de092"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10277.asset",
+      "sha256": "aba68bdf3ca20c89afd420f290d3298638b706d7524528d6ee26fba74a9e34e0"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10278.asset",
+      "sha256": "310e4b03cf27411777d4d3399a52583b2c8384626c80c728c36d02a4996a6af2"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10279.asset",
+      "sha256": "e211b1f9ef8c50f8030b80bb323ee67414860969e6658bdcdaaaf1f7b1151565"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10280.asset",
+      "sha256": "58f8f7b2441f320272db87d1a7b707faa0e6c9e8e28e8c10110e6edd217d8aff"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10281.asset",
+      "sha256": "b458b247c9c9ce4c034dab60a46d4fa4094de7c8b56dca74192b4913ad40d064"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10282.asset",
+      "sha256": "d6af3976f6402626f9eb8245e0ceed721641cee9d2225c7753feced20ea2e2fb"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10283.asset",
+      "sha256": "2269c992e78ff376bb1f78a88282efb3f9146e9142d82df01f86fb57a1cd00ae"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10284.asset",
+      "sha256": "789c76aed27167fb6904ae502c139e8ab5763988b4f15054133322a3b525f7bd"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10285.asset",
+      "sha256": "affd2b32266b77d88cfe41bb74ab7c0aec9e0439c0c69d651bc7411c46e7df46"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10286.asset",
+      "sha256": "d91cdd4f2e7ed99bf2acb7abdf159871bfe1545fa9f068f05b6f111442560a42"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10287.asset",
+      "sha256": "e0a046daf108e21e6557c6da9554c8d2c5e4d0c3b07c7decfccb4913e3f9575b"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10288.asset",
+      "sha256": "a97ac7e630c4f35654bc7dc21581aef7c0a4e68febf874ecf92e76a8c84aa5ea"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10289.asset",
+      "sha256": "e6572274c1768fda9bcfea37eff3d9da6d3c53f359d49fd7ba89db8c5351dc77"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10290.asset",
+      "sha256": "2973fde0335bdd5664a8e39a901439af372c2a92e47ecc7700387f9ca85a3553"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10291.asset",
+      "sha256": "35c9bcfb136ccad50c654d780ae3d0afbd40779c08b31b6712cfc60cf38030b8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10292.asset",
+      "sha256": "94a4bc3e3fcb6e2d9efcdcb9e3c025bfb9d5d137f8b0683e1892b3c51f542889"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10293.asset",
+      "sha256": "2661d4e84f157cc31678cf5e7073f49e70072925eb7ae8ea46e03aea76107235"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10294.asset",
+      "sha256": "db653452dc3e59fc2f101af91090d92e6c87799ff5475fa9dc6287648314aec0"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10295.asset",
+      "sha256": "2c147013b131cf9b49ddd9bb9b958025a5960e1a5ebc1dae1b92a16512dd0cc3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10296.asset",
+      "sha256": "e619072fa02fbd0c758e706237a1bfd205ab38cd574e29950a5aeeb94a3bebf3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10297.asset",
+      "sha256": "8abcdf55efe8b747d674954668aea53fdb1fa931951f6564867b797f6ad2506c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10298.asset",
+      "sha256": "e253691090d87120d33086777ae0c6e94b94a9a631ac70ba30fdb89df9e86779"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10299.asset",
+      "sha256": "46029896a2e1c596c0a0963f9867cfc9df2303f7fe90628014766ea7438ce00f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10300.asset",
+      "sha256": "5292a827c33c59d27ad910fde60f048f27a3affb14b63500a1dc538b523c2eb1"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10301.asset",
+      "sha256": "8d5a2482b0522cc9ee892466ee5091e9d32890b3f82a54b0b4529f1fe2ffa628"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10302.asset",
+      "sha256": "d7e7ce3619efaac298572420c99e489f8bf3b7c6e1dbbe320a0b470423902a66"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10303.asset",
+      "sha256": "5f773c21b970a6bddec6bfb1cdcfbc99de1139b25680686fe781a339ad1a1b2b"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10304.asset",
+      "sha256": "9fcdfe2dd3afefcaf5f1ee29e55d21ff80d7ed26138a3f5def6fd02af8b56053"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10305.asset",
+      "sha256": "0d337f816a74783a44d153b2365f9df5a7d113d91c57fd0366682c094dbb5465"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10306.asset",
+      "sha256": "33a5d264ed7a7bb91af61238322cf0ca7f79b3fe4f46f29abc853d6e838fa973"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10307.asset",
+      "sha256": "8f4150b658dc445fe1e96271c0b3acf13c6ad65b670d39001477762e3da70a46"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10308.asset",
+      "sha256": "8f1a9c3db0bbc72296053f2fdaa170595ece7608617d8ffc05918e3d87a5e749"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10309.asset",
+      "sha256": "56b30a37b4e0de95cddf396eb196dd63399929b8977e0e71773433026d61b043"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10310.asset",
+      "sha256": "5e6b2652f3e694b71fe718a5301341fadc8e7bc0523a9181d97afaa43efe16de"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10311.asset",
+      "sha256": "9e3963bad2f2798c601712d70a35173eeb4a0132632cce500214d0865217f1a8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10312.asset",
+      "sha256": "9f44997422d8c42e3971a05e50378bebdd88d4b302dfff5c874e93be32c3207d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10313.asset",
+      "sha256": "1de4d8672c57c26bd0691f00cf93d13deceee5155e228f72bc0e15748f45ff6d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10314.asset",
+      "sha256": "5665ea267e2c9baf435fb06d0e3418f8316ef644a26913c1bdc5ef4c1081bf52"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-6/10315.asset",
+      "sha256": "52fac567a8a34157c20e0d0d40339767af0ad7f47078abbacab101e1c3959685"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10316.asset",
+      "sha256": "bbb62290414e2575a76b1245dc78e98e782e2bee2f7834696a63467a126d4fc2"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10317.asset",
+      "sha256": "8d3477f7afa2e7ebafeee88940d7b0d99502f84d43ff5666b47a6f535537e2d7"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10318.asset",
+      "sha256": "e604aa9f85439af51476d0752d170aa402fa4b740d13cf0175594d99c3adf9f9"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10319.asset",
+      "sha256": "289357f5460651c455f5729499966c8a8f1f3a4dc9f440b2940ad5ce03659ccd"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10320.asset",
+      "sha256": "3dc0dae91755ff61539f4023197ffe3dd2f8bf58791b38e9f5bf933f88390307"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10321.asset",
+      "sha256": "7cba20adcbc0f7955bf8d16332b45e3563a92b0f117bc8885baa5d9af3d312e2"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10322.asset",
+      "sha256": "1750b1a3ca5c83a8eae7012243f5cf2272b162d6c950296325d246f033b5282b"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10323.asset",
+      "sha256": "c7901833fe9d5da7fcbb4e30f621f946b1e3fa50aa2fc637b1d0db00ba01e6c3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10324.asset",
+      "sha256": "efabb7d25c328d017a0550cc69db2b816c9e8eb384f513fd4a66e7de702a9557"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10325.asset",
+      "sha256": "e1d128c3520238d28969229c48bd0797aaa92518f770779d8ec0b61f1ba189ad"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10326.asset",
+      "sha256": "9d8277278e6f94a7ffc02da81b63dd8056f73ecb0802cf4aff017e7321dc9e0e"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10327.asset",
+      "sha256": "be6392878707aa0374ee7ea7f5def5264c1adb6faf2a3d468667dc6127e23c07"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10328.asset",
+      "sha256": "cd51215b7f8ce7874c48298bc00cf2a82501c86f6c9d280bf94e68ad6d84490a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10329.asset",
+      "sha256": "cd0bce98adb2129254e15a604fd3654d12e25faefe7a162dffd8d3d0c3638067"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10330.asset",
+      "sha256": "6dccfaf53c2cf9ba99491b4eef379b71848d8664790c56a5b0d37ea56267b459"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10331.asset",
+      "sha256": "6c4e9dcdea08d72e9d702149558120cf11cf31f3f9d74cd2b62e893714576832"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10332.asset",
+      "sha256": "bf3db65f9321c19a073f93a68b7c078da92a9526481cde76e4de86b2e27a06ca"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10333.asset",
+      "sha256": "a7c9240652b30bccecbfdfbc61868d42df5bbe9f79652762dffd7683bc6e54ae"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10334.asset",
+      "sha256": "0cc6e41be644c6aa1e4ac896c18aebd315e6380ef93a106e9a838319babeffb3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10335.asset",
+      "sha256": "fa24cd9182b968b1ea7999da88a3253cf208e1a47c27aef35799af79330c80c5"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10336.asset",
+      "sha256": "23f38f5112dcbeed9fc03a9b0cafa3e1904ba9f7364c4bc8236577041c34088d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10337.asset",
+      "sha256": "96e877aa3b42618b8b65b02a6954e81d7e62876dd059014c06c991facd251d13"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10338.asset",
+      "sha256": "47c152068a0eef4268b378feb342ff0a7378d39cb308412135d366c4ca0ff092"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10339.asset",
+      "sha256": "870b0891a8849fd58e34383dc8fcb3b1e306fce527af284065cced158482e3b2"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10340.asset",
+      "sha256": "2d36b0215798d609d30a132d5221fb422c9ab4e9db9fbc98dc1d491e379ce46d"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10341.asset",
+      "sha256": "6f3f3e26e272014c32394b358ca782c0baab0efe0b02e26a710bd7e12d1e73e4"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10342.asset",
+      "sha256": "0ce363d5c58f72642ac11a89ff2d47c95c251bf3c8fbacad46f857e312e24d01"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10343.asset",
+      "sha256": "aefc5b713151e7e60d3335e324f69efa2d38c9be7764bb3abb8989c28c2e7f84"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10344.asset",
+      "sha256": "e3e400c7cd9affd3344c79fda09ac85e2f4d3f8d2bc7f07642c9091cfe734c21"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10345.asset",
+      "sha256": "31de55af4e8ff69bf623c15996f4b22ffd1eaf3b25ce97fa0e12cf6e17f0db6c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10346.asset",
+      "sha256": "1f5c98fb76a85b5570cf953c089485db22764fac816257c98976b003a1d44bfc"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10347.asset",
+      "sha256": "1b8d02a896bda84dc73722ee4ac8e32bc3d3e68bece92cd8447f5708ff4dd667"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10348.asset",
+      "sha256": "455b43d1cee2a21c65df45c9c4d428fea6974a9ede110bf46ce79c9654c186af"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10349.asset",
+      "sha256": "3c63a8be1a1cea3126777c9a43a4eeb3c28fcedc7168963e1d6adc7a71d36116"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10350.asset",
+      "sha256": "0f5e22c509cbadde0b97f2809005b412e316bcbe8615a7a83480557e59fdafd0"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10351.asset",
+      "sha256": "74701694463bcbef2be757d4dc08bebd196a1851d6dd6b837ef86c9988a9976a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10352.asset",
+      "sha256": "cbe4ad88f8f75cae83c74890baf9673fe8b43bfaa28e6b8ed9f1e276a0fe0241"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-7/10353.asset",
+      "sha256": "403d9c889e6850c893934636c53c54f24dbd0cb34d5108571d3f9a5b930e97af"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10354.asset",
+      "sha256": "106aeff84327bc6efa8b54a686d0dfa63728e5f98aacfb66c41f73def4d8052e"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10355.asset",
+      "sha256": "546b58bea606855e58efbe1cbcd3763cee146c29c259e8716f3dc345dd5aaa39"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10356.asset",
+      "sha256": "9dc50923c0b7c1aa44e8c4534032bc075a5c9c6b9b5b3807be4a8e12b0db1b28"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10357.asset",
+      "sha256": "81fe36f2680b2e0c935039351a1a54f4cecc52fc6202728ae47dfaaf674ea7a6"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10358.asset",
+      "sha256": "d45e9b8dbcfa08ebcd7e9dc63e1e8c7e66e0593e1651d6f888c943da54eb5f88"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10359.asset",
+      "sha256": "bdc6e8b8057bbb09a80fb2176855194bbe3f7b725b5ad78cddda5c843439882f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10360.asset",
+      "sha256": "25f3b55f88fdddcd19dcfe7e711754609c1a0ba31ad39ed610c56345da6b0b87"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10361.asset",
+      "sha256": "274ef6f9d4c5d2bf7b3da35fe35df399c900b3fe2d24fdc7bc7765c50d4b4b62"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10362.asset",
+      "sha256": "c6bcf9c41c3d25232d120733b8fa3f131d4231aa691b8f3becc6d5961409ece3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10363.asset",
+      "sha256": "23dc8ed7903dc5ffe54a01b9195cdc76176780496a7d05225d0b953f3cb8b146"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10364.asset",
+      "sha256": "9042125808e5ba8c8c9a848c9506c96318b1c2555cf4a40ec1627415ac4dad5a"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10365.asset",
+      "sha256": "2dae5caff9bffd7d9e37722c6b8699e06f31e7af81b88dadb8c73e758ec86c88"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10366.asset",
+      "sha256": "ad67d7f86daf2bafbe08e875adf4cc2af2ef5cb019c0f7b85cf4cfbcfd6393e8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10367.asset",
+      "sha256": "fe1a0d3caf2dd0ecaac5d12668a873296bac09a1417f52a79aabbc5fef514de2"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10368.asset",
+      "sha256": "707acee50ccb64c475e51d264b1f461b10f42e49e1034cc8d820aaf890558224"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10369.asset",
+      "sha256": "f39fdede492e8fce228dfd9df0072d10faec7068ac83fcbaf414ccbb7f038303"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10370.asset",
+      "sha256": "e36253ea60f217cb6048e61c3875400ca2ff42e0b9a7dc95ce24f90a24ea05d5"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10371.asset",
+      "sha256": "b5e34a0ebf92352efc975888d7b15e7a4e49ec1c617b54d88de84820505913bd"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10372.asset",
+      "sha256": "6bddeae6a804df5eea84951ef03a3009cdb199ad2be42821c4502164f848f85b"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10373.asset",
+      "sha256": "fcb9947101ef403a094b9ea597368f6409601472a7e2f2a6ae549fe0aa9dc956"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10374.asset",
+      "sha256": "487881f9e043bb5a7c1e11359b7f8088b861deb2e5051eb3f8902b76ff6c6522"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10375.asset",
+      "sha256": "0c90b8fe726555133f86476af60fcb0a8daac327d291756a35a146280a68ec7e"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10376.asset",
+      "sha256": "6ab83ba763ec182cb63259ade260e00c8e43c45cedff7f603a3f7c59c47e11ea"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10377.asset",
+      "sha256": "ebdc0e6ab3cc2c5df4699b3b128d11020b68efdef7173b9c864f35d108415447"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10378.asset",
+      "sha256": "c72927496a2868246ac5e12d7f875c44acf43a0ba5f50be310030c69ea0335a5"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10379.asset",
+      "sha256": "4953a8d61312c03a92b4d13c1559045f34073cb12373b5f3190a5f160a12e43f"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10380.asset",
+      "sha256": "68d023a2790a79f74b9bdb521939e3106fec7f10533f0f8880a314a858a20991"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10381.asset",
+      "sha256": "edee8c0d70a06a4ead801e7bdd6d673af0223d78ce9cfe19cdfceba3c0f30839"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10382.asset",
+      "sha256": "38dca1173572eb9f80e837be91e8dbf76abce52188e00a1faa8bcf40c5d45d84"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10383.asset",
+      "sha256": "e0b07708bfd558aad77da824c46e6b70249b0e791248f6cfe8f59a011cf6d1cc"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10384.asset",
+      "sha256": "bbc67a6615cc83fc684a9a6834b4724e5f224983abb387672be67ca34ecd67de"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10385.asset",
+      "sha256": "9ce9ea641cf76a7f57597bc98d3041c8914d0b20d75dd68219ab20bc5969f022"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10386.asset",
+      "sha256": "253c5ccfd09c7b4b5fcc3eb178301c6fe71adf1786a01882a2a8fa59a8f190e0"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10387.asset",
+      "sha256": "fdce3db87fba1791764972ab017e0012e351b2965b086b42d94ad69dd14def62"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10388.asset",
+      "sha256": "029fcc0921a5f97a5d9abb0297bc8a0de71f5478e98c5d584653976d7ce239ea"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10389.asset",
+      "sha256": "da61a0a6950b9a784e24d6abb6218015e60893b94b14b03a23eb2b9d52032557"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10390.asset",
+      "sha256": "125627f7d623257846bdb08e4c31f104747e752bad9530e53f953f192645f4c1"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10391.asset",
+      "sha256": "aa1561614efc729f14a00ffaf3c61b2c7513370e65cdf6b40658e98cd94aa8aa"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10392.asset",
+      "sha256": "3e4fa8f21d514a534a6190cb3bd8c288d6d5201841d8eb63798014d153240252"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10393.asset",
+      "sha256": "004e0553d73aed904f56799de84186bd859111249290edafc5457a753924063c"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10394.asset",
+      "sha256": "624267627bdddb6e3c1623ab63ab9a75452cf34f1e9c7fb6cc4e7cd7041f1804"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10395.asset",
+      "sha256": "e4156d98d76dca7843830c8b8d93caa6af6574a86105c38dec40aa4d5c0da579"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10396.asset",
+      "sha256": "82d85fc4a512fe9a32281bad4cfe15c444fb0c69c04da44585a3060cacbb76f3"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10397.asset",
+      "sha256": "57256646668275741135bee622e7f0da34f67a2572bde61d8b9f011585833dd7"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10398.asset",
+      "sha256": "2f486557c1d4837573da35c06de9a315262395063642aba69f60e0712fde9716"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10399.asset",
+      "sha256": "7a51945c75046dc93c6ea71ca17052d022679333ae99d165ba4bc989a8501ad8"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10400.asset",
+      "sha256": "c26a7ea410e11d510bcfe2d1a5654efb23d2a16fc4ebbab940563834edd85073"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10401.asset",
+      "sha256": "3a13bf11c28270064b66597f907c82b84fa730414d3413485a1eb4edf12ed939"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10402.asset",
+      "sha256": "25f92a28073e8bd41f223be39a7d7888678c72314d96ea1ec098bc1730761a78"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10403.asset",
+      "sha256": "3537f561b17ca6af3ac7dd0a3f89e1c0ae10209ef6ea7af45b4fb133c56d23c5"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10404.asset",
+      "sha256": "48bf5d0f9531d3fba96826a7ceb24f34626274ca271ae84088ca6d6dcc404863"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/NodeData/1-8/10405.asset",
+      "sha256": "bcda72904caf469d09fb792e7a67dc9b6cda3ee45b6d01676d246ac4897fa1d2"
+    },
+    {
+      "path": "[local metadata omitted]",
+      "sha256": "e10e280cde29e4364ad7f8d107c36e6a7316f3d7ee6ac405783a60310fb1e3b0"
+    },
+    {
+      "path": "[local metadata omitted]",
+      "sha256": "f5561263b0dd882aa9be36d5b9deeb6993c87a04a43770edb2e83ff741a2e03d"
+    },
+    {
+      "path": "[local metadata omitted]",
+      "sha256": "cb192e53ff4c65582bbf44666f3c5029a3bfa36324b4f00dcd11348e889c91d0"
+    },
+    {
+      "path": "[local metadata omitted]",
+      "sha256": "faa63c2b4d7a0e7338eda688628f5b3bdcca0378eca51c8a60a5392e61d230f5"
+    },
+    {
+      "path": "Datas/剧情奖励表.xlsx",
+      "sha256": "7fc4d98cd972b8f4bb2595834176f4aca9fa58d22946354c818052da63af3b41"
+    },
+    {
+      "path": "Assets/Scenes/PlotEditorScene.unity",
+      "sha256": "005f0629d0c6dafebb861760776d7db8d05a0a82b40d8fda4597c8c86f9b71cb"
+    },
+    {
+      "path": "Assets/Prefabs/UI/PlotPlayerUI/PlotButton.prefab",
+      "sha256": "7edf5b666a4e3f61098ab7b2723998fb74d510952bbc17a0d1a7a65117f56deb"
+    },
+    {
+      "path": "Assets/Prefabs/UI/PlotPlayerUI/PlotPlayerUI.prefab",
+      "sha256": "b9d5e97760461cb0456aaef348725f0fe42631d21879c23ebf7c25d30d2d2501"
+    },
+    {
+      "path": "Assets/Prefabs/UI/PlotPlayerUI/WindowMask.prefab",
+      "sha256": "bdf0b6113018ef0e46a1e2ff264c3cf71010a5a6c459f90c5a28d2c983cdcf7a"
+    },
+    {
+      "path": "Assets/Prefabs/UI/PlotMianUI/PlotMianUI.prefab",
+      "sha256": "6c64c6f284f89675d377e490c5dc805291f390cf11c2ebdbec9d4499257f92ed"
+    },
+    {
+      "path": "Assets/Prefabs/UI/PlotChapterUI/PlotChapterUI.prefab",
+      "sha256": "baae47a07928d1774fcb1ed6d452d9714d3f1703c8dd9bf61b68e6a684de0d1e"
+    },
+    {
+      "path": "Assets/Prefabs/UI/PlotSkipTop/PlotSkipTop.prefab",
+      "sha256": "d8e25d71ce152918a8e2eec0ca88a1cc0a9a6f9f02ea008514c45de8b1964be2"
+    },
+    {
+      "path": "Assets/Prefabs/PrefabDynamicLoad/UI/ScrollItem/PlotItemNode.prefab",
+      "sha256": "a427cd3a5d4a08dcb5a4316dec5685d2beff3160bc4c9d477b40f6c65a7e0ebb"
+    },
+    {
+      "path": "Assets/Prefabs/PrefabDynamicLoad/UI/ScrollItem/PlotItemSelect.prefab",
+      "sha256": "ad49716b5b12eb29775b93e91b7c1d9fd60ef8f37b0a1e1a46bd6237b9b1c9e5"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1001.prefab",
+      "sha256": "7afbb58f6a3ff2b126aec6d71deb3c1a99db465341afa42626f77e1cddd4c3a8"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1002.prefab",
+      "sha256": "b713dc3c820abdad5e0d44527c63c740ce35d30fbf4c290d8fb64ad4fef32934"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1003.prefab",
+      "sha256": "2d02c1411805c32fbd0096ce0a1b9e0a30137167d6875069608152a1a038acfe"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1004.prefab",
+      "sha256": "d188247a9986d651068bbed4fac825396dd685b37da2e5d63f1a3e2e889dc65b"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1005.prefab",
+      "sha256": "633439bb1ddd4ba93ef7e0c13d53d04835cb9a225d524e722f7013e0979dc485"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1006.prefab",
+      "sha256": "e098265d9d7b020c84f16c47ce0864c15352d3f8f704e1f82c87309a6b28152e"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1007.prefab",
+      "sha256": "2ecfed20d4fc53119a8a8e93317de869fd8295b1e809602d92f00dabe9a64291"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1008.prefab",
+      "sha256": "607cb612b9697d6c6a46e61eb55af18015798c1febdb3662ce27cd4bf3a010d4"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1009.prefab",
+      "sha256": "d60641e9696f301b06349f0552f2ad67ebb3d1fd9f0888ea252867d4c558dbe0"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1010.prefab",
+      "sha256": "9c2526c1ef95f7e193e7efa085019bf1eb79ba02e4e70e232beee09bdc18f2c7"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1011.prefab",
+      "sha256": "74a25c55877aa1c83cd59cbeb3f570e5c6ad6fd310ee92f570f88a083e84b721"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1012.prefab",
+      "sha256": "3e820762cba02952a43ba71f737f6c89b0f82f544283bbabfd2ab1f7c77039a0"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1013.prefab",
+      "sha256": "50ce2c4953efc78913921fd2b000ad0e8d2b2e54df9566f3a92ee25cbf29cd58"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1014.prefab",
+      "sha256": "d14ab4878647c60c65bb2026df57cb79a6cbd88d49e37beff1f2b46d3e908d9f"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1015.prefab",
+      "sha256": "99c35b534797e32e865e32b2d6341d56ecd7347ddfc812ef0543822923a1ab2c"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1016.prefab",
+      "sha256": "8f9601ff526a8fdf133730f199cd133a917dc6bee4b6add969a3d3a1865945a5"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1017.prefab",
+      "sha256": "89a45b849a2403265892c3dd73bda2682d5592b8a67f1846b4929e3785c7e164"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1018.prefab",
+      "sha256": "b6c6839a54ec7d21af8adf18733ed5d2c8c986ca113579cbf7fbb3e006794efa"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1019.prefab",
+      "sha256": "274912a61435bf8c8838917ccccd5147eff1c4b074fe95c4a274b7ec1aaa831e"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1020.prefab",
+      "sha256": "97bae73f5d0afe013719093bf6d2bbd32d1944081c87b2515dcf851b1558ff96"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1021.prefab",
+      "sha256": "9149771637e0407b28fbd91fc32c9d94f67f214507136659758f25fda91e05e9"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1022.prefab",
+      "sha256": "854873cb3629a371e7d7808b045f2a22f2d5d20058ef9f5f9e14268948429cb1"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1023.prefab",
+      "sha256": "7240da71894b4016db781b2781287178c74819d629704d5a5e3cd5c60ed63ce0"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2001.prefab",
+      "sha256": "778264ae5c79985771642c93fd8e0132b53e7df4d66275ef8f5f9a1e1a030f5b"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2002.prefab",
+      "sha256": "8efbb9ada099f56dd93c383d6d968b7a95963645d05735b2d70b7d5c255dde87"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2003.prefab",
+      "sha256": "f76cbeb1d39e0560c061d72631a7bb1069c889a4ca910b91764f08cedbaa3b2b"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2004.prefab",
+      "sha256": "ec0ebd05297d05cc933b252801584d6c180e7cb5a57c321da33c1162c403dfca"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2005.prefab",
+      "sha256": "2e3958c9954c73ff5dc8d48c45c562f3f3846242e33cd1203c62e4694584c336"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2006.prefab",
+      "sha256": "7f8a858409db2a966977c53242b0a47c7e43381af9627d5da53795686d1f07e8"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2007.prefab",
+      "sha256": "6fc3d0cd1b3cd3d1a08456d8351cb5b392fe109afb71a0f9da411b42cb8ae92e"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2008.prefab",
+      "sha256": "0e45483371852f495e4f36190ca0c51837f8fadd2763f0e11f8dc785fcf93636"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2009.prefab",
+      "sha256": "d520d7fb70e417a285c7a813de33f54cc208d694a7e7164bb9e7ce494c5b13d1"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2010.prefab",
+      "sha256": "af78ba393c79e1276edb27b4c95ed917ca0671b076f1a5c46023d26e85a23112"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotMianUI/IChapterData.cs",
+      "sha256": "8f90c26fd46da5db8fd30aca86d0ef27ba4729242dc72a7a1adc1f3a76f3862b"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotMianUI/PlotMianUI.cs",
+      "sha256": "adacab6d7028e367d7cbcc5cc339ce83f1f0a16265e142c3fc4efa3698f51bf6"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotMianUI/PlotMianUI_NodeClass.cs",
+      "sha256": "30a21f8621ddb3982fea2ee11125b45e82ec01b5abbe45b9a5c1da396da5a658"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotChapterUI/IPlotData.cs",
+      "sha256": "cd6e70d0bc21be1079ad21e2964f57292a9d0d07617666cf77487a702c015c02"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotChapterUI/PlotChapterUI.cs",
+      "sha256": "a7270157c6a972c0f0fd2a04788c8f5ef07270878871e47be572b05f8c75f910"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotChapterUI/PlotChapterUI_NodeClass.cs",
+      "sha256": "2fdd7121d4f01d405de57c0b55b11d49849c5707be483cf8bdc18d5a85e18327"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotSkipTop/PlotSkipTop.cs",
+      "sha256": "c059171a74f33c689cf9150a10b63eae38ca5439d43460434c17c03975ceed3b"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotSkipWD.cs",
+      "sha256": "58d03d25bd439f5e821e59c47edbc5e4805ad6f3c2229a8e8f33307f149747d9"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/UIComponent/UIItemClass/UIItemPlotRewards.cs",
+      "sha256": "d49bb78982f7669ad37cc906aa2bde472b597054008a7a828c438eaf237950f8"
+    },
+    {
+      "path": "Assets/HotUpdate/MainAssemble/DataManager/PlotProgressDataMgr.cs",
+      "sha256": "564ebabf228fb438daba091f6b70dc9e07969365f8e1c73482a4bd9950bc1eb9"
+    },
+    {
+      "path": "Assets/HotUpdate/MainAssemble/DataManager/PlotDataMgr.cs",
+      "sha256": "39090c883e68656ecbbf8c53646c7c4f5cd5481708b6e40bdee28a90620ddb64"
+    },
+    {
+      "path": "Assets/PlotEditor/Data/PlotDataAsset/PlotAtomDataHeader.asset.meta",
+      "sha256": "1142dd9a0a314cf8aee16c9c126f6a7564f32104bf30719cff809cf20653b493"
+    }
+  ],
+  "issues": [],
+  "bundleSha256": "08ff63d94cc3e46732566926e1a68c38b1760f031f3b7def016c8d50c227ef60",
+  "policy": "原工程只读；本地语义输入不含旧Unity文件/GUID绑定，不作为公开演示剧情。",
+  "publicExport": {
+    "localMetadataRedaction": {
+      "originalRecordSha256": "ec5c7bf63ef87a0f4f0c25568b89c492274bcfdbab0391b18a79b98c8a3ed611",
+      "literalReplacements": 8,
+      "note": "私有源表/界面元数据字面量在公开副本中省略；原本地记录保留，未改变测试结果。"
+    }
+  }
+}

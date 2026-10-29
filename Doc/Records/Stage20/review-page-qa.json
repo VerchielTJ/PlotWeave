@@ -1,0 +1,25 @@
+{
+  "widths": [
+    {
+      "width": 1280,
+      "documentWidth": 1280,
+      "scopedNotice": true,
+      "matchedNotice": true
+    },
+    {
+      "width": 390,
+      "documentWidth": 390,
+      "scopedNotice": true,
+      "matchedNotice": true
+    },
+    {
+      "width": 320,
+      "documentWidth": 320,
+      "scopedNotice": true,
+      "matchedNotice": true
+    }
+  ],
+  "scopedTypeDetail": true,
+  "errors": [],
+  "networkRequests": []
+}

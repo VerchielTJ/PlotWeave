@@ -1,0 +1,417 @@
+{
+    "id": "655ccc40c16f4b9193a6e65a0ac1c07a",
+    "status": "completed",
+    "phase": "finished",
+    "startedAtUtc": "2026-10-29T03:41:28.1052624Z",
+    "completedAtUtc": "2026-10-29T03:41:32.9776050Z",
+    "unityVersion": "2022.3.62f3c1",
+    "editorExecutable": "G:/UNITY/2022.3.62f3c1/Editor/Unity.exe",
+    "editorExecutableSha256": "e78195e40eb094a17ec31191ed69493409999ee27a8126ae8b7f56b067c9df14",
+    "probePath": "Assets/PlotWeaveDesignReviewProbe/Editor/PlotWeaveDesignReviewProbe.cs",
+    "probeSha256": "5fc49bd591bd13f5ae9168557c1427c5bbc71d1b909c364f7004f320c2a61312",
+    "probeSha256After": "5fc49bd591bd13f5ae9168557c1427c5bbc71d1b909c364f7004f320c2a61312",
+    "sourceWorkspace": "Assets/PlotWeaveMigration/Stage03_Workspace/Workspace.asset",
+    "temporaryRoot": "Assets/PlotWeaveDesignReview_655ccc40c16f4b9193a6e65a0ac1c07a",
+    "errorType": "",
+    "errorStack": "",
+    "cleanupErrorType": "",
+    "verificationMode": "memory-only-fallback",
+    "memoryOnly": true,
+    "diskStoreTestSkipped": true,
+    "memoryObjectsReleased": true,
+    "sourceUnchanged": true,
+    "probeUnchanged": true,
+    "temporaryRootCreated": false,
+    "cleanupAttempted": false,
+    "cleanupSucceeded": true,
+    "sourceRows": 3,
+    "loadedDirtyAssets": 437,
+    "sourceBefore": [
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/Actors.asset",
+            "sha256": "77cdc2a9463d7ae7595ec58cc59641a827019adae8cbe7cc6e7cabe4cdb59836"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/Actors.asset.meta",
+            "sha256": "543007f09fde745636fb3e394970ee0639101c888cea774f8b6acc0ccc6420cb"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/ConstantKeys.asset",
+            "sha256": "26df09790478d25f806c9098ffdcd9822506b4a1f1ff933c19f1dcd44c89efd4"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/ConstantKeys.asset.meta",
+            "sha256": "4bf61a5e6ff9462026f09ad4877b50ba364e70f5f88d72b77697e05f72ec6732"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/DialogKeys.asset",
+            "sha256": "4b33e8f844300ee3bd65d589935af60016fe90014880dc24aa76a14a7b441c4b"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/DialogKeys.asset.meta",
+            "sha256": "46a7f8e1a5f46c58de70210f3f1a840392d6995f2d9d918fe0359c05ea8931e0"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/NodeHeader.asset",
+            "sha256": "2d0b82dbca15a9eb5b84e3c92a9d06af91d152ac7bbe2c8e12783406f3a88ec0"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/NodeHeader.asset.meta",
+            "sha256": "4555d1bff57a53923f6352c53749b05212ccce459ec589162b9c9a570c4a58c9"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/Types_Beans.asset",
+            "sha256": "8293923a35952ea9804540a522605d38f1bbaad5524eced8b533799fb7b99855"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/Types_Beans.asset.meta",
+            "sha256": "bfdd3996d3113c193920a6c85bf0b53db690288600c40a39f29dc095d78ad6ef"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/Types_Enums.asset",
+            "sha256": "88625d615f3f3bd75dcf0bf67cdb0eace481b8cf53eace3d66be682c0010536d"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/Types_Enums.asset.meta",
+            "sha256": "26738dcb79bc4a181bb7243533c72cb6cb86a2d88069dba09f69e0c73f70d05e"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Nodes/1001.asset",
+            "sha256": "1069dba961a490aef11e2c063f087e054cd247792759f04ab6fb214c9289f91c"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Nodes/1001.asset.meta",
+            "sha256": "676f52dcc6c82c79f1e1f251818559ba85c37adcc8758115a5d4bf5d150ebd77"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Nodes/1002.asset",
+            "sha256": "c21d2a8196745261d1cdedf9b88eb2090f200a34c06c38c2365da16834c7c078"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Nodes/1002.asset.meta",
+            "sha256": "67ce4dd0a91ed42c8645bac2ffef43749e9d0ab6c8c1fa8f63833b70772fbcc5"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Nodes/1003.asset",
+            "sha256": "e9859e6bf2354fdb5d95983c729144af74d219b5ac7bc56eb820faa35cf8f6c1"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Nodes/1003.asset.meta",
+            "sha256": "f0ba21b8e77eed02fd431f626964ea9ac60319dfbd309856b666cc34f0b97d3a"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Workspace.asset",
+            "sha256": "fb8f2584040835e011156ef9d7a7eaa849623420a86b0b6c2cc925df2b195a00"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Workspace.asset.meta",
+            "sha256": "2a1fd2b8eb93a1c2d4cc9fd553593caa73b7ba2a21d51a55616877fd03020815"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs",
+            "sha256": "aafceb37d050edea164bfee368eae0776818ad6487303241148ea14b19bd9b62"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs.meta",
+            "sha256": "197ea2b1ce093ae99ccbfbf8bd35aaae78b1b70549cde996e4d3211bbc87529e"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomRowData.cs",
+            "sha256": "f25393b2d558d49407d415708e141b757ba055499b546645c7f4367a343b1409"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomRowData.cs.meta",
+            "sha256": "9bbb7192bbca1438737a8fb504b38788942e03cfdd492903cd17e6bb0169d3fa"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAuthoringProject.cs",
+            "sha256": "93dc27304a28ea6d78fa602c41ea7ca2d1fc82d0a68fe6e149f49898c7b7c461"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAuthoringProject.cs.meta",
+            "sha256": "47a88603a5bd68dbef57210ddcae67ce4b2a57fab054d3f72785f57a51215bf5"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotConstantKeyAsset.cs",
+            "sha256": "a3bf0df843bd6a97bfa198ec88e5bcd7fc8304b52feb6cc2cf884c839cdccf62"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotConstantKeyAsset.cs.meta",
+            "sha256": "de7e70fee54f0c4574a4fb753332a611af019b48988897e4ced696a6d2a7454b"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotDialogKeyAsset.cs",
+            "sha256": "53a34d597a99191f70f7cc270186b153921791a2acc99e63d977c7bb22d47733"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotDialogKeyAsset.cs.meta",
+            "sha256": "e69e78b758bb6e92ca5d932009f1bc56f1d2e61032da29777b5ec225725c1507"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEnumAsset.cs",
+            "sha256": "64f389952e0b07b0eafe1d5d37672eff33550412bd4c2cdcf518aba125f3fab7"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEnumAsset.cs.meta",
+            "sha256": "25efc3f0f63e06b414ea142f772383b6d66acaa1f1346fa6864e3eca1a45ac66"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs",
+            "sha256": "2f14845668d7468ae665b4a9fe4d32bb456910dd03d96d6d976c06e9f85210eb"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs.meta",
+            "sha256": "d5f5da8e8424cd612e2ed45cb2b0f3dabd39199380bc328be5299d2eda51ceee"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotTableAsset.cs",
+            "sha256": "957de10695b408e61f2b84a91bed6eeb46b9920e1e35d61ccb61b9aaefc08fd6"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotTableAsset.cs.meta",
+            "sha256": "141b0fd7f0502082100bc602f67cced3162e4f4e7918174ccf4f80259f8b5826"
+        }
+    ],
+    "sourceAfter": [
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/Actors.asset",
+            "sha256": "77cdc2a9463d7ae7595ec58cc59641a827019adae8cbe7cc6e7cabe4cdb59836"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/Actors.asset.meta",
+            "sha256": "543007f09fde745636fb3e394970ee0639101c888cea774f8b6acc0ccc6420cb"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/ConstantKeys.asset",
+            "sha256": "26df09790478d25f806c9098ffdcd9822506b4a1f1ff933c19f1dcd44c89efd4"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/ConstantKeys.asset.meta",
+            "sha256": "4bf61a5e6ff9462026f09ad4877b50ba364e70f5f88d72b77697e05f72ec6732"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/DialogKeys.asset",
+            "sha256": "4b33e8f844300ee3bd65d589935af60016fe90014880dc24aa76a14a7b441c4b"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/DialogKeys.asset.meta",
+            "sha256": "46a7f8e1a5f46c58de70210f3f1a840392d6995f2d9d918fe0359c05ea8931e0"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/NodeHeader.asset",
+            "sha256": "2d0b82dbca15a9eb5b84e3c92a9d06af91d152ac7bbe2c8e12783406f3a88ec0"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/NodeHeader.asset.meta",
+            "sha256": "4555d1bff57a53923f6352c53749b05212ccce459ec589162b9c9a570c4a58c9"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/Types_Beans.asset",
+            "sha256": "8293923a35952ea9804540a522605d38f1bbaad5524eced8b533799fb7b99855"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/Types_Beans.asset.meta",
+            "sha256": "bfdd3996d3113c193920a6c85bf0b53db690288600c40a39f29dc095d78ad6ef"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/Types_Enums.asset",
+            "sha256": "88625d615f3f3bd75dcf0bf67cdb0eace481b8cf53eace3d66be682c0010536d"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Data/Types_Enums.asset.meta",
+            "sha256": "26738dcb79bc4a181bb7243533c72cb6cb86a2d88069dba09f69e0c73f70d05e"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Nodes/1001.asset",
+            "sha256": "1069dba961a490aef11e2c063f087e054cd247792759f04ab6fb214c9289f91c"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Nodes/1001.asset.meta",
+            "sha256": "676f52dcc6c82c79f1e1f251818559ba85c37adcc8758115a5d4bf5d150ebd77"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Nodes/1002.asset",
+            "sha256": "c21d2a8196745261d1cdedf9b88eb2090f200a34c06c38c2365da16834c7c078"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Nodes/1002.asset.meta",
+            "sha256": "67ce4dd0a91ed42c8645bac2ffef43749e9d0ab6c8c1fa8f63833b70772fbcc5"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Nodes/1003.asset",
+            "sha256": "e9859e6bf2354fdb5d95983c729144af74d219b5ac7bc56eb820faa35cf8f6c1"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Nodes/1003.asset.meta",
+            "sha256": "f0ba21b8e77eed02fd431f626964ea9ac60319dfbd309856b666cc34f0b97d3a"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Workspace.asset",
+            "sha256": "fb8f2584040835e011156ef9d7a7eaa849623420a86b0b6c2cc925df2b195a00"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage03_Workspace/Workspace.asset.meta",
+            "sha256": "2a1fd2b8eb93a1c2d4cc9fd553593caa73b7ba2a21d51a55616877fd03020815"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs",
+            "sha256": "aafceb37d050edea164bfee368eae0776818ad6487303241148ea14b19bd9b62"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs.meta",
+            "sha256": "197ea2b1ce093ae99ccbfbf8bd35aaae78b1b70549cde996e4d3211bbc87529e"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomRowData.cs",
+            "sha256": "f25393b2d558d49407d415708e141b757ba055499b546645c7f4367a343b1409"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomRowData.cs.meta",
+            "sha256": "9bbb7192bbca1438737a8fb504b38788942e03cfdd492903cd17e6bb0169d3fa"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAuthoringProject.cs",
+            "sha256": "93dc27304a28ea6d78fa602c41ea7ca2d1fc82d0a68fe6e149f49898c7b7c461"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAuthoringProject.cs.meta",
+            "sha256": "47a88603a5bd68dbef57210ddcae67ce4b2a57fab054d3f72785f57a51215bf5"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotConstantKeyAsset.cs",
+            "sha256": "a3bf0df843bd6a97bfa198ec88e5bcd7fc8304b52feb6cc2cf884c839cdccf62"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotConstantKeyAsset.cs.meta",
+            "sha256": "de7e70fee54f0c4574a4fb753332a611af019b48988897e4ced696a6d2a7454b"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotDialogKeyAsset.cs",
+            "sha256": "53a34d597a99191f70f7cc270186b153921791a2acc99e63d977c7bb22d47733"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotDialogKeyAsset.cs.meta",
+            "sha256": "e69e78b758bb6e92ca5d932009f1bc56f1d2e61032da29777b5ec225725c1507"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEnumAsset.cs",
+            "sha256": "64f389952e0b07b0eafe1d5d37672eff33550412bd4c2cdcf518aba125f3fab7"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEnumAsset.cs.meta",
+            "sha256": "25efc3f0f63e06b414ea142f772383b6d66acaa1f1346fa6864e3eca1a45ac66"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs",
+            "sha256": "2f14845668d7468ae665b4a9fe4d32bb456910dd03d96d6d976c06e9f85210eb"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs.meta",
+            "sha256": "d5f5da8e8424cd612e2ed45cb2b0f3dabd39199380bc328be5299d2eda51ceee"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotTableAsset.cs",
+            "sha256": "957de10695b408e61f2b84a91bed6eeb46b9920e1e35d61ccb61b9aaefc08fd6"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotTableAsset.cs.meta",
+            "sha256": "141b0fd7f0502082100bc602f67cced3162e4f4e7918174ccf4f80259f8b5826"
+        }
+    ],
+    "productSources": [
+        {
+            "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+            "sha256": "4086fee5ea540cf6b26892657129dcd92413da969d0516491ed9772d3b55a1b2"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+            "sha256": "30c11ae6591b8669bdb6f439583f41c5ed38e84ed23b624a7184482471601515"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackCompiler.cs",
+            "sha256": "7e22ceadbab501c7e71a4a306a84d423a0d4e83f03b214c3bd6c5073ca32b255"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlaybackData.cs",
+            "sha256": "915d7ff821199a39a044858e863791ad7cf20fb2ee2ccf2d42cdc185d127ed5f"
+        }
+    ],
+    "sourceDifferences": [],
+    "setupNotes": [
+        "Preexisting dirty persistent assets were left untouched; the disk-store test was skipped, not bypassed.",
+        "Memory-only describes the experiment boundary: the fixed handled request and diagnostic JSON report are still written, but no Assets or persistent product store is changed.",
+        "Public Project, header, enums, Bean schema, rows, actor and text tables are detached HideAndDontSave memory clones; no AssetDatabase mutation or SaveAssets is used in this branch.",
+        "Draft evidence is session-level with a minimal memory persistence boundary. Reference evidence is the actual runtime Document.Validate on a fully synthetic document; disk rename and Compiler are not claimed as executed."
+    ],
+    "findings": [
+        {
+            "id": "stale-draft-overwrites-newer-unrelated-text",
+            "status": "reproduced",
+            "phase": "complete",
+            "observation": "Restoring and saving the old draft replaced the independently saved newer text with the prior value.",
+            "errorType": "",
+            "errorStack": "",
+            "verificationLevel": "actual-session-with-minimal-in-memory-store",
+            "persistenceBoundary": "Only the isolated in-memory IPlotAuthoringStore was committed; no EditorManager disk write was exercised",
+            "steps": [
+                "Created and exported an unsaved draft containing only synthetic probe edits.",
+                "A separate actual editing session saved a newer value on another key and row.",
+                "Restored and saved through the real PlotEditingSession; compared hashes, not story text."
+            ],
+            "expectedValueSha256": "9406933a3b67ccf3f9c6ef57e728f74efeae1efe0e1aac7bc49b957df55ce4f8",
+            "observedValueSha256": "22376f52142d999c93b7464b9371a07e8a495c7d53ca604ad8722eab8fca3183",
+            "draftSha256": "7d22187d15cacd794011d450baf24f6c244d22299385377ce4990cee96c475b4",
+            "saveSucceeded": true,
+            "compileBeforeSucceeded": false,
+            "compileAfterSucceeded": false,
+            "diskStoreTestSkipped": true,
+            "compilerTestSkipped": true,
+            "renameTestSkipped": true,
+            "validationBeforeSucceeded": false,
+            "validationAfterSucceeded": false,
+            "inMemoryStoreWrites": 3,
+            "beforeReferencesValid": false,
+            "oldTargetAbsentAfterRename": false,
+            "danglingNext": false,
+            "danglingBranch": false,
+            "sourceNodeID": 0,
+            "oldTargetID": 0,
+            "renamedTargetID": 0,
+            "danglingCount": 0
+        },
+        {
+            "id": "synthetic-document-validator-allows-dangling-next-and-branch",
+            "status": "reproduced",
+            "phase": "complete",
+            "observation": "Actual PlotPlaybackDocument.Validate accepted absent Next and Branch targets in a synthetic memory document. The EditorManager rename and workspace compiler chain was not executed; that path remains source-inspection evidence.",
+            "errorType": "",
+            "errorStack": "",
+            "verificationLevel": "actual-runtime-document-validator-only",
+            "persistenceBoundary": "Synthetic managed document only; no asset, EditorManager rename, compiler or disk persistence was exercised",
+            "steps": [
+                "Constructed a fully synthetic in-memory document with a real target node; actual Document.Validate accepted it.",
+                "Changed only the synthetic target ID, leaving Next and Branch targets unchanged; no production rename API was called."
+            ],
+            "expectedValueSha256": "",
+            "observedValueSha256": "",
+            "draftSha256": "",
+            "saveSucceeded": false,
+            "compileBeforeSucceeded": false,
+            "compileAfterSucceeded": false,
+            "diskStoreTestSkipped": true,
+            "compilerTestSkipped": true,
+            "renameTestSkipped": true,
+            "validationBeforeSucceeded": true,
+            "validationAfterSucceeded": true,
+            "inMemoryStoreWrites": 0,
+            "beforeReferencesValid": true,
+            "oldTargetAbsentAfterRename": true,
+            "danglingNext": true,
+            "danglingBranch": true,
+            "sourceNodeID": 880001,
+            "oldTargetID": 880002,
+            "renamedTargetID": 880003,
+            "danglingCount": 2
+        }
+    ]
+}

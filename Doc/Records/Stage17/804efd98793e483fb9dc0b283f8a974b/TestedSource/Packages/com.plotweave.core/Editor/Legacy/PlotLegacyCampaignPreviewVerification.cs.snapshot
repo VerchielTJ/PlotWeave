@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using PlotWeave.Chapters;
+using PlotWeave.Playback;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+namespace PlotWeave.Legacy.Editor
+{
+    [InitializeOnLoad] public static class PlotLegacyCampaignPreviewVerification
+    {
+        public const string Key="PlotWeave.Stage16.Preview";
+        [Serializable] private sealed class State {public string id,phase,scene,previousScene,error="",image;public bool background,maximized,hadView;public int route,returns;public double deadline,next;public List<string> images=new List<string>();}
+        static PlotLegacyCampaignPreviewVerification()
+        {EditorApplication.update+=Update;EditorApplication.playModeStateChanged+=change=>{if(change!=PlayModeStateChange.EnteredEditMode)return;var s=Read();if(s==null)return;Restore(s);s.phase=s.error==""&&s.returns==3&&s.images.Count==3&&s.images.All(File.Exists)?"passed":"failed";if(s.phase=="failed"&&s.error=="")s.error="原章节界面检查未完成";Record(s);SessionState.EraseString(Key);};}
+        private static State Read(){var text=SessionState.GetString(Key,"");return text==""?null:JsonUtility.FromJson<State>(text);}
+        private static void Save(State s)=>SessionState.SetString(Key,JsonUtility.ToJson(s));
+        private static void Record(State s){Directory.CreateDirectory("Doc/Records/Stage16");File.WriteAllText("Doc/Records/Stage16/preview-"+s.id+".json",JsonUtility.ToJson(s,true));}
+        private static EditorWindow Game()=>Resources.FindObjectsOfTypeAll<EditorWindow>().FirstOrDefault(w=>w.GetType().FullName=="UnityEditor.GameView");
+        private static void Restore(State s){Application.runInBackground=s.background;EditorSceneManager.playModeStartScene=s.previousScene==""?null:AssetDatabase.LoadAssetAtPath<SceneAsset>(s.previousScene);var game=Game();if(game!=null&&s.hadView)game.maximized=s.maximized;}
+        public static void Start()
+        {
+            if(EditorApplication.isPlayingOrWillChangePlaymode||Read()!=null)throw new InvalidOperationException("已有运行中的检查");for(var i=0;i<SceneManager.sceneCount;i++)if(SceneManager.GetSceneAt(i).isDirty)throw new InvalidOperationException("当前场景未保存");var report=JsonUtility.FromJson<PlotLegacyCampaignMigration.Report>(File.ReadAllText(PlotLegacyCampaignMigration.LatestPath));var s=new State{id=Guid.NewGuid().ToString("N"),phase="start",scene=report.scene,previousScene=AssetDatabase.GetAssetPath(EditorSceneManager.playModeStartScene),background=Application.runInBackground,deadline=EditorApplication.timeSinceStartup+180};Save(s);Record(s);EditorSceneManager.playModeStartScene=AssetDatabase.LoadAssetAtPath<SceneAsset>(s.scene);EditorApplication.isPlaying=true;
+        }
+        private static void Capture(State s,string name,string next)
+        {s.image="Tools/PlotWeaveMigration/Inputs/Images/campaign-"+name+"-"+s.id+".png";Directory.CreateDirectory(Path.GetDirectoryName(s.image));s.images.Add(s.image);s.phase=next;Save(s);Record(s);ScreenCapture.CaptureScreenshot(Path.GetFullPath(s.image));}
+        private static Button Button(Component root,string name)=>root.GetComponentsInChildren<Button>(true).First(b=>b.name==name);
+        private static void Update()
+        {
+            var s=Read();if(s==null||EditorApplication.isCompiling)return;
+            try
+            {
+                if(EditorApplication.timeSinceStartup>s.deadline)throw new TimeoutException("原章节界面运行检查超时");if(!EditorApplication.isPlaying)return;Application.runInBackground=true;EditorApplication.QueuePlayerLoopUpdate();var game=Game();if(game!=null){if(!s.hadView){s.hadView=true;s.maximized=game.maximized;game.maximized=true;Save(s);}game.Repaint();}
+                var browser=UnityEngine.Object.FindObjectOfType<PlotLegacyCampaignHost>();if(browser==null||browser.Session==null)return;if(browser.LastError!="")throw new Exception(browser.LastError);var player=browser.GetComponent<PlotPlayerHost>();
+                if(s.phase=="start"){s.phase="main-frame";s.next=EditorApplication.timeSinceStartup+1.2;Save(s);return;}
+                if(s.phase=="main-frame"){if(EditorApplication.timeSinceStartup<s.next)return;Capture(s,"chapters","main-capture");return;}
+                if(s.phase=="main-capture"){if(!File.Exists(s.image))return;var item=browser.GetComponentsInChildren<PlotLegacyVirtualList>().First(l=>l.GetComponent<ScrollRect>().horizontal);item.GetComponentsInChildren<Button>().First().onClick.Invoke();s.phase="opening";Save(s);return;}
+                if(s.phase=="opening"){if(browser.SelectedEpisode!=1001)return;s.phase="episode-frame";s.next=EditorApplication.timeSinceStartup+1;Save(s);return;}
+                if(s.phase=="episode-frame"){if(EditorApplication.timeSinceStartup<s.next)return;Capture(s,"episodes","episode-capture");return;}
+                if(s.phase=="episode-capture"){if(!File.Exists(s.image))return;Button(browser,"SelectBtn").onClick.Invoke();s.phase="playing";Save(s);return;}
+                if(s.phase=="daily-opening"){if(browser.Kind!=PlotChapterKind.Daily||browser.SelectedEpisode!=1001)return;Button(browser,"SelectBtn").onClick.Invoke();s.phase="playing";Save(s);return;}
+                if(s.phase=="playing")
+                {if(browser.Session.State!=PlotChapterState.Playing||player.Core==null)return;if(player.Core.State==PlotPlayerState.Faulted)throw new Exception("故事播放失败");player.Core.Tick(1);if(player.Core.GetCurrentNodeID()==0)return;player.View.GetComponent<PlotLegacySkipController>().Show();s.next=EditorApplication.timeSinceStartup+1;s.phase="skip-frame";Save(s);return;}
+                if(s.phase=="skip-frame")
+                {if(EditorApplication.timeSinceStartup<s.next)return;if(s.route==0){Capture(s,"skip-confirmation","skip-capture");return;}s.phase="skip-capture";Save(s);}
+                if(s.phase=="skip-capture")
+                {
+                    if(!File.Exists(s.image))return;Button(player.View,"ConfirmBtn").onClick.Invoke();if(browser.Session.State!=PlotChapterState.Completed)throw new Exception("确认跳过未完成结算");s.returns=browser.ReturnCount;
+                    var progress=(PlotCampaignProgressStore)browser.Progress;var expected=s.route<2?10:20;if(progress.ItemCount(1001)!=expected||progress.ItemCount(1002)!=expected)throw new Exception("首次奖励数量错误或重看重复发奖");if(!progress.IsRead(PlotChapterKind.Main,1001))throw new Exception("主线进度未提交");
+                    s.route++;if(s.route==1){browser.SelectEpisode(1001);Button(browser,"SelectBtn").onClick.Invoke();s.phase="playing";}else if(s.route==2){Button(browser,"DailyStory").onClick.Invoke();browser.SelectChapter(1);s.phase="daily-opening";}else{if(!progress.IsRead(PlotChapterKind.Daily,1001)||browser.ReturnCount!=3)throw new Exception("日常进度或返回次数错误");Save(s);Record(s);EditorApplication.isPlaying=false;return;}Save(s);
+                }
+            }
+            catch(Exception error){s.error=error.ToString();Save(s);Record(s);if(EditorApplication.isPlaying)EditorApplication.isPlaying=false;else{Restore(s);SessionState.EraseString(Key);}Debug.LogException(error);}
+        }
+    }
+}

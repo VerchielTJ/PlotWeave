@@ -1,0 +1,12 @@
+[
+  {
+    "ID": "101",
+    "Name": "引导员",
+    "Thespian": "demo.guide"
+  },
+  {
+    "ID": "102",
+    "Name": "旅人",
+    "Thespian": "demo.traveler"
+  }
+]

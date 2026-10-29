@@ -1,0 +1,18 @@
+{
+  "sourceReport": "Tools/PlotWeaveMigration/original-contracts.json",
+  "sourceSha256": "7f1497e9e85fa12bec468817564b0dba87c097340054c8e416950c8f3f9d9240",
+  "id": "8e9562ecfdf6480fa8a3df7ae9927d82",
+  "status": "generated-awaiting-unity-compilation",
+  "summaryOnly": true,
+  "root": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545",
+  "workspace": "Assets/PlotWeaveLocal/ImportedOriginal/Roundtrip_b634e48545/Workspace.asset",
+  "sourceImportId": "b634e485453b4c5d8c359f88fdb01589",
+  "generatedRoot": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/C2Contracts",
+  "assemblyName": "PlotWeave.C2.Original.Run8e9562ecfdf6480fa8a3df7ae9927d82",
+  "nodes": 485,
+  "beans": 3,
+  "enums": 6,
+  "columns": 7,
+  "actors": 23,
+  "filesCount": 5
+}

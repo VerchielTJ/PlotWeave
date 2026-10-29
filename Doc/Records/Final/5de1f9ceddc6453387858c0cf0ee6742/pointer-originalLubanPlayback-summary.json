@@ -1,0 +1,11 @@
+{
+  "sourceReport": "Tools/PlotWeaveMigration/original-luban-playback.json",
+  "sourceSha256": "7dfed8b211786169d0f6ef4d454e144173057713eb960e923b28fcb0572274ff",
+  "id": "4069c78aa58243518ac482dca7197aee",
+  "status": "scene-ready-runtime-verification-pending",
+  "summaryOnly": true,
+  "root": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_4069c78aa5",
+  "scene": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_4069c78aa5/OriginalLubanPlayback.unity",
+  "generatedRoot": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated",
+  "filesCount": 7
+}

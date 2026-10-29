@@ -1,0 +1,205 @@
+using System;
+using System.Globalization;
+using System.Linq;
+using UnityEngine;
+
+namespace PlotWeave.Playback
+{
+    public enum PlotPlayerState { Uninitialized, Closed, Idle, Playing, Completed, Faulted, WaitingForChoice }
+    public interface IPlotPlayerView
+    {
+        void Initialize(IPlotPlayerDataProvider data, IPlotResourceLoader resources, IPlotObjectPool pool, PlotPlayerConfig config);
+        void Open();
+        void Close();
+        void Clear();
+        void RenderDialog(string speaker, string fullText, int visibleCodeUnits);
+        IDisposable Present(PlotPlaybackNode node, Action<bool, string> completed);
+        IDisposable Curtain(string top, string bottom, Action completed);
+        void Tick(float deltaTime);
+    }
+    public interface IPlotPlayer : IDisposable
+    {
+        event Action<string> OnError;
+        event Action<int> OnPlotLoaded;
+        event Action OnPlotCompleted;
+        void Init(Transform transform);
+        void Open(); void Close(); void LoadPlot(int nodeID); void OnPlayerInput();
+        void SetAutoPlay(bool auto); bool GetAutoPlay(); void Pause(); void Resume();
+        void JumpToNode(int id); int GetCurrentNodeID(); int GetNextNodeID();
+        void ShowCurtainAndLoadNode(string top, string bottom, int id, Action completed = null);
+        void Choose(int index);
+    }
+
+    /// <summary>编辑预览与游戏宿主共用的核心。每次加载的epoch隔离迟到表现回调。</summary>
+    public sealed class PlotPlayerCore : IPlotPlayer
+    {
+        private readonly IPlotPlayerDataProvider _data;
+        private readonly IPlotResourceLoader _resources;
+        private readonly IPlotObjectPool _pool;
+        private readonly IPlotTextProcessor _text;
+        private readonly IPlotRuntimeEnvironment _environment;
+        private readonly PlotPlayerConfig _config;
+        private IPlotPlayerView _view;
+        private PlotPlaybackNode _current;
+        private IDisposable _presentation, _curtain;
+        private long _epoch, _curtainEpoch;
+        private bool _presentationDone, _curtainDone = true, _auto, _paused, _disposed;
+        private float _typingTime, _autoTime;
+        private string _dialog = "", _speaker = "";
+        private int[] _characters = Array.Empty<int>();
+        private int _visible;
+        private PlotEventScheduler _events;
+        private PlotEventContext _eventContext;
+        private readonly System.Collections.Generic.Dictionary<string, string> _variables = new System.Collections.Generic.Dictionary<string, string>(StringComparer.Ordinal);
+        public PlotEventRegistry EventRegistry { get; } = new PlotEventRegistry();
+        public event Action<string, string> SignalReceived;
+        public string GetVariable(string key, string fallback = "") => _variables.TryGetValue(key, out var value) ? value : fallback;
+        public void SetVariable(string key, string value) { ThrowIfDisposed(); if (string.IsNullOrWhiteSpace(key)) throw new ArgumentException("变量名为空"); _variables[key] = value ?? ""; }
+        private readonly System.Collections.Generic.List<PlotChoiceOption> _choices = new System.Collections.Generic.List<PlotChoiceOption>();
+        public System.Collections.Generic.IReadOnlyList<PlotChoiceOption> Choices => _choices.AsReadOnly();
+        public event Action<System.Collections.Generic.IReadOnlyList<PlotChoiceOption>> ChoicesOffered;
+        public PlotPlayerState State { get; private set; } = PlotPlayerState.Uninitialized;
+        public bool IsTyping => _visible < _characters.Length;
+        public bool IsPaused => _paused;
+        public bool IsReady => State == PlotPlayerState.Playing && !IsTyping && _presentationDone && _curtainDone && (_events == null || _events.IsCompleted);
+        public event Action<string> OnError;
+        public event Action<int> OnPlotLoaded;
+        public event Action OnPlotCompleted;
+        public event Action OnClosed;
+        public PlotPlayerCore(IPlotPlayerDataProvider data, IPlotResourceLoader resources, IPlotObjectPool pool, IPlotTextProcessor text, IPlotRuntimeEnvironment environment, PlotPlayerConfig config)
+        {
+            _data = data ?? throw new ArgumentNullException(nameof(data)); _resources = resources ?? throw new ArgumentNullException(nameof(resources)); _pool = pool ?? throw new ArgumentNullException(nameof(pool));
+            _text = text ?? throw new ArgumentNullException(nameof(text)); _environment = environment ?? throw new ArgumentNullException(nameof(environment)); _config = config ?? throw new ArgumentNullException(nameof(config));
+            config.Validate(); _auto = config.AutoPlay;
+        }
+        public void Init(Transform transform)
+        {
+            if (transform == null) throw new ArgumentNullException(nameof(transform));
+            var view = transform.GetComponent<PlotPlayerView>() ?? transform.gameObject.AddComponent<PlotPlayerView>(); Init(view);
+        }
+        public void Init(IPlotPlayerView view)
+        {
+            ThrowIfDisposed(); if (State != PlotPlayerState.Uninitialized) throw new InvalidOperationException("播放器已经初始化");
+            _view = view ?? throw new ArgumentNullException(nameof(view)); _view.Initialize(_data, _resources, _pool, _config); State = PlotPlayerState.Closed;
+        }
+        private void ThrowIfDisposed() { if (_disposed) throw new ObjectDisposedException(nameof(PlotPlayerCore)); }
+        public void Open()
+        {
+            ThrowIfDisposed(); if (_view == null) throw new InvalidOperationException("播放器尚未初始化");
+            CancelAll(); _variables.Clear(); _current = null; _paused = false; if (_view is IPlotPausableView pausable) pausable.SetPaused(false); _dialog = _speaker = ""; _characters = Array.Empty<int>(); _visible = 0; State = PlotPlayerState.Idle; _view.Open();
+        }
+        public void Close()
+        {
+            if (_view == null || _disposed) return;
+            var wasClosed = State == PlotPlayerState.Closed; State = PlotPlayerState.Closed; CancelAll(); _current = null; _view.Close(); if (!wasClosed) OnClosed?.Invoke();
+        }
+        private void CancelNode()
+        { _epoch++; var old = _presentation; _presentation = null; old?.Dispose(); _events?.Dispose(); _events = null; _typingTime = _autoTime = 0; _presentationDone = false; _choices.Clear(); if (_view is IPlotBranchView branches) branches.ClearChoices(); }
+        private void CancelAll()
+        { CancelNode(); _curtainEpoch++; var old = _curtain; _curtain = null; old?.Dispose(); _curtainDone = true; _view?.Clear(); }
+        public void LoadPlot(int nodeID)
+        {
+            ThrowIfDisposed(); if (State == PlotPlayerState.Closed || State == PlotPlayerState.Uninitialized) throw new InvalidOperationException("请先打开播放器");
+            try
+            {
+                if (!_data.TryGetNode(nodeID, out var node) || node == null) throw new FormatException("无法加载剧情节点: " + nodeID);
+                node.Validate();
+                var nodeEvents = node.Events ?? new System.Collections.Generic.List<PlotWeave.Legacy.PlotEventJsonData>();
+                foreach (var data in nodeEvents) if (!EventRegistry.HasHandler(data.eventName)) throw new FormatException("未注册事件: " + data.eventName);
+                foreach (var action in node.RoleAction) if (action.RolePos >= _config.Positions.Length) throw new FormatException("角色位置超出配置: " + action.RolePos);
+                CancelNode(); var epoch = _epoch; _current = node; State = PlotPlayerState.Playing;
+                _eventContext = new PlotEventContext { Player = this, NodeID = nodeID, Data = _data, Text = _text, Presentation = _view as IPlotEventPresentation, Variables = _variables, Signal = (name, payload) => { if (epoch == _epoch && !_disposed) SignalReceived?.Invoke(name, payload); } };
+                var eventContext = _eventContext; _events = new PlotEventScheduler(nodeEvents, data => EventRegistry.Execute(data, eventContext));
+                _dialog = _eventContext.Expand(_text.Process(node.Dialog)); _characters = _view is IPlotPlayerTextLayout layout ? layout.GetTypingOffsets(_dialog) : StringInfo.ParseCombiningCharacters(_dialog); _visible = _config.TextSpeed == 0 ? _characters.Length : 0;
+                _speaker = node.PlotRoleID > 0 && _data.TryGetActor(node.PlotRoleID, out var actor) ? _text.Process(actor.Name, true) : "";
+                Render();
+                var pending = _view.Present(node, (ok, error) =>
+                { if (epoch != _epoch || State != PlotPlayerState.Playing || _presentationDone) return; if (!ok) Fail(error); else _presentationDone = true; });
+                if (epoch == _epoch && State == PlotPlayerState.Playing) _presentation = pending; else pending?.Dispose();
+                if (epoch == _epoch && State == PlotPlayerState.Playing) OnPlotLoaded?.Invoke(nodeID);
+            }
+            catch (Exception error) { Fail(error.Message); }
+        }
+        private void Fail(string error)
+        {
+            if (_disposed) return; State = PlotPlayerState.Faulted; CancelAll(); OnError?.Invoke(string.IsNullOrEmpty(error) ? "播放表现失败" : error);
+        }
+        private void Render() => _view.RenderDialog(_speaker, _dialog, _visible >= _characters.Length ? _dialog.Length : _characters[_visible]);
+        public void Update() => Tick(_environment.DeltaTime);
+        public void Tick(float deltaTime)
+        {
+            ThrowIfDisposed(); if (float.IsNaN(deltaTime) || float.IsInfinity(deltaTime) || deltaTime < 0) throw new ArgumentOutOfRangeException(nameof(deltaTime));
+            if (_paused || State == PlotPlayerState.Closed || State == PlotPlayerState.Uninitialized || State == PlotPlayerState.Faulted) return;
+            var epoch = _epoch; var readyBefore = IsReady; _view.Tick(deltaTime);
+            if (epoch != _epoch || State != PlotPlayerState.Playing) return;
+            if (_presentationDone && _events != null)
+            { _events.Tick(deltaTime); if (epoch != _epoch || State != PlotPlayerState.Playing) return; if (_events.IsFaulted) { Fail(_events.Error); return; } }
+            if (IsTyping)
+            {
+                _typingTime += deltaTime;
+                var visible = _config.TextSpeed == 0 ? _characters.Length : (int)Math.Min(_characters.Length, Math.Floor((double)_typingTime / _config.TextSpeed));
+                if (visible != _visible) { _visible = visible; Render(); }
+            }
+            if (!_auto || !IsReady) { _autoTime = 0; return; }
+            if (readyBefore) _autoTime += deltaTime; else _autoTime = 0;
+            if (_autoTime >= _config.AutoDelay) { _autoTime = 0; Advance(); }
+        }
+        public void OnPlayerInput()
+        {
+            ThrowIfDisposed(); if (_paused || State != PlotPlayerState.Playing || !_curtainDone) return;
+            if (IsTyping) { _visible = _characters.Length; _autoTime = 0; Render(); }
+            else if (_events == null || _events.IsCompleted) Advance(); // 逻辑事件完成前不跳过；手动仍可中断基础表现。
+        }
+        private void Advance()
+        {
+            if (State != PlotPlayerState.Playing || _current == null) return;
+            if (_config.EnableBranches && _current.Branch.Count > 0)
+            {
+                _choices.Clear(); for (var i = 0; i < _current.Branch.Count; i++) { var branch = _current.Branch[i]; _choices.Add(new PlotChoiceOption(i, branch.Key, _text.Process(branch.Key), branch.Target)); }
+                var epoch = _epoch; State = PlotPlayerState.WaitingForChoice; _autoTime = 0;
+                if (_view is IPlotBranchView choices) choices.ShowChoices(Choices, index => { if (epoch == _epoch && State == PlotPlayerState.WaitingForChoice) Choose(index); });
+                if (epoch == _epoch && State == PlotPlayerState.WaitingForChoice) ChoicesOffered?.Invoke(Choices); return;
+            }
+            if (_current.Next > 0) LoadPlot(_current.Next);
+            else Finish();
+        }
+        private void Finish() { State = PlotPlayerState.Completed; CancelNode(); OnPlotCompleted?.Invoke(); }
+        public void Choose(int index)
+        {
+            ThrowIfDisposed(); if (_paused) return;
+            if (State != PlotPlayerState.WaitingForChoice) throw new InvalidOperationException("当前不在等待选择");
+            if (index < 0 || index >= _choices.Count) throw new ArgumentOutOfRangeException(nameof(index));
+            var target = _choices[index].Target; if (target == 0) Finish(); else LoadPlot(target);
+        }
+        public void SetAutoPlay(bool auto) { ThrowIfDisposed(); _auto = auto; _autoTime = 0; }
+        public bool GetAutoPlay() => _auto;
+        public void Pause() { ThrowIfDisposed(); _paused = true; if (_view is IPlotPausableView pausable) pausable.SetPaused(true); }
+        public void Resume() { ThrowIfDisposed(); _paused = false; if (_view is IPlotPausableView pausable) pausable.SetPaused(false); }
+        public void JumpToNode(int id) => LoadPlot(id);
+        public int GetCurrentNodeID() => _current?.ScenesID ?? 0;
+        public int GetNextNodeID() => _current?.Next ?? 0;
+        public IPlotPlayerDataProvider GetDataProvider() => _data;
+        public IPlotObjectPool GetObjectPool() => _pool;
+        public void ShowCurtain(string top, string bottom, Action completed = null)
+        {
+            ThrowIfDisposed(); if (_view == null || State == PlotPlayerState.Closed) throw new InvalidOperationException("请先打开播放器");
+            _curtainEpoch++; var epoch = _curtainEpoch; _curtain?.Dispose(); _curtainDone = false;
+            var pending = _view.Curtain(_text.Process(top, true), _text.Process(bottom, true), () =>
+            { if (_disposed || epoch != _curtainEpoch || _curtainDone) return; _curtainDone = true; completed?.Invoke(); });
+            if (epoch == _curtainEpoch) _curtain = pending; else pending?.Dispose();
+        }
+        public void ShowCurtainAndLoadNode(string top, string bottom, int id, Action completed = null)
+        { ShowCurtain(top, bottom, completed); LoadPlot(id); }
+        public void Dispose() { if (_disposed) return; Close(); _disposed = true; }
+    }
+
+    public static class PlotPlayerFactory
+    {
+        public static PlotPlayerDataProvider CreateDataProvider(PlotPlaybackDocument data) => new PlotPlayerDataProvider(data);
+        public static PlotPlayerResourceLoader CreateResourceLoader(System.Collections.Generic.IDictionary<string, Sprite> bindings = null, System.Collections.Generic.IDictionary<string, AudioClip> audio = null, System.Collections.Generic.IDictionary<string, GameObject> prefabs = null) => new PlotPlayerResourceLoader(bindings, audio, prefabs);
+        public static PlotPlayerObjectPool CreateObjectPool() => new PlotPlayerObjectPool();
+        public static PlotPlayerTextProcessor CreateTextProcessor(IPlotPlayerDataProvider data) => new PlotPlayerTextProcessor(data);
+        public static PlotPlayerRuntimeEnvironment CreateRuntimeEnvironment(PlotPlayerRuntimeMode mode) => new PlotPlayerRuntimeEnvironment(mode);
+        public static PlotPlayerConfig CreateConfig() => new PlotPlayerConfig();
+    }
+}

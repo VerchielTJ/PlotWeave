@@ -1,0 +1,90 @@
+using System;
+using System.Linq;
+using UnityEditor;
+using UnityEngine;
+using ValueType = PlotWeave.Authoring.PlotEventTypeAsset.ValueType;
+
+namespace PlotWeave.Authoring
+{
+    internal static class PlotSchemaDrawerFields
+    {
+        public static float Line => EditorGUIUtility.singleLineHeight + 3;
+        public static void Field(ref Rect rect, SerializedProperty parent, string name)
+        { rect.height = EditorGUIUtility.singleLineHeight; EditorGUI.PropertyField(rect, parent.FindPropertyRelative(name)); rect.y += Line; }
+        public static void Popup(ref Rect rect, SerializedProperty property, string label, string[] keys, string[] display = null)
+        {
+            keys = keys ?? Array.Empty<string>();
+            var supplied = display;
+            display = keys.Select((key, index) => supplied != null && index < supplied.Length && !string.IsNullOrEmpty(supplied[index]) ? supplied[index] : key).ToArray();
+            var selected = Array.IndexOf(keys, property.stringValue);
+            if (selected < 0)
+            {
+                keys = new[] { property.stringValue }.Concat(keys).ToArray();
+                display = new[] { "[未绑定] " + property.stringValue }.Concat(display).ToArray(); selected = 0;
+            }
+            rect.height = EditorGUIUtility.singleLineHeight;
+            EditorGUI.BeginChangeCheck(); var next = EditorGUI.Popup(rect, label, selected, display);
+            if (EditorGUI.EndChangeCheck()) property.stringValue = keys[next]; rect.y += Line;
+        }
+    }
+    [CustomPropertyDrawer(typeof(PlotEventTypeAsset.EventParameter))]
+    public sealed class PlotEventParameterDrawer : PropertyDrawer
+    {
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            if (!property.isExpanded) return EditorGUIUtility.singleLineHeight;
+            var type = (ValueType)property.FindPropertyRelative("valueType").enumValueIndex;
+            return PlotSchemaDrawerFields.Line * (type == ValueType.CustomEnum ? 7 : type == ValueType.CustomBean ? 6 : 5);
+        }
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            EditorGUI.BeginProperty(position, label, property);
+            position.height = EditorGUIUtility.singleLineHeight;
+            property.isExpanded = EditorGUI.Foldout(position, property.isExpanded, property.FindPropertyRelative("paramKey").stringValue + "  " + label.text, true);
+            if (property.isExpanded)
+            {
+                EditorGUI.indentLevel++; position.y += PlotSchemaDrawerFields.Line;
+                foreach (var name in new[] { "paramSign", "paramKey", "displayName", "valueType" }) PlotSchemaDrawerFields.Field(ref position, property, name);
+                if ((ValueType)property.FindPropertyRelative("valueType").enumValueIndex == ValueType.CustomEnum)
+                {
+                    var owner = property.serializedObject.targetObject as PlotEventTypeAsset; var enums = owner?.parameterEnums;
+                    var enumType = property.FindPropertyRelative("enumType");
+                    PlotSchemaDrawerFields.Popup(ref position, enumType, "枚举类型", enums?.GetAllEnumNames(), enums?.GetAllEnumDisplayNames());
+                    PlotSchemaDrawerFields.Popup(ref position, property.FindPropertyRelative("enumValue"), "默认枚举值", enums?.GetEnumKeys(enumType.stringValue), enums?.GetEnumLabels(enumType.stringValue));
+                }
+                else if ((ValueType)property.FindPropertyRelative("valueType").enumValueIndex == ValueType.CustomBean)
+                { var owner = property.serializedObject.targetObject as PlotEventTypeAsset; PlotSchemaDrawerFields.Popup(ref position, property.FindPropertyRelative("beanType"), "嵌套Bean类型", owner?.GetAllEventKeys(), owner?.GetAllEventDisplayNames()); }
+                EditorGUI.indentLevel--;
+            }
+            EditorGUI.EndProperty();
+        }
+    }
+    [CustomPropertyDrawer(typeof(PlotAtomDataHeaderAsset.ColumnDefinition))]
+    public sealed class PlotColumnDefinitionDrawer : PropertyDrawer
+    {
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            if (!property.isExpanded) return EditorGUIUtility.singleLineHeight;
+            var type = (ValueType)property.FindPropertyRelative("valueType").enumValueIndex;
+            return PlotSchemaDrawerFields.Line * (type == ValueType.CustomBean || type == ValueType.CustomEnum ? 8 : 7);
+        }
+        public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+        {
+            EditorGUI.BeginProperty(position, label, property); position.height = EditorGUIUtility.singleLineHeight;
+            property.isExpanded = EditorGUI.Foldout(position, property.isExpanded, property.FindPropertyRelative("columnName").stringValue + "  " + label.text, true);
+            if (property.isExpanded)
+            {
+                EditorGUI.indentLevel++; position.y += PlotSchemaDrawerFields.Line;
+                foreach (var name in new[] { "columnName", "description", "IsList", "valueType", "columnIndex", "members" }) PlotSchemaDrawerFields.Field(ref position, property, name);
+                var owner = property.serializedObject.targetObject as PlotAtomDataHeaderAsset;
+                var type = (ValueType)property.FindPropertyRelative("valueType").enumValueIndex;
+                if (type == ValueType.CustomEnum)
+                    PlotSchemaDrawerFields.Popup(ref position, property.FindPropertyRelative("typeKey"), "枚举类型", owner?.parameterEnums?.GetAllEnumNames(), owner?.parameterEnums?.GetAllEnumDisplayNames());
+                else if (type == ValueType.CustomBean)
+                    PlotSchemaDrawerFields.Popup(ref position, property.FindPropertyRelative("typeKey"), "Bean类型", owner?.parameterBean?.GetAllEventKeys(), owner?.parameterBean?.GetAllEventDisplayNames());
+                EditorGUI.indentLevel--;
+            }
+            EditorGUI.EndProperty();
+        }
+    }
+}

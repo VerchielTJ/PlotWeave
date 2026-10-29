@@ -1,0 +1,57 @@
+{
+    "MonoBehaviour": {
+        "m_Enabled": true,
+        "m_EditorHideFlags": 0,
+        "m_Name": "1001",
+        "m_EditorClassIdentifier": "",
+        "headerDefinition": {
+            "fileID": 11400000,
+            "guid": "06863eedbd9dd0e4ba2d49bd40b85414",
+            "type": 2
+        },
+        "rowId": "8a42b04e-638b-4f6f-82b1-f2a5da460254",
+        "rowTitle": "1001",
+        "columns": [
+            {
+                "columnName": "ScenesID",
+                "rows": [
+                    {
+                        "values": [
+                            "1001"
+                        ]
+                    }
+                ]
+            },
+            {
+                "columnName": "PlotRoleID",
+                "rows": [
+                    {
+                        "values": [
+                            "0"
+                        ]
+                    }
+                ]
+            },
+            {
+                "columnName": "Dialog",
+                "rows": [
+                    {
+                        "values": [
+                            ""
+                        ]
+                    }
+                ]
+            },
+            {
+                "columnName": "Next",
+                "rows": [
+                    {
+                        "values": [
+                            "0"
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+}

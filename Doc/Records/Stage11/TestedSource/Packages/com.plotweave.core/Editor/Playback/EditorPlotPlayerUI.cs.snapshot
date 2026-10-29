@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using PlotWeave.Authoring.UI;
+using PlotWeave.Playback;
+using UnityEditor;
+using UnityEngine;
+
+namespace PlotWeave.Authoring.Playback
+{
+    /// <summary>编辑宿主只负责重建制作快照与装配同一PlotPlayerHost/Core。</summary>
+    public sealed class EditorPlotPlayerUI : IDisposable
+    {
+        private readonly PlotAuthoringProject _project;
+        private PlotPlayerHost _host;
+        public PlotPlayerHost Host => _host;
+        public EditorPlotPlayerUI(PlotAuthoringProject project) { _project = project; }
+        public void Play(int id)
+        {
+            var data = PlotPlaybackCompiler.Compile(_project);
+            if (_host == null) _host = new GameObject("PlotWeave Editor Playback", typeof(PlotPlayerHost)).GetComponent<PlotPlayerHost>();
+            _host.playOnStart = false;
+            var catalog = _project.visuals != null ? _project.visuals : AssetDatabase.LoadAssetAtPath<PlotPlaybackVisualCatalog>(PlotPlaybackExample.CatalogPath);
+            _host.sprites = catalog == null ? new List<PlotPlaybackSpriteBinding>() : catalog.sprites.Select(s => new PlotPlaybackSpriteBinding { key = s.key, sprite = s.sprite }).ToList();
+            _host.fontAsset = catalog == null ? null : catalog.fontAsset; _host.inlineSprites = catalog == null ? null : catalog.inlineSprites;
+            _host.viewPrefab = catalog == null ? null : catalog.viewPrefab; _host.actorPrefabs = catalog == null ? new List<PlotActorPrefabBinding>() : catalog.actorPrefabs;
+            _host.audioBindings = catalog == null ? new List<PlotPlaybackAudioBinding>() : catalog.audioBindings; _host.effects = catalog == null ? new List<PlotPlaybackEffectBinding>() : catalog.effects; _host.emotions = catalog == null ? new List<PlotPlaybackEmotionBinding>() : catalog.emotions;
+            _host.config = catalog != null && catalog.playerConfig != null ? JsonUtility.FromJson<PlotPlayerConfig>(JsonUtility.ToJson(catalog.playerConfig)) : new PlotPlayerConfig();
+            _host.Initialize(data, PlotPlayerRuntimeMode.Editor); _host.Play(id);
+        }
+        public void Dispose()
+        { if (_host == null) return; _host.Core?.Close(); if (Application.isPlaying) UnityEngine.Object.Destroy(_host.gameObject); else UnityEngine.Object.DestroyImmediate(_host.gameObject); _host = null; }
+    }
+
+    [InitializeOnLoad]
+    public static class PlotEditorPlaybackBinding
+    {
+        private static readonly Dictionary<PlotAuthoringPanel, EditorPlotPlayerUI> Players = new Dictionary<PlotAuthoringPanel, EditorPlotPlayerUI>();
+        static PlotEditorPlaybackBinding()
+        {
+            EditorApplication.update += BindPanels;
+            EditorApplication.playModeStateChanged += change => { if (change == PlayModeStateChange.ExitingPlayMode) { foreach (var player in Players.Values) player.Dispose(); Players.Clear(); } };
+        }
+        private static void BindPanels()
+        {
+            if (!Application.isPlaying || EditorApplication.isCompiling) return;
+            foreach (var stale in Players.Keys.Where(p => p == null).ToArray()) { Players[stale].Dispose(); Players.Remove(stale); }
+            foreach (var panel in UnityEngine.Object.FindObjectsOfType<PlotAuthoringPanel>())
+            {
+                if (panel.Session == null || Players.ContainsKey(panel)) continue;
+                var player = new EditorPlotPlayerUI(panel.project); Players.Add(panel, player);
+                panel.BindPreview(player.Play);
+            }
+        }
+        public static EditorPlotPlayerUI GetPlayer(PlotAuthoringPanel panel) => Players.TryGetValue(panel, out var player) ? player : null;
+    }
+}

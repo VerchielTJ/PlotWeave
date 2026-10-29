@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c2e786e17580b137a96015b74db0834, type: 3}
+  m_Name: GenerationProfile
+  m_EditorClassIdentifier: 
+  header: {fileID: 11400000, guid: 6763a73f0c2701f48a0060ccb52e2c8f, type: 2}
+  targetNamespace: PlotWeave.Generated.Wcad596ba
+  nodeName: PlotAtomData
+  outputFolder: Assets/PlotWeaveMigration/Stage04_Exchange/Runs/f76988e745894e939d9b2141a93df400/RoundTrip/Generated
+  tables:
+  - Asset: {fileID: 11400000, guid: 05d9c693447f2bf4faca1b19df695043, type: 2}
+    Name: 
+    KeyName: ID
+    KeyType: int
+    IsThespianTable: 1
+  texts:
+  - Name: PlotDialogKey
+    KeyName: key
+    ValueName: value
+    KeyType: string
+    ValueType: string
+    IsMultiLanguage: 1
+  - Name: PlotConstantKey
+    KeyName: key
+    ValueName: value
+    KeyType: string
+    ValueType: string
+    IsMultiLanguage: 1

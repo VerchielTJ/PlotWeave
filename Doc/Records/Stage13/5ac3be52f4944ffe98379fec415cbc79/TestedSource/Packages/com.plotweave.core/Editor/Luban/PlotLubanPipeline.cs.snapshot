@@ -1,0 +1,87 @@
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using PlotWeave.Authoring.Excel;
+using UnityEditor;
+using UnityEngine;
+
+namespace PlotWeave.Authoring.Luban
+{
+    public static class PlotLubanPipeline
+    {
+        [Serializable] public sealed class FileHash { public string path, sha256; }
+        [Serializable] public sealed class Report { public string id, status, error, runRoot, publishedRoot, compilerSha256; public int exitCode; public List<FileHash> files = new List<FileHash>(); }
+        [Serializable] private sealed class Manifest { public List<FileHash> files = new List<FileHash>(); }
+        [Serializable] private sealed class Asmdef { public string name; public string[] references; public bool autoReferenced = true; }
+        private static string Hash(string path) { using (var hash = SHA256.Create()) return BitConverter.ToString(hash.ComputeHash(File.ReadAllBytes(path))).Replace("-", "").ToLowerInvariant(); }
+        private static string Quote(string value)
+        { if (value.Contains('"') || value.Contains('\n') || value.Contains('\r')) throw new ArgumentException("进程参数含有引号或换行"); return "\"" + value.TrimEnd('\\') + "\""; }
+        public static string RequireOutput(string relative)
+        {
+            var normalized = (relative ?? "").Replace('\\', '/').TrimEnd('/');
+            if (!normalized.StartsWith("Assets/", StringComparison.Ordinal) || normalized.Split('/').Any(p => p == ".." || p == "." || p == "")) throw new ArgumentException("生成目录必须是Assets内独立子目录");
+            var root = Path.GetFullPath(normalized); var assets = Path.GetFullPath("Assets") + Path.DirectorySeparatorChar; if (!root.StartsWith(assets, StringComparison.OrdinalIgnoreCase)) throw new ArgumentException("生成路径越界"); return root;
+        }
+        public static Report Run(PlotLubanProfile profile)
+        {
+            if (profile == null || profile.project == null) throw new ArgumentException("需要生成配置与作者工作区");
+            PlotLubanSchema.Identifier(profile.generatedNamespace, true); PlotLubanSchema.Identifier(profile.assemblyName, true); PlotLubanSchema.Identifier(profile.runtimeAssembly, true); var output = RequireOutput(profile.generatedRoot);
+            var dll = Path.GetFullPath(profile.compilerDll); if (!File.Exists(dll)) throw new FileNotFoundException("缺少Luban编译器", dll);
+            var report = new Report { id = Guid.NewGuid().ToString("N"), status = "running", exitCode = -1, compilerSha256 = Hash(dll), publishedRoot = profile.generatedRoot }; report.runRoot = "Library/PlotWeaveLuban/" + report.id; var run = Path.GetFullPath(report.runRoot); Directory.CreateDirectory(run);
+            try
+            {
+                var raw = Path.Combine(run, "Raw"); PlotExcelExchange.Export(profile.project, raw); PlotLubanSchema.Prepare(profile.project, raw, Path.Combine(run, "Data"));
+                var conf = "{\"groups\":[{\"names\":[\"c\"],\"default\":true}],\"schemaFiles\":[{\"fileName\":\"Data/__plotenums__.xlsx\",\"type\":\"enum\"},{\"fileName\":\"Data/__plotbeans__.xlsx\",\"type\":\"bean\"},{\"fileName\":\"schema.xml\",\"type\":\"\"}],\"dataDir\":\"Data\",\"targets\":[{\"name\":\"client\",\"manager\":\"Tables\",\"groups\":[\"c\"],\"topModule\":\"" + profile.generatedNamespace + "\"}]}";
+                File.WriteAllText(Path.Combine(run, "luban.conf"), conf, new UTF8Encoding(false));
+                var generated = Path.Combine(run, "Publish"); var code = Path.Combine(generated, "Code"); var binary = Path.Combine(generated, "Data");
+                var info = new ProcessStartInfo { FileName = profile.dotnetPath, Arguments = string.Join(" ", new[] { dll, "--conf", Path.Combine(run, "luban.conf"), "-t", "client", "-c", "cs-bin", "-d", "bin", "-x", "outputCodeDir=" + code, "-x", "outputDataDir=" + binary }.Select(Quote)), WorkingDirectory = Path.GetDirectoryName(dll), UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true, StandardOutputEncoding = Encoding.UTF8, StandardErrorEncoding = Encoding.UTF8 };
+                var log = new StringBuilder(); var guard = new object();
+                using (var process = new Process { StartInfo = info })
+                {
+                    DataReceivedEventHandler append = (sender, args) => { if (args.Data == null) return; lock (guard) if (log.Length < 1000000) log.AppendLine(args.Data); };
+                    process.OutputDataReceived += append; process.ErrorDataReceived += append; process.Start(); process.BeginOutputReadLine(); process.BeginErrorReadLine();
+                    if (!process.WaitForExit(Math.Max(5, Math.Min(60, profile.timeoutSeconds)) * 1000)) { process.Kill(); process.WaitForExit(); throw new TimeoutException("Luban编译超时"); }
+                    process.WaitForExit(); report.exitCode = process.ExitCode;
+                }
+                File.WriteAllText(Path.Combine(run, "compiler.log"), log.ToString(), new UTF8Encoding(false));
+                if (report.exitCode != 0) throw new InvalidOperationException("Luban编译失败，退出码=" + report.exitCode + "；日志: " + report.runRoot + "/compiler.log");
+                if (!Directory.Exists(code) || !Directory.EnumerateFiles(code, "*.cs", SearchOption.AllDirectories).Any() || !Directory.Exists(binary) || !Directory.EnumerateFiles(binary, "*.bytes").Any()) throw new IOException("编译器成功退出但输出不完整");
+                if (profile.project.eventTracks != null) File.WriteAllText(Path.Combine(binary, "PlotEvents.json"), profile.project.eventTracks.ExportJson());
+                File.WriteAllText(Path.Combine(generated, profile.assemblyName + ".asmdef"), JsonUtility.ToJson(new Asmdef { name = profile.assemblyName, references = new[] { profile.runtimeAssembly } }, true));
+                Publish(generated, output, run, report); report.status = "passed"; AssetDatabase.Refresh(); return report;
+            }
+            catch (Exception error) { report.status = "failed"; report.error = error.ToString(); throw; }
+            finally { File.WriteAllText(Path.Combine(run, "report.json"), JsonUtility.ToJson(report, true)); Directory.CreateDirectory("Doc/Records/Stage09"); File.WriteAllText("Doc/Records/Stage09/luban-" + report.id + ".json", JsonUtility.ToJson(report, true)); }
+        }
+        private static void Publish(string source, string output, string run, Report report)
+        {
+            var manifest = Path.Combine(output, ".plotweave-luban-manifest.json"); var old = File.Exists(manifest) ? JsonUtility.FromJson<Manifest>(File.ReadAllText(manifest)).files : new List<FileHash>();
+            var files = Directory.GetFiles(source, "*", SearchOption.AllDirectories).Select(p => new FileHash { path = p.Substring(source.Length + 1).Replace('\\', '/'), sha256 = Hash(p) }).ToList();
+            var oldMap = old.ToDictionary(f => f.path, f => f.sha256); var names = old.Select(f => f.path).Concat(files.Select(f => f.path)).Distinct().ToList();
+            foreach (var name in names) { var path = Path.GetFullPath(Path.Combine(output, name)); if (!path.StartsWith(output + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase)) throw new IOException("生成清单路径越界"); if (File.Exists(path) && (!oldMap.TryGetValue(name, out var expected) || Hash(path) != expected)) throw new IOException("生成文件已有人为修改，未覆盖: " + path); }
+            var backup = Path.Combine(run, "Previous"); Directory.CreateDirectory(backup); foreach (var name in names) if (File.Exists(Path.Combine(output, name))) { var dest = Path.Combine(backup, name); Directory.CreateDirectory(Path.GetDirectoryName(dest)); File.Copy(Path.Combine(output, name), dest); }
+            var previousManifest = File.Exists(manifest) ? File.ReadAllBytes(manifest) : null;
+            AssetDatabase.StartAssetEditing();
+            try
+            {
+                foreach (var name in names) { var target = Path.Combine(output, name); var from = Path.Combine(source, name); if (File.Exists(from)) { Directory.CreateDirectory(Path.GetDirectoryName(target)); File.Copy(from, target, true); } else if (File.Exists(target)) File.Delete(target); }
+                File.WriteAllText(manifest, JsonUtility.ToJson(new Manifest { files = files }, true)); report.files = files;
+            }
+            catch
+            {
+                foreach (var name in names) { var path = Path.Combine(output, name); var original = Path.Combine(backup, name); if (File.Exists(original)) { Directory.CreateDirectory(Path.GetDirectoryName(path)); File.Copy(original, path, true); } else if (File.Exists(path)) File.Delete(path); }
+                if (previousManifest != null) File.WriteAllBytes(manifest, previousManifest); else if (File.Exists(manifest)) File.Delete(manifest); throw;
+            }
+            finally { AssetDatabase.StopAssetEditing(); }
+        }
+    }
+    [CustomEditor(typeof(PlotLubanProfile))] public sealed class PlotLubanProfileEditor : UnityEditor.Editor
+    {
+        public override void OnInspectorGUI()
+        { DrawDefaultInspector(); EditorGUILayout.HelpBox("导出原六表 → 独立Luban4格式 → 编译二进制和C# → 校验自有生成文件 → 发布。失败保留Library/PlotWeaveLuban记录。", MessageType.Info); if (GUILayout.Button("执行Luban生成")) { try { var result = PlotLubanPipeline.Run((PlotLubanProfile)target); UnityEngine.Debug.Log("PLOTWEAVE_LUBAN_PASSED " + result.id); } catch (Exception error) { UnityEngine.Debug.LogException(error); } } }
+    }
+}

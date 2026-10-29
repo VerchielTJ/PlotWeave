@@ -1,0 +1,63 @@
+#if UNITY_EDITOR
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace PlotWeave.Authoring.UI
+{
+    /// <summary>只复用可见节点按钮，不为全部节点生成GameObject。</summary>
+    public sealed class PlotNodeView : MonoBehaviour
+    {
+        private const float RowHeight = 40;
+        private ScrollRect _scroll;
+        private List<PlotAtomRowData> _rows = new List<PlotAtomRowData>();
+        private readonly List<PlotNodeButton> _pool = new List<PlotNodeButton>();
+        private Action<int> _select;
+        private string _idColumn;
+        private int _selected;
+        private float _height;
+        public int PoolSize => _pool.Count;
+        public int ActiveCount { get; private set; }
+        public void Initialize(ScrollRect scroll, string idColumn, Action<int> select)
+        {
+            _scroll = scroll; _idColumn = idColumn; _select = select;
+            _scroll.onValueChanged.AddListener(OnScroll);
+        }
+        public void SetRows(List<PlotAtomRowData> rows, int selected)
+        {
+            _rows = rows ?? new List<PlotAtomRowData>(); _selected = selected;
+            _scroll.content.sizeDelta = new Vector2(0, _rows.Count * RowHeight); RefreshVisible();
+        }
+        private void OnScroll(Vector2 ignored) => RefreshVisible();
+        private void Update()
+        {
+            if (_scroll != null && Mathf.Abs(_scroll.viewport.rect.height - _height) > 1) RefreshVisible();
+        }
+        public void RefreshVisible()
+        {
+            if (_scroll == null) return;
+            _height = _scroll.viewport.rect.height;
+            var count = Mathf.Min(_rows.Count, Mathf.Max(1, Mathf.CeilToInt(Mathf.Max(100, _height) / RowHeight) + 2));
+            while (_pool.Count < count)
+            {
+                var button = PlotUiFactory.Button(_scroll.content, "PooledNode", "", null);
+                var layout = button.GetComponent<LayoutElement>(); if (layout != null) layout.ignoreLayout = true;
+                var rect = (RectTransform)button.transform; rect.anchorMin = new Vector2(0, 1); rect.anchorMax = Vector2.one; rect.pivot = new Vector2(.5f, 1); rect.sizeDelta = new Vector2(0, RowHeight - 4);
+                _pool.Add(button.gameObject.AddComponent<PlotNodeButton>());
+            }
+            var first = Mathf.Clamp(Mathf.FloorToInt(_scroll.content.anchoredPosition.y / RowHeight), 0, Mathf.Max(0, _rows.Count - count));
+            ActiveCount = count;
+            for (var i = 0; i < _pool.Count; i++)
+            {
+                var view = _pool[i]; view.gameObject.SetActive(i < count); if (i >= count) continue;
+                var index = first + i; var row = _rows[index]; var id = int.Parse(row.GetColumnSingleValue(_idColumn), CultureInfo.InvariantCulture);
+                ((RectTransform)view.transform).anchoredPosition = new Vector2(0, -index * RowHeight);
+                view.Bind(id, id.ToString(CultureInfo.InvariantCulture), id == _selected, _select);
+            }
+        }
+        private void OnDestroy() { if (_scroll != null) _scroll.onValueChanged.RemoveListener(OnScroll); }
+    }
+}
+#endif

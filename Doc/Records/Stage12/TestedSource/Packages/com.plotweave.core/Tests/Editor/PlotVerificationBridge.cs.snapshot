@@ -1,0 +1,175 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using UnityEditor;
+using UnityEditor.TestTools.TestRunner.Api;
+using UnityEngine;
+using PlotWeave.Editor;
+
+namespace PlotWeave.Tests
+{
+    /// <summary>测试程序集内的显式请求桥。只处理项目 Tools/PlotWeaveMigration/request.json，不执行任意代码。</summary>
+    [InitializeOnLoad]
+    internal static class PlotVerificationBridge
+    {
+        [Serializable] private sealed class Request { public string id = ""; public string step = ""; }
+        [Serializable] private sealed class Report
+        {
+            public string id;
+            public string step;
+            public string status;
+            public string error;
+            public int passed;
+            public int failed;
+            public string startedAtUtc;
+            public string recordedAtUtc;
+            public List<SourceFile> sourceFiles = new List<SourceFile>();
+            public List<Case> cases = new List<Case>();
+        }
+        [Serializable] private sealed class SourceFile { public string path; public string sha256; }
+        [Serializable] private sealed class Case { public string name; public string state; public string message; }
+        private static double _nextPoll;
+        private static TestRunnerApi _api;
+        private static bool _modeTransition;
+        private static string Root => Path.Combine(Directory.GetParent(Application.dataPath).FullName, "Tools", "PlotWeaveMigration");
+        static PlotVerificationBridge()
+        {
+            EditorApplication.update += Poll;
+            EditorApplication.playModeStateChanged += state => _modeTransition = state == PlayModeStateChange.ExitingEditMode || state == PlayModeStateChange.ExitingPlayMode;
+        }
+        private static void Poll()
+        {
+            if (EditorApplication.timeSinceStartup < _nextPoll || _modeTransition || EditorApplication.isCompiling || EditorApplication.isUpdating || EditorApplication.isPlayingOrWillChangePlaymode) return;
+            // isPlaying在退出Play Mode的途中即可变为false；必须等截图检查恢复现场并释放会话锁。
+            foreach (var key in new[] { "PlotWeave.Stage05.Preview", "PlotWeave.Stage08.Preview", "PlotWeave.Stage10.Preview" }) if (SessionState.GetString(key, "") != "") return;
+            _nextPoll = EditorApplication.timeSinceStartup + 2;
+            var path = Path.Combine(Root, "request.json");
+            if (!File.Exists(path)) return;
+            Request request;
+            try { request = JsonUtility.FromJson<Request>(File.ReadAllText(path)); }
+            catch (Exception ex) { Debug.LogException(ex); return; }
+            if (request == null || !Guid.TryParseExact(request.id, "N", out _) ||
+                !new[] { "prepare", "tests", "build", "stage01", "stage02", "stage03", "stage04", "stage05", "tmpresources", "stage07", "stage08", "stage09", "stage09scene", "previewluban", "stage10", "stage11", "stage12", "previewchapters", "previewadvanced", "recoverpreview", "buildplayback", "previeweditor", "previewasset", "previewjson", "authoringpreview", "reloadexample", "refresh" }.Contains(request.step, StringComparer.Ordinal)) return;
+            var handled = Path.Combine(Root, "handled-" + request.id + ".json");
+            if (File.Exists(handled)) return;
+            File.Move(path, handled);
+            var report = new Report { id = request.id, step = request.step, status = "running", startedAtUtc = DateTime.UtcNow.ToString("O") };
+            var project = Directory.GetParent(Application.dataPath).FullName;
+            var package = Path.Combine(project, "Packages", "com.plotweave.core");
+            using (var hasher = SHA256.Create())
+                foreach (var source in Directory.GetFiles(package, "*", SearchOption.AllDirectories)
+                    .Concat(Directory.Exists(Path.Combine(project, PlotWeave.Generation.PlotGenerationExample.GeneratedRoot)) ? Directory.GetFiles(Path.Combine(project, PlotWeave.Generation.PlotGenerationExample.GeneratedRoot), "*.cs", SearchOption.AllDirectories) : Array.Empty<string>())
+                    .Concat(Directory.Exists(Path.Combine(project, PlotWeave.Authoring.Luban.PlotLubanExample.Root)) ? Directory.GetFiles(Path.Combine(project, PlotWeave.Authoring.Luban.PlotLubanExample.Root), "*", SearchOption.AllDirectories) : Array.Empty<string>())
+                    .Concat(Directory.Exists(Path.Combine(project, PlotWeave.Generation.PlotNestedBeanExample.Root)) ? Directory.GetFiles(Path.Combine(project, PlotWeave.Generation.PlotNestedBeanExample.Root), "*", SearchOption.AllDirectories) : Array.Empty<string>())
+                    .Concat(Directory.Exists(Path.Combine(project, PlotWeave.Legacy.Editor.PlotLegacyAssetImport.LocalRoot)) ? Directory.GetFiles(Path.Combine(project, PlotWeave.Legacy.Editor.PlotLegacyAssetImport.LocalRoot), "*", SearchOption.AllDirectories) : Array.Empty<string>())
+                    .Where(p => p.EndsWith(".cs", StringComparison.Ordinal) || p.EndsWith(".asmdef", StringComparison.Ordinal)).OrderBy(p => p, StringComparer.Ordinal))
+                    report.sourceFiles.Add(new SourceFile { path = source.Substring(project.Length + 1).Replace('\\', '/'), sha256 = BitConverter.ToString(hasher.ComputeHash(File.ReadAllBytes(source))).Replace("-", "").ToLowerInvariant() });
+            Save(report);
+            try
+            {
+                switch (request.step)
+                {
+                    case "stage12":
+                        PlotWeave.Generation.PlotNestedBeanExample.PrepareVerification(); report.status = "passed"; Save(report); break;
+                    case "stage11":
+                        PlotWeave.Legacy.Editor.PlotLegacyAssetImport.PrepareVerification(); report.status = "passed"; Save(report); break;
+                    case "recoverpreview":
+                        PlotWeave.Authoring.Playback.PlotAdvancedPreviewVerification.RecoverLastFailedCheck(); report.status = "passed"; Save(report); break;
+                    case "stage09scene":
+                        PlotWeave.Authoring.Luban.PlotLubanExample.PrepareScene(); report.status = "passed"; Save(report); break;
+                    case "stage10":
+                        PlotWeave.Authoring.Playback.PlotChapterExample.PrepareVerification(); report.status = "passed"; Save(report); break;
+                    case "previewchapters":
+                        PlotWeave.Authoring.Playback.PlotChapterPreviewVerification.Start(); report.status = "scheduled"; Save(report); break;
+                    case "stage09":
+                        PlotWeave.Authoring.Luban.PlotLubanExample.PrepareVerification(); report.status = "passed"; Save(report); break;
+                    case "stage08":
+                        PlotWeave.Authoring.Playback.PlotAdvancedExample.PrepareVerification(); report.status = "passed"; Save(report); break;
+                    case "previewadvanced":
+                        PlotWeave.Authoring.Playback.PlotAdvancedPreviewVerification.Start(); report.status = "scheduled"; Save(report); break;
+                    case "tmpresources":
+                        PlotWeave.Authoring.Playback.PlotPresentationMigration.EnsureTMPResources(); report.status = "passed"; Save(report); break;
+                    case "stage07":
+                        PlotWeave.Authoring.Playback.PlotPresentationMigration.PrepareVerification(); report.status = "passed"; Save(report); break;
+                    case "stage05":
+                        PlotWeave.Authoring.Playback.PlotPlaybackExample.PrepareVerification();
+                        report.status = "passed"; Save(report); break;
+                    case "buildplayback":
+                        PlotWeave.Authoring.Playback.PlotPlaybackBuildVerification.Build();
+                        report.status = "passed"; Save(report); break;
+                    case "previeweditor": case "previewasset": case "previewjson": case "previewluban":
+                        PlotWeave.Authoring.Playback.PlotPlaybackPreviewVerification.Start(request.step.Substring(7));
+                        report.status = "scheduled"; Save(report); break;
+                    case "stage04":
+                        PlotWeave.Authoring.Excel.PlotExcelExample.PrepareVerification();
+                        report.status = "passed"; Save(report); break;
+                    case "reloadexample":
+                        PlotWeave.Authoring.PlotAuthoringBootstrap.ReloadSavedExampleNode();
+                        report.status = "passed"; Save(report); break;
+                    case "authoringpreview":
+                        PlotWeave.Authoring.PlotAuthoringPreviewVerification.Start();
+                        report.status = "scheduled"; Save(report); break;
+                    case "stage03":
+                        PlotWeave.Authoring.PlotAuthoringBootstrap.PrepareVerification();
+                        report.status = "passed"; Save(report); break;
+                    case "refresh":
+                        UnityEditor.AssetDatabase.Refresh();
+                        report.status = "requested"; Save(report); break;
+                    case "stage02":
+                        PlotWeave.Generation.PlotGenerationExample.PrepareVerification();
+                        report.status = "passed"; Save(report); break;
+                    case "stage01":
+                        PlotWeave.Authoring.PlotAuthoringExample.CreateSampleAssets();
+                        report.status = "passed"; Save(report); break;
+                    case "prepare":
+                        PlotMenus.PrepareVerification();
+                        report.status = "passed"; Save(report); break;
+                    case "tests":
+                        _api = ScriptableObject.CreateInstance<TestRunnerApi>();
+                        _api.RegisterCallbacks(new Callbacks(report));
+                        _api.Execute(new ExecutionSettings(new Filter { testMode = TestMode.EditMode, assemblyNames = new[] { "PlotWeave.Editor.Tests" } }) { runSynchronously = true });
+                        break;
+                    case "build":
+                        Environment.SetEnvironmentVariable("PLOTWEAVE_BUILD_OUTPUT", Path.Combine(Directory.GetParent(Application.dataPath).FullName, "Builds", "PlotWeave"));
+                        PlotBuildVerification.BuildPlayer();
+                        report.status = "passed"; Save(report); break;
+                    default: throw new ArgumentException("Unknown verification step.");
+                }
+            }
+            catch (Exception ex) { report.status = "failed"; report.error = ex.ToString(); Save(report); Debug.LogException(ex); }
+        }
+        private static void Save(Report report)
+        {
+            report.recordedAtUtc = DateTime.UtcNow.ToString("O");
+            var json = JsonUtility.ToJson(report, true);
+            Directory.CreateDirectory(Root);
+            File.WriteAllText(Path.Combine(Root, "result-" + report.step + ".json"), json);
+            var archive = Path.Combine(Directory.GetParent(Application.dataPath).FullName, "Doc", "Records", "Unity");
+            Directory.CreateDirectory(archive);
+            File.WriteAllText(Path.Combine(archive, report.id + "-" + report.step + ".json"), json);
+        }
+        private sealed class Callbacks : ICallbacks
+        {
+            private readonly Report _report;
+            public Callbacks(Report report) { _report = report; }
+            public void RunStarted(ITestAdaptor test) { }
+            public void TestStarted(ITestAdaptor test) { }
+            public void TestFinished(ITestResultAdaptor result)
+            {
+                if (!result.HasChildren) _report.cases.Add(new Case { name = result.FullName, state = result.ResultState, message = result.Message });
+            }
+            public void RunFinished(ITestResultAdaptor result)
+            {
+                _report.passed = result.PassCount; _report.failed = result.FailCount;
+                _report.status = result.FailCount == 0 && result.PassCount > 0 ? "passed" : "failed";
+                Save(_report);
+                Debug.Log("PLOTWEAVE_TESTS " + _report.status + " passed=" + result.PassCount + " failed=" + result.FailCount);
+                _api?.UnregisterCallbacks(this);
+                if (_api != null) UnityEngine.Object.DestroyImmediate(_api);
+                _api = null;
+            }
+        }
+    }
+}

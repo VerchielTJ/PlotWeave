@@ -1,0 +1,3251 @@
+{
+  "schemaVersion": 1,
+  "project": "PlotWeave",
+  "curationDate": "2026-10-29",
+  "scope": "现行六表/UGUI/共享播放链的人工精选类图；不含历史GraphView七表原型",
+  "modules": [
+    {
+      "id": "definitions",
+      "title": "类型与数据定义",
+      "summary": "动态类型与作者行模型",
+      "classIds": [
+        "enum",
+        "bean",
+        "header",
+        "row",
+        "bean-layout"
+      ]
+    },
+    {
+      "id": "authoring",
+      "title": "制作与编辑事务",
+      "summary": "制作启动、原UI/通用页输入、会话、内嵌试跑与视口/弹层适配",
+      "classIds": [
+        "project",
+        "authoring-store",
+        "editing-session",
+        "editor-manager",
+        "authoring-panel",
+        "legacy-authoring",
+        "authoring-bootstrap",
+        "legacy-authoring-bootstrap",
+        "editor-preview",
+        "authoring-startup",
+        "authoring-popup-layout",
+        "authoring-viewport-layout",
+        "node-view"
+      ]
+    },
+    {
+      "id": "generation",
+      "title": "共同契约与生成",
+      "summary": "编译时生成接口与两端适配读口",
+      "classIds": [
+        "generator",
+        "generated-bundle",
+        "value-source",
+        "data-adapter"
+      ]
+    },
+    {
+      "id": "exchange",
+      "title": "表格与编译交换",
+      "summary": "六表、Luban与共享快照转换",
+      "classIds": [
+        "excel-exchange",
+        "import-plan",
+        "luban-pipeline",
+        "luban-reader",
+        "playback-compiler",
+        "excel-window"
+      ]
+    },
+    {
+      "id": "playback",
+      "title": "共享播放核心",
+      "summary": "状态机、表现接口、Unity宿主与事件",
+      "classIds": [
+        "document",
+        "player",
+        "core",
+        "view-contract",
+        "view",
+        "host",
+        "provider-contract",
+        "events"
+      ]
+    },
+    {
+      "id": "chapters",
+      "title": "章节与奖励会话",
+      "summary": "目录、解锁、进度、首次奖励和回程",
+      "classIds": [
+        "chapter-session",
+        "chapter-backend",
+        "chapter-player",
+        "chapter-navigation",
+        "chapter-host-player",
+        "campaign-catalog",
+        "progress",
+        "local-backend",
+        "campaign-host"
+      ]
+    },
+    {
+      "id": "integration",
+      "title": "宿主接入边界",
+      "summary": "生产传输和可替换服务",
+      "classIds": [
+        "network-backend",
+        "transport",
+        "resource-contract"
+      ]
+    }
+  ],
+  "classes": [
+    {
+      "id": "enum",
+      "name": "PlotEnumAsset",
+      "qualifiedName": "PlotWeave.Authoring.PlotEnumAsset",
+      "kind": "class",
+      "module": "definitions",
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEnumAsset.cs",
+      "line": 9,
+      "declaration": "public sealed class PlotEnumAsset : PlotAuthoringAsset",
+      "summary": "动态枚举的制作资产，维护稳定key与显示标签。",
+      "responsibilities": [
+        "枚举类型及值列表",
+        "枚举key查找与验证",
+        "为Bean和表头提供引用"
+      ],
+      "sourceSha256": "64f389952e0b07b0eafe1d5d37672eff33550412bd4c2cdcf518aba125f3fab7",
+      "apis": [
+        {
+          "name": "dynamicLists",
+          "signature": "public List<ParameterEnum> dynamicLists",
+          "line": 18,
+          "kind": "field"
+        },
+        {
+          "name": "GetEnum",
+          "signature": "public ParameterEnum GetEnum(string enumName)",
+          "line": 21,
+          "kind": "method"
+        },
+        {
+          "name": "GetEnumKeys",
+          "signature": "public string[] GetEnumKeys(string enumName)",
+          "line": 23,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "bean",
+      "name": "PlotEventTypeAsset",
+      "qualifiedName": "PlotWeave.Authoring.PlotEventTypeAsset",
+      "kind": "class",
+      "module": "definitions",
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs",
+      "line": 9,
+      "declaration": "public sealed class PlotEventTypeAsset : PlotAuthoringAsset",
+      "summary": "定义Bean成员、值类型及自定义枚举/Bean引用。",
+      "responsibilities": [
+        "成员类型建模",
+        "嵌套Bean显式类型引用",
+        "定义校验与查找"
+      ],
+      "sourceSha256": "2f14845668d7468ae665b4a9fe4d32bb456910dd03d96d6d976c06e9f85210eb",
+      "apis": [
+        {
+          "name": "eventTypes",
+          "signature": "public List<EventTypeDefinition> eventTypes",
+          "line": 32,
+          "kind": "field"
+        },
+        {
+          "name": "GetEventTypeByKey",
+          "signature": "public EventTypeDefinition GetEventTypeByKey(string eventKey)",
+          "line": 35,
+          "kind": "method"
+        },
+        {
+          "name": "GetEventParameterKeys",
+          "signature": "public string[] GetEventParameterKeys(string eventKey)",
+          "line": 39,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "header",
+      "name": "PlotAtomDataHeaderAsset",
+      "qualifiedName": "PlotWeave.Authoring.PlotAtomDataHeaderAsset",
+      "kind": "class",
+      "module": "definitions",
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs",
+      "line": 10,
+      "declaration": "public sealed class PlotAtomDataHeaderAsset : PlotAuthoringAsset",
+      "summary": "节点列定义：类型、列表、列序号和成员布局。",
+      "responsibilities": [
+        "列名与列序号查找",
+        "枚举/Bean类型引用",
+        "同步嵌套Bean叶成员数"
+      ],
+      "sourceSha256": "aafceb37d050edea164bfee368eae0776818ad6487303241148ea14b19bd9b62",
+      "apis": [
+        {
+          "name": "sheets",
+          "signature": "public List<ColumnDefinition> sheets",
+          "line": 22,
+          "kind": "field"
+        },
+        {
+          "name": "GetColumnByName",
+          "signature": "public ColumnDefinition GetColumnByName(string columnName)",
+          "line": 27,
+          "kind": "method"
+        },
+        {
+          "name": "SyncCustomBeanMembersCount",
+          "signature": "public void SyncCustomBeanMembersCount()",
+          "line": 50,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "row",
+      "name": "PlotAtomRowData",
+      "qualifiedName": "PlotWeave.Authoring.PlotAtomRowData",
+      "kind": "class",
+      "module": "definitions",
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomRowData.cs",
+      "line": 11,
+      "declaration": "public sealed class PlotAtomRowData : PlotAuthoringAsset",
+      "summary": "用列→多行→字符串成员保存作者数据与稳定rowId。",
+      "responsibilities": [
+        "持有headerDefinition",
+        "标量/列表列读写",
+        "数据与表头一致性校验"
+      ],
+      "sourceSha256": "f25393b2d558d49407d415708e141b757ba055499b546645c7f4367a343b1409",
+      "apis": [
+        {
+          "name": "rowId",
+          "signature": "public string rowId",
+          "line": 20,
+          "kind": "field"
+        },
+        {
+          "name": "GetColumnRows",
+          "signature": "public List<StringList> GetColumnRows(string columnName)",
+          "line": 25,
+          "kind": "method"
+        },
+        {
+          "name": "SetColumnRowValues",
+          "signature": "public void SetColumnRowValues(string columnName, List<string> rowValues, int rowIndex = 0)",
+          "line": 42,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "bean-layout",
+      "name": "PlotBeanLayout",
+      "qualifiedName": "PlotWeave.Authoring.PlotBeanLayout",
+      "kind": "static_class",
+      "module": "definitions",
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotBeanLayout.cs",
+      "line": 11,
+      "declaration": "public static class PlotBeanLayout",
+      "summary": "将有界嵌套Bean展开为共同叶成员布局。",
+      "responsibilities": [
+        "有序叶成员展开",
+        "循环与缺失引用拒绝",
+        "编辑/生成/表格共用布局"
+      ],
+      "sourceSha256": "18b7096b0482da9dd1951483674fd3e5eeb1665fb94b57b58f1b266cf2d357c1",
+      "apis": [
+        {
+          "name": "Defaults",
+          "signature": "public static List<string> Defaults(PlotEventTypeAsset schema, string beanKey)",
+          "line": 13,
+          "kind": "method"
+        },
+        {
+          "name": "Leaves",
+          "signature": "public static List<PlotBeanLeaf> Leaves(PlotEventTypeAsset schema, string beanKey)",
+          "line": 18,
+          "kind": "method"
+        },
+        {
+          "name": "Read",
+          "signature": "public static IPlotValueSource Read(PlotEventTypeAsset schema, string beanKey, IList<string> values, int offset = 0)",
+          "line": 36,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "project",
+      "name": "PlotAuthoringProject",
+      "qualifiedName": "PlotWeave.Authoring.PlotAuthoringProject",
+      "kind": "class",
+      "module": "authoring",
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAuthoringProject.cs",
+      "line": 6,
+      "declaration": "public sealed class PlotAuthoringProject : ScriptableObject",
+      "summary": "关联表头、文本、演员、节点目录和表现配置的工作区。",
+      "responsibilities": [
+        "工作区资产引用",
+        "节点与对白列名配置",
+        "事件轨道和旧角色槽兼容开关"
+      ],
+      "sourceSha256": "93dc27304a28ea6d78fa602c41ea7ca2d1fc82d0a68fe6e149f49898c7b7c461",
+      "apis": [
+        {
+          "name": "header",
+          "signature": "public PlotAtomDataHeaderAsset header",
+          "line": 8,
+          "kind": "field"
+        },
+        {
+          "name": "dialogs",
+          "signature": "public PlotDialogKeyAsset dialogs",
+          "line": 9,
+          "kind": "field"
+        },
+        {
+          "name": "actors",
+          "signature": "public PlotTableAsset actors",
+          "line": 11,
+          "kind": "field"
+        },
+        {
+          "name": "eventTracks",
+          "signature": "public PlotNodeEventTrackAsset eventTracks",
+          "line": 16,
+          "kind": "field"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "authoring-store",
+      "name": "IPlotAuthoringStore",
+      "qualifiedName": "PlotWeave.Authoring.UI.IPlotAuthoringStore",
+      "kind": "interface",
+      "module": "authoring",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+      "line": 10,
+      "declaration": "public interface IPlotAuthoringStore",
+      "summary": "制作会话的资产持久化接口。",
+      "responsibilities": [
+        "列出/查找/创建节点",
+        "保存工作副本与多语言文本",
+        "节点改名/删除"
+      ],
+      "sourceSha256": "4086fee5ea540cf6b26892657129dcd92413da969d0516491ed9772d3b55a1b2",
+      "apis": [
+        {
+          "name": "ListRows",
+          "signature": "List<PlotAtomRowData> ListRows(int? from = null, int? to = null)",
+          "line": 13,
+          "kind": "method"
+        },
+        {
+          "name": "SaveChanges",
+          "signature": "void SaveChanges(PlotAtomRowData target, PlotAtomRowData working, PlotDialogKeyAsset dialogs, PlotConstantKeyAsset constants)",
+          "line": 16,
+          "kind": "method"
+        },
+        {
+          "name": "RenameRow",
+          "signature": "PlotAtomRowData RenameRow(int oldId, int newId)",
+          "line": 17,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "editor_only"
+    },
+    {
+      "id": "editing-session",
+      "name": "PlotEditingSession",
+      "qualifiedName": "PlotWeave.Authoring.UI.PlotEditingSession",
+      "kind": "class",
+      "module": "authoring",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+      "line": 21,
+      "declaration": "public sealed class PlotEditingSession : IDisposable",
+      "summary": "隔离工作副本与持久化资产，管理未保存事务。",
+      "responsibilities": [
+        "节点/文本工作副本",
+        "保存/丢弃/取消选择",
+        "草稿恢复与变更事件"
+      ],
+      "sourceSha256": "4086fee5ea540cf6b26892657129dcd92413da969d0516491ed9772d3b55a1b2",
+      "apis": [
+        {
+          "name": "WorkingRow",
+          "signature": "public PlotAtomRowData WorkingRow",
+          "line": 34,
+          "kind": "property"
+        },
+        {
+          "name": "Select",
+          "signature": "public bool Select(int id, Func<UnsavedChoice> choose)",
+          "line": 71,
+          "kind": "method"
+        },
+        {
+          "name": "Save",
+          "signature": "public void Save()",
+          "line": 179,
+          "kind": "method"
+        },
+        {
+          "name": "RestoreDraft",
+          "signature": "public void RestoreDraft(string json)",
+          "line": 223,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "editor_only"
+    },
+    {
+      "id": "editor-manager",
+      "name": "PlotEditorManager",
+      "qualifiedName": "PlotWeave.Authoring.PlotEditorManager",
+      "kind": "class",
+      "module": "authoring",
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+      "line": 13,
+      "declaration": "public sealed class PlotEditorManager : IPlotAuthoringStore",
+      "summary": "使用AssetDatabase实现制作资产存取与节点操作。",
+      "responsibilities": [
+        "校验工作区与节点目录",
+        "查找/新增/改名/删除资产",
+        "通过Undo保存编辑内容",
+        "只保存本次操作涉及的脏资产，避免全局SaveAssets"
+      ],
+      "sourceSha256": "7a586bde31f51483c020779d18ab596cfdc8a0e4fe43a7dc0fa8ad13ac52a94e",
+      "apis": [
+        {
+          "name": "ListRows",
+          "signature": "public List<PlotAtomRowData> ListRows(int? from = null, int? to = null)",
+          "line": 36,
+          "kind": "method"
+        },
+        {
+          "name": "SaveChanges",
+          "signature": "public void SaveChanges(PlotAtomRowData target, PlotAtomRowData working, PlotDialogKeyAsset dialogs, PlotConstantKeyAsset constants)",
+          "line": 84,
+          "kind": "method"
+        },
+        {
+          "name": "RenameRow",
+          "signature": "public PlotAtomRowData RenameRow(int oldId, int newId)",
+          "line": 112,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "editor_assembly"
+    },
+    {
+      "id": "authoring-panel",
+      "name": "PlotAuthoringPanel",
+      "qualifiedName": "PlotWeave.Authoring.UI.PlotAuthoringPanel",
+      "kind": "class",
+      "module": "authoring",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+      "line": 11,
+      "declaration": "public sealed class PlotAuthoringPanel : MonoBehaviour",
+      "summary": "通用UGUI制作面板，按表头构建编辑控件。",
+      "responsibilities": [
+        "装配编辑会话",
+        "节点/KEY/语言编辑",
+        "列表与标量成员控件",
+        "当前工作副本试跑与绑定工作区的表格交换"
+      ],
+      "sourceSha256": "941fe48942287f51d42bef30b519a9e9c043d285c408bc24332d7f98ed5637fe",
+      "apis": [
+        {
+          "name": "Initialize",
+          "signature": "public void Initialize(IPlotAuthoringStore store, Func<UnsavedChoice> choose, Func<string, bool> confirm, Action<UnityEngine.Object> inspect = null)",
+          "line": 35,
+          "kind": "method"
+        },
+        {
+          "name": "Session",
+          "signature": "public PlotEditingSession Session",
+          "line": 14,
+          "kind": "property"
+        },
+        {
+          "name": "PreviewRequested",
+          "signature": "public event Action<int> PreviewRequested",
+          "line": 34,
+          "kind": "event"
+        },
+        {
+          "name": "BindDataExchange",
+          "signature": "public void BindDataExchange(Action exchange)",
+          "line": 147,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "editor_only",
+      "scopedVerification": {
+        "status": "verified-targeted-scope",
+        "record": "Doc/Records/Current/制作闭环验收.json",
+        "testRunId": "89249f7ecbc94392a2b07bedb4d3ac5e",
+        "workflowRunId": "8d52e2003ea246bdbc728e657192a242",
+        "passed": 23,
+        "failed": 0,
+        "fullSuiteRerun": false,
+        "scope": "当前工作副本输入、内嵌试跑、刷新、停靠和等比适配；表格仅同工作区入口回调替身"
+      }
+    },
+    {
+      "id": "legacy-authoring",
+      "name": "PlotLegacyAuthoringHost",
+      "qualifiedName": "PlotWeave.Legacy.Editor.PlotLegacyAuthoringHost",
+      "kind": "class",
+      "module": "authoring",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+      "line": 17,
+      "declaration": "public sealed class PlotLegacyAuthoringHost:MonoBehaviour",
+      "summary": "把重建的原布局控件接到独立编辑事务。",
+      "responsibilities": [
+        "原布局节点、参数、列表与五语言输入",
+        "暴露WindowMask预览区和播放/刷新回调",
+        "保存/草稿与当前工作区表格交换",
+        "对白输入停靠预览下方；站位参考默认隐藏并可切换",
+        "完整接线后标记Ready，初始化失败清理会话并阻止原实例重试",
+        "协调Viewport/Popup布局；窗口变化时刷新输入停靠",
+        "真实列表行宽归零stretch增量，绑定Bean成员后按preferredHeight测量行高",
+        "空列表清理可见行与滚动内容，保留列表可见区复用"
+      ],
+      "sourceSha256": "619ea19c456cd11609c9b4ba66fc295c0442814957209ba84c0eed0965fccbcb",
+      "apis": [
+        {
+          "name": "Initialize",
+          "signature": "public void Initialize(IPlotAuthoringStore store,Func<UnsavedChoice> choose=null,Func<string,bool> confirm=null)",
+          "line": 52,
+          "kind": "method"
+        },
+        {
+          "name": "Save",
+          "signature": "public void Save()",
+          "line": 141,
+          "kind": "method"
+        },
+        {
+          "name": "RestoreDraft",
+          "signature": "public void RestoreDraft()",
+          "line": 149,
+          "kind": "method"
+        },
+        {
+          "name": "PreviewViewport",
+          "signature": "public RectTransform PreviewViewport",
+          "line": 36,
+          "kind": "property"
+        },
+        {
+          "name": "PrepareDataExchange",
+          "signature": "public bool PrepareDataExchange()",
+          "line": 142,
+          "kind": "method"
+        },
+        {
+          "name": "ReloadAfterImport",
+          "signature": "public void ReloadAfterImport()",
+          "line": 143,
+          "kind": "method"
+        },
+        {
+          "name": "InitializationReady",
+          "signature": "public bool InitializationReady",
+          "line": 24,
+          "kind": "property"
+        },
+        {
+          "name": "InitializationError",
+          "signature": "public string InitializationError",
+          "line": 25,
+          "kind": "property"
+        },
+        {
+          "name": "InitializationFailed",
+          "signature": "public bool InitializationFailed",
+          "line": 26,
+          "kind": "property"
+        },
+        {
+          "name": "CompleteInitialization",
+          "signature": "public void CompleteInitialization()",
+          "line": 88,
+          "kind": "method"
+        },
+        {
+          "name": "AbortInitialization",
+          "signature": "public void AbortInitialization(Exception error)",
+          "line": 95,
+          "kind": "method"
+        },
+        {
+          "name": "RefreshInputDock",
+          "signature": "public void RefreshInputDock()",
+          "line": 178,
+          "kind": "method"
+        },
+        {
+          "name": "NodeView",
+          "signature": "public PlotNodeView NodeView",
+          "line": 22,
+          "kind": "property"
+        }
+      ],
+      "compileDomain": "editor_only",
+      "scopedVerification": {
+        "status": "verified-targeted-scope",
+        "scope": "startup-and-authoring-layout-minimum1024x600",
+        "record": "Doc/Records/Current/制作闭环验收.json",
+        "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+        "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+        "passed": 40,
+        "failed": 0,
+        "minimumViewport": {
+          "width": 1024,
+          "height": 600,
+          "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+        },
+        "supportedSizeCount": 4,
+        "unsupportedSizeCount": 2,
+        "supportedChecksPassed": 152,
+        "totalMatrixChecks": 228,
+        "allSizesPassed": false,
+        "fullSuiteRerun": false,
+        "sourceCheck": {
+          "recordedSourcesMatch": true,
+          "recordedSourceCount": 256,
+          "packageSources": 173,
+          "unrecordedPackageSources": 0
+        },
+        "currentSourceMatches": true
+      },
+      "evidence": [
+        {
+          "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+          "line": 289,
+          "label": "PrepareListRow：清除stretch行的额外700宽度，按绑定后Grid preferredHeight确定复杂Bean行高；此为private辅助方法。"
+        },
+        {
+          "path": "Doc/Records/Current/制作闭环验收.json",
+          "label": "本轮明列制作流程通过；支持尺寸与小窗口诊断分别记录"
+        }
+      ],
+      "verificationScope": "阶段20当前明列制作流程与最小视口策略通过：4支持尺寸152项检查通过，2小尺寸仅诊断；不表示类的全部方法或277项/构建重跑。"
+    },
+    {
+      "id": "generator",
+      "name": "PlotDataStructureGenerator",
+      "qualifiedName": "PlotWeave.Generation.PlotDataStructureGenerator",
+      "kind": "static_class",
+      "module": "generation",
+      "path": "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs",
+      "line": 63,
+      "declaration": "public static class PlotDataStructureGenerator",
+      "summary": "从类型与表头生成共同契约和Editor/Game适配器。",
+      "responsibilities": [
+        "完整接口与嵌套类型生成",
+        "Editor和Game读口生成",
+        "标识符/重名/类型校验"
+      ],
+      "sourceSha256": "b2120e9aa1aa309b78536a524eedef459d1a4e8d1450bf3c0a57f7cbeaee654a",
+      "apis": [
+        {
+          "name": "GenerateAllDataStructures",
+          "signature": "public static PlotGeneratedBundle GenerateAllDataStructures(PlotAtomDataHeaderAsset header, IEnumerable<PlotTableGeneration> tables = null, IEnumerable<PlotKeyValueGeneration> texts = null, string targetNamespace = \"PlotWeave.Generated\", string nodeName = \"PlotAtomData\")",
+          "line": 82,
+          "kind": "method"
+        },
+        {
+          "name": "GenerateSingleColumnTableStructure",
+          "signature": "public static PlotGeneratedBundle GenerateSingleColumnTableStructure(PlotKeyValueGeneration definition, string targetNamespace = \"PlotWeave.Generated\")",
+          "line": 102,
+          "kind": "method"
+        },
+        {
+          "name": "GeneratePlotTableAssetStructure",
+          "signature": "public static PlotGeneratedBundle GeneratePlotTableAssetStructure(PlotTableGeneration definition, string targetNamespace = \"PlotWeave.Generated\")",
+          "line": 105,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "editor_assembly"
+    },
+    {
+      "id": "generated-bundle",
+      "name": "PlotGeneratedBundle",
+      "qualifiedName": "PlotWeave.Generation.PlotGeneratedBundle",
+      "kind": "class",
+      "module": "generation",
+      "path": "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs",
+      "line": 30,
+      "declaration": "public sealed class PlotGeneratedBundle",
+      "summary": "持有生成文件并用摘要清单保护发布。",
+      "responsibilities": [
+        "Files源码集合",
+        "已手改文件拒绝覆盖",
+        "生成文件摘要与所有权清单"
+      ],
+      "sourceSha256": "b2120e9aa1aa309b78536a524eedef459d1a4e8d1450bf3c0a57f7cbeaee654a",
+      "apis": [
+        {
+          "name": "Files",
+          "signature": "public readonly Dictionary<string, string> Files",
+          "line": 32,
+          "kind": "field"
+        },
+        {
+          "name": "Write",
+          "signature": "public void Write(string folder)",
+          "line": 38,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "editor_assembly"
+    },
+    {
+      "id": "value-source",
+      "name": "IPlotValueSource",
+      "qualifiedName": "PlotWeave.Data.IPlotValueSource",
+      "kind": "interface",
+      "module": "generation",
+      "path": "Packages/com.plotweave.core/Runtime/DataContracts/PlotValueSources.cs",
+      "line": 12,
+      "declaration": "public interface IPlotValueSource",
+      "summary": "统一按成员名取值的低层数据读口。",
+      "responsibilities": [
+        "IsValid状态",
+        "TryGetValue成员访问",
+        "宿主可实现直接分派读口"
+      ],
+      "sourceSha256": "6726e5bf1e5535093a3b24256cd7fd4e7860c5987e890430ef2a9a5000dfe33a",
+      "apis": [
+        {
+          "name": "IsValid",
+          "signature": "bool IsValid",
+          "line": 14,
+          "kind": "property"
+        },
+        {
+          "name": "TryGetValue",
+          "signature": "bool TryGetValue(string member, out object value)",
+          "line": 15,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "data-adapter",
+      "name": "PlotDataAdapter",
+      "qualifiedName": "PlotWeave.Data.PlotDataAdapter",
+      "kind": "abstract_class",
+      "module": "generation",
+      "path": "Packages/com.plotweave.core/Runtime/DataContracts/PlotValueSources.cs",
+      "line": 43,
+      "declaration": "public abstract class PlotDataAdapter : IPlotDataBase",
+      "summary": "生成适配器的共同基类，持有统一值来源。",
+      "responsibilities": [
+        "封装IPlotValueSource",
+        "公开DataSource来源标签",
+        "公开数据有效性"
+      ],
+      "sourceSha256": "6726e5bf1e5535093a3b24256cd7fd4e7860c5987e890430ef2a9a5000dfe33a",
+      "apis": [
+        {
+          "name": "DataSource",
+          "signature": "public string DataSource",
+          "line": 46,
+          "kind": "property"
+        },
+        {
+          "name": "IsValid",
+          "signature": "public bool IsValid",
+          "line": 47,
+          "kind": "property"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "excel-exchange",
+      "name": "PlotExcelExchange",
+      "qualifiedName": "PlotWeave.Authoring.Excel.PlotExcelExchange",
+      "kind": "static_class",
+      "module": "exchange",
+      "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelExchange.cs",
+      "line": 12,
+      "declaration": "public static class PlotExcelExchange",
+      "summary": "六份XLSX的导出、导入计划与Luban文件交接。",
+      "responsibilities": [
+        "导出枚举/Bean/节点/文本/演员表",
+        "创建检查导入计划",
+        "导出前校验与空目录保护"
+      ],
+      "sourceSha256": "75dfac5c15be48b836a5ce2ea9a9f987b263bbbcc33d4ebcce430c1aad257a3c",
+      "apis": [
+        {
+          "name": "Export",
+          "signature": "public static string[] Export(PlotAuthoringProject project, string folder)",
+          "line": 23,
+          "kind": "method"
+        },
+        {
+          "name": "PlanImport",
+          "signature": "public static PlotExcelImportPlan PlanImport(PlotAuthoringProject project, string folder)",
+          "line": 47,
+          "kind": "method"
+        },
+        {
+          "name": "CopyToLubanData",
+          "signature": "public static string CopyToLubanData(string source, string destination, string backupRoot)",
+          "line": 52,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "editor_assembly"
+    },
+    {
+      "id": "import-plan",
+      "name": "PlotExcelImportPlan",
+      "qualifiedName": "PlotWeave.Authoring.Excel.PlotExcelImportPlan",
+      "kind": "class",
+      "module": "exchange",
+      "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelExchange.cs",
+      "line": 84,
+      "declaration": "public sealed class PlotExcelImportPlan : IDisposable",
+      "summary": "先检查候选导入，再事务式提交已有资产。",
+      "responsibilities": [
+        "读取候选工作簿",
+        "保持行标识与列顺序",
+        "摘要/备份/回滚保护"
+      ],
+      "sourceSha256": "75dfac5c15be48b836a5ce2ea9a9f987b263bbbcc33d4ebcce430c1aad257a3c",
+      "apis": [
+        {
+          "name": "Summary",
+          "signature": "public string Summary",
+          "line": 101,
+          "kind": "property"
+        },
+        {
+          "name": "LastBackupDirectory",
+          "signature": "public string LastBackupDirectory",
+          "line": 102,
+          "kind": "property"
+        },
+        {
+          "name": "Commit",
+          "signature": "public void Commit(string backupRoot)",
+          "line": 167,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "editor_assembly"
+    },
+    {
+      "id": "luban-pipeline",
+      "name": "PlotLubanPipeline",
+      "qualifiedName": "PlotWeave.Authoring.Luban.PlotLubanPipeline",
+      "kind": "static_class",
+      "module": "exchange",
+      "path": "Packages/com.plotweave.core/Editor/Luban/PlotLubanPipeline.cs",
+      "line": 14,
+      "declaration": "public static class PlotLubanPipeline",
+      "summary": "运行固定Luban编译器并发布C#与二进制。",
+      "responsibilities": [
+        "六表/schema独立运行目录",
+        "外部进程日志和退出码",
+        "SHA所有权发布与link.xml"
+      ],
+      "sourceSha256": "db92570b1de904fd6e4adac89d87206b3896c8227999f1fd1ff793f789ed40c9",
+      "apis": [
+        {
+          "name": "Run",
+          "signature": "public static Report Run(PlotLubanProfile profile)",
+          "line": 29,
+          "kind": "method"
+        },
+        {
+          "name": "RequireOutput",
+          "signature": "public static string RequireOutput(string relative)",
+          "line": 23,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "editor_assembly"
+    },
+    {
+      "id": "luban-reader",
+      "name": "PlotLubanTableReader",
+      "qualifiedName": "PlotWeave.Playback.PlotLubanTableReader",
+      "kind": "static_class",
+      "module": "exchange",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotLubanTableReader.cs",
+      "line": 11,
+      "declaration": "public static class PlotLubanTableReader",
+      "summary": "把已解码Luban对象转换为共享播放快照。",
+      "responsibilities": [
+        "节点/演员/多语言表读取",
+        "可选节点适配器",
+        "合并独立事件轨道JSON"
+      ],
+      "sourceSha256": "2ed13e267b34367febc48649f602b453643b5d7733dc5dc9ff98baf57da4c90c",
+      "apis": [
+        {
+          "name": "Read",
+          "signature": "public static PlotPlaybackDocument Read(IEnumerable nodes, IEnumerable actors, IEnumerable dialogs, IEnumerable constants, Func<object, object> nodeAdapter = null, bool legacyRoleSlots = false)",
+          "line": 30,
+          "kind": "method"
+        },
+        {
+          "name": "TextValueSource",
+          "signature": "public static IPlotValueSource TextValueSource(object row)",
+          "line": 25,
+          "kind": "method"
+        },
+        {
+          "name": "ApplyEventSidecar",
+          "signature": "public static void ApplyEventSidecar(PlotPlaybackDocument document, string json)",
+          "line": 13,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "playback-compiler",
+      "name": "PlotPlaybackCompiler",
+      "qualifiedName": "PlotWeave.Authoring.Playback.PlotPlaybackCompiler",
+      "kind": "static_class",
+      "module": "exchange",
+      "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackCompiler.cs",
+      "line": 15,
+      "declaration": "public static class PlotPlaybackCompiler",
+      "summary": "从已保存作者资产或当前编辑工作副本编译独立播放快照。",
+      "responsibilities": [
+        "读取工作区节点与演员/文本",
+        "将当前工作副本及共享文本覆盖到快照，不保存资产",
+        "验证节点身份并应用旧角色槽/事件投影"
+      ],
+      "sourceSha256": "26ca90e315de4f3af3fd0bc462701f5a430b9f575a1d2516db46f7d7374eb506",
+      "apis": [
+        {
+          "name": "Compile",
+          "signature": "public static PlotPlaybackDocument Compile(PlotAuthoringProject project)",
+          "line": 18,
+          "kind": "method"
+        },
+        {
+          "name": "Compile",
+          "signature": "public static PlotPlaybackDocument Compile(PlotEditingSession session)",
+          "line": 25,
+          "kind": "method"
+        },
+        {
+          "name": "CompileSelected",
+          "signature": "public static void CompileSelected()",
+          "line": 98,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "editor_assembly",
+      "scopedVerification": {
+        "status": "verified-targeted-scope",
+        "scope": "startup-and-authoring-layout-minimum1024x600",
+        "record": "Doc/Records/Current/制作闭环验收.json",
+        "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+        "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+        "passed": 40,
+        "failed": 0,
+        "minimumViewport": {
+          "width": 1024,
+          "height": 600,
+          "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+        },
+        "supportedSizeCount": 4,
+        "unsupportedSizeCount": 2,
+        "supportedChecksPassed": 152,
+        "totalMatrixChecks": 228,
+        "allSizesPassed": false,
+        "fullSuiteRerun": false,
+        "sourceCheck": {
+          "recordedSourcesMatch": true,
+          "recordedSourceCount": 256,
+          "packageSources": 173,
+          "unrecordedPackageSources": 0
+        },
+        "currentSourceMatches": true
+      },
+      "verificationScope": "阶段20当前明列制作流程与最小视口策略通过：4支持尺寸152项检查通过，2小尺寸仅诊断；不表示类的全部方法或277项/构建重跑。",
+      "evidence": [
+        {
+          "path": "Doc/Records/Current/制作闭环验收.json",
+          "label": "本轮明列制作流程通过；支持尺寸与小窗口诊断分别记录"
+        }
+      ]
+    },
+    {
+      "id": "document",
+      "name": "PlotPlaybackDocument",
+      "qualifiedName": "PlotWeave.Playback.PlotPlaybackDocument",
+      "kind": "class",
+      "module": "playback",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlaybackData.cs",
+      "line": 55,
+      "declaration": "[Serializable] public sealed class PlotPlaybackDocument",
+      "summary": "播放用节点、演员及多语言文本快照。",
+      "responsibilities": [
+        "共同运行数据容器",
+        "Snapshot隔离副本",
+        "验证节点/跳转/文本数据"
+      ],
+      "sourceSha256": "915d7ff821199a39a044858e863791ad7cf20fb2ee2ccf2d42cdc185d127ed5f",
+      "apis": [
+        {
+          "name": "Nodes",
+          "signature": "public List<PlotPlaybackNode> Nodes",
+          "line": 58,
+          "kind": "field"
+        },
+        {
+          "name": "Validate",
+          "signature": "public void Validate()",
+          "line": 62,
+          "kind": "method"
+        },
+        {
+          "name": "Snapshot",
+          "signature": "public PlotPlaybackDocument Snapshot()",
+          "line": 73,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "player",
+      "name": "IPlotPlayer",
+      "qualifiedName": "PlotWeave.Playback.IPlotPlayer",
+      "kind": "interface",
+      "module": "playback",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+      "line": 20,
+      "declaration": "public interface IPlotPlayer : IDisposable",
+      "summary": "编辑预览和游戏宿主共用的播放控制契约。",
+      "responsibilities": [
+        "打开/关闭/加载/跳转",
+        "输入/自动播放/暂停/分支",
+        "完成/加载/错误事件"
+      ],
+      "sourceSha256": "321cab59e492227e5a57585d79d3620800f2e3bffa1d22dd9c530994d496fdf5",
+      "apis": [
+        {
+          "name": "LoadPlot",
+          "signature": "void LoadPlot(int nodeID)",
+          "line": 26,
+          "kind": "method"
+        },
+        {
+          "name": "Choose",
+          "signature": "void Choose(int index)",
+          "line": 30,
+          "kind": "method"
+        },
+        {
+          "name": "ShowCurtainAndLoadNode",
+          "signature": "void ShowCurtainAndLoadNode(string top, string bottom, int id, Action completed = null)",
+          "line": 29,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "core",
+      "name": "PlotPlayerCore",
+      "qualifiedName": "PlotWeave.Playback.PlotPlayerCore",
+      "kind": "class",
+      "module": "playback",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+      "line": 34,
+      "declaration": "public sealed class PlotPlayerCore : IPlotPlayer",
+      "summary": "与具体UI和配表来源分离的剧情状态机。",
+      "responsibilities": [
+        "节点和逐字/分支推进",
+        "epoch隔离迟到表现回调",
+        "演出/幕布/事件生命周期"
+      ],
+      "sourceSha256": "321cab59e492227e5a57585d79d3620800f2e3bffa1d22dd9c530994d496fdf5",
+      "apis": [
+        {
+          "name": "LoadPlot",
+          "signature": "public void LoadPlot(int nodeID)",
+          "line": 100,
+          "kind": "method"
+        },
+        {
+          "name": "Choose",
+          "signature": "public void Choose(int index)",
+          "line": 170,
+          "kind": "method"
+        },
+        {
+          "name": "Skip",
+          "signature": "public bool Skip()",
+          "line": 168,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "view-contract",
+      "name": "IPlotPlayerView",
+      "qualifiedName": "PlotWeave.Playback.IPlotPlayerView",
+      "kind": "interface",
+      "module": "playback",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+      "line": 9,
+      "declaration": "public interface IPlotPlayerView",
+      "summary": "播放核心依赖的显示与异步表现接口。",
+      "responsibilities": [
+        "对话渲染",
+        "节点表现与幕布操作",
+        "打开/关闭/清理/Tick"
+      ],
+      "sourceSha256": "321cab59e492227e5a57585d79d3620800f2e3bffa1d22dd9c530994d496fdf5",
+      "apis": [
+        {
+          "name": "Initialize",
+          "signature": "void Initialize(IPlotPlayerDataProvider data, IPlotResourceLoader resources, IPlotObjectPool pool, PlotPlayerConfig config)",
+          "line": 11,
+          "kind": "method"
+        },
+        {
+          "name": "RenderDialog",
+          "signature": "void RenderDialog(string speaker, string fullText, int visibleCodeUnits)",
+          "line": 15,
+          "kind": "method"
+        },
+        {
+          "name": "Present",
+          "signature": "IDisposable Present(PlotPlaybackNode node, Action<bool, string> completed)",
+          "line": 16,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "view",
+      "name": "PlotPlayerView",
+      "qualifiedName": "PlotWeave.Playback.PlotPlayerView",
+      "kind": "class",
+      "module": "playback",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.cs",
+      "line": 12,
+      "declaration": "public sealed partial class PlotPlayerView : MonoBehaviour, IPlotPlayerView, IPlotPlayerTextLayout, IPlotBranchView",
+      "summary": "TMP/UGUI表现实现，管理背景、角色、幕布和分支。",
+      "responsibilities": [
+        "演员槽与资源请求隔离",
+        "富文本逐字与选择UI",
+        "音效/表情/特效表现"
+      ],
+      "sourceSha256": "f5b5c3fc3fe4af4b3c11c06e081c6ddf55794851803f3363ebffc103a6a59cf1",
+      "apis": [
+        {
+          "name": "Initialize",
+          "signature": "public void Initialize(IPlotPlayerDataProvider data, IPlotResourceLoader resources, IPlotObjectPool pool, PlotPlayerConfig config)",
+          "line": 85,
+          "kind": "method"
+        },
+        {
+          "name": "RenderDialog",
+          "signature": "public void RenderDialog(string speaker, string fullText, int visibleCodeUnits)",
+          "line": 116,
+          "kind": "method"
+        },
+        {
+          "name": "Present",
+          "signature": "public IDisposable Present(PlotPlaybackNode node, Action<bool, string> completed)",
+          "line": 121,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "host",
+      "name": "PlotPlayerHost",
+      "qualifiedName": "PlotWeave.Playback.PlotPlayerHost",
+      "kind": "class",
+      "module": "playback",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerHost.cs",
+      "line": 9,
+      "declaration": "public sealed class PlotPlayerHost : MonoBehaviour",
+      "summary": "Unity装配入口：连接数据、服务、核心与表现预制体。",
+      "responsibilities": [
+        "Asset/JSON初始化",
+        "资源/池/文本/环境服务装配",
+        "Update与关闭销毁生命周期"
+      ],
+      "sourceSha256": "6fc3414c22e09a7e0109592d2aa90586ae2c55daf463eb63bf5218bf4cd0f980",
+      "apis": [
+        {
+          "name": "Initialize",
+          "signature": "public void Initialize(PlotPlaybackDocument data, PlotPlayerRuntimeMode mode)",
+          "line": 35,
+          "kind": "method"
+        },
+        {
+          "name": "Play",
+          "signature": "public void Play(int id)",
+          "line": 52,
+          "kind": "method"
+        },
+        {
+          "name": "Core",
+          "signature": "public PlotPlayerCore Core",
+          "line": 25,
+          "kind": "property"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "provider-contract",
+      "name": "IPlotPlayerDataProvider",
+      "qualifiedName": "PlotWeave.Playback.IPlotPlayerDataProvider",
+      "kind": "interface",
+      "module": "playback",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerServices.cs",
+      "line": 10,
+      "declaration": "public interface IPlotPlayerDataProvider",
+      "summary": "核心按节点/演员/文本读取数据的服务接口。",
+      "responsibilities": [
+        "节点查找",
+        "演员查找",
+        "对白与常量文本读取"
+      ],
+      "sourceSha256": "6c4c15efab8d34f5b56d1889c8b8c2acac888fef7481a328c9cb18485f159861",
+      "apis": [
+        {
+          "name": "TryGetNode",
+          "signature": "bool TryGetNode(int id, out PlotPlaybackNode node)",
+          "line": 12,
+          "kind": "method"
+        },
+        {
+          "name": "TryGetActor",
+          "signature": "bool TryGetActor(int id, out PlotPlaybackActor actor)",
+          "line": 13,
+          "kind": "method"
+        },
+        {
+          "name": "TryGetText",
+          "signature": "bool TryGetText(string key, bool constant, int language, out string text)",
+          "line": 14,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "events",
+      "name": "PlotEventScheduler",
+      "qualifiedName": "PlotWeave.Playback.PlotEventScheduler",
+      "kind": "class",
+      "module": "playback",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotEventScheduler.cs",
+      "line": 47,
+      "declaration": "public sealed class PlotEventScheduler : IDisposable",
+      "summary": "推进事件轨道与异步操作；暂停由播放核心停止调度推进。",
+      "responsibilities": [
+        "根事件/回调的有序推进",
+        "循环/层数/回调引用校验",
+        "取消并释放活动操作"
+      ],
+      "sourceSha256": "cdc795d56bb71930770377171242a46acaf5341cf60b8d4f81f1f9976412ddfa",
+      "apis": [
+        {
+          "name": "Validate",
+          "signature": "public static void Validate(IList<PlotEventJsonData> events)",
+          "line": 66,
+          "kind": "method"
+        },
+        {
+          "name": "Tick",
+          "signature": "public void Tick(float deltaTime)",
+          "line": 83,
+          "kind": "method"
+        },
+        {
+          "name": "Dispose",
+          "signature": "public void Dispose()",
+          "line": 101,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "chapter-session",
+      "name": "PlotChapterSession",
+      "qualifiedName": "PlotWeave.Chapters.PlotChapterSession",
+      "kind": "class",
+      "module": "chapters",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+      "line": 47,
+      "declaration": "public sealed class PlotChapterSession : IDisposable",
+      "summary": "组织加载、播放、完成确认、重试与回程的状态机。",
+      "responsibilities": [
+        "后端/播放器/导航接口注入",
+        "报告失败与显式重试",
+        "取消/epoch隔离迟到结果"
+      ],
+      "sourceSha256": "daa30808ed9484d62bd1551f1456ec493d6022be6fd7da2c2f15c5c7886f14f7",
+      "apis": [
+        {
+          "name": "StartAsync",
+          "signature": "public async Task StartAsync(PlotChapterRequest request)",
+          "line": 60,
+          "kind": "method"
+        },
+        {
+          "name": "RetryReportAsync",
+          "signature": "public Task RetryReportAsync()",
+          "line": 89,
+          "kind": "method"
+        },
+        {
+          "name": "Cancel",
+          "signature": "public void Cancel()",
+          "line": 99,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "chapter-backend",
+      "name": "IPlotChapterBackend",
+      "qualifiedName": "PlotWeave.Chapters.IPlotChapterBackend",
+      "kind": "interface",
+      "module": "chapters",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+      "line": 36,
+      "declaration": "public interface IPlotChapterBackend",
+      "summary": "章节内容加载与完成报告的后端接口。",
+      "responsibilities": [
+        "LoadAsync内容加载",
+        "CompleteAsync完成确认",
+        "CancellationToken取消传播"
+      ],
+      "sourceSha256": "daa30808ed9484d62bd1551f1456ec493d6022be6fd7da2c2f15c5c7886f14f7",
+      "apis": [
+        {
+          "name": "LoadAsync",
+          "signature": "Task<PlotChapterContent> LoadAsync(PlotChapterRequest request, CancellationToken cancellation)",
+          "line": 38,
+          "kind": "method"
+        },
+        {
+          "name": "CompleteAsync",
+          "signature": "Task<PlotChapterAcknowledgement> CompleteAsync(PlotChapterCompletion completion, CancellationToken cancellation)",
+          "line": 39,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "chapter-player",
+      "name": "IPlotChapterPlayer",
+      "qualifiedName": "PlotWeave.Chapters.IPlotChapterPlayer",
+      "kind": "interface",
+      "module": "chapters",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+      "line": 41,
+      "declaration": "public interface IPlotChapterPlayer",
+      "summary": "章节会话使用的播放端接口。",
+      "responsibilities": [
+        "Play/Close章节内容",
+        "Completed/Closed事件",
+        "Failed错误事件"
+      ],
+      "sourceSha256": "daa30808ed9484d62bd1551f1456ec493d6022be6fd7da2c2f15c5c7886f14f7",
+      "apis": [
+        {
+          "name": "Play",
+          "signature": "void Play(PlotChapterContent content)",
+          "line": 42,
+          "kind": "method"
+        },
+        {
+          "name": "Close",
+          "signature": "void Close()",
+          "line": 42,
+          "kind": "method"
+        },
+        {
+          "name": "Completed",
+          "signature": "event Action Completed",
+          "line": 42,
+          "kind": "event"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "chapter-navigation",
+      "name": "IPlotChapterNavigation",
+      "qualifiedName": "PlotWeave.Chapters.IPlotChapterNavigation",
+      "kind": "interface",
+      "module": "chapters",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+      "line": 43,
+      "declaration": "public interface IPlotChapterNavigation",
+      "summary": "章节会话使用的UI进入、返回与失败展示接口。",
+      "responsibilities": [
+        "Enter进入播放",
+        "Return回到宿主UI",
+        "ShowFailure失败和可重试状态"
+      ],
+      "sourceSha256": "daa30808ed9484d62bd1551f1456ec493d6022be6fd7da2c2f15c5c7886f14f7",
+      "apis": [
+        {
+          "name": "Enter",
+          "signature": "void Enter(PlotChapterRequest request)",
+          "line": 44,
+          "kind": "method"
+        },
+        {
+          "name": "Return",
+          "signature": "void Return(PlotChapterRequest request, PlotChapterExit reason, bool newlyCompleted)",
+          "line": 44,
+          "kind": "method"
+        },
+        {
+          "name": "ShowFailure",
+          "signature": "void ShowFailure(string message, bool canRetryReport)",
+          "line": 44,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "chapter-host-player",
+      "name": "PlotChapterHostPlayer",
+      "qualifiedName": "PlotWeave.Chapters.PlotChapterHostPlayer",
+      "kind": "class",
+      "module": "chapters",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterHostPlayer.cs",
+      "line": 6,
+      "declaration": "public sealed class PlotChapterHostPlayer : IPlotChapterPlayer, IDisposable",
+      "summary": "把通用Unity播放器适配到章节播放接口。",
+      "responsibilities": [
+        "绑定核心完成/关闭/失败事件",
+        "加载快照与幕布标题",
+        "传递跳过文案与释放绑定"
+      ],
+      "sourceSha256": "ac0459a87d26339ed362f95359f33b99beef022419ae1ac3a8108c59d730b8f2",
+      "apis": [
+        {
+          "name": "Play",
+          "signature": "public void Play(PlotChapterContent content)",
+          "line": 13,
+          "kind": "method"
+        },
+        {
+          "name": "Close",
+          "signature": "public void Close()",
+          "line": 19,
+          "kind": "method"
+        },
+        {
+          "name": "Dispose",
+          "signature": "public void Dispose()",
+          "line": 20,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "campaign-catalog",
+      "name": "PlotCampaignCatalog",
+      "qualifiedName": "PlotWeave.Chapters.PlotCampaignCatalog",
+      "kind": "class",
+      "module": "chapters",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+      "line": 26,
+      "declaration": "[Serializable] public sealed class PlotCampaignCatalog",
+      "summary": "有序章节、小节、解锁条件及奖励预览目录。",
+      "responsibilities": [
+        "目录引用与入口校验",
+        "按配置顺序计算进度/初选",
+        "日期/区域/前置已读解锁"
+      ],
+      "sourceSha256": "0b05c3e08401674d8580eea66634bcc9261b33cd4923b0802ed78f8787b4911d",
+      "apis": [
+        {
+          "name": "Validate",
+          "signature": "public void Validate(PlotPlaybackDocument document=null)",
+          "line": 33,
+          "kind": "method"
+        },
+        {
+          "name": "InitialEpisode",
+          "signature": "public int InitialEpisode(PlotCampaignChapter chapter,IPlotCampaignProgress progress)",
+          "line": 54,
+          "kind": "method"
+        },
+        {
+          "name": "Content",
+          "signature": "public PlotChapterContent Content(PlotPlaybackDocument document,PlotCampaignEpisode episode,bool requiresReport)",
+          "line": 55,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "progress",
+      "name": "PlotCampaignProgressStore",
+      "qualifiedName": "PlotWeave.Chapters.PlotCampaignProgressStore",
+      "kind": "class",
+      "module": "chapters",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+      "line": 13,
+      "declaration": "public sealed class PlotCampaignProgressStore:IPlotCampaignProgress",
+      "summary": "离线进度、首次奖励和结算回执账本。",
+      "responsibilities": [
+        "原子保存与回执幂等",
+        "重看不重复奖励",
+        "按目录顺序导入旧进度"
+      ],
+      "sourceSha256": "2ad35e67d9843b5ee058bf4b14fa7311db374e441d9b8273d8af535b6bcf0b91",
+      "apis": [
+        {
+          "name": "IsRead",
+          "signature": "public bool IsRead(PlotChapterKind kind,int episodeID)",
+          "line": 21,
+          "kind": "method"
+        },
+        {
+          "name": "Commit",
+          "signature": "public PlotChapterAcknowledgement Commit(PlotChapterCompletion completion,IReadOnlyList<PlotCampaignItem> rewards,CancellationToken cancellation)",
+          "line": 25,
+          "kind": "method"
+        },
+        {
+          "name": "ImportLegacyProgress",
+          "signature": "public void ImportLegacyProgress(PlotCampaignCatalog catalog,PlotChapterKind kind,int lastReadID)",
+          "line": 32,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "local-backend",
+      "name": "PlotCampaignLocalBackend",
+      "qualifiedName": "PlotWeave.Chapters.PlotCampaignLocalBackend",
+      "kind": "class",
+      "module": "chapters",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+      "line": 44,
+      "declaration": "public sealed class PlotCampaignLocalBackend:IPlotChapterBackend",
+      "summary": "使用目录与本地账本实现章节加载和结算。",
+      "responsibilities": [
+        "检查小节可读状态",
+        "创建章节内容快照",
+        "一次提交进度/回执/首次奖励"
+      ],
+      "sourceSha256": "2ad35e67d9843b5ee058bf4b14fa7311db374e441d9b8273d8af535b6bcf0b91",
+      "apis": [
+        {
+          "name": "LoadAsync",
+          "signature": "public Task<PlotChapterContent> LoadAsync(PlotChapterRequest request,CancellationToken cancellation)",
+          "line": 51,
+          "kind": "method"
+        },
+        {
+          "name": "CompleteAsync",
+          "signature": "public Task<PlotChapterAcknowledgement> CompleteAsync(PlotChapterCompletion completion,CancellationToken cancellation)",
+          "line": 53,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "campaign-host",
+      "name": "PlotLegacyCampaignHost",
+      "qualifiedName": "PlotWeave.Legacy.PlotLegacyCampaignHost",
+      "kind": "class",
+      "module": "chapters",
+      "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+      "line": 18,
+      "declaration": "[RequireComponent(typeof(PlotPlayerHost))] public sealed class PlotLegacyCampaignHost:MonoBehaviour,IPlotChapterNavigation",
+      "summary": "浏览章节/小节与奖励并驱动章节会话的UGUI宿主。",
+      "responsibilities": [
+        "主线/日常浏览与模板绑定",
+        "过渡/返回/奖励呈现",
+        "结算失败重试/取消UI"
+      ],
+      "sourceSha256": "d2d5eca03239511f13af3b19ddb9c9733c7bf904e8fa35a999ec6562dcbe563f",
+      "apis": [
+        {
+          "name": "Initialize",
+          "signature": "public void Initialize(IPlotChapterBackend backend,IPlotCampaignProgress progress,Func<DateTime> today=null,Func<string,bool> hasArea=null)",
+          "line": 34,
+          "kind": "method"
+        },
+        {
+          "name": "OpenKind",
+          "signature": "public void OpenKind(PlotChapterKind kind)",
+          "line": 63,
+          "kind": "method"
+        },
+        {
+          "name": "BeginSelectedAsync",
+          "signature": "public Task BeginSelectedAsync()",
+          "line": 127,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "network-backend",
+      "name": "PlotLegacyNetworkChapterBackend",
+      "qualifiedName": "PlotWeave.Chapters.PlotLegacyNetworkChapterBackend",
+      "kind": "class",
+      "module": "integration",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs",
+      "line": 21,
+      "declaration": "public sealed class PlotLegacyNetworkChapterBackend:IPlotChapterBackend",
+      "summary": "对接原1503/1504语义的受控远端后端边界。",
+      "responsibilities": [
+        "同步服务端进度",
+        "服务端确认完成与奖励回包",
+        "未知结算结果先同步再重试"
+      ],
+      "sourceSha256": "202772ef3b90004ba7710eca41400164d490aa18c8e198c51b741123ded004e8",
+      "apis": [
+        {
+          "name": "SynchronizeAsync",
+          "signature": "public async Task SynchronizeAsync(CancellationToken cancellation)",
+          "line": 31,
+          "kind": "method"
+        },
+        {
+          "name": "LoadAsync",
+          "signature": "public async Task<PlotChapterContent> LoadAsync(PlotChapterRequest request,CancellationToken cancellation)",
+          "line": 34,
+          "kind": "method"
+        },
+        {
+          "name": "CompleteAsync",
+          "signature": "public Task<PlotChapterAcknowledgement> CompleteAsync(PlotChapterCompletion completion,CancellationToken cancellation)",
+          "line": 36,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "transport",
+      "name": "IPlotLegacyStoryTransport",
+      "qualifiedName": "PlotWeave.Chapters.IPlotLegacyStoryTransport",
+      "kind": "interface",
+      "module": "integration",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs",
+      "line": 12,
+      "declaration": "public interface IPlotLegacyStoryTransport",
+      "summary": "由实际游戏提供登录、发送与回包处理的传输接口。",
+      "responsibilities": [
+        "ReadProgressAsync初始化",
+        "CompleteAsync完成请求",
+        "显式声明服务端幂等支持"
+      ],
+      "sourceSha256": "202772ef3b90004ba7710eca41400164d490aa18c8e198c51b741123ded004e8",
+      "apis": [
+        {
+          "name": "SupportsIdempotentCompletion",
+          "signature": "bool SupportsIdempotentCompletion",
+          "line": 15,
+          "kind": "property"
+        },
+        {
+          "name": "ReadProgressAsync",
+          "signature": "Task<PlotLegacyStoryProgress> ReadProgressAsync(int command,CancellationToken cancellation)",
+          "line": 16,
+          "kind": "method"
+        },
+        {
+          "name": "CompleteAsync",
+          "signature": "Task<PlotLegacyStoryResponse> CompleteAsync(int command,int wireType,int episodeID,string completionID,CancellationToken cancellation)",
+          "line": 18,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "resource-contract",
+      "name": "IPlotResourceLoader",
+      "qualifiedName": "PlotWeave.Playback.IPlotResourceLoader",
+      "kind": "interface",
+      "module": "integration",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerServices.cs",
+      "line": 87,
+      "declaration": "public interface IPlotResourceLoader",
+      "summary": "表现资源的可取消异步加载接口。",
+      "responsibilities": [
+        "按Key加载Sprite",
+        "完成回调传递错误",
+        "IDisposable释放/取消操作"
+      ],
+      "sourceSha256": "6c4c15efab8d34f5b56d1889c8b8c2acac888fef7481a328c9cb18485f159861",
+      "apis": [
+        {
+          "name": "LoadSprite",
+          "signature": "IDisposable LoadSprite(string key, Action<Sprite, string> completed)",
+          "line": 88,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "runtime"
+    },
+    {
+      "id": "editor-preview",
+      "name": "EditorPlotPlayerUI",
+      "qualifiedName": "PlotWeave.Authoring.Playback.EditorPlotPlayerUI",
+      "kind": "class",
+      "module": "authoring",
+      "path": "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs",
+      "line": 14,
+      "declaration": "public sealed class EditorPlotPlayerUI : IDisposable",
+      "summary": "把最新制作快照装入共享播放器，可嵌入原WindowMask。",
+      "responsibilities": [
+        "接收会话快照委托，不保存输入",
+        "内嵌预览装配与关闭",
+        "刷新活动预览并保留自动/暂停状态",
+        "按原设计坐标等比适配预览，窗口变化时重新计算"
+      ],
+      "sourceSha256": "c04f035a3bb95d1dd038f03c6e2c054e9667fb161a2ac0d1e47ad9e16e49162f",
+      "apis": [
+        {
+          "name": "EditorPlotPlayerUI",
+          "signature": "public EditorPlotPlayerUI(PlotAuthoringProject project, Func<PlotPlaybackDocument> snapshot, RectTransform viewport = null)",
+          "line": 35,
+          "kind": "constructor"
+        },
+        {
+          "name": "Play",
+          "signature": "public void Play(int id)",
+          "line": 52,
+          "kind": "method"
+        },
+        {
+          "name": "Refresh",
+          "signature": "public void Refresh(int? entry = null)",
+          "line": 55,
+          "kind": "method"
+        },
+        {
+          "name": "IsPreviewActive",
+          "signature": "public bool IsPreviewActive",
+          "line": 27,
+          "kind": "property"
+        }
+      ],
+      "compileDomain": "editor_assembly",
+      "status": "unverified",
+      "verificationScope": "阶段20当前明列制作流程与最小视口策略通过：4支持尺寸152项检查通过，2小尺寸仅诊断；不表示类的全部方法或277项/构建重跑。",
+      "scopedVerification": {
+        "status": "verified-targeted-scope",
+        "scope": "startup-and-authoring-layout-minimum1024x600",
+        "record": "Doc/Records/Current/制作闭环验收.json",
+        "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+        "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+        "passed": 40,
+        "failed": 0,
+        "minimumViewport": {
+          "width": 1024,
+          "height": 600,
+          "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+        },
+        "supportedSizeCount": 4,
+        "unsupportedSizeCount": 2,
+        "supportedChecksPassed": 152,
+        "totalMatrixChecks": 228,
+        "allSizesPassed": false,
+        "fullSuiteRerun": false,
+        "sourceCheck": {
+          "recordedSourcesMatch": true,
+          "recordedSourceCount": 256,
+          "packageSources": 173,
+          "unrecordedPackageSources": 0
+        },
+        "currentSourceMatches": true
+      },
+      "evidence": [
+        {
+          "path": "Doc/Records/Current/制作闭环验收.json",
+          "label": "本轮明列制作流程通过；支持尺寸与小窗口诊断分别记录"
+        }
+      ]
+    },
+    {
+      "id": "authoring-bootstrap",
+      "name": "PlotAuthoringBootstrap",
+      "qualifiedName": "PlotWeave.Authoring.PlotAuthoringBootstrap",
+      "kind": "static_class",
+      "module": "authoring",
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringBootstrap.cs",
+      "line": 14,
+      "declaration": "public static class PlotAuthoringBootstrap",
+      "summary": "主入口委托制作启动器；通用制作页提供会话、恢复与交换装配。",
+      "responsibilities": [
+        "主入口自动进入制作Play并聚焦Game",
+        "静态菜单只开场景；公开样例仅缺少场景时生成",
+        "初始化通用面板、恢复和当前工作区表格交换"
+      ],
+      "sourceSha256": "5280dfdd11319980299dfc330f2f6f35d37e116ad328e436b3d4d77944dd6bc2",
+      "apis": [
+        {
+          "name": "OpenMigratedEditor",
+          "signature": "public static void OpenMigratedEditor()",
+          "line": 167,
+          "kind": "method"
+        },
+        {
+          "name": "AttachPanels",
+          "signature": "public static void AttachPanels()",
+          "line": 41,
+          "kind": "method"
+        },
+        {
+          "name": "OpenExample",
+          "signature": "public static void OpenExample()",
+          "line": 158,
+          "kind": "method"
+        },
+        {
+          "name": "EnsureExampleScene",
+          "signature": "public static void EnsureExampleScene()",
+          "line": 162,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "editor_assembly",
+      "status": "unverified",
+      "verificationScope": "阶段19源码已变更，等待本轮Unity验收；历史277项不能直接沿用",
+      "scopedVerification": {
+        "status": "verified-targeted-scope",
+        "record": "Doc/Records/Current/制作闭环验收.json",
+        "testRunId": "89249f7ecbc94392a2b07bedb4d3ac5e",
+        "workflowRunId": "8d52e2003ea246bdbc728e657192a242",
+        "passed": 23,
+        "failed": 0,
+        "fullSuiteRerun": false,
+        "scope": "当前工作副本输入、内嵌试跑、刷新、停靠和等比适配；表格仅同工作区入口回调替身",
+        "currentSourceMatches": false,
+        "scopeNote": "阶段19历史范围保留；阶段20已改源码，本轮Native待归档。"
+      }
+    },
+    {
+      "id": "legacy-authoring-bootstrap",
+      "name": "PlotLegacyAuthoringBootstrap",
+      "qualifiedName": "PlotWeave.Legacy.Editor.PlotLegacyAuthoringBootstrap",
+      "kind": "static_class",
+      "module": "authoring",
+      "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+      "line": 12,
+      "declaration": "public static class PlotLegacyAuthoringBootstrap",
+      "summary": "把原制作输入宿主接到工作副本预览和当前工作区交换。",
+      "responsibilities": [
+        "初始化原制作UI的共享编辑事务",
+        "把WindowMask交给内嵌播放器",
+        "接线播放、刷新、关闭及表格交换回调"
+      ],
+      "sourceSha256": "e2c6ad67e0271a9074fd80ee96b25b4b9ced722e36a03b716a0dbfbefeacef42",
+      "apis": [],
+      "compileDomain": "editor_assembly",
+      "status": "unverified",
+      "verificationScope": "阶段19源码已变更，等待本轮Unity验收；历史277项不能直接沿用",
+      "scopedVerification": {
+        "status": "verified-targeted-scope",
+        "record": "Doc/Records/Current/制作闭环验收.json",
+        "testRunId": "89249f7ecbc94392a2b07bedb4d3ac5e",
+        "workflowRunId": "8d52e2003ea246bdbc728e657192a242",
+        "passed": 23,
+        "failed": 0,
+        "fullSuiteRerun": false,
+        "scope": "当前工作副本输入、内嵌试跑、刷新、停靠和等比适配；表格仅同工作区入口回调替身",
+        "currentSourceMatches": false,
+        "scopeNote": "阶段19历史范围保留；阶段20已改源码，本轮Native待归档。"
+      }
+    },
+    {
+      "id": "excel-window",
+      "name": "PlotExcelWindow",
+      "qualifiedName": "PlotWeave.Authoring.Excel.PlotExcelWindow",
+      "kind": "class",
+      "module": "exchange",
+      "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs",
+      "line": 8,
+      "declaration": "public sealed class PlotExcelWindow : EditorWindow",
+      "summary": "显式六表交换窗口，可由制作页绑定当前工作区。",
+      "responsibilities": [
+        "工作区绑定及导出/检查/提交入口",
+        "交换前处理制作页未保存修改",
+        "提交成功后通知制作页重新读取"
+      ],
+      "sourceSha256": "d9dd8f1616ccbed64361155e89ef375ab02ae849e832baac16dd5b95df88c235",
+      "apis": [
+        {
+          "name": "OpenFor",
+          "signature": "public static PlotExcelWindow OpenFor(PlotAuthoringProject project, Func<bool> resolveEdits = null, Action afterImport = null)",
+          "line": 20,
+          "kind": "method"
+        },
+        {
+          "name": "Project",
+          "signature": "public PlotAuthoringProject Project",
+          "line": 17,
+          "kind": "property"
+        }
+      ],
+      "compileDomain": "editor_assembly",
+      "status": "unverified",
+      "verificationScope": "阶段19源码已变更，等待本轮Unity验收；历史277项不能直接沿用",
+      "scopedVerification": {
+        "status": "verified-targeted-scope",
+        "record": "Doc/Records/Current/制作闭环验收.json",
+        "testRunId": "89249f7ecbc94392a2b07bedb4d3ac5e",
+        "workflowRunId": "8d52e2003ea246bdbc728e657192a242",
+        "passed": 23,
+        "failed": 0,
+        "fullSuiteRerun": false,
+        "scope": "原UI按钮仅触发同工作区回调替身；真实窗口导出/导入未在本轮执行"
+      }
+    },
+    {
+      "id": "authoring-startup",
+      "name": "PlotAuthoringStartup",
+      "qualifiedName": "PlotWeave.Authoring.PlotAuthoringStartup",
+      "kind": "static_class",
+      "module": "authoring",
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringStartup.cs",
+      "line": 17,
+      "declaration": "public static class PlotAuthoringStartup",
+      "summary": "把主菜单启动转换为可用制作Play状态，并保留静态场景入口。",
+      "responsibilities": [
+        "原独立制作场景的使用意图沿用；自动Play/聚焦为本轮新增",
+        "取消或无关Play不切场景；已Ready会话只聚焦Game",
+        "临时制作起始场景设置及恢复；显式静态菜单启动提示"
+      ],
+      "sourceSha256": "0a6de7a39c48a43acb3883545499c8483a1ea49810f1a817a3a056b4946c0317",
+      "apis": [
+        {
+          "name": "Start",
+          "signature": "public static void Start()",
+          "line": 67,
+          "kind": "method"
+        },
+        {
+          "name": "Decide",
+          "signature": "public static PlotAuthoringStartupDecision Decide(bool isPlaying, bool transitioning, bool hasAuthoringSession, bool sceneChangeAccepted)",
+          "line": 27,
+          "kind": "method"
+        },
+        {
+          "name": "EnterCurrentScene",
+          "signature": "public static void EnterCurrentScene()",
+          "line": 77,
+          "kind": "method"
+        },
+        {
+          "name": "OpenSceneOnly",
+          "signature": "public static void OpenSceneOnly(string scene, Action prepareIfMissing = null)",
+          "line": 85,
+          "kind": "method"
+        },
+        {
+          "name": "FocusGame",
+          "signature": "public static void FocusGame()",
+          "line": 142,
+          "kind": "method"
+        }
+      ],
+      "compileDomain": "editor_assembly",
+      "designOrigin": "new-ai-assisted-extension",
+      "implementationOrigin": "new-ai-assisted-extension",
+      "status": "unverified",
+      "verificationScope": "阶段20当前明列制作流程与最小视口策略通过：4支持尺寸152项检查通过，2小尺寸仅诊断；不表示类的全部方法或277项/构建重跑。",
+      "scopedVerification": {
+        "status": "verified-targeted-scope",
+        "scope": "startup-and-authoring-layout-minimum1024x600",
+        "record": "Doc/Records/Current/制作闭环验收.json",
+        "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+        "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+        "passed": 40,
+        "failed": 0,
+        "minimumViewport": {
+          "width": 1024,
+          "height": 600,
+          "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+        },
+        "supportedSizeCount": 4,
+        "unsupportedSizeCount": 2,
+        "supportedChecksPassed": 152,
+        "totalMatrixChecks": 228,
+        "allSizesPassed": false,
+        "fullSuiteRerun": false,
+        "sourceCheck": {
+          "recordedSourcesMatch": true,
+          "recordedSourceCount": 256,
+          "packageSources": 173,
+          "unrecordedPackageSources": 0
+        },
+        "currentSourceMatches": true
+      },
+      "evidence": [
+        {
+          "path": "Doc/Records/Current/制作闭环验收.json",
+          "label": "本轮明列制作流程通过；支持尺寸与小窗口诊断分别记录"
+        }
+      ]
+    },
+    {
+      "id": "authoring-popup-layout",
+      "name": "PlotAuthoringPopupLayout",
+      "qualifiedName": "PlotWeave.Legacy.Editor.PlotAuthoringPopupLayout",
+      "kind": "class",
+      "module": "authoring",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPopupLayout.cs",
+      "line": 11,
+      "declaration": "public sealed class PlotAuthoringPopupLayout : MonoBehaviour",
+      "summary": "在原参数/列表层级内提升并约束当前弹层，避免遮挡与越界。",
+      "responsibilities": [
+        "继承原参数/列表弹层输入职责；可见边界和关闭按钮适配为本轮新增",
+        "不重挂原控件层级，结合面板/祖先Mask/工具栏计算边界",
+        "刷新时约束弹层及关闭按钮，关闭恢复原缩放和位置"
+      ],
+      "sourceSha256": "df2325f6d7352e6f7c2882142be30033d97d472989f8993b68fb2f7a752c92bf",
+      "apis": [
+        {
+          "name": "Initialize",
+          "signature": "public void Initialize(Canvas canvas, RectTransform panel)",
+          "line": 25,
+          "kind": "method"
+        },
+        {
+          "name": "Toggle",
+          "signature": "public void Toggle(RectTransform popup)",
+          "line": 33,
+          "kind": "method"
+        },
+        {
+          "name": "Open",
+          "signature": "public void Open(RectTransform popup)",
+          "line": 35,
+          "kind": "method"
+        },
+        {
+          "name": "Close",
+          "signature": "public void Close()",
+          "line": 50,
+          "kind": "method"
+        },
+        {
+          "name": "Refresh",
+          "signature": "public void Refresh()",
+          "line": 75,
+          "kind": "method"
+        },
+        {
+          "name": "ActivePopup",
+          "signature": "public RectTransform ActivePopup",
+          "line": 23,
+          "kind": "property"
+        }
+      ],
+      "compileDomain": "editor_only",
+      "designOrigin": "new-ai-assisted-extension",
+      "implementationOrigin": "new-ai-assisted-extension",
+      "status": "unverified",
+      "verificationScope": "阶段20当前明列制作流程与最小视口策略通过：4支持尺寸152项检查通过，2小尺寸仅诊断；不表示类的全部方法或277项/构建重跑。",
+      "scopedVerification": {
+        "status": "verified-targeted-scope",
+        "scope": "startup-and-authoring-layout-minimum1024x600",
+        "record": "Doc/Records/Current/制作闭环验收.json",
+        "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+        "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+        "passed": 40,
+        "failed": 0,
+        "minimumViewport": {
+          "width": 1024,
+          "height": 600,
+          "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+        },
+        "supportedSizeCount": 4,
+        "unsupportedSizeCount": 2,
+        "supportedChecksPassed": 152,
+        "totalMatrixChecks": 228,
+        "allSizesPassed": false,
+        "fullSuiteRerun": false,
+        "sourceCheck": {
+          "recordedSourcesMatch": true,
+          "recordedSourceCount": 256,
+          "packageSources": 173,
+          "unrecordedPackageSources": 0
+        },
+        "currentSourceMatches": true
+      },
+      "evidence": [
+        {
+          "path": "Doc/Records/Current/制作闭环验收.json",
+          "label": "本轮明列制作流程通过；支持尺寸与小窗口诊断分别记录"
+        }
+      ]
+    },
+    {
+      "id": "authoring-viewport-layout",
+      "name": "PlotAuthoringViewportLayout",
+      "qualifiedName": "PlotWeave.Legacy.Editor.PlotAuthoringViewportLayout",
+      "kind": "class",
+      "module": "authoring",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringViewportLayout.cs",
+      "line": 12,
+      "declaration": "public sealed class PlotAuthoringViewportLayout : MonoBehaviour",
+      "summary": "协调制作工具栏、节点列表、输入停靠与小窗口提示。",
+      "responsibilities": [
+        "沿用原输入与预览职责；物理像素密度保护和小窗口策略为本轮新增",
+        "节点行高/字号与工具栏随Canvas缩放调整，节点列表仍虚拟化",
+        "窗口低于1024×600显示建议提醒；面板变化刷新输入停靠",
+        "按3200×1500参考坐标转换原中心锚点，保留底栏和右栏位置",
+        "保护起点/播放/刷新和KEY控件密度；空预览显示中性操作提示"
+      ],
+      "sourceSha256": "4fff95029c5d60a5b0b571384856b3b24763ce09b1f96a5b8c9ae23df40af4a9",
+      "apis": [
+        {
+          "name": "Install",
+          "signature": "public static void Install(PlotLegacyAuthoringHost host)",
+          "line": 37,
+          "kind": "method"
+        },
+        {
+          "name": "UpdateLayout",
+          "signature": "public void UpdateLayout()",
+          "line": 99,
+          "kind": "method"
+        },
+        {
+          "name": "IsViewportTooSmall",
+          "signature": "public bool IsViewportTooSmall",
+          "line": 15,
+          "kind": "property"
+        }
+      ],
+      "compileDomain": "editor_only",
+      "designOrigin": "new-ai-assisted-extension",
+      "implementationOrigin": "new-ai-assisted-extension",
+      "status": "unverified",
+      "verificationScope": "阶段20当前明列制作流程与最小视口策略通过：4支持尺寸152项检查通过，2小尺寸仅诊断；不表示类的全部方法或277项/构建重跑。",
+      "evidence": [
+        {
+          "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeView.cs",
+          "line": 37,
+          "label": "PlotNodeView.ConfigureDisplay保留可见区复用，按新行高保持逻辑滚动首行。"
+        },
+        {
+          "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringViewportLayout.cs",
+          "line": 138,
+          "label": "AnchorFromReference按原3200×1500坐标换算中心锚点偏移。"
+        },
+        {
+          "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringViewportLayout.cs",
+          "line": 145,
+          "label": "StretchRightColumn保留右栏宽度并随面板高度拉伸。"
+        },
+        {
+          "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringViewportLayout.cs",
+          "line": 153,
+          "label": "LayoutInputControls调整播放、刷新、起点及KEY控件密度。"
+        },
+        {
+          "path": "Doc/Records/Current/制作闭环验收.json",
+          "label": "本轮明列制作流程通过；支持尺寸与小窗口诊断分别记录"
+        }
+      ],
+      "scopedVerification": {
+        "status": "verified-targeted-scope",
+        "scope": "startup-and-authoring-layout-minimum1024x600",
+        "record": "Doc/Records/Current/制作闭环验收.json",
+        "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+        "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+        "passed": 40,
+        "failed": 0,
+        "minimumViewport": {
+          "width": 1024,
+          "height": 600,
+          "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+        },
+        "supportedSizeCount": 4,
+        "unsupportedSizeCount": 2,
+        "supportedChecksPassed": 152,
+        "totalMatrixChecks": 228,
+        "allSizesPassed": false,
+        "fullSuiteRerun": false,
+        "sourceCheck": {
+          "recordedSourcesMatch": true,
+          "recordedSourceCount": 256,
+          "packageSources": 173,
+          "unrecordedPackageSources": 0
+        },
+        "currentSourceMatches": true
+      }
+    },
+    {
+      "id": "node-view",
+      "name": "PlotNodeView",
+      "qualifiedName": "PlotWeave.Authoring.UI.PlotNodeView",
+      "kind": "class",
+      "module": "authoring",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeView.cs",
+      "line": 12,
+      "declaration": "public sealed class PlotNodeView : MonoBehaviour",
+      "summary": "按可见区复用节点按钮，并支持密度调整时保持逻辑滚动位置。",
+      "responsibilities": [
+        "原节点选择职责沿用；按钮池与可见区复用为现迁移实现",
+        "以工作区节点列表驱动滚动内容和可见按钮绑定",
+        "ConfigureDisplay调整行高/字号并保留原逻辑首行，不取消虚拟化"
+      ],
+      "sourceSha256": "c8c8f75b2419947fbdeaeafcf64bffc13daa4f21f76e2d935af6f9d06c39b410",
+      "apis": [
+        {
+          "name": "Initialize",
+          "signature": "public void Initialize(ScrollRect scroll, string idColumn, Action<int> select,Func<Transform,Button> factory=null)",
+          "line": 27,
+          "kind": "method"
+        },
+        {
+          "name": "SetRows",
+          "signature": "public void SetRows(List<PlotAtomRowData> rows, int selected)",
+          "line": 32,
+          "kind": "method"
+        },
+        {
+          "name": "ConfigureDisplay",
+          "signature": "public void ConfigureDisplay(float rowHeight, float minimumFont)",
+          "line": 37,
+          "kind": "method"
+        },
+        {
+          "name": "RefreshVisible",
+          "signature": "public void RefreshVisible()",
+          "line": 54,
+          "kind": "method"
+        },
+        {
+          "name": "PoolSize",
+          "signature": "public int PoolSize",
+          "line": 25,
+          "kind": "property"
+        },
+        {
+          "name": "ActiveCount",
+          "signature": "public int ActiveCount",
+          "line": 26,
+          "kind": "property"
+        }
+      ],
+      "compileDomain": "editor_only",
+      "designOrigin": "original-user-concept",
+      "implementationOrigin": "new-ai-assisted-extension",
+      "status": "unverified",
+      "ownershipNote": "节点选择/输入职责沿用原版；可见区按钮池为现迁移实现，阶段20的密度与逻辑滚动保持为本轮协作新增，不据此推断原版已有相同池化算法。",
+      "verificationScope": "阶段20当前明列制作流程与最小视口策略通过：4支持尺寸152项检查通过，2小尺寸仅诊断；不表示类的全部方法或277项/构建重跑。",
+      "scopedVerification": {
+        "status": "verified-targeted-scope",
+        "scope": "startup-and-authoring-layout-minimum1024x600",
+        "record": "Doc/Records/Current/制作闭环验收.json",
+        "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+        "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+        "passed": 40,
+        "failed": 0,
+        "minimumViewport": {
+          "width": 1024,
+          "height": 600,
+          "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+        },
+        "supportedSizeCount": 4,
+        "unsupportedSizeCount": 2,
+        "supportedChecksPassed": 152,
+        "totalMatrixChecks": 228,
+        "allSizesPassed": false,
+        "fullSuiteRerun": false,
+        "sourceCheck": {
+          "recordedSourcesMatch": true,
+          "recordedSourceCount": 256,
+          "packageSources": 173,
+          "unrecordedPackageSources": 0
+        },
+        "currentSourceMatches": true
+      },
+      "evidence": [
+        {
+          "path": "Doc/Records/Current/制作闭环验收.json",
+          "label": "本轮明列制作流程通过；支持尺寸与小窗口诊断分别记录"
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "from": "bean",
+      "to": "enum",
+      "kind": "uses",
+      "rationale": "Bean定义持有枚举类型资产引用。",
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs",
+      "line": 31,
+      "evidence": "PlotEnumAsset parameterEnums"
+    },
+    {
+      "from": "header",
+      "to": "enum",
+      "kind": "uses",
+      "rationale": "表头持有统一枚举定义。",
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs",
+      "line": 25,
+      "evidence": "PlotEnumAsset parameterEnums"
+    },
+    {
+      "from": "header",
+      "to": "bean",
+      "kind": "uses",
+      "rationale": "表头的自定义Bean列引用Bean定义。",
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs",
+      "line": 26,
+      "evidence": "PlotEventTypeAsset parameterBean"
+    },
+    {
+      "from": "row",
+      "to": "header",
+      "kind": "uses",
+      "rationale": "行数据持有自己的表头引用。",
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomRowData.cs",
+      "line": 19,
+      "evidence": "PlotAtomDataHeaderAsset headerDefinition"
+    },
+    {
+      "from": "header",
+      "to": "bean-layout",
+      "kind": "uses",
+      "rationale": "按共同叶布局同步自定义Bean成员数量。",
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs",
+      "line": 55,
+      "evidence": "PlotBeanLayout.Leaves"
+    },
+    {
+      "from": "project",
+      "to": "header",
+      "kind": "uses",
+      "rationale": "工作区关联节点表头。",
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAuthoringProject.cs",
+      "line": 8,
+      "evidence": "PlotAtomDataHeaderAsset header"
+    },
+    {
+      "from": "editing-session",
+      "to": "authoring-store",
+      "kind": "uses",
+      "rationale": "会话只经资产存取接口保存/管理节点。",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+      "line": 32,
+      "evidence": "IPlotAuthoringStore Store"
+    },
+    {
+      "from": "editing-session",
+      "to": "row",
+      "kind": "uses",
+      "rationale": "会话维护当前资产与隔离的工作行。",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+      "line": 34,
+      "evidence": "PlotAtomRowData WorkingRow"
+    },
+    {
+      "from": "editor-manager",
+      "to": "authoring-store",
+      "kind": "implements",
+      "rationale": "AssetDatabase管理器显式实现制作存取接口。",
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+      "line": 13,
+      "evidence": "class PlotEditorManager : IPlotAuthoringStore"
+    },
+    {
+      "from": "editor-manager",
+      "to": "project",
+      "kind": "uses",
+      "rationale": "资产管理器持有制作工作区。",
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+      "line": 15,
+      "evidence": "PlotAuthoringProject Project"
+    },
+    {
+      "from": "authoring-panel",
+      "to": "editing-session",
+      "kind": "uses",
+      "rationale": "通用UGUI面板创建独立编辑会话。",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+      "line": 42,
+      "evidence": "new PlotEditingSession(store)"
+    },
+    {
+      "from": "legacy-authoring",
+      "to": "editing-session",
+      "kind": "uses",
+      "rationale": "原布局宿主与通用面板共享编辑会话。",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+      "line": 61,
+      "evidence": "new PlotEditingSession(store)"
+    },
+    {
+      "from": "legacy-authoring",
+      "to": "bean-layout",
+      "kind": "uses",
+      "rationale": "原控件按嵌套Bean共同叶布局创建。",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+      "line": 254,
+      "evidence": "PlotBeanLayout.Leaves"
+    },
+    {
+      "from": "generator",
+      "to": "header",
+      "kind": "uses",
+      "rationale": "生成器读取表头定义来生成接口与双端适配器。",
+      "path": "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs",
+      "line": 82,
+      "evidence": "GenerateAllDataStructures(PlotAtomDataHeaderAsset header"
+    },
+    {
+      "from": "generator",
+      "to": "generated-bundle",
+      "kind": "produces",
+      "rationale": "生成结果是文件集合，不是当前程序集中的动态继承。",
+      "path": "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs",
+      "line": 82,
+      "evidence": "public static PlotGeneratedBundle GenerateAllDataStructures"
+    },
+    {
+      "from": "data-adapter",
+      "to": "value-source",
+      "kind": "uses",
+      "rationale": "共同适配器基类持有统一值读口。",
+      "path": "Packages/com.plotweave.core/Runtime/DataContracts/PlotValueSources.cs",
+      "line": 45,
+      "evidence": "readonly IPlotValueSource Source"
+    },
+    {
+      "from": "excel-exchange",
+      "to": "project",
+      "kind": "uses",
+      "rationale": "六表导出消费完整制作工作区。",
+      "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelExchange.cs",
+      "line": 23,
+      "evidence": "Export(PlotAuthoringProject project"
+    },
+    {
+      "from": "excel-exchange",
+      "to": "import-plan",
+      "kind": "produces",
+      "rationale": "PlanImport创建可审查的导入计划。",
+      "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelExchange.cs",
+      "line": 47,
+      "evidence": "new PlotExcelImportPlan(project, folder)"
+    },
+    {
+      "from": "excel-exchange",
+      "to": "editor-manager",
+      "kind": "uses",
+      "rationale": "导出通过资产管理器读取实际节点。",
+      "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelExchange.cs",
+      "line": 27,
+      "evidence": "new PlotEditorManager(project)"
+    },
+    {
+      "from": "luban-pipeline",
+      "to": "excel-exchange",
+      "kind": "uses",
+      "rationale": "Luban编译运行先导出独立六表输入。",
+      "path": "Packages/com.plotweave.core/Editor/Luban/PlotLubanPipeline.cs",
+      "line": 37,
+      "evidence": "PlotExcelExchange.Export(profile.project, raw)"
+    },
+    {
+      "from": "playback-compiler",
+      "to": "project",
+      "kind": "uses",
+      "rationale": "作者播放编译器读取制作工作区。",
+      "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackCompiler.cs",
+      "line": 18,
+      "evidence": "Compile(PlotAuthoringProject project)"
+    },
+    {
+      "from": "playback-compiler",
+      "to": "document",
+      "kind": "produces",
+      "rationale": "编译产生不依赖AssetDatabase的播放快照。",
+      "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackCompiler.cs",
+      "line": 78,
+      "evidence": "new PlotPlaybackDocument()"
+    },
+    {
+      "from": "luban-reader",
+      "to": "document",
+      "kind": "produces",
+      "rationale": "已解码Luban表经读取器汇入共同快照。",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotLubanTableReader.cs",
+      "line": 32,
+      "evidence": "var document = new PlotPlaybackDocument()"
+    },
+    {
+      "from": "luban-reader",
+      "to": "value-source",
+      "kind": "uses",
+      "rationale": "Luban文本行通过统一读口读取字段。",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotLubanTableReader.cs",
+      "line": 25,
+      "evidence": "public static IPlotValueSource TextValueSource"
+    },
+    {
+      "from": "core",
+      "to": "player",
+      "kind": "implements",
+      "rationale": "播放核心显式实现控制契约。",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+      "line": 34,
+      "evidence": "class PlotPlayerCore : IPlotPlayer"
+    },
+    {
+      "from": "core",
+      "to": "provider-contract",
+      "kind": "uses",
+      "rationale": "核心通过注入的数据服务读取节点/文本。",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+      "line": 36,
+      "evidence": "readonly IPlotPlayerDataProvider _data"
+    },
+    {
+      "from": "core",
+      "to": "view-contract",
+      "kind": "uses",
+      "rationale": "核心调用表现契约而非具体UGUI类。",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+      "line": 42,
+      "evidence": "IPlotPlayerView _view"
+    },
+    {
+      "from": "core",
+      "to": "resource-contract",
+      "kind": "uses",
+      "rationale": "核心接收资源服务并交给表现初始化。",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+      "line": 37,
+      "evidence": "readonly IPlotResourceLoader _resources"
+    },
+    {
+      "from": "core",
+      "to": "events",
+      "kind": "uses",
+      "rationale": "核心持有事件轨道调度器。",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+      "line": 51,
+      "evidence": "PlotEventScheduler _events"
+    },
+    {
+      "from": "view",
+      "to": "view-contract",
+      "kind": "implements",
+      "rationale": "UGUI/TMP表现显式实现核心的视图契约。",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.cs",
+      "line": 11,
+      "evidence": "IPlotPlayerView"
+    },
+    {
+      "from": "host",
+      "to": "core",
+      "kind": "uses",
+      "rationale": "Unity宿主装配并持有具体播放核心。",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerHost.cs",
+      "line": 43,
+      "evidence": "Core = new PlotPlayerCore("
+    },
+    {
+      "from": "host",
+      "to": "view",
+      "kind": "uses",
+      "rationale": "Unity宿主取得或创建实际表现组件。",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerHost.cs",
+      "line": 26,
+      "evidence": "public PlotPlayerView View"
+    },
+    {
+      "from": "host",
+      "to": "document",
+      "kind": "uses",
+      "rationale": "Asset/JSON最终统一进入快照初始化入口。",
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerHost.cs",
+      "line": 35,
+      "evidence": "Initialize(PlotPlaybackDocument data"
+    },
+    {
+      "from": "chapter-session",
+      "to": "chapter-backend",
+      "kind": "uses",
+      "rationale": "章节会话注入内容加载与报告后端。",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+      "line": 49,
+      "evidence": "readonly IPlotChapterBackend _backend"
+    },
+    {
+      "from": "chapter-session",
+      "to": "chapter-player",
+      "kind": "uses",
+      "rationale": "章节会话只依赖章节播放器接口。",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+      "line": 49,
+      "evidence": "readonly IPlotChapterPlayer _player"
+    },
+    {
+      "from": "chapter-session",
+      "to": "chapter-navigation",
+      "kind": "uses",
+      "rationale": "章节会话通过导航接口进入/返回/报错。",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+      "line": 49,
+      "evidence": "readonly IPlotChapterNavigation _navigation"
+    },
+    {
+      "from": "chapter-host-player",
+      "to": "chapter-player",
+      "kind": "implements",
+      "rationale": "宿主桥显式实现章节播放接口。",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterHostPlayer.cs",
+      "line": 6,
+      "evidence": "class PlotChapterHostPlayer : IPlotChapterPlayer"
+    },
+    {
+      "from": "chapter-host-player",
+      "to": "host",
+      "kind": "uses",
+      "rationale": "章节播放桥转发到Unity播放宿主。",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterHostPlayer.cs",
+      "line": 8,
+      "evidence": "readonly PlotPlayerHost _host"
+    },
+    {
+      "from": "local-backend",
+      "to": "chapter-backend",
+      "kind": "implements",
+      "rationale": "本地目录/账本后端实现统一章节后端。",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+      "line": 44,
+      "evidence": "class PlotCampaignLocalBackend:IPlotChapterBackend"
+    },
+    {
+      "from": "local-backend",
+      "to": "campaign-catalog",
+      "kind": "uses",
+      "rationale": "本地后端使用目录验证可读状态与奖励预览。",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+      "line": 46,
+      "evidence": "readonly PlotCampaignCatalog _catalog"
+    },
+    {
+      "from": "local-backend",
+      "to": "progress",
+      "kind": "uses",
+      "rationale": "本地完成报告提交进度/回执/首次奖励账本。",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+      "line": 54,
+      "evidence": "_progress.Commit(completion"
+    },
+    {
+      "from": "campaign-host",
+      "to": "chapter-navigation",
+      "kind": "implements",
+      "rationale": "章节浏览宿主实现进入/返回/失败UI接口。",
+      "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+      "line": 18,
+      "evidence": "MonoBehaviour,IPlotChapterNavigation"
+    },
+    {
+      "from": "campaign-host",
+      "to": "chapter-session",
+      "kind": "uses",
+      "rationale": "浏览宿主装配后端、播放桥和自身导航进入会话。",
+      "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+      "line": 38,
+      "evidence": "new PlotChapterSession(backend,_player,this)"
+    },
+    {
+      "from": "campaign-host",
+      "to": "chapter-host-player",
+      "kind": "uses",
+      "rationale": "浏览宿主用桥适配通用Unity播放器。",
+      "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+      "line": 38,
+      "evidence": "new PlotChapterHostPlayer(_host)"
+    },
+    {
+      "from": "campaign-host",
+      "to": "local-backend",
+      "kind": "uses",
+      "rationale": "默认独立演示使用离线目录与账本后端。",
+      "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+      "line": 33,
+      "evidence": "new PlotCampaignLocalBackend("
+    },
+    {
+      "from": "network-backend",
+      "to": "chapter-backend",
+      "kind": "implements",
+      "rationale": "远端接入边界实现相同章节后端。",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs",
+      "line": 21,
+      "evidence": "class PlotLegacyNetworkChapterBackend:IPlotChapterBackend"
+    },
+    {
+      "from": "network-backend",
+      "to": "transport",
+      "kind": "uses",
+      "rationale": "实际游戏需提供传输接口实现；此处不冒充已接生产。",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs",
+      "line": 25,
+      "evidence": "readonly IPlotLegacyStoryTransport _transport"
+    },
+    {
+      "from": "network-backend",
+      "to": "progress",
+      "kind": "uses",
+      "rationale": "远端确认后更新本地进度镜像。",
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs",
+      "line": 25,
+      "evidence": "readonly PlotCampaignProgressStore _mirror"
+    },
+    {
+      "from": "playback-compiler",
+      "to": "editing-session",
+      "kind": "uses",
+      "rationale": "当前输入编译重载读取会话的工作节点与文本副本；不触发保存。",
+      "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackCompiler.cs",
+      "line": 25,
+      "evidence": "Compile(PlotEditingSession session)"
+    },
+    {
+      "from": "editor-preview",
+      "to": "host",
+      "kind": "produces",
+      "rationale": "创建同一PlotPlayerHost承载工作快照，可放进制作预览区域。",
+      "path": "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs",
+      "line": 72,
+      "evidence": "typeof(RectTransform), typeof(PlotPlayerHost)"
+    },
+    {
+      "from": "editor-preview",
+      "to": "document",
+      "kind": "uses",
+      "rationale": "通过快照委托获取最新播放文档，避免依赖已保存缓存。",
+      "path": "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs",
+      "line": 17,
+      "evidence": "private readonly Func<PlotPlaybackDocument> _snapshot;"
+    },
+    {
+      "from": "legacy-authoring-bootstrap",
+      "to": "legacy-authoring",
+      "kind": "calls",
+      "rationale": "装配会话与全部预览/交换入口后才标Ready，失败清理并停止本实例重试。",
+      "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+      "line": 22,
+      "evidence": [
+        {
+          "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+          "line": 22,
+          "label": "host.Initialize(new PlotEditorManager(host.project)"
+        },
+        {
+          "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+          "line": 29,
+          "label": "host.CompleteInitialization();"
+        },
+        {
+          "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+          "line": 34,
+          "label": "host.AbortInitialization(error);"
+        }
+      ]
+    },
+    {
+      "from": "legacy-authoring-bootstrap",
+      "to": "editor-preview",
+      "kind": "produces",
+      "rationale": "用同一会话快照与原PreviewViewport构造内嵌播放器。",
+      "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+      "line": 23,
+      "evidence": "player = new EditorPlotPlayerUI(host.project"
+    },
+    {
+      "from": "legacy-authoring-bootstrap",
+      "to": "playback-compiler",
+      "kind": "calls",
+      "rationale": "播放与刷新读取当前工作副本；不要求先写回资产。",
+      "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+      "line": 26,
+      "evidence": "host.ValidatePreview = () => PlotPlaybackCompiler.Compile(host.Session);"
+    },
+    {
+      "from": "legacy-authoring-bootstrap",
+      "to": "excel-window",
+      "kind": "calls",
+      "rationale": "将原制作页当前工作区及未保存处理/导入重载回调绑定到交换窗口。",
+      "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+      "line": 28,
+      "evidence": "host.OpenDataExchange = () => PlotExcelWindow.OpenFor"
+    },
+    {
+      "from": "authoring-bootstrap",
+      "to": "authoring-panel",
+      "kind": "calls",
+      "rationale": "编辑器进入Play时初始化通用制作面板。",
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringBootstrap.cs",
+      "line": 48,
+      "evidence": "panel.Initialize(new PlotEditorManager(panel.project)"
+    },
+    {
+      "from": "authoring-bootstrap",
+      "to": "excel-window",
+      "kind": "calls",
+      "rationale": "通用制作页的表格按钮同样绑定当前工作区。",
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringBootstrap.cs",
+      "line": 52,
+      "evidence": "panel.BindDataExchange(() => PlotExcelWindow.OpenFor"
+    },
+    {
+      "from": "excel-window",
+      "to": "project",
+      "kind": "uses",
+      "rationale": "OpenFor显式绑定当前制作工作区；独立菜单仍需手动选择。",
+      "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs",
+      "line": 17,
+      "evidence": "public PlotAuthoringProject Project => _project;"
+    },
+    {
+      "from": "excel-window",
+      "to": "excel-exchange",
+      "kind": "calls",
+      "rationale": "通过显式导出与检查入口调用六表交换，不逐字同步Excel。",
+      "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs",
+      "line": 51,
+      "evidence": "PlotExcelExchange.Export(_project, _folder);"
+    },
+    {
+      "from": "excel-window",
+      "to": "import-plan",
+      "kind": "uses",
+      "rationale": "应用已检查计划前处理未保存输入，提交后重载制作页。",
+      "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs",
+      "line": 58,
+      "evidence": "_plan.Commit(\"Library/PlotWeaveRecovery/ExcelImportBackups\")"
+    },
+    {
+      "from": "authoring-bootstrap",
+      "to": "authoring-startup",
+      "kind": "calls",
+      "rationale": "主菜单交给统一启动状态机；静态菜单另行只打开场景。",
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringBootstrap.cs",
+      "line": 167,
+      "evidence": "public static void OpenMigratedEditor() => PlotAuthoringStartup.Start();"
+    },
+    {
+      "from": "authoring-startup",
+      "to": "legacy-authoring",
+      "kind": "uses",
+      "rationale": "只有完整初始化Ready的原制作会话才可直接聚焦。",
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringStartup.cs",
+      "line": 35,
+      "evidence": ".Any(h => h != null && h.gameObject.scene.IsValid() && h.InitializationReady)"
+    },
+    {
+      "from": "authoring-startup",
+      "to": "authoring-panel",
+      "kind": "uses",
+      "rationale": "公开通用制作页已有会话时沿用并聚焦Game。",
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringStartup.cs",
+      "line": 37,
+      "evidence": ".Any(h => h != null && h.gameObject.scene.IsValid() && h.Session != null);"
+    },
+    {
+      "from": "authoring-startup",
+      "to": "authoring-bootstrap",
+      "kind": "calls",
+      "rationale": "没有本地场景时确保公开场景存在，已有场景不重建。",
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringStartup.cs",
+      "line": 72,
+      "evidence": "PlotAuthoringBootstrap.EnsureExampleScene();"
+    },
+    {
+      "from": "legacy-authoring",
+      "to": "authoring-popup-layout",
+      "kind": "contains",
+      "rationale": "原输入宿主持有弹层适配器并使用同一原控件层级。",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+      "line": 43,
+      "evidence": "private PlotAuthoringPopupLayout _popups;"
+    },
+    {
+      "from": "legacy-authoring",
+      "to": "authoring-viewport-layout",
+      "kind": "calls",
+      "rationale": "原输入宿主初始化后安装制作视口布局。",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+      "line": 79,
+      "evidence": "PlotAuthoringViewportLayout.Install(this);"
+    },
+    {
+      "from": "authoring-viewport-layout",
+      "to": "legacy-authoring",
+      "kind": "calls",
+      "rationale": "面板尺寸变化时仅刷新输入停靠，不反复重挂站位参考。",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringViewportLayout.cs",
+      "line": 127,
+      "evidence": "_host.RefreshInputDock();"
+    },
+    {
+      "from": "authoring-viewport-layout",
+      "to": "node-view",
+      "kind": "calls",
+      "rationale": "视口按Canvas缩放配置节点逻辑行高与最小字号；列表仍由NodeView池化和可见区滚动。",
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringViewportLayout.cs",
+      "line": 105,
+      "evidence": "_host.NodeView.ConfigureDisplay(28 / scale, 12 / scale);"
+    }
+  ],
+  "reviewOrder": [
+    "definitions",
+    "authoring",
+    "generation",
+    "exchange",
+    "playback",
+    "chapters",
+    "integration"
+  ],
+  "readingRoutes": [
+    {
+      "id": "data-loop",
+      "title": "从制作到运行数据闭环",
+      "classIds": [
+        "enum",
+        "bean",
+        "header",
+        "row",
+        "project",
+        "generator",
+        "generated-bundle",
+        "excel-exchange",
+        "luban-pipeline",
+        "luban-reader",
+        "document"
+      ],
+      "note": "这是阅读顺序，非唯一执行顺序。C2生成与作者快照编译/六表交换是并行接入支路。"
+    },
+    {
+      "id": "editor-transaction",
+      "title": "从UI到资产保存",
+      "classIds": [
+        "authoring-panel",
+        "legacy-authoring",
+        "editing-session",
+        "authoring-store",
+        "editor-manager",
+        "row"
+      ]
+    },
+    {
+      "id": "input-preview-exchange",
+      "title": "从原制作场景输入到试跑与表格互转",
+      "classIds": [
+        "authoring-bootstrap",
+        "legacy-authoring-bootstrap",
+        "legacy-authoring",
+        "editing-session",
+        "playback-compiler",
+        "editor-preview",
+        "host",
+        "excel-window",
+        "excel-exchange"
+      ],
+      "note": "输入后可直接试跑工作副本；表格交换为显式操作，交换前先保存/放弃/取消。原场景不存在时主入口回退通用制作页。"
+    },
+    {
+      "id": "play-and-report",
+      "title": "从章节入口到播放和结算",
+      "classIds": [
+        "campaign-host",
+        "chapter-session",
+        "chapter-backend",
+        "local-backend",
+        "progress",
+        "chapter-host-player",
+        "host",
+        "core",
+        "view-contract",
+        "view"
+      ]
+    },
+    {
+      "id": "production-boundary",
+      "title": "生产服务接入点",
+      "classIds": [
+        "network-backend",
+        "transport",
+        "resource-contract",
+        "value-source"
+      ]
+    },
+    {
+      "id": "authoring-startup-layout",
+      "title": "从启动到可输入的多尺寸制作界面",
+      "classIds": [
+        "authoring-bootstrap",
+        "authoring-startup",
+        "legacy-authoring-bootstrap",
+        "legacy-authoring",
+        "authoring-viewport-layout",
+        "node-view",
+        "authoring-popup-layout",
+        "editor-preview"
+      ],
+      "note": "主入口进入Play；Ready保障完整接线。节点列表保留虚拟化；小窗口提醒与弹层边界适配为当前新增，最终Native结果待归档。"
+    }
+  ],
+  "validation": {
+    "method": "人工职责核对+逐节点声明/逐关系证据字符串校验",
+    "classes": 48,
+    "relations": 68,
+    "sourceFiles": 36,
+    "nativeAcceptance": {
+      "path": "Doc/Records/Current/验收总览.json",
+      "testRunId": "5de1f9ceddc6453387858c0cf0ee6742",
+      "passed": 277,
+      "failed": 0,
+      "scope": "2026-10-28历史快照；不作为阶段19新增源码已通过的证明"
+    },
+    "limits": [
+      "继承/实现边仅在声明中出现时标注；成员持有和调用均标uses。",
+      "produces表示生成/返回数据，不是C#继承关系。",
+      "有些类型受UNITY_EDITOR保护；物理位于Runtime目录不代表进入Player构建。",
+      "类型列表是评审精选，不是完整符号表或完成率。",
+      "本数据不按代码风格推测作者；设计来源由独立证据记录。",
+      "apis为真实公开成员精选；IPlotResourceLoader本身仅有LoadSprite一个方法，不虚构第二个成员。",
+      "C2契约生成是可选接入支路：当前PlotPlaybackCompiler经AuthoringPlotValueSource直接编译快照；Luban读取器可接受可选nodeAdapter，也可直接读已解码对象。不能将C2生成画成所有播放入口必经的唯一路径。",
+      "阶段19的23项定向测试与原UI内存副本交互通过；表格仅验证同工作区入口回调替身，没有提交导入/导出往返；历史277项与构建未重跑。",
+      "阶段20的40项定向测试与最小视口策略通过：4支持尺寸152检查全过，900×600/720×900仍有1/2密度失败，仅诊断且提示可见；allSizesPassed=false。历史277项与构建未重跑。"
+    ],
+    "apiMembers": 155,
+    "stage19": {
+      "status": "verified-targeted-scope",
+      "record": "Doc/Records/Current/制作闭环验收.json",
+      "testRunId": "89249f7ecbc94392a2b07bedb4d3ac5e",
+      "workflowRunId": "8d52e2003ea246bdbc728e657192a242",
+      "passed": 23,
+      "failed": 0,
+      "fullSuiteRerun": false,
+      "scope": "当前工作副本输入、内嵌试跑、刷新、停靠和等比适配；表格仅同工作区入口回调替身"
+    },
+    "stage20": {
+      "status": "verified-targeted-scope",
+      "scope": "startup-and-authoring-layout-minimum1024x600",
+      "record": "Doc/Records/Current/制作闭环验收.json",
+      "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+      "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+      "passed": 40,
+      "failed": 0,
+      "minimumViewport": {
+        "width": 1024,
+        "height": 600,
+        "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+      },
+      "supportedSizeCount": 4,
+      "unsupportedSizeCount": 2,
+      "supportedChecksPassed": 152,
+      "totalMatrixChecks": 228,
+      "allSizesPassed": false,
+      "fullSuiteRerun": false,
+      "sourceCheck": {
+        "recordedSourcesMatch": true,
+        "recordedSourceCount": 256,
+        "packageSources": 173,
+        "unrecordedPackageSources": 0
+      },
+      "reports": {
+        "tests": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/native-tests.json",
+        "layout": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/layout.json",
+        "staticLayout": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/static-layout.json",
+        "guide": "Doc/阶段20_启动与多尺寸适配.md",
+        "layoutRecovery": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/layout-recovery.json",
+        "startupRequest": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/startup-request.json"
+      },
+      "testedMatrixSizes": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "supported": true,
+          "rawPassed": true,
+          "densityFailures": 0,
+          "geometryOrInteractionFailures": 0
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "supported": true,
+          "rawPassed": true,
+          "densityFailures": 0,
+          "geometryOrInteractionFailures": 0
+        },
+        {
+          "width": 1092,
+          "height": 905,
+          "supported": true,
+          "rawPassed": true,
+          "densityFailures": 0,
+          "geometryOrInteractionFailures": 0
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "supported": true,
+          "rawPassed": true,
+          "densityFailures": 0,
+          "geometryOrInteractionFailures": 0
+        },
+        {
+          "width": 900,
+          "height": 600,
+          "supported": false,
+          "rawPassed": false,
+          "densityFailures": 1,
+          "geometryOrInteractionFailures": 0
+        },
+        {
+          "width": 720,
+          "height": 900,
+          "supported": false,
+          "rawPassed": false,
+          "densityFailures": 2,
+          "geometryOrInteractionFailures": 0
+        }
+      ]
+    }
+  },
+  "boundaries": [
+    {
+      "id": "production-transport",
+      "state": "host-integration-required",
+      "classIds": [
+        "transport",
+        "network-backend"
+      ],
+      "description": "传输接口与受控测试已提供，尚未连接原生产登录/发送/回包系统。"
+    },
+    {
+      "id": "device-validation",
+      "state": "not-device-validated",
+      "description": "Windows和Android构建通过；Android/iOS真机未验收。"
+    },
+    {
+      "id": "original-item-catalog",
+      "state": "host-data-required",
+      "classIds": [
+        "campaign-host"
+      ],
+      "description": "原道具名称、图标、品质和背包由宿主提供；合成示例不替代生产道具库。"
+    },
+    {
+      "id": "public-release",
+      "state": "local-candidate",
+      "description": "尚未公开发布或选定项目许可证；本地原内容不作为公开候选示例。"
+    },
+    {
+      "id": "playback-projection",
+      "state": "explicit-semantic-adapter",
+      "classIds": [
+        "header",
+        "playback-compiler",
+        "luban-reader",
+        "document"
+      ],
+      "description": "动态表头/Bean与代码生成支持结构化数据；共享播放器仍消费PlotPlaybackNode标准语义。新增业务字段并不会自动产生播放行为，需在投影或事件/表现接口中明确接入。"
+    },
+    {
+      "id": "authoring-recovery-reference",
+      "state": "known-open-design-issues",
+      "classIds": [
+        "editing-session",
+        "legacy-authoring",
+        "editor-manager",
+        "document"
+      ],
+      "description": "草稿恢复基线冲突、节点改名/删除的跳转引用完整性仍有开放问题。阶段19预览与交换入口修复不表示这些问题已解决。"
+    },
+    {
+      "id": "authoring-viewport-policy",
+      "state": "verified-minimum-viewport-scope",
+      "classIds": [
+        "authoring-viewport-layout",
+        "authoring-popup-layout"
+      ],
+      "description": "1024×600为声明的最低制作视口策略。本轮4个支持尺寸全通过；900×600和720×900仅诊断，分别1/2项密度失败、几何/交互失败0、扩大视口提示可见。未声称六尺寸全过或所有连续宽高均已测。"
+    }
+  ],
+  "limits": [
+    "继承/实现边仅在声明中出现时标注；成员持有和调用均标uses。",
+    "produces表示生成/返回数据，不是C#继承关系。",
+    "有些类型受UNITY_EDITOR保护；物理位于Runtime目录不代表进入Player构建。",
+    "类型列表是评审精选，不是完整符号表或完成率。",
+    "本数据不按代码风格推测作者；设计来源由独立证据记录。",
+    "apis为真实公开成员精选；IPlotResourceLoader本身仅有LoadSprite一个方法，不虚构第二个成员。",
+    "C2契约生成是可选接入支路：当前PlotPlaybackCompiler经AuthoringPlotValueSource直接编译快照；Luban读取器可接受可选nodeAdapter，也可直接读已解码对象。不能将C2生成画成所有播放入口必经的唯一路径。",
+    "阶段19的23项定向测试与原UI内存副本交互通过；表格仅验证同工作区入口回调替身，没有提交导入/导出往返；历史277项与构建未重跑。",
+    "阶段20的40项定向测试与最小视口策略通过：4支持尺寸152检查全过，900×600/720×900仍有1/2密度失败，仅诊断且提示可见；allSizesPassed=false。历史277项与构建未重跑。"
+  ]
+}

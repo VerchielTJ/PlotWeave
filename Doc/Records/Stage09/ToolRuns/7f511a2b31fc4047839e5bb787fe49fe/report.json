@@ -1,0 +1,91 @@
+{
+    "id": "7f511a2b31fc4047839e5bb787fe49fe",
+    "status": "passed",
+    "error": "",
+    "runRoot": "Library/PlotWeaveLuban/7f511a2b31fc4047839e5bb787fe49fe",
+    "publishedRoot": "Assets/PlotWeaveMigration/Stage09_Luban/Generated",
+    "compilerSha256": "10db90c41489af5e0173aabea73ee981a90baed4dca59735358383ec7f04ebd2",
+    "exitCode": 0,
+    "files": [
+        {
+            "path": "PlotWeave.Luban.Generated.Sample.asmdef",
+            "sha256": "f65be30a837a18b36636840c4e8f29045fbadf037a1e678f0e2f38b0be9bf4c2"
+        },
+        {
+            "path": "Code/PlotAtomData.cs",
+            "sha256": "36a987de32496970d60b249363e06c5c415715c3505811bc1916991690f7d39d"
+        },
+        {
+            "path": "Code/PlotBranch.cs",
+            "sha256": "938448d54309687676a4a2a46332acb353fcaab989f1827ef34cd86c7d545103"
+        },
+        {
+            "path": "Code/PlotConstantKey.cs",
+            "sha256": "3f660370024adff813d8718f56baab2c2ed364f3fdbb65ac033a3000196866cd"
+        },
+        {
+            "path": "Code/PlotDialogKey.cs",
+            "sha256": "1658fe8a6b9d5a603da127e18a0c5c87f2583e34ad4e1e66accbe035b320fb0b"
+        },
+        {
+            "path": "Code/PlotRoleAction.cs",
+            "sha256": "b510ba07f21d22bd6bc579fcf8a52af4d9a7578bdefe87b9df3a37eabdc95476"
+        },
+        {
+            "path": "Code/PlotSetBackground.cs",
+            "sha256": "854ca6277c88516aa920b4c3722094a4f9624157460cdd6da9ff5588a236573b"
+        },
+        {
+            "path": "Code/PlotThespianData.cs",
+            "sha256": "686b5c74d14845d205b34b099dc5c04d74d7b4db3d709ad9fe6d8539471f51ad"
+        },
+        {
+            "path": "Code/RoleActionType.cs",
+            "sha256": "8e9401f0a7e31a660ff1d1f5be82feb354abeb5526e3587b4f28bd22e4ab13c2"
+        },
+        {
+            "path": "Code/RoleEmote.cs",
+            "sha256": "7640c2cea604a026baed6714234c58046eb57b823bd30bc0288c26712fa62f1e"
+        },
+        {
+            "path": "Code/SetBackType.cs",
+            "sha256": "410e04900febdfa292640248f62c02b009078d6ab4cf04c16aaa8a14c32e9dde"
+        },
+        {
+            "path": "Code/Tables.cs",
+            "sha256": "69de2a3b7e87785a8313bd73a1f57f4e995616828b104053d5f619b59c025f97"
+        },
+        {
+            "path": "Code/TbActor.cs",
+            "sha256": "7062ed8e7eddd1de496788a0087a0f69afbd213cafbae3f4a327b022576ec20e"
+        },
+        {
+            "path": "Code/TbConstant.cs",
+            "sha256": "daf1bc0ff39659f836973a1ccfd174820c36276fcf75a5eed384bfd4a16d5961"
+        },
+        {
+            "path": "Code/TbDialog.cs",
+            "sha256": "116f4a3e9ae43f823d57fa4e84ae971112e6a8d31fe290317c013a4dd14ced26"
+        },
+        {
+            "path": "Code/TbPlotAtom.cs",
+            "sha256": "2ebb1db15e3b8245b9a6f36e176c84144a9832c39ac2ceed6a007d7fd2aba62d"
+        },
+        {
+            "path": "Data/tbactor.bytes",
+            "sha256": "7b75290760adbbb33061b37519db8fedb33909c00afc6da2480792d30030db9b"
+        },
+        {
+            "path": "Data/tbconstant.bytes",
+            "sha256": "e6f701dcbaff5b46097dcb724d2b1cda3835a7595972f6153d779871aa43b4f2"
+        },
+        {
+            "path": "Data/tbdialog.bytes",
+            "sha256": "29a2393697c65355c051272707a0e6784b73d8ce1060b593cf0b927460bf57f7"
+        },
+        {
+            "path": "Data/tbplotatom.bytes",
+            "sha256": "7100e8fc2acec6dad16bebe941846f661a9618dae6079ec6d48ec95e64cb2ed8"
+        }
+    ]
+}

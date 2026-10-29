@@ -1,0 +1,127 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4b8ba187ec2d17e15869faae71e726, type: 3}
+  m_Name: Types_Beans
+  m_EditorClassIdentifier: 
+  parameterEnums: {fileID: 11400000, guid: d5b3bc715f2f2194bb4db1fb17f3ed58, type: 2}
+  eventTypes:
+  - eventKey: PlotRoleAction
+    displayName: "\u89D2\u8272\u884C\u4E3A"
+    parameters:
+    - paramSign: param
+      paramKey: RoleID
+      displayName: RoleID
+      valueType: 0
+      enumType: 
+      enumValue: 
+      beanType: 
+    - paramSign: param
+      paramKey: ActionType
+      displayName: ActionType
+      valueType: 5
+      enumType: RoleActionType
+      enumValue: 
+      beanType: 
+    - paramSign: param
+      paramKey: Emote
+      displayName: Emote
+      valueType: 5
+      enumType: RoleEmote
+      enumValue: 
+      beanType: 
+    - paramSign: param
+      paramKey: RolePos
+      displayName: RolePos
+      valueType: 0
+      enumType: 
+      enumValue: 
+      beanType: 
+    defaultCallbackValue: -1
+    defaultCallbackList: 
+  - eventKey: PlotSetBackground
+    displayName: "\u80CC\u666F\u8BBE\u7F6E"
+    parameters:
+    - paramSign: param
+      paramKey: SetType
+      displayName: SetType
+      valueType: 5
+      enumType: SetBackType
+      enumValue: 
+      beanType: 
+    - paramSign: param
+      paramKey: BackName
+      displayName: BackName
+      valueType: 2
+      enumType: 
+      enumValue: 
+      beanType: 
+    defaultCallbackValue: -1
+    defaultCallbackList: 
+  - eventKey: PlotBranch
+    displayName: "\u5206\u652F\u9009\u9879"
+    parameters:
+    - paramSign: param
+      paramKey: Key
+      displayName: Key
+      valueType: 2
+      enumType: 
+      enumValue: 
+      beanType: 
+    - paramSign: param
+      paramKey: Target
+      displayName: Target
+      valueType: 0
+      enumType: 
+      enumValue: 
+      beanType: 
+    defaultCallbackValue: -1
+    defaultCallbackList: 
+  - eventKey: TransformCue
+    displayName: "\u53D8\u6362\u53C2\u6570"
+    parameters:
+    - paramSign: param
+      paramKey: X
+      displayName: X
+      valueType: 1
+      enumType: 
+      enumValue: 
+      beanType: 
+    - paramSign: param
+      paramKey: Visible
+      displayName: Visible
+      valueType: 3
+      enumType: 
+      enumValue: 
+      beanType: 
+    defaultCallbackValue: -1
+    defaultCallbackList: 
+  - eventKey: CameraCue
+    displayName: "\u5D4C\u5957\u955C\u5934"
+    parameters:
+    - paramSign: param
+      paramKey: ActorID
+      displayName: ActorID
+      valueType: 0
+      enumType: 
+      enumValue: 
+      beanType: 
+    - paramSign: param
+      paramKey: Transform
+      displayName: "\u53D8\u6362"
+      valueType: 6
+      enumType: 
+      enumValue: 
+      beanType: TransformCue
+    defaultCallbackValue: -1
+    defaultCallbackList: 
+  parameterPanelColor: {r: 1, g: 1, b: 1, a: 1}
+  eventPanelColor: {r: 1, g: 1, b: 1, a: 1}

@@ -1,0 +1,63 @@
+#if UNITY_EDITOR
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.UI;
+using ValueType = PlotWeave.Authoring.PlotEventTypeAsset.ValueType;
+
+namespace PlotWeave.Authoring.UI
+{
+    /// <summary>由表头展开单值、枚举与Bean成员；所有修改写入会话副本。</summary>
+    public sealed class ParameterEditor
+    {
+        private readonly PlotEditingSession _session;
+        private readonly Action<Action> _safe;
+        private readonly Action _refresh;
+        private readonly Action<PlotAtomDataHeaderAsset.ColumnDefinition> _openList;
+        public ParameterEditor(PlotEditingSession session, Action<Action> safe, Action refresh, Action<PlotAtomDataHeaderAsset.ColumnDefinition> openList = null) { _session = session; _safe = safe; _refresh = refresh; _openList = openList; }
+        public void DrawRow(Transform parent, PlotAtomDataHeaderAsset.ColumnDefinition column, int rowIndex)
+        {
+            var header = _session.WorkingRow.headerDefinition;
+            var values = _session.WorkingRow.GetColumnRows(column.columnName);
+            var bean = column.valueType == ValueType.CustomBean ? header.parameterBean.GetEventTypeByKey(column.typeKey) : null;
+            var count = bean?.parameters.Count ?? 1;
+            for (var member = 0; member < count; member++)
+            {
+                var index = member; var p = bean?.parameters[member];
+                var type = p?.valueType ?? column.valueType;
+                var enumName = p?.enumType ?? column.typeKey;
+                var enums = bean == null ? header.parameterEnums : header.parameterBean.parameterEnums;
+                var value = rowIndex < values.Count && values[rowIndex]?.values != null && member < values[rowIndex].values.Count ? values[rowIndex].values[member] : "";
+                PlotUiFactory.Label(parent, "FieldLabel_" + member, p?.displayName ?? column.description);
+                if (type == ValueType.CustomEnum)
+                {
+                    var keys = (enums?.GetEnumKeys(enumName) ?? Array.Empty<string>()).ToList();
+                    var labels = keys.Select(k => { var label = enums.GetDisplayName(enumName, k); return string.IsNullOrEmpty(label) ? k : label; }).ToList();
+                    var selected = keys.IndexOf(value);
+                    if (selected < 0) { keys.Insert(0, value); labels.Insert(0, "[未绑定] " + value); selected = 0; }
+                    PlotUiFactory.Dropdown(parent, "Enum_" + column.columnName + "_" + member, labels, selected, choice => _safe(() => _session.SetValue(column.columnName, rowIndex, index, keys[choice])));
+                }
+                else
+                {
+                    var input = PlotUiFactory.Input(parent, "Value_" + column.columnName + "_" + member, value, text => _safe(() => _session.SetValue(column.columnName, rowIndex, index, text)));
+                    input.readOnly = column.columnName == _session.Store.Project.idColumn;
+                }
+            }
+        }
+        public void DrawColumn(Transform parent, PlotAtomDataHeaderAsset.ColumnDefinition column)
+        {
+            var box = PlotUiFactory.Stack(parent, "Column_" + column.columnName, background: true);
+            box.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            PlotUiFactory.Label(box, "ColumnTitle", column.description + "  [" + column.columnName + "]", 30, 17);
+            if (column.IsList)
+            {
+                var rows = _session.WorkingRow.GetColumnRows(column.columnName);
+                PlotUiFactory.Label(box, "Count", "列表项数：" + rows.Count);
+                PlotUiFactory.Button(box, "OpenList_" + column.columnName, "编辑列表", () => _openList?.Invoke(column));
+            }
+            else DrawRow(box, column, 0);
+        }
+    }
+}
+#endif

@@ -1,0 +1,16 @@
+{
+  "name": "PlotWeave.Editor.Tests",
+  "references": [
+    "PlotWeave.Runtime",
+    "PlotWeave.Editor",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "optionalUnityReferences": [
+    "TestAssemblies"
+  ],
+  "autoReferenced": false
+}

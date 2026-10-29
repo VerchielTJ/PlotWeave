@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<module name="">
+  <bean name="PlotAtomData">
+    <var name="ScenesID" type="int" />
+    <var name="PlotRoleID" type="int" />
+    <var name="Dialog" type="string" />
+    <var name="Next" type="int" />
+    <var name="RoleAction" type="list,PlotRoleAction" />
+    <var name="PlotSetBack" type="list,PlotSetBackground" />
+    <var name="Branch" type="list,PlotBranch" />
+    <var name="CameraCue" type="CameraCue" />
+    <var name="CameraCues" type="list,CameraCue" />
+  </bean>
+  <table name="TbPlotAtom" value="PlotAtomData" input="剧情基础节点.xlsx" index="ScenesID" />
+  <bean name="PlotDialogKey">
+    <var name="keyID" type="string" />
+    <var name="simpleChinese" type="string" />
+    <var name="traditionalChinese" type="string" />
+    <var name="english" type="string" />
+    <var name="japanese" type="string" />
+    <var name="korean" type="string" />
+  </bean>
+  <table name="TbDialog" value="PlotDialogKey" input="剧情对话文本表.xlsx" index="keyID" />
+  <bean name="PlotConstantKey">
+    <var name="keyID" type="string" />
+    <var name="simpleChinese" type="string" />
+    <var name="traditionalChinese" type="string" />
+    <var name="english" type="string" />
+    <var name="japanese" type="string" />
+    <var name="korean" type="string" />
+  </bean>
+  <table name="TbConstant" value="PlotConstantKey" input="剧情常量文本表.xlsx" index="keyID" />
+  <bean name="PlotThespianData">
+    <var name="ID" type="string" />
+    <var name="Name" type="string" />
+    <var name="Thespian" type="string" />
+  </bean>
+  <table name="TbActor" value="PlotThespianData" input="剧情资源演员表.xlsx" index="ID" />
+</module>

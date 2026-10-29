@@ -1,0 +1,58 @@
+{
+  "stage": "01",
+  "revision": "constraint-prefix-correction",
+  "dateAsiaHongKong": "2026-10-28",
+  "change": "*按约束前缀处理，IsList才决定列表；不再拒绝带前缀的标量列。",
+  "authoringTestsPassed": 23,
+  "testReport": "Unity/f8f5cdac332b4101a72f4c4781ebdbaa-tests.json",
+  "sources": [
+    {
+      "path": "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringAssetEditor.cs",
+      "sha256": "6d11465f410c261d830a0b1a042c693316f7d73f197e4b8c79bd7a4bd3dc4ff3"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringExample.cs",
+      "sha256": "cff9d15fee0b7352f8d704de4e999065323a62ad816b77ce393ff73fcbb805be"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs",
+      "sha256": "eb73429c04db996e11df418d937d367fe8c00dedf844f5aa109d0cd629a25a30"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomRowData.cs",
+      "sha256": "21a4128b2a2949431582eb7bdb1a300c812479386158935dff9379d4f889aa62"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAuthoringAsset.cs",
+      "sha256": "063a896940162e6d0a3ce8542e5dd9babf3fd0f545a6692052f61f1418aa2a37"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotConstantKeyAsset.cs",
+      "sha256": "a3bf0df843bd6a97bfa198ec88e5bcd7fc8304b52feb6cc2cf884c839cdccf62"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotDialogKeyAsset.cs",
+      "sha256": "53a34d597a99191f70f7cc270186b153921791a2acc99e63d977c7bb22d47733"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEnumAsset.cs",
+      "sha256": "64f389952e0b07b0eafe1d5d37672eff33550412bd4c2cdcf518aba125f3fab7"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs",
+      "sha256": "afcd3e93341e851f7a06086ae18a8ca9d0c23491a926c0e2eb9d07e4f55334cd"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotTableAsset.cs",
+      "sha256": "957de10695b408e61f2b84a91bed6eeb46b9920e1e35d61ccb61b9aaefc08fd6"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotTextKeyAsset.cs",
+      "sha256": "59c536f48ad0e56605148f8c80220578dfa335497d15d4a78f88f6177226d726"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringTests.cs",
+      "sha256": "cbc74ee2cc16851e8f2bc49fa4c6b48fcb4586f069277ac23fbfae78daeab9ec"
+    }
+  ]
+}

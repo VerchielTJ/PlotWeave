@@ -1,0 +1,3646 @@
+{
+    "id": "6fd075ebbd02492988587d0fe6aa91bf",
+    "status": "passed",
+    "root": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c",
+    "projectPath": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Workspace.asset",
+    "bundleSha256": "08ff63d94cc3e46732566926e1a68c38b1760f031f3b7def016c8d50c227ef60",
+    "error": "",
+    "nodes": 485,
+    "dialogs": 480,
+    "constants": 23,
+    "actors": 23,
+    "normalizations": [
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20000.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20001.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20016.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20017.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20053.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20054.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20055.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10000.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10001.asset",
+            "column": "*RoleAction",
+            "rule": "bind-empty-enum-to-schema-default:ActionType",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10001.asset",
+            "column": "*RoleAction",
+            "rule": "bind-empty-enum-to-schema-default:Emote",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10001.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10019.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10020.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10065.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10071.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10081.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10107.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10147.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10167.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10168.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10176.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10177.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10194.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10214.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10215.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10220.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10254.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10255.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10288.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10314.asset",
+            "column": "PlotRoleID",
+            "rule": "fill-missing-scalar-with-schema-default",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10314.asset",
+            "column": "Dialog",
+            "rule": "fill-missing-scalar-with-schema-default",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10314.asset",
+            "column": "Next",
+            "rule": "fill-missing-scalar-with-schema-default",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10315.asset",
+            "column": "PlotRoleID",
+            "rule": "fill-missing-scalar-with-schema-default",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10315.asset",
+            "column": "Dialog",
+            "rule": "fill-missing-scalar-with-schema-default",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10315.asset",
+            "column": "Next",
+            "rule": "fill-missing-scalar-with-schema-default",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10316.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10317.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10354.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10383.asset",
+            "column": "*PlotSetBack",
+            "rule": "trim-empty-trailing-members",
+            "row": 0
+        }
+    ],
+    "imported": [
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20000.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20000.asset",
+            "rowId": "db9a13ad-83c5-4d33-8e1a-f7ae1ead981f",
+            "normalizedSha256": "8671307693831158e3162b3795e86593cef74d3aa62e735a8ad0f1504e337f15",
+            "id": 20000
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20001.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20001.asset",
+            "rowId": "6f7d623e-93f5-4e9c-ad29-e48fde40b200",
+            "normalizedSha256": "617ad53cf7d2d6caafe58133ef5329643a9eaec89a5b01dddd588d9e94b0b0c3",
+            "id": 20001
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20002.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20002.asset",
+            "rowId": "8b9a8dfc-9f11-445c-b050-c1444f84c528",
+            "normalizedSha256": "38883c57333f8d2e5814b8a67e055a26d60959367e027389393daacd0d17a508",
+            "id": 20002
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20003.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20003.asset",
+            "rowId": "187c4a8e-5818-4bb1-8b58-b7419689c435",
+            "normalizedSha256": "e3a148691cb0db8b48b1238ba041b0dc043d61a0f4e18ab007eeea7c634c648c",
+            "id": 20003
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20004.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20004.asset",
+            "rowId": "53b6bcc3-ec31-4105-9f53-c6ee1bc50305",
+            "normalizedSha256": "882bdfa858ce3fd9f95957e93b6a1f2ea89038b51bc8b5f91e72d53285534c18",
+            "id": 20004
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20005.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20005.asset",
+            "rowId": "6bd9a6b0-fc45-4a28-a90a-4cded6595fdd",
+            "normalizedSha256": "47f0d5c3b5f5e529159504802884e4d5232200e22ffb31ce80af261f77c482c4",
+            "id": 20005
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20006.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20006.asset",
+            "rowId": "4a438061-e6b7-4edd-9396-6a4c72c32293",
+            "normalizedSha256": "eafca32e359a35d0f85b184dfe5a1d273c5f61fe2d10d9c7106a470ef68b7e94",
+            "id": 20006
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20007.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20007.asset",
+            "rowId": "d42e7515-2db0-4b46-b454-de41f5cb0dc7",
+            "normalizedSha256": "048f1a272045ea328e7d95c40f1f6d553836fd1697f0352e3c59fc588729c9ed",
+            "id": 20007
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20008.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20008.asset",
+            "rowId": "053f6f02-1660-4185-907f-bfccc7b6e1a0",
+            "normalizedSha256": "f0f487551214f499b750ac3b7fcf0ddeacaf8e6ca68a0bde033faeaab70d6937",
+            "id": 20008
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20009.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20009.asset",
+            "rowId": "55202ad9-1c6d-4ee6-b407-0886364587b0",
+            "normalizedSha256": "b9d2527b27e86495083848ffdd4dbd979325536b91463aeb1143200e9e0b7c69",
+            "id": 20009
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20010.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20010.asset",
+            "rowId": "0cc418c0-e90c-451b-bc2d-e15b62fa4178",
+            "normalizedSha256": "d93e83b4723327f2e1d37a9dbbbfc66c6ff0efcc0888646ce86f93029457d8c7",
+            "id": 20010
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20011.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20011.asset",
+            "rowId": "59f04b5a-5d54-4903-9c99-fc7e9a634415",
+            "normalizedSha256": "aa985d068ca9afdbeedd125db61b7d318777fba69cdfcdba44a157eb2f677759",
+            "id": 20011
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20012.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20012.asset",
+            "rowId": "4503c24d-742d-4258-9879-17d806e0cc56",
+            "normalizedSha256": "bc8cc92f0ee9ae092a1272507f3bdb1ad0af65e6f8a478c1016bd52ad18c4fab",
+            "id": 20012
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20013.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20013.asset",
+            "rowId": "05892b83-d7ed-4b52-bce5-2a57936caf6d",
+            "normalizedSha256": "6ebafca4214f1bfbaebfd26f4d85d9de6bb75bf734ce163b3289abbe7f8bacd2",
+            "id": 20013
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20014.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20014.asset",
+            "rowId": "86de9d11-89dc-4dce-891a-49f4c88c26f4",
+            "normalizedSha256": "6e58c8135a9d8f88df28635e41053529930f58080eb3b30b048022f108048c21",
+            "id": 20014
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20015.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20015.asset",
+            "rowId": "08370acc-7b5e-4394-9d3e-4e555e9c4d39",
+            "normalizedSha256": "3ee538ea555717693d07619aeb8b1280ce5b9f1da2ae1ace203f16bbc31ec82b",
+            "id": 20015
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20016.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20016.asset",
+            "rowId": "bac5273f-c3f8-447e-8edb-666b76a4608f",
+            "normalizedSha256": "d9a72045a982a08c31ffb11ffb6619bac5f56ea89667bf8e8f2896b4825333b3",
+            "id": 20016
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20017.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20017.asset",
+            "rowId": "aa48de0c-6919-49b7-b022-6a7c46806a4b",
+            "normalizedSha256": "344109dbbcce4b30dc663b93871ba10f2409b8b957fc0bf4562732ead105ca70",
+            "id": 20017
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20018.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20018.asset",
+            "rowId": "5ed82c9a-198b-4ce0-bf85-e5e69e1d420e",
+            "normalizedSha256": "b59cbebfb2d42cda97bffece967624a87598729d49d62a3c1aea55ea88ad5e6d",
+            "id": 20018
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20019.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20019.asset",
+            "rowId": "9d21e8f2-98d7-467f-96fc-d728cc6e07b6",
+            "normalizedSha256": "e5045a38263d534cabc73d834849fc0d52a4eaf3568956485cb903506f271499",
+            "id": 20019
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20020.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20020.asset",
+            "rowId": "1f7b48b7-b9b7-4300-9d3e-5fac04306c05",
+            "normalizedSha256": "c39d585ac77146632b81737b3dd21f85c89f92c0ebfbad84ddb4ea87b3cd319a",
+            "id": 20020
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20021.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20021.asset",
+            "rowId": "d6664963-2e0f-43e0-a15b-a4b0d8944f01",
+            "normalizedSha256": "1e71b5e2ef2489f9c9699eaf50b5ac69cb9d57bd787ebdda87be2835ef7e90e3",
+            "id": 20021
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20022.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20022.asset",
+            "rowId": "2bbc4645-6ec7-480f-8fb2-421248471941",
+            "normalizedSha256": "3bdcc47f93a0b016a8055a5a522543116b8112120e2a1810a61c46686bee42a9",
+            "id": 20022
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20023.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20023.asset",
+            "rowId": "729aa6b3-64dc-4cd0-8f69-605524200d78",
+            "normalizedSha256": "453632030536b543c27ca812e2f43169995aac4390ebbb63c50d8293e8f821a3",
+            "id": 20023
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20024.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20024.asset",
+            "rowId": "295cb1ad-4b16-4240-b8fd-eff6632e2818",
+            "normalizedSha256": "fa6a820bdca994348ed733aaeeacaf26931d7ae3cea06d4cdb2ad311c9b4b02b",
+            "id": 20024
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20025.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20025.asset",
+            "rowId": "9d6f4ca5-cbe7-419d-86bc-118dca5da0a5",
+            "normalizedSha256": "d4d9f737a31ffddb18bfed97473d024e0d8d7d69b5461272b93958f3edcf74f5",
+            "id": 20025
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20026.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20026.asset",
+            "rowId": "7dad138a-c471-40fd-b37e-6425bb1776db",
+            "normalizedSha256": "4c3685c8d5bac332074409aed0bbe2c7259bf750bd61ed5e97d60355a5ba7b38",
+            "id": 20026
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20027.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20027.asset",
+            "rowId": "0e8eeebe-6438-474c-9005-e9bcee78ab90",
+            "normalizedSha256": "d423974d978424df45206085246ea62945e789960c1a6d252b56c303105b77ac",
+            "id": 20027
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20028.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20028.asset",
+            "rowId": "10e355eb-11c0-4be6-a3ad-0f12ed020e20",
+            "normalizedSha256": "39e40fcad8868b8185e12b4c5b47d1ff4557e0168408ce229bd51dc6e5cb2680",
+            "id": 20028
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20030.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20030.asset",
+            "rowId": "98cd2a85-e6f7-4ceb-92de-cb917c531699",
+            "normalizedSha256": "da89e76997f3d16cefa6565b6b10faff24b62705a46d571f7b606490c64a76dd",
+            "id": 20030
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20031.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20031.asset",
+            "rowId": "939c07e3-e7fb-4c36-a8b0-d91d9a393316",
+            "normalizedSha256": "d292e9ea9f50a0d60cd9243d1571fa3c26f1349494fdf79461bf5bea5299639b",
+            "id": 20031
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20032.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20032.asset",
+            "rowId": "c98b216d-595e-4760-8cc8-cb6441ba0593",
+            "normalizedSha256": "79e112574fa382886f6182d8cdacdbf1ce64b9afe2af55d0d648650e2b5b707e",
+            "id": 20032
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20033.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20033.asset",
+            "rowId": "9564954c-49ad-40a2-b3aa-14d4e262a2b2",
+            "normalizedSha256": "c7792a443ad159a4ed84d114f62c25f6b3c7131eecfacb0aa31108f8fe988aca",
+            "id": 20033
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20034.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20034.asset",
+            "rowId": "0b42b632-4ddf-470e-99df-c39f17cb01c7",
+            "normalizedSha256": "0c180da638dda6ff80000e4dfd4140a0f5b945e3f2b9e4c8cad3c9fc2c8578d9",
+            "id": 20034
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20035.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20035.asset",
+            "rowId": "0f1cd3b0-d8bc-45e8-9cee-d0c5cbd3395e",
+            "normalizedSha256": "514dd524ca262ee59c8a1f4fdc46ace6ff79a28f33f1f3a3d5d7515ea42f3014",
+            "id": 20035
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20036.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20036.asset",
+            "rowId": "c5420484-35c7-4cd6-a1fa-aa914bdf8965",
+            "normalizedSha256": "7e401aa907492a39e75ef716ad34aa8b3f2b46fb81b0599f559df8e5f0a36a33",
+            "id": 20036
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20037.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20037.asset",
+            "rowId": "c2f8f04a-e32a-4435-ae47-4e0956378308",
+            "normalizedSha256": "dc5a6776e0ae90157dbdcc6f09cf3f5e18bdf607d2e78e2a9ab60a6e02ac16a2",
+            "id": 20037
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20038.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20038.asset",
+            "rowId": "4c60b87d-35c4-469d-b3c8-8062f4f3edf2",
+            "normalizedSha256": "39cb413cf309712f8f3a948a5a5d8ab3b893ce85e36935e307f20e0972cc4aed",
+            "id": 20038
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20039.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20039.asset",
+            "rowId": "89673968-a363-41c5-9cf4-d9f2ac1e217d",
+            "normalizedSha256": "eebe09cdc725c074efb9a403315cd73ba0f10dc471eba60317304652ab7b5074",
+            "id": 20039
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20040.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20040.asset",
+            "rowId": "d204ac6e-8757-4d8e-acbd-74e8f0f2ba9f",
+            "normalizedSha256": "ab8f2e8ddb4377f11234ded8798c1046065bb55780b9cdfda8a593574a977108",
+            "id": 20040
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20041.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20041.asset",
+            "rowId": "7cc816e6-6543-4b0a-8d17-3af303eba063",
+            "normalizedSha256": "b0be7a4e6a6866103b0c9b447b109dc4628756def064f64ee49bdb399aca6686",
+            "id": 20041
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20042.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20042.asset",
+            "rowId": "0c3b19cb-07ec-4e13-94c0-1f8c4a047927",
+            "normalizedSha256": "6088be095447be480b772c679f2c515731948a32b53ee7a1101682561ecffd87",
+            "id": 20042
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20043.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20043.asset",
+            "rowId": "e17d4ec4-6ccc-4507-ad4f-915c5437c5cd",
+            "normalizedSha256": "d5e49916c1e39e0059fd3c35f7b624dd81d5eb227405335f80ae0b38aebf4d9a",
+            "id": 20043
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20044.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20044.asset",
+            "rowId": "a0d7f6c1-f7d3-4e62-91b4-9dd8354bc11b",
+            "normalizedSha256": "2a98f9ff8f7ac783dff903ca88023e5472bc4aca475fb8843bc6fab8245a1b4a",
+            "id": 20044
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20045.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20045.asset",
+            "rowId": "b481f868-ef66-45da-b50f-45cb36938e74",
+            "normalizedSha256": "b7fce4923a3b834dfee7ff920bc9d19e71081d9cc8bf1d036046355657b57919",
+            "id": 20045
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20046.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20046.asset",
+            "rowId": "02d53ba7-4bbf-45a4-8686-06b343087a85",
+            "normalizedSha256": "cdad1193f4f8fe1e26d85319fe93c12b416e397208ea7175e746e70fab07e92c",
+            "id": 20046
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20047.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20047.asset",
+            "rowId": "3883af2f-7132-4c8f-a3c3-7b6cf5c164dc",
+            "normalizedSha256": "e6a11f21ec5a123923a6cf87a5312b86f889109675bdf7efc75cbda92ae58c96",
+            "id": 20047
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20048.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20048.asset",
+            "rowId": "0bbc8017-46e7-433d-86a2-fa9c81b68620",
+            "normalizedSha256": "a77d60192e684b9f908b7a462c558646611f47dd3dbd9b78e223b7251d8732d8",
+            "id": 20048
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20049.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20049.asset",
+            "rowId": "ee2c9c32-232a-4b61-be85-5d7657136efa",
+            "normalizedSha256": "7f5b4de0cea9ace977948e553434a2fdfb33f7ee882a739028ef2b017de5db3e",
+            "id": 20049
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20050.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20050.asset",
+            "rowId": "1a739160-65fb-4852-8499-e6e4243ea686",
+            "normalizedSha256": "3501d6fd9d9de7295a38589089b19b6e583438b4b203a17f0b4cd13e305c0aef",
+            "id": 20050
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-1/20051.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-1/20051.asset",
+            "rowId": "14daea6e-5a3d-45b3-ab79-fc83dea6ffc7",
+            "normalizedSha256": "82b292bf608dfd6371e2d8524b2ffff03feb6637970db0286396ed9705672e6b",
+            "id": 20051
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20053.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20053.asset",
+            "rowId": "fb7919b8-58e0-4348-85f0-448521eb3fe0",
+            "normalizedSha256": "a7c9843a1e23e8c3c5d6f4fbdbd7d48365a98250590d42f6807def160110c649",
+            "id": 20053
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20054.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20054.asset",
+            "rowId": "839697d5-0f5f-4227-901c-c3ea684eccc9",
+            "normalizedSha256": "19d37620f616509fac4b089e350f92a112cf6e0a6e91c5680e5300700eba0b3e",
+            "id": 20054
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20055.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20055.asset",
+            "rowId": "d4d2da3d-63b8-4152-9c5e-85af7c4f708a",
+            "normalizedSha256": "fdadeb0c286f53fd3ff75b17123077267cdc3593fe8f5de989b5cf46893dd7e9",
+            "id": 20055
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20056.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20056.asset",
+            "rowId": "116ac06d-497c-4895-be09-c491e05ee5c4",
+            "normalizedSha256": "de5d0f4393f3bc7a8f20099aaade0d65a3a7ad17c66276ce4437338204aefcaa",
+            "id": 20056
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20057.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20057.asset",
+            "rowId": "893610d5-6f5b-4693-bb6d-e4121fac765c",
+            "normalizedSha256": "0424eabc54c2c92a59946682aa9ef0ddde0aac06cf9db6096bccaaa71222060e",
+            "id": 20057
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20058.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20058.asset",
+            "rowId": "8da7978c-a583-4c73-89bf-454aee94886d",
+            "normalizedSha256": "5380baab402e076fef118578e534cdfe57c0ea6a5cf8d7228bfd7b64d923049d",
+            "id": 20058
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20059.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20059.asset",
+            "rowId": "187959ee-48ca-4547-99a8-e770a166f8d7",
+            "normalizedSha256": "e22a9d379027ee3f776c4ebb98c80cd3a1d8d29966d6f608c9368431ee2caff1",
+            "id": 20059
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20060.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20060.asset",
+            "rowId": "60b9245e-0aaf-49e3-8ad1-6f46f780326e",
+            "normalizedSha256": "59ecbcdacaa5f31f9c83ebb0e04a1383ca93f75fdb6037494166c74aaeb3ea84",
+            "id": 20060
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20061.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20061.asset",
+            "rowId": "ad53b528-4063-4651-aea0-6381b90b9fc6",
+            "normalizedSha256": "dd2764988eb1cb577418afa6578fc771031af68c0b985d0b831015d821a4132f",
+            "id": 20061
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20062.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20062.asset",
+            "rowId": "1249120c-ebc8-49b2-b298-afde3874ada7",
+            "normalizedSha256": "a198744a1a50fcc4a0ac7c3baa046730b50a509bf5e3441c153142884371a43c",
+            "id": 20062
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20063.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20063.asset",
+            "rowId": "18f87dc2-e109-4159-b230-76c3b6fdabe5",
+            "normalizedSha256": "c68c20253211119d9b9cd9a2ae026192e6d444262added9b8532dedd0294e8d6",
+            "id": 20063
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20064.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20064.asset",
+            "rowId": "7c06a924-1bc9-4a0d-8f89-c48ea48ee385",
+            "normalizedSha256": "028749cd0b2329af990b52dd750d00bb95913710009af3ed0ea53c181b1b4406",
+            "id": 20064
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20065.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20065.asset",
+            "rowId": "95db4841-6b0b-4a52-8e4f-0eb304523fec",
+            "normalizedSha256": "ca0154c879b169bdb334eded51b59ce2c15cf3ba1bc40c0a01d5ced748da7756",
+            "id": 20065
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20066.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20066.asset",
+            "rowId": "ca870fc8-28fd-4cc1-b7b0-a2a1330bb2cf",
+            "normalizedSha256": "8449d7fc7efbcfbe466d0f0c817c95230284e89714a2fc3ac0bdb949a13ece93",
+            "id": 20066
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20067.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20067.asset",
+            "rowId": "df6347b0-b2f4-415f-b9a8-830da7643dfc",
+            "normalizedSha256": "fedabeec238863af91c6abd0e4baf31a88c2d1cad89d20ef99f32cc8c7b5d1d8",
+            "id": 20067
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20068.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20068.asset",
+            "rowId": "8be02483-be41-4b90-9ed4-f894bb330d24",
+            "normalizedSha256": "8c1bcd709c08e31d29fb6548fa43e56379733458d2be95c76e0522614ce78b92",
+            "id": 20068
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20069.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20069.asset",
+            "rowId": "1e697a81-7ec0-4815-8b60-5e48af58ce47",
+            "normalizedSha256": "28c0aba93458373accaf68a0f97ae95f11f97dba30adfdd143a35b7caeb77a4e",
+            "id": 20069
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20070.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20070.asset",
+            "rowId": "54337e77-de61-4d3a-b364-baa71bbb69f9",
+            "normalizedSha256": "7d0b69f87534a5e3cec9dd3b07cb235a92c9a719eec738933452085721178cfa",
+            "id": 20070
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20071.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20071.asset",
+            "rowId": "49c3afb3-a0be-4d1e-9df5-a739e8d1476e",
+            "normalizedSha256": "c570019f99d1c7a16e45bb7a6615fd9e77d739de135c4ec0d11f012af154cb2a",
+            "id": 20071
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20072.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20072.asset",
+            "rowId": "c3952a9e-e9e9-45e2-b213-6d6dab44fbaa",
+            "normalizedSha256": "93097c5ee63b094c4b3620918e08d03cdea22f8f04f4685ba387cc4d10309386",
+            "id": 20072
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20073.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20073.asset",
+            "rowId": "13858129-56ca-4043-b01e-18b13c1b2e58",
+            "normalizedSha256": "a29218db05d4e59602482dc164c4c1f9fbaa0243c761c1d42d846de3fab2bd7e",
+            "id": 20073
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20074.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20074.asset",
+            "rowId": "dbc0c808-9776-4940-ae7d-d7a65dc1cf18",
+            "normalizedSha256": "57bac460e435c57bededaa917ff8ae1ce98f4915dfc900bd561b434bb4cbc905",
+            "id": 20074
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20075.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20075.asset",
+            "rowId": "334a48cb-0e59-4457-82da-65f1c9285766",
+            "normalizedSha256": "59fd1658c5f8e00c42f4c91db4b0965394f28c9dd318c2b8e6db79ba79e53ffe",
+            "id": 20075
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20076.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20076.asset",
+            "rowId": "8706f708-0311-49ef-88ae-84a75ed00547",
+            "normalizedSha256": "3eaeebb678ab92645bdd57aabe3118e3859e1a5e71c5fcedca09afaed326d098",
+            "id": 20076
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20077.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20077.asset",
+            "rowId": "3d568e7e-8c9f-41dc-9c40-f7829aa85d10",
+            "normalizedSha256": "77c4be6bdf7eb89a8732c90e5e5f7ce28f61da500a9ac97c031f2669cf17d131",
+            "id": 20077
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20078.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20078.asset",
+            "rowId": "36e57715-c514-40b9-8a73-924efb76df72",
+            "normalizedSha256": "bf651c572dbaf51c0de91d71740c525bfcb87b8197501ad12b76a663aa966330",
+            "id": 20078
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20079.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20079.asset",
+            "rowId": "022e0fb9-c2a7-42db-ab97-7daa515faa08",
+            "normalizedSha256": "f91cf3acb584ced87459add2c2b04c163befcc0fccdf59cc2d9f5c5521d4f69a",
+            "id": 20079
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/0-2/20080.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/0-2/20080.asset",
+            "rowId": "eb9f9df8-ab4f-4efe-b4bd-4bd3b60a8d52",
+            "normalizedSha256": "11b5aeb4df0304e7d28d000443f2f0fa5dc6fb0cc6460e9e640fcd13e30b3e9b",
+            "id": 20080
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10000.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10000.asset",
+            "rowId": "e86ba826-4840-47cb-adc4-162c1617eea0",
+            "normalizedSha256": "e6e64dbb3990a1d0dfec34e4975906a3b0e668715c6eb75128a76ea4623aa68c",
+            "id": 10000
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10001.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10001.asset",
+            "rowId": "e02dcf34-3d65-4cc3-91e5-9b86d8931680",
+            "normalizedSha256": "c69313f947c2cfeab116334e51030f1d8e9fd80e512cccc9f90517e6791a4400",
+            "id": 10001
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10002.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10002.asset",
+            "rowId": "96edc251-00b8-4a44-8ca3-d39e17467759",
+            "normalizedSha256": "418ae49b470426fc6c12e0e47f3890e6cdc345e44baccfb4348039f1690b7543",
+            "id": 10002
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10003.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10003.asset",
+            "rowId": "211d3cf5-449b-45d9-9be4-41f23d51c073",
+            "normalizedSha256": "0a5bb5488e5db462f70ede4a9cca10ccd41d5497026d49d38b244b9c6e008764",
+            "id": 10003
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10004.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10004.asset",
+            "rowId": "21274763-26dd-44d6-be68-163e51399a9f",
+            "normalizedSha256": "b3226823794359c3cb70e48f1204c8bca9398b654dc02dae535de2e9b3304961",
+            "id": 10004
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10005.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10005.asset",
+            "rowId": "b02f102a-453a-4750-922b-095c29aaec91",
+            "normalizedSha256": "c0890bfff13ccd1848f71d478da14d3b9591b8742c0ce315ed07a8ac87a9b7c0",
+            "id": 10005
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10006.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10006.asset",
+            "rowId": "292ae75b-5178-4a10-825f-0e51194c3d99",
+            "normalizedSha256": "fe8568a3ef4aeb4e1da59ac39dfdcfe86baf480bafbb46888c3c5c66ce729de8",
+            "id": 10006
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10007.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10007.asset",
+            "rowId": "d7ddab85-46d0-4141-beff-dab2b72e474f",
+            "normalizedSha256": "33edf7871e2727fe2df8ef95b64a210ed0bd0254d4c030c4b47c80edaf314a0e",
+            "id": 10007
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10008.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10008.asset",
+            "rowId": "23f2e266-14c8-4803-9833-7d860f1461ea",
+            "normalizedSha256": "3d6246210aa0676f488405ee33f93b9d1246a6861ae22a563d8d8ed6e44f75b5",
+            "id": 10008
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10009.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10009.asset",
+            "rowId": "b3af05db-1b8e-4fc3-a0b0-3a2f4c9ef3f1",
+            "normalizedSha256": "e010d8a462ca8e89f14ed0772ddf3d8cf642e9bc6fc5b7e06f143f08d0ad7ad2",
+            "id": 10009
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10010.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10010.asset",
+            "rowId": "7437a173-d577-41f3-a4fc-d49b863ad6f0",
+            "normalizedSha256": "377c87c61d1c9aceff4e25fcfb339624b6f1a8434c45d42f11c4b38e333f8c41",
+            "id": 10010
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10011.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10011.asset",
+            "rowId": "7eac7854-407c-4be3-b473-74701984cf61",
+            "normalizedSha256": "31af9d85b3c2a2481a10b38e5b1b5b06764e0ba97b739ff88db2787cfcc5388d",
+            "id": 10011
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10012.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10012.asset",
+            "rowId": "8a3d1606-0b9e-4d3c-8ca5-52aed5a505a6",
+            "normalizedSha256": "3cda24dd1222f40d6a0ac29e6984c501c1ae787996c45e8474787d762a8439d0",
+            "id": 10012
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10013.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10013.asset",
+            "rowId": "de42d468-11f6-4d29-99b8-d97ab08b05b9",
+            "normalizedSha256": "ad80891ec1090a9b532aa3b437a042150ce086a81dd04a8d79535458b1661d0f",
+            "id": 10013
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10014.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10014.asset",
+            "rowId": "223720ea-3e40-4084-9dc8-cb34aad526a5",
+            "normalizedSha256": "1765cac6c8eabd6bf98c5b8aab5f765bf5f68c3c5c0fa0f90acbab6bfd59769c",
+            "id": 10014
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10015.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10015.asset",
+            "rowId": "a7f899f9-cb81-4a2e-957a-b53733383dc9",
+            "normalizedSha256": "df424ad7a5dc31a4c21934c2bb5ddcedc5e325525ce76abe0d0513e703486366",
+            "id": 10015
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10016.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10016.asset",
+            "rowId": "80af48fa-6ab4-496a-b847-af21d1235775",
+            "normalizedSha256": "63d65ab1b6ae668cbcd3cce446469389e38175808b9bacbe217b766f15299104",
+            "id": 10016
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10017.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10017.asset",
+            "rowId": "4f8b9dde-e793-4b8c-8085-735599a5ef2a",
+            "normalizedSha256": "df14e18f49ae86b6cc223d4f18a54797a10da9a94fddecd46ed4462960a62a02",
+            "id": 10017
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10018.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10018.asset",
+            "rowId": "fe5f8d6a-720f-4bd5-b030-18271ef8244d",
+            "normalizedSha256": "d148f4418f59cde13511cb6611305e1163678e822f3bcf26a07af9aa3b620221",
+            "id": 10018
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10019.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10019.asset",
+            "rowId": "1b4009af-60b6-46ad-a506-a802c5f275ed",
+            "normalizedSha256": "fbc99998042eecba5dae275a36b3ea631ceb7c7c1f52f4f1810e522ae4abbd7e",
+            "id": 10019
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10020.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10020.asset",
+            "rowId": "14148b49-40af-4816-ab38-84f27a64c12a",
+            "normalizedSha256": "6d51d6b496b910a46d43b8eec0c6b626a64604766c99c831801f5762b11b883e",
+            "id": 10020
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10021.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10021.asset",
+            "rowId": "5821baa8-ab96-4b9c-be8f-7f6239a09289",
+            "normalizedSha256": "b5c29e16ea5955b03e1ff8b9a938d18875d661bcc66c35102c124488cacc4bee",
+            "id": 10021
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10022.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10022.asset",
+            "rowId": "f125aede-f4ea-49be-86e7-70739a13920d",
+            "normalizedSha256": "a630fda34105d4881c17e212a6095649e02d428fac724799f47b342f32b3f06e",
+            "id": 10022
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10023.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10023.asset",
+            "rowId": "3a31ac65-2a72-4610-9e11-ed320e3eff05",
+            "normalizedSha256": "0e5835a9341d7417b9f271f6377a174bc6d9e4c4660ab9905d3f4c432ffd142d",
+            "id": 10023
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10024.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10024.asset",
+            "rowId": "35e1620a-8f03-487e-916c-509322ac62c5",
+            "normalizedSha256": "aed3f0b0fcd21a4559de442b544d488ad4d02dcb8f499cf3d4e203f5b4f0a200",
+            "id": 10024
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10025.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10025.asset",
+            "rowId": "ac347110-9a93-4462-bf2d-06d9ef6e5b1c",
+            "normalizedSha256": "8070705d5922270d0fdbba058ee986355482b706864d25c24d996925f718d4aa",
+            "id": 10025
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10026.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10026.asset",
+            "rowId": "17df1981-1c4d-491e-a66e-0afec409b585",
+            "normalizedSha256": "35120e08c39a1bbd5e3a5b75aaf69efbfa92affdf048c6e993d195520062c216",
+            "id": 10026
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10027.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10027.asset",
+            "rowId": "ed3a31fc-4ffc-4643-af15-8aa0be6b4b43",
+            "normalizedSha256": "183ff6df9be35a3aa2dbb28501f18df9a2ddb03e9a3d674c3727e56539fa4ae6",
+            "id": 10027
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10028.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10028.asset",
+            "rowId": "e6ebedc5-eb39-4625-89ff-d7fe3256f502",
+            "normalizedSha256": "d7b6951e48e7a3a46737847ae8e707b50ca5708ede5a6f2bcf83ff645fe67284",
+            "id": 10028
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10029.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10029.asset",
+            "rowId": "456c6ac2-9c67-4471-bafe-3be06c4fe090",
+            "normalizedSha256": "2282cb835252f3063e6efeb16f6a116ae47115ed972def02c2dff8c1653bdbf4",
+            "id": 10029
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10030.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10030.asset",
+            "rowId": "c46e8c72-4320-478c-b5b9-733b56029500",
+            "normalizedSha256": "4305792e2840a1904aaf5b06fdb5c0ac001fe219f8e7af60e7ffae1df652e5d7",
+            "id": 10030
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10031.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10031.asset",
+            "rowId": "ed4d526f-016c-4e56-bf19-0669d178f64f",
+            "normalizedSha256": "771e7bafeaf3e61c1c309a39c8b9a9f539609987966aebac8b63fb30d7fd2916",
+            "id": 10031
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10032.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10032.asset",
+            "rowId": "8092e405-dd8c-4f55-a303-3cb3318f8476",
+            "normalizedSha256": "f502832bfea517aebf05815c4a64c65295c28769364c16c0d15fafe9068bfbd6",
+            "id": 10032
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10033.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10033.asset",
+            "rowId": "b0048124-abda-429e-85e3-ccef384eec12",
+            "normalizedSha256": "ebe5a7f564b6ae9fc8866f2fe6d6aed29ff6cb7ebcf7e5f407739c1a6bd970f5",
+            "id": 10033
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10034.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10034.asset",
+            "rowId": "fd636c19-9058-4b2b-b882-85d3f04dd10b",
+            "normalizedSha256": "58f60a5933fc8b8164882b380b30d0e8001bb1031cb01b84dba3749ea86bfdc6",
+            "id": 10034
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10035.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10035.asset",
+            "rowId": "0f024d47-2ce4-43fb-a482-1cc48aa09a07",
+            "normalizedSha256": "308cc22cdcf223ea10d4c5d6d5456b78bb0d4bfd428bcf80a4c697d8695b11d1",
+            "id": 10035
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10036.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10036.asset",
+            "rowId": "85363372-e1df-4480-a66e-5085dac855dd",
+            "normalizedSha256": "eb723bad1a8ad1796b149ea064eef575878db4a113c642f01d798e67d864df0b",
+            "id": 10036
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10037.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10037.asset",
+            "rowId": "67718ff9-db7a-4c1b-a8dd-823c79b42ab4",
+            "normalizedSha256": "8a9158d57f6feb462f5642dd870c5c5edd47d7b25e57002039ef2a6ee3f16386",
+            "id": 10037
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10038.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10038.asset",
+            "rowId": "880c0246-5624-4c6f-b4f9-49a56bc4207e",
+            "normalizedSha256": "731cddf56b03dd06b3bd83c453f9405eb2aad0b4784d135c83ba86fa9c16c312",
+            "id": 10038
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10039.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10039.asset",
+            "rowId": "4c5e2117-6cab-47e3-8c9c-c1deaaa9c2e9",
+            "normalizedSha256": "fe23ef704fd376292947fa377b7382dd4acca0e9579332223ad495c09d7e333b",
+            "id": 10039
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10040.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10040.asset",
+            "rowId": "74a3a6c9-c69d-4bce-ba5d-ad534e67553d",
+            "normalizedSha256": "23acc6e9670cea89d8c59d70dd490f22c133a3b724294156ff6a6b1fa645a4b3",
+            "id": 10040
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10041.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10041.asset",
+            "rowId": "f198df07-272f-4287-af29-787ad5616951",
+            "normalizedSha256": "ac090232019564c8a0b08b10d5eab52b5ac3591051d097462e836589fe8e9508",
+            "id": 10041
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10042.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10042.asset",
+            "rowId": "78bb777e-5962-4f9a-996a-6cedca4734e6",
+            "normalizedSha256": "cc4b665083a972b4c47b665e432e5e96748720cc912924bf1e48eb90feccc936",
+            "id": 10042
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10043.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10043.asset",
+            "rowId": "ce29e761-113f-4f9a-ad9a-8852904752c1",
+            "normalizedSha256": "9ddce61128df4e5008d5ac07bdec49ecca00191e85c4c77798c25e09d0a0437c",
+            "id": 10043
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10044.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10044.asset",
+            "rowId": "e8912abc-eab7-4e11-9ea1-700f1a30a7eb",
+            "normalizedSha256": "2bbf57810ed7a08c1601373c1dc89ec03fc2774671b7c9d415b17b0aca014243",
+            "id": 10044
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10045.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10045.asset",
+            "rowId": "29880c1f-dec5-49ca-b119-ea2066c092ad",
+            "normalizedSha256": "37693d824bfbb5e75be8651b7facf43be81235340a53b5a4d081d41d909589f2",
+            "id": 10045
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10046.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10046.asset",
+            "rowId": "48ef2d19-e0f5-40d7-bd51-34e775cc7891",
+            "normalizedSha256": "73559603aa74aed6c7036ba7ee05d1888641d7dafc64d71fc27967e2405bb498",
+            "id": 10046
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10047.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10047.asset",
+            "rowId": "670edd72-b625-4e35-ada8-7de2833c5a6e",
+            "normalizedSha256": "5b78cd15b4e99540861a79c626ea77abd4432775b823b1b0225a1d01ac7152cb",
+            "id": 10047
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10048.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10048.asset",
+            "rowId": "e7184cef-3f89-4cd4-a114-c15a2151e2d7",
+            "normalizedSha256": "8b1d0f125b470998881555891529589fdcbf7da39aea8c8b234b8dbfc98c7856",
+            "id": 10048
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10049.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10049.asset",
+            "rowId": "47657a05-76d3-4f71-ad64-1d495f06a55a",
+            "normalizedSha256": "00ff983a1ebefb38194ccf23c0daa0f5c062bc8fe04eaa436e54f601473508c8",
+            "id": 10049
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10050.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10050.asset",
+            "rowId": "2613aff6-42c4-475c-b473-11a120715b59",
+            "normalizedSha256": "f7430b16604aea4b4d52ea0e9ba7c6dc9e1ffc8d04dd8aa8b27084ba3def3c67",
+            "id": 10050
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10051.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10051.asset",
+            "rowId": "d90bbf0f-53af-4035-9368-3100710d8ee3",
+            "normalizedSha256": "ba8752ea7a136605a89ebe16a0c850cabdf016148efe7cef0672eb5c2ca9da61",
+            "id": 10051
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10052.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10052.asset",
+            "rowId": "cc18af9c-02de-4a15-8ce3-934f2ac6a447",
+            "normalizedSha256": "ba6c2a611a76289afd2768bf66d263468354403f3e5da9771c3deb3ed1764d55",
+            "id": 10052
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10053.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10053.asset",
+            "rowId": "d03ada1e-d9ab-4ed4-a1b2-b1972174d802",
+            "normalizedSha256": "2e5a3e1d08f111cd7c9cbae3b36dd34550974ac35aa20210251e23b4fa4f7173",
+            "id": 10053
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10054.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10054.asset",
+            "rowId": "cc1fc59e-7f3a-468d-815f-506b12be135a",
+            "normalizedSha256": "1029e90fe963de6125924280a48d9f7834298148f5602f3506dc776d9ef8b392",
+            "id": 10054
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10055.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10055.asset",
+            "rowId": "75d96e5d-5c26-4524-a5f4-90d6ba3137ab",
+            "normalizedSha256": "38462226083c98ff8fa6b52aabb8060976cf9f0d692d6b3754c5ff5c25cfe036",
+            "id": 10055
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10056.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10056.asset",
+            "rowId": "c1aa21cb-35f8-4977-9a17-b413ef63e555",
+            "normalizedSha256": "bf2d127f2fad0912820f5733957ed68ac93141249dc9a6157fab03c264702366",
+            "id": 10056
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10057.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10057.asset",
+            "rowId": "342ac135-e9be-4599-88b2-3b1e71579db8",
+            "normalizedSha256": "73facee9a7701511fadc1014f155b301ce1739a2cd4025a6c94412b20d9e48df",
+            "id": 10057
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10058.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10058.asset",
+            "rowId": "dd022d97-922b-4993-b911-322e92b24829",
+            "normalizedSha256": "6f14dff2f1fd7f2ee768a750be6b5b56b621a290d10c9a5096de73e340d2e13b",
+            "id": 10058
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10059.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10059.asset",
+            "rowId": "59590283-6b5f-4307-a9bf-728532ed3a5f",
+            "normalizedSha256": "6e45583beaf59777490a11d5ca7b9bfda50406007d5585e1417150d1648864da",
+            "id": 10059
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10060.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10060.asset",
+            "rowId": "0b360ce4-cd8f-4e8f-8cb8-c67f83bf5908",
+            "normalizedSha256": "20b8a7e539140b33995cddc06e53569c6ba3cec838f3b8b08795e94851c1bf4b",
+            "id": 10060
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10061.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10061.asset",
+            "rowId": "3f6e7056-44ae-4bbb-9748-9fa4770ee055",
+            "normalizedSha256": "2d382355f7f8668e33e3ef46716fd9e0de50844cd2c116d5fd84e2f2eea82d97",
+            "id": 10061
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10062.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10062.asset",
+            "rowId": "e2cbcd45-3db3-4572-aef5-f1f69ed5e168",
+            "normalizedSha256": "e5cd62bd71efaaf43b8c646ffafe1786b350d37c0333bc6e8037039fc8a1424c",
+            "id": 10062
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10063.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10063.asset",
+            "rowId": "006c7b3c-bc27-4f3f-9d94-59ae5beba2df",
+            "normalizedSha256": "9e9673b39bf48a80aad9d7372011b72d151f5bf66444ef99b89788a698c73821",
+            "id": 10063
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-1/10064.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-1/10064.asset",
+            "rowId": "10e40385-96f4-411b-b4ee-8ccd9136eae3",
+            "normalizedSha256": "1e20583f19dbeaba6c1938e798c19a77da10eaa453dbd28073609df05bd2763d",
+            "id": 10064
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10065.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10065.asset",
+            "rowId": "0b1ef66a-b2df-4634-8437-9f8f6fcd1cb6",
+            "normalizedSha256": "f56d4f7c792ee37c882c555cc54ad07400d5eda8d4d9f3b27bb1661a41118df6",
+            "id": 10065
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10066.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10066.asset",
+            "rowId": "a6af4dcd-bc89-4356-bd44-8f173e885049",
+            "normalizedSha256": "fa8bcb311166999dd1b1cbf0b05561723a3230956264cd0936edf74d08b5abd7",
+            "id": 10066
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10067.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10067.asset",
+            "rowId": "9f88feb7-8326-4122-8786-e4c7e56d03ba",
+            "normalizedSha256": "06168ef664c5c087de2a705a5aa15029ff2deda4fd4234fe130ff720d1ef8de3",
+            "id": 10067
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10068.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10068.asset",
+            "rowId": "2cdc8bd5-821f-4df5-b374-e464248cc9d5",
+            "normalizedSha256": "772b1b21d63763accf414743c398543ede426c4354cd481067c8b26d5566e60f",
+            "id": 10068
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10069.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10069.asset",
+            "rowId": "a84dda91-1aea-4484-992b-aa7ff486c54e",
+            "normalizedSha256": "d4890db6c6956f6683b7b5f7b22551e2baa1cbe6dec594965a471da843e34c47",
+            "id": 10069
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10070.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10070.asset",
+            "rowId": "5d04bcac-4ef1-471a-89d3-d1307f67c9d7",
+            "normalizedSha256": "886223315a251976336e5f3f31705081a2cb001f962aaebc9d17227df87d707a",
+            "id": 10070
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10071.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10071.asset",
+            "rowId": "dbbfe486-3a77-44aa-ad0f-320371767a21",
+            "normalizedSha256": "c1125b9f4baa1672002495aebf542a062e7d605c5c5897cc92b76f1ff958cd32",
+            "id": 10071
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10072.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10072.asset",
+            "rowId": "64739d52-8e83-4f22-9d31-a813e7429c3f",
+            "normalizedSha256": "3be63713b4f969f6f08d4efeca18dae8da548f5d6b071f4e0fa4b3a06bef6e61",
+            "id": 10072
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10073.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10073.asset",
+            "rowId": "bf0a6bc6-e566-4f41-b9f1-030e27c036c7",
+            "normalizedSha256": "03690aafdad90f7004f9806104220e0d83755348beb0a171f607e6b1bd4bc5bc",
+            "id": 10073
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10074.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10074.asset",
+            "rowId": "203cfb94-d18d-4780-90a6-8f72e0e54a08",
+            "normalizedSha256": "ca0f0e4b05d10085d8295e4f3f66c7bca756537d2f5a4f9959bb9e1858953043",
+            "id": 10074
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10075.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10075.asset",
+            "rowId": "ef21d9b6-19ab-4802-bc3f-dbf10a1f59bc",
+            "normalizedSha256": "19ba83233c56e7ecae610e2a7505b7cdd5133d3a014a42057c593ce1a5a10044",
+            "id": 10075
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10076.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10076.asset",
+            "rowId": "6d08cab4-2b24-4d8d-bbb3-42dd1159f2da",
+            "normalizedSha256": "283fc3630b8fdca29d8876b7af893bcf5f7b0e34686aece8e0aef8f51fcde527",
+            "id": 10076
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10077.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10077.asset",
+            "rowId": "e654bd75-4fd8-4d2f-8a33-2598052d1c38",
+            "normalizedSha256": "bb570f52b8d95b847722c5da7e5aef6e140942849877027eb786ddd65fa16bf0",
+            "id": 10077
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10078.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10078.asset",
+            "rowId": "026aa3e4-5fce-4710-ba60-f412bc2c5504",
+            "normalizedSha256": "7889268ff886a2dd72e64c35d5be4c6a8b1cb12bc098195ca385e8683e937dc1",
+            "id": 10078
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10079.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10079.asset",
+            "rowId": "5ac7cdac-317c-4129-9938-e92161c95c86",
+            "normalizedSha256": "2dabb14835317e9b514b19aef2981b4b4220475881e748d16550db253314f72e",
+            "id": 10079
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10080.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10080.asset",
+            "rowId": "36694bcd-becd-4aee-af9a-ff4f48be984f",
+            "normalizedSha256": "97258c7af3e81ead99d77b5dd6913be040c36c932a1e7521c298e15a829e0411",
+            "id": 10080
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10081.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10081.asset",
+            "rowId": "6a491153-87d2-4679-afb6-4fece87e4372",
+            "normalizedSha256": "96a775cce1033f5051f5ed3ae165a5622c1d7456f20f4e3d15d5179279ae6f81",
+            "id": 10081
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10082.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10082.asset",
+            "rowId": "d78e60d0-0df2-4374-a0a2-f80891bc5803",
+            "normalizedSha256": "94a2b9495270d1a9753ab9943ceb25e31096e5e6ccd20de031b5e659ad58b8ad",
+            "id": 10082
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10083.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10083.asset",
+            "rowId": "fce8fe7c-ad98-4c0d-b988-44a759e6b133",
+            "normalizedSha256": "f2045ba073c4428bf5be36ed93dd99036e036ede69853f98a7225c1d88b1a50c",
+            "id": 10083
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10084.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10084.asset",
+            "rowId": "0dd559ab-ca5b-4c03-a26b-d2733a81f60d",
+            "normalizedSha256": "e17361a9cd0ccd9564c8557c87149d5670e399500cfe669b7682e2e6692b6636",
+            "id": 10084
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10085.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10085.asset",
+            "rowId": "c654d94d-f280-4172-b67c-d4f37d9794c5",
+            "normalizedSha256": "50d8ca3f8597dfcc4e58107819912baea6a9e7afb5503da107eb454c48dae6b2",
+            "id": 10085
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10086.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10086.asset",
+            "rowId": "e3110dee-c30b-4378-8f2f-e3efbf1b9611",
+            "normalizedSha256": "56930cf02c8ff2aeb88bf5258244986f4f964ff1619c83dabd37b187ae705519",
+            "id": 10086
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10087.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10087.asset",
+            "rowId": "2e68f876-563c-420a-bc18-604fdbc36c61",
+            "normalizedSha256": "b8e3a5e42dafa83278bf190c65a867efbacdeeeebced9d3e9615f970b9c9fb64",
+            "id": 10087
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10088.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10088.asset",
+            "rowId": "d626b32e-e96f-4175-9ab5-f3db15bf0841",
+            "normalizedSha256": "4e13b6d0ba147adff639754cf5f2f4e03a3a3576ebbdd286dafaf529091c3e50",
+            "id": 10088
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10089.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10089.asset",
+            "rowId": "3f29bed5-05db-44b7-a5c9-84b3c7efdbb7",
+            "normalizedSha256": "5d9c1bb09a12307a8cbb767bea08a064bd2096c885f85cedb469f3f1f1e10072",
+            "id": 10089
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10090.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10090.asset",
+            "rowId": "9f23fe79-2c63-4df9-8d6c-df7d0acec6a1",
+            "normalizedSha256": "090f94f43f444bd435f8d15b71b660a3a9a7621248653d15901c312c1e49d940",
+            "id": 10090
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10091.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10091.asset",
+            "rowId": "2bcfe540-fc91-40af-ba1c-e1f9c76ed369",
+            "normalizedSha256": "c6658266793a64f501e9271c79a0b5b346f85b18ddac382df99b712cf0d92d5c",
+            "id": 10091
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10092.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10092.asset",
+            "rowId": "ef5e5a23-e517-449d-b8b5-2cfe202c15e9",
+            "normalizedSha256": "7406b43926314299d25d9112dd2c0aab90978e983edae0e1bf1048be2ada04db",
+            "id": 10092
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10093.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10093.asset",
+            "rowId": "16695c8c-7a75-4865-a77a-89a21deab475",
+            "normalizedSha256": "f39b82389a5bec76283184fad70c305c30fcf819a07ea3bd4f4f7fbc1a853b93",
+            "id": 10093
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10094.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10094.asset",
+            "rowId": "d06722da-e2db-4d8a-aff7-792a6487146a",
+            "normalizedSha256": "b1d2c7cd88c994c0cb078ef31102db9cbf3a61633e9cef4ea2fea6161aa1216d",
+            "id": 10094
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10095.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10095.asset",
+            "rowId": "deb9d3db-fbba-4a61-a1b9-350dde815608",
+            "normalizedSha256": "e0e22905573e77bbf55b23e678cd510eeb76c4572d33041e1161e81e4ed59c13",
+            "id": 10095
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10096.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10096.asset",
+            "rowId": "c026de08-011a-4028-8248-93cfa58cd3de",
+            "normalizedSha256": "385f970b18966c6149b934d8f3aa7b73d7638e871a2a7c5abbf8f7f1164dce0b",
+            "id": 10096
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10097.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10097.asset",
+            "rowId": "3443cc6e-b733-486c-982c-5e93600b6272",
+            "normalizedSha256": "830b4e578429c543587e5676d8e61236b91aba131bb06951ed175033a20388a1",
+            "id": 10097
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10098.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10098.asset",
+            "rowId": "3e137f59-f402-410f-8e26-9a230edd5e06",
+            "normalizedSha256": "7be3b0e85cf4b8168c38577831bdb780219c78648405a4b99d7bb73e651fa3f0",
+            "id": 10098
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10099.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10099.asset",
+            "rowId": "bd65fca7-2297-4a1a-9e3d-f3242ede8f2b",
+            "normalizedSha256": "4c1fd4db7d24c5e2fc5fe0b84e15f89b3d579d83d30449b844586ee5acb23134",
+            "id": 10099
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10100.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10100.asset",
+            "rowId": "9584b291-89e7-4156-9a36-569324949344",
+            "normalizedSha256": "3044f72867170d8a06bf402a6b525857ef2f29656427fae6fa4166939f3a9281",
+            "id": 10100
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10101.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10101.asset",
+            "rowId": "f1de1e19-5682-4fe0-9ed8-ead0f788d02a",
+            "normalizedSha256": "4006de0a89a4b57aef2b15cc93ef5c12bd86270e7f7974476a7fbdcbdc3e25be",
+            "id": 10101
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10102.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10102.asset",
+            "rowId": "0f84c555-0ca3-4633-8789-7d53ff03cba5",
+            "normalizedSha256": "65ebcef23e3e9fdbf870b48d2f06e179c1f012524a0cb3cfc723bc94f0182362",
+            "id": 10102
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10103.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10103.asset",
+            "rowId": "e34a915d-c2b6-444c-9227-50cce6518e40",
+            "normalizedSha256": "b554504cc7fbeb2723a5d235acdd90ffc0e4e82e8fc2ef7425cdac717f98cf39",
+            "id": 10103
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10104.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10104.asset",
+            "rowId": "18451e92-f802-4f51-b931-6f697166a2d2",
+            "normalizedSha256": "b4bdbe1eda3ff363c74df86a0a21b3990620f7384189804c1dac4040c8f15329",
+            "id": 10104
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10105.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10105.asset",
+            "rowId": "7b48a778-19d7-4b44-ad0b-bde1da88858a",
+            "normalizedSha256": "6637e3aa19ff7de8e5acad2838002b907c6de97854500bcac9da3e8935a13652",
+            "id": 10105
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-2/10106.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-2/10106.asset",
+            "rowId": "a47ffcfd-8cc5-421c-9e6d-5066fd06daac",
+            "normalizedSha256": "0774ad82d3b84b17e260b0bb50a96202eb439fec75087c4bd629b8834bbe4f74",
+            "id": 10106
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10107.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10107.asset",
+            "rowId": "7af8538e-b6cf-4e2d-9204-7490c0d12aa8",
+            "normalizedSha256": "ee319b4d8e1ed0aec894d367189bf53c6a8a0a762b5832e96c3726d740ddf644",
+            "id": 10107
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10108.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10108.asset",
+            "rowId": "f61906ab-24d7-4b4a-aa45-cfce0b68ef79",
+            "normalizedSha256": "79f0e2a942e7255ca91bbdd017b00e450f57fb98eee0f41c3f467cc1a5aa384d",
+            "id": 10108
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10109.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10109.asset",
+            "rowId": "cec30ad0-71ed-45cb-bbc0-984cec08275d",
+            "normalizedSha256": "569ab013c7b07253f45182298d6e688b51ce06cf3040d77855588ecdcbcbfbbc",
+            "id": 10109
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10110.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10110.asset",
+            "rowId": "bb02edb6-e4cd-421f-98ca-8a595de93a69",
+            "normalizedSha256": "b314322b323d2103a9aa4debe2f34816e21e0c6db332fbedb53f5fc2cc835c6e",
+            "id": 10110
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10111.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10111.asset",
+            "rowId": "21750b30-8df0-47cd-b282-27a35fce2945",
+            "normalizedSha256": "e2b1c8f0d10e2ac23d9c93fb9c28db9540e58d10a66715069d5a3085e28bbd10",
+            "id": 10111
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10112.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10112.asset",
+            "rowId": "3a36f7d2-7ab1-4161-aaed-0d8d54f647df",
+            "normalizedSha256": "51545146e4fec8baff07d59bc712cb63ce515f815f4f431cfed699588bafeaa5",
+            "id": 10112
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10113.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10113.asset",
+            "rowId": "bf61e75f-2830-4506-ad26-fcfcf297eae8",
+            "normalizedSha256": "f75c2fd7e1ce1ac92d45208900fc5872618ecd7db8c1da2f06ae3e32738d17fe",
+            "id": 10113
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10114.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10114.asset",
+            "rowId": "6425dbb9-7d2f-49ed-ad50-5cf57e5c5690",
+            "normalizedSha256": "5992322e541d93f53e7beb135516b08cd868adc924b4589b5a525dfad0a30516",
+            "id": 10114
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10115.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10115.asset",
+            "rowId": "8a66f55e-65ff-49a3-8eda-edabc431a9d3",
+            "normalizedSha256": "04114dba86aaa504c03cc265dd8385dc7b798374d7fdf92c3b543639a4655a7b",
+            "id": 10115
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10116.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10116.asset",
+            "rowId": "a11f9080-a650-40b7-99f9-e3e62dbee640",
+            "normalizedSha256": "232c54526bd1b3d892212ef9fcf671a2916907ce613eb7123416fb15e9c9e533",
+            "id": 10116
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10117.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10117.asset",
+            "rowId": "5450ee61-012b-4cf3-8b37-4cb923f2d384",
+            "normalizedSha256": "7c1c39fc09c8494026f2362421d0afa3264ffdcc629f800247f17cfb4456a626",
+            "id": 10117
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10118.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10118.asset",
+            "rowId": "4eb622f4-c9e5-4ddf-a99d-74f4c58b06cb",
+            "normalizedSha256": "fed95a04ee3f27cb6f4fcd820438f825f7369258318ecf849df3865de7abc249",
+            "id": 10118
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10119.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10119.asset",
+            "rowId": "fcbe8d58-d71a-4767-8953-3db8e8b7cb07",
+            "normalizedSha256": "8781ad7430aceaf4e24c94bfe1f7def477a5c6d092ba3d8ccb97331d2b2ec011",
+            "id": 10119
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10120.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10120.asset",
+            "rowId": "8b9c1388-8a9b-4410-bbce-2a29b21dc808",
+            "normalizedSha256": "b2ddb61048d03e7edc850abad61535fedbdfe756fe43a8d4a69349d88e76d946",
+            "id": 10120
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10121.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10121.asset",
+            "rowId": "d748a63b-b83d-46c9-b313-49ed9dcc0821",
+            "normalizedSha256": "a4d208c71e8879f9215392aee9c98ae990e336ea3be9c5dbd0de8146375c987e",
+            "id": 10121
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10122.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10122.asset",
+            "rowId": "bff418cc-2535-451a-b84d-34db7e253a74",
+            "normalizedSha256": "78e1c2bc4f06906acf74a005ed5d284ffafd382b338261c82438f2d95181a45e",
+            "id": 10122
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10123.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10123.asset",
+            "rowId": "602b464b-b2fd-47ca-81db-b769fab89cc8",
+            "normalizedSha256": "f4f4e0fbb380bf15bfd74ecab08965f1f031df6f8417d754c92d88e4609fbb71",
+            "id": 10123
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10124.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10124.asset",
+            "rowId": "8944a527-50de-4075-864c-df644267ddf6",
+            "normalizedSha256": "ce0f53f49fa4ccbd0a63aa723165a25b84d940bbcf5e484046fdcc48231f6e95",
+            "id": 10124
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10125.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10125.asset",
+            "rowId": "00faecd4-ca9a-4477-ac83-b345cd35945f",
+            "normalizedSha256": "cc0039d88953c5a9d42f45e8c5c348d6ddf4b4a284339750bc63deb1e7dc44ac",
+            "id": 10125
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10126.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10126.asset",
+            "rowId": "1cd7a48b-fed2-4a97-9bed-144d2e7b8b27",
+            "normalizedSha256": "08cd18a2c70ee8a3105e85d2c09c30c6240a6199caad45eff308333813df3929",
+            "id": 10126
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10127.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10127.asset",
+            "rowId": "2cde1979-70ed-4840-b561-8276150c029c",
+            "normalizedSha256": "842f2c8f6531a5634021550652cc29e3343fdc8a49a72e4134db0c9291759d63",
+            "id": 10127
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10128.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10128.asset",
+            "rowId": "efec3ff2-2276-4b36-9e60-ac6db2cd5a2c",
+            "normalizedSha256": "55b780bf57dd11be898be9c3a91cc200b837998ea5aa909bccfa41caec2737cd",
+            "id": 10128
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10129.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10129.asset",
+            "rowId": "404015ab-040e-40db-922c-445ece5f74ac",
+            "normalizedSha256": "7b2435dab54dd8519f214464aeb39b9ddcc360fdf1ac919b504ca99cf5672eae",
+            "id": 10129
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10130.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10130.asset",
+            "rowId": "61e494a7-39f6-4863-997d-a4c1307fbe05",
+            "normalizedSha256": "2be8c136aa32c3b0cc667c775e87cba275f594b1488f006a5c4258f92c2eb12a",
+            "id": 10130
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10131.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10131.asset",
+            "rowId": "aeff32f4-1b21-4095-aa83-bdec38d58876",
+            "normalizedSha256": "2da968c97c3b7176b470193b08b4c41eb2a9a940cb8eda1bb6e01dd55a0a6b06",
+            "id": 10131
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10132.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10132.asset",
+            "rowId": "165f348e-d848-46e2-b988-14a46a9aa610",
+            "normalizedSha256": "c2416c1685dc285b4a0cd2a5eb3a8621b5b112de9485819440b6a2043e7a56de",
+            "id": 10132
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10133.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10133.asset",
+            "rowId": "bdfce887-cee5-4ea3-9914-907b130d2b1c",
+            "normalizedSha256": "cf382c47dfca9fbb1459a114b0a7b515a2f24a9009df31218f60a1c6dc60e946",
+            "id": 10133
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10134.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10134.asset",
+            "rowId": "15372955-3929-4ece-890b-4a00b85b2d35",
+            "normalizedSha256": "f4e3978c3c98a3c2b33e9ab62b5c674f285f1d8b93bdf28aa1a984c329831375",
+            "id": 10134
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10135.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10135.asset",
+            "rowId": "4c553c18-8432-4df5-89fa-f8d98efb3b4e",
+            "normalizedSha256": "cadd129f4678391dd650d2999723b4a7bb8de2ba00ffed195f2b1fa5ac83b7f2",
+            "id": 10135
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10136.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10136.asset",
+            "rowId": "84e2dbb6-2631-429c-8979-99fc0dcb23bd",
+            "normalizedSha256": "9775e06d1adaf11f193b10c0532ad31c4aa188bbd57f609f78c0cc1419a9d5b3",
+            "id": 10136
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10137.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10137.asset",
+            "rowId": "dacb8322-8902-4239-aac8-13135b77b88e",
+            "normalizedSha256": "57b391ff74840ded18c8bef5b4a5b82184905bc1225bf80d0bada3d4f998ab74",
+            "id": 10137
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10138.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10138.asset",
+            "rowId": "3111e2e4-47c5-4fdb-a22a-d9ac69808152",
+            "normalizedSha256": "37ddd9876aac4b870fd167647f977e8ee76996727aedfd4d040e5c4f8b006e1f",
+            "id": 10138
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10139.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10139.asset",
+            "rowId": "0e4923a6-4ac5-44d5-ac27-56ef8b3c3828",
+            "normalizedSha256": "19528137433a8f0814e0182d984487d5bfc9f80d625c376f38f7efa3016d2b4d",
+            "id": 10139
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10140.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10140.asset",
+            "rowId": "1bc3b52d-29d5-4c68-96e3-16a61c0ea096",
+            "normalizedSha256": "47805a26d2751a047ee2e17c09548668758ed74ccc3c7930f6a623f2633e7804",
+            "id": 10140
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10141.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10141.asset",
+            "rowId": "0f2880d7-6f08-4ff1-ba06-eb7d3fc3241f",
+            "normalizedSha256": "94b17cbdfd7ebb47fcad644be9965cf2ecc21e952b25da29ef84effe66196d83",
+            "id": 10141
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10142.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10142.asset",
+            "rowId": "f606d360-3ce5-4199-8a04-b2a95b0e25d3",
+            "normalizedSha256": "898b77d804389b5e2ddaf6d13061410db15a04a7d9b0d6a8cc77400ca9b13898",
+            "id": 10142
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10143.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10143.asset",
+            "rowId": "310c56a1-ac55-4df7-b9d6-93b270d6c7db",
+            "normalizedSha256": "741cb6d779ed88a7e9fbb4d0b9154ff9feecae21fd5fa552c3e6be21a56db33a",
+            "id": 10143
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10144.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10144.asset",
+            "rowId": "e265249d-5328-4997-935a-6da0b0e0768e",
+            "normalizedSha256": "29ceada5173e4d22af59d731bb268f154e4af931b8dff188de28ed468b0a69ec",
+            "id": 10144
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10145.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10145.asset",
+            "rowId": "30bf9d84-2eef-4f50-883e-0510e50d3df1",
+            "normalizedSha256": "d3cfa68b6c051cdd9c8267910491bd2f6e436885915e3a6e78762a974618f986",
+            "id": 10145
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-3/10146.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-3/10146.asset",
+            "rowId": "bdbec11f-e678-4c2f-a4ae-9e04f851e763",
+            "normalizedSha256": "5bf44a4154bc04f6f674164801099fd6cd7297cc7dd29da6ea69bc89d5aa092e",
+            "id": 10146
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10147.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10147.asset",
+            "rowId": "d217089f-684e-478b-8a38-cf2bea09c441",
+            "normalizedSha256": "98458ce1b7b262ee993362be6f2189aab5bc707b565bbc35e191b4d3336d1306",
+            "id": 10147
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10148.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10148.asset",
+            "rowId": "5a8ec262-b561-4c81-88c7-33548aa7ac3a",
+            "normalizedSha256": "683d4a97db8f67384ccbf167658346fcd3d01c9376fb218e0f30b29c83fa7979",
+            "id": 10148
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10149.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10149.asset",
+            "rowId": "a0a1e9b5-611f-4163-ab94-994007934779",
+            "normalizedSha256": "9ba9baa92106e76537c0da2a6df6d4c2c1d998d8efe18acccca7365626a319db",
+            "id": 10149
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10150.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10150.asset",
+            "rowId": "e7bf1b0e-9d1a-4123-b2d5-ce5f4ecb8f24",
+            "normalizedSha256": "388b5024f8cd6053416a0c3e4bc7c0e6f9adf042dd01d5d4276cf496266566c0",
+            "id": 10150
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10151.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10151.asset",
+            "rowId": "d34838af-1276-454e-ae8d-c35fc51aae27",
+            "normalizedSha256": "cdd3d48079a2ce701388c245df7268d9bb4244865d7e45311ad1079591951b16",
+            "id": 10151
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10152.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10152.asset",
+            "rowId": "67104eaf-cdac-47af-8e6f-ec7d563c5683",
+            "normalizedSha256": "b4152efb8a5fe882848b1eadf1dbca8e96039b8a059ba5addde380d42a35feb4",
+            "id": 10152
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10153.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10153.asset",
+            "rowId": "97768394-e6f7-46f7-b511-2c967f379c28",
+            "normalizedSha256": "a836720f035e76a02664a561c16459015cec1ddf9cac9bc98f1fdca3f4de164e",
+            "id": 10153
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10154.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10154.asset",
+            "rowId": "21e28889-ceb5-450b-a9a5-cbf6e9e55634",
+            "normalizedSha256": "7a488adc2293b50abf52571e7ea27a31ada9aeb89d5a30411ac66dff7b73b554",
+            "id": 10154
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10155.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10155.asset",
+            "rowId": "ee640c36-abf9-4937-906e-a04eef29fe72",
+            "normalizedSha256": "f786e0144e1db5a27666090c26b8516483ac2c19c97504bca1b9b1ceef91c2b4",
+            "id": 10155
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10156.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10156.asset",
+            "rowId": "339cad07-62f3-4fb5-b3a5-a6abc9cde24b",
+            "normalizedSha256": "ffa2b2bbaf3c78215a6e424825612917178b88453f031fb1bca2e35cb6576e04",
+            "id": 10156
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10157.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10157.asset",
+            "rowId": "2828b0a8-2e0b-419a-894f-b062fc9621ea",
+            "normalizedSha256": "85384ad28604d6976e5694873605171ee754d389ad4f5951b54381adbaedb369",
+            "id": 10157
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10158.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10158.asset",
+            "rowId": "d013c5ee-775e-4a73-a957-1e3a73727ac3",
+            "normalizedSha256": "9c0b464bd2a9becbfbd6d937ec784a747269f5e214635312557397b66cc4108f",
+            "id": 10158
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10159.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10159.asset",
+            "rowId": "e37f0862-bfd0-495c-95d1-a06487166f69",
+            "normalizedSha256": "9731f3a18ec090076ba2f7ce8f86b0035530b9eff68f233ab3b9fdc41e01f9c6",
+            "id": 10159
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10160.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10160.asset",
+            "rowId": "396d5068-e31d-42af-9a4f-236ed12b5414",
+            "normalizedSha256": "e2eb439eaf5b04bd0bbb420654272bcad3ade590a1c3d221625d8736af685d0d",
+            "id": 10160
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10161.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10161.asset",
+            "rowId": "4e3be455-69c2-4e7c-9e80-92e452289c75",
+            "normalizedSha256": "efec38d31bf3b5ba592ae99451e8692fdae4bbc6f7be135c89ce0cc2de9cb660",
+            "id": 10161
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10162.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10162.asset",
+            "rowId": "bcf4e70b-607d-4381-bd67-bc33163e5a7a",
+            "normalizedSha256": "124e10a5278b1512d0ab412913f5f587d3134c7b8fc1fff7433a3b01616f6fe6",
+            "id": 10162
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10163.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10163.asset",
+            "rowId": "56749457-67e9-4e63-9dbb-087ddd805b65",
+            "normalizedSha256": "79c66ad2d9dd3fc8b972692581a7aa21788dcca9e4ef569f219bd1b713623438",
+            "id": 10163
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10164.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10164.asset",
+            "rowId": "1a222794-484c-4e64-a98d-1d748a289103",
+            "normalizedSha256": "6b31a05269d2debdd1ad6d9dc01b081a54e21c046440a809033180f7bf8d1324",
+            "id": 10164
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10165.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10165.asset",
+            "rowId": "dc44ab03-afc6-4058-a2dd-7ee5e575ce18",
+            "normalizedSha256": "d3ff5b71b7b6a036bf07d8821e9b4a8c95cb085cefd044fb0eda7224c20117d6",
+            "id": 10165
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10166.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10166.asset",
+            "rowId": "464745ce-0269-4a9c-9160-1114aea26b05",
+            "normalizedSha256": "8d12376987122e3071610bab5c944df4dcc73d6baf54e9985a6ababebf1bbaea",
+            "id": 10166
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10167.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10167.asset",
+            "rowId": "050e3e86-f828-4bfc-9f60-825bc831bd4e",
+            "normalizedSha256": "502ed1e5cb631063f1ee20c01a0823db59d3607125e89a871619a389a14ec560",
+            "id": 10167
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10168.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10168.asset",
+            "rowId": "0682b717-6165-4af6-92e0-2261327503cd",
+            "normalizedSha256": "28e03c41f7bea9e43060c2a80ce80b703949f4f6057c8db7385c01a1971470cb",
+            "id": 10168
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10169.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10169.asset",
+            "rowId": "ed3066ef-d681-46c5-a61d-0f97a87af9aa",
+            "normalizedSha256": "88b2d0f9ad6fd1cc23bcd449544c9aa7a2c0b201cd3f22286ced31e8b031f1b3",
+            "id": 10169
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10170.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10170.asset",
+            "rowId": "080b3bbf-0f06-4357-a42a-1a346e6827cd",
+            "normalizedSha256": "5dce7672e971de6642eacaf3cdd8cce524a1636c3618ee6e635afa12f200fc40",
+            "id": 10170
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10171.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10171.asset",
+            "rowId": "1f18d240-3df9-42af-b735-2b36c49a51b7",
+            "normalizedSha256": "133c33afbc51374f9034e8d19765ebbb216da822a5258b5a86845d4ecb946a74",
+            "id": 10171
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10172.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10172.asset",
+            "rowId": "2faa7448-0645-4136-9fa6-f01c5d3d3283",
+            "normalizedSha256": "163ebaf6d80ee44761d305781484bed54cf8caaa1cc1f58b5c761ad56821a97b",
+            "id": 10172
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10173.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10173.asset",
+            "rowId": "725ec864-6b6b-4504-b992-364bc7b32e42",
+            "normalizedSha256": "c710a2a7d33185cf01689de50403ba3c4bb8b378736d48355e850a8304a2a057",
+            "id": 10173
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10174.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10174.asset",
+            "rowId": "c3c6be49-0b91-49b1-8a80-e8c55e7709df",
+            "normalizedSha256": "ee76f3feffb6841fd1071a767dfafca0673ff0cd38cf34d064582493a3379502",
+            "id": 10174
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10175.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10175.asset",
+            "rowId": "5c532905-345d-4006-b086-d46af76f0da5",
+            "normalizedSha256": "b9a9dc36ca90fd40f07667524a7f53169cb98ad2406fd2cfe74348d56c3b0e1a",
+            "id": 10175
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10176.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10176.asset",
+            "rowId": "39f67ca7-1278-42c2-bc85-86dc44a62e72",
+            "normalizedSha256": "4349f6d2c631490fa6bf63afaa8620335a1f0373d0c4ed9c05331285fd4b144e",
+            "id": 10176
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10177.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10177.asset",
+            "rowId": "9786c9b2-1a66-4d6a-8cf7-233ac8a32cea",
+            "normalizedSha256": "eb9f9abaa0de35a40950dc705109e5da86526fa4af98d3ec69b53c659d928320",
+            "id": 10177
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10178.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10178.asset",
+            "rowId": "f99b25dc-2a72-4497-a2b3-1e4657b57e47",
+            "normalizedSha256": "b15ddcd6c95217f6b938e76c3326b7cd46bcb61bce53a61cbf540ed0fd0e097e",
+            "id": 10178
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10179.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10179.asset",
+            "rowId": "1b9c610c-6215-46b6-b472-d8d1cf6ef00e",
+            "normalizedSha256": "d9a89861aa7011ec8735be074abf0f2d8965d02a071cb5d617ab00b105358ff0",
+            "id": 10179
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10180.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10180.asset",
+            "rowId": "f48be146-8280-4f4c-bac7-427b363b9d44",
+            "normalizedSha256": "a1ec119697ceda47b6d15d0d01eb8fe0791cdc34abe99badb436d3ba8ac0d5a5",
+            "id": 10180
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10181.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10181.asset",
+            "rowId": "11541659-33ca-450a-b5ba-345b099ef07b",
+            "normalizedSha256": "26343e0ad5aa52a2696943f3907386be91b1302d5e9747bd024f21a902910b60",
+            "id": 10181
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10182.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10182.asset",
+            "rowId": "6c7f025a-8aeb-42e5-a4aa-2e55c8a0bde0",
+            "normalizedSha256": "523e628dbdab2fca7fce435d0390c543553c7b68c80d87ae6139fd06e71d6cba",
+            "id": 10182
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10183.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10183.asset",
+            "rowId": "bc45bc8c-4dd3-45c6-9d6a-7534d9063918",
+            "normalizedSha256": "498b950ce6410b0ae35de35a1f80e58ddffc4b525e4586ab36fe31caff1c03a1",
+            "id": 10183
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10184.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10184.asset",
+            "rowId": "808748a5-88c3-4d41-831c-bc747b2c7a2a",
+            "normalizedSha256": "28f9687523725fc916b65e571c9207ac883bc29e5ee01040193d66aaf9d3b2f3",
+            "id": 10184
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10185.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10185.asset",
+            "rowId": "dbce367c-4761-4a5a-9916-dd1a2f194a82",
+            "normalizedSha256": "55278ebaa0a7dd0bc7a4122ce90037b035bddf50eac51e697c1351c9438bb145",
+            "id": 10185
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10186.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10186.asset",
+            "rowId": "cc720e15-bf54-41a3-a0dd-ff35415f9b49",
+            "normalizedSha256": "950f76dbeca1daabdec648f2d1732066bc48c37bed71d3237dd2bf00068fb4c0",
+            "id": 10186
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10187.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10187.asset",
+            "rowId": "14777569-2289-4f0b-966f-6c7be764d5af",
+            "normalizedSha256": "2580e5dad50324f20018ee6abb14cbf56299bd2e0f5e5cc9e7952a0350181f1e",
+            "id": 10187
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10188.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10188.asset",
+            "rowId": "707d2a0c-8131-4e38-94e5-4f4e1dd56b92",
+            "normalizedSha256": "4050b71f5dc17e5302bb3c89e23e17f6b47c71aaa59001e1e413b69dcc57d087",
+            "id": 10188
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10189.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10189.asset",
+            "rowId": "0cf4ad2e-16d6-414b-a1ce-36a52cc74221",
+            "normalizedSha256": "6c10d5e52a2f930e16fdcc06fcabf1c78a7dffc39f219617bcdce9c0656e8662",
+            "id": 10189
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10190.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10190.asset",
+            "rowId": "ad36f478-27f3-4811-9293-95468956ae6e",
+            "normalizedSha256": "61c45714bb4e024b4403cbf811f21934e6dbca980b594d2d18a629185de0fdfd",
+            "id": 10190
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10191.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10191.asset",
+            "rowId": "9d3b14d8-2083-4116-bcf6-72e45fa558b1",
+            "normalizedSha256": "eb4e76b4cbef6d22f7115fb10202912f085c90c5d6e22c91626086e3c757dd5e",
+            "id": 10191
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10192.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10192.asset",
+            "rowId": "de0e39e1-da36-4ba9-9015-56eb7a9f769c",
+            "normalizedSha256": "d5de26830928c075442933fbdb1ecee69875db33561bf6eb8e08ab00ff6f453f",
+            "id": 10192
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10193.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10193.asset",
+            "rowId": "1d9e3f34-612a-4b64-8298-45ddf3d62b52",
+            "normalizedSha256": "746adcee905a6e5a3275359c01a122e82e3a714eb351ab2851d5ba009e27aefc",
+            "id": 10193
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10194.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10194.asset",
+            "rowId": "5679c257-cba1-4954-bdd3-813ee63f09cc",
+            "normalizedSha256": "08c626a8c3f624e13e2ce6a8ea7436698c20b58de666dc3af74aa39ce3528bcc",
+            "id": 10194
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10195.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10195.asset",
+            "rowId": "4fbd6c8f-1b7d-4012-b844-16b977ba21c7",
+            "normalizedSha256": "c344bd168507a72989508fdc32cb360f58f3a1e1c3732da3575fe4e184984baf",
+            "id": 10195
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10196.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10196.asset",
+            "rowId": "591689e8-840f-4f97-bd22-346fd7255099",
+            "normalizedSha256": "2511b49bdaf9ef183729cc1a63421fc349340ed021635c4de9abe76fcb9aa34d",
+            "id": 10196
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10197.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10197.asset",
+            "rowId": "f5984954-a5c5-4e56-a63c-406518fcf028",
+            "normalizedSha256": "60cd5d86a880708a51de0f2aac9fda57c9c159dcabe234ba43f49a297fd93639",
+            "id": 10197
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10198.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10198.asset",
+            "rowId": "efcf0117-a490-4dfd-a74f-578325870557",
+            "normalizedSha256": "ebd368ad5730903b5f1291cce3ca544c651f9c0481049a6c0f111cdba784df49",
+            "id": 10198
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10199.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10199.asset",
+            "rowId": "e58042aa-6cf9-4c33-b285-9e98cb232329",
+            "normalizedSha256": "ebc563c695862837148146342334513f365ec22792c79e4335d9a5eaf4da6c87",
+            "id": 10199
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10200.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10200.asset",
+            "rowId": "2fec07bb-a4cb-4d31-a039-a1229225fb73",
+            "normalizedSha256": "e95b10ebf8ce260c60571725e3a0da5c9676ce58281f59ba1339e605608456e4",
+            "id": 10200
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10201.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10201.asset",
+            "rowId": "4b038bdc-6ee1-40f2-a36b-11fbeed16c11",
+            "normalizedSha256": "c99f3e5e94b1450ca538fb69d956dd2ecef38fb7ceb36ac7fb4e3682c0d30e7a",
+            "id": 10201
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10202.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10202.asset",
+            "rowId": "bf5f1aef-b3de-4108-86c3-3d8e2b233a8f",
+            "normalizedSha256": "99356e96a0d80ff6fd1b238d3df9179439068bd6ef8d5c981e20a1c1ca16e582",
+            "id": 10202
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10203.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10203.asset",
+            "rowId": "a6d61b96-a860-40f0-a570-f1e26b4d8078",
+            "normalizedSha256": "6797983604bb7bdc721c6502da479c396ff815bed656dfb44a45a7928e51a095",
+            "id": 10203
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10204.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10204.asset",
+            "rowId": "80edf431-11b5-4c81-bdba-c9307ef4ea0d",
+            "normalizedSha256": "f42f6e580130b596021625dd949ba1520b8a59a290e22f25b74c5d18bbc14210",
+            "id": 10204
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10205.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10205.asset",
+            "rowId": "bf856879-10e0-4700-b7f6-751940467b36",
+            "normalizedSha256": "8da49dbd815b85b4216034fae38df4b2b051d9c0dae1d3331f83296362a87bd2",
+            "id": 10205
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10206.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10206.asset",
+            "rowId": "0cb3ab12-e505-4956-9251-201cbffc5b64",
+            "normalizedSha256": "fc2c23518ccd32975833e609a4b3776781dca02cc2eb0e7b2f12c850104b019a",
+            "id": 10206
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10207.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10207.asset",
+            "rowId": "da41ae67-5571-40ef-8544-28f2401be63b",
+            "normalizedSha256": "7de05a5fa79926c61cc4b7348a24f561a77a775877af1fd69c4aa0678a0abbfd",
+            "id": 10207
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10208.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10208.asset",
+            "rowId": "76866a43-3c42-4041-907c-b626c861c97e",
+            "normalizedSha256": "71433235c022f8db2444bbe29d7bab21b88463febae0ff8f68ff16db49c6d484",
+            "id": 10208
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10209.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10209.asset",
+            "rowId": "b179522c-07f5-41e3-8b5f-8017f3517423",
+            "normalizedSha256": "49bb1d9a32920b053a7c552252ecad0aeb388d23dfc493b9b91258983e688d2f",
+            "id": 10209
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10210.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10210.asset",
+            "rowId": "f10d422b-1e15-422e-985f-3a5282b17994",
+            "normalizedSha256": "9bbadcc3477676d6d5ad5000eb94c696febcb9e6c0837bb9c0a1b9ebaa1ae831",
+            "id": 10210
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10211.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10211.asset",
+            "rowId": "dfc40053-3823-46ab-9bdf-5439fadfd5d1",
+            "normalizedSha256": "51029724f9d22c1dc51e54d92303a87e0c78dcb2fda2cbd41d6349029bae64bd",
+            "id": 10211
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10212.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10212.asset",
+            "rowId": "9f0f4571-db7f-440e-92bf-78005c507781",
+            "normalizedSha256": "c42cec2a54865081150b57502fc0e0feebb84e58f62cf32c003d8c8d230eaca4",
+            "id": 10212
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-4/10213.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-4/10213.asset",
+            "rowId": "e64ddc8f-25be-424b-8172-a9fca418e6c3",
+            "normalizedSha256": "017890aa90358c28052ea4d8a542359f0ca8ab6402913812284093a9e20a5f74",
+            "id": 10213
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10214.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10214.asset",
+            "rowId": "4a07af18-737d-47e0-bcc5-52bf2d4da5c7",
+            "normalizedSha256": "f2fda3ebce73c64d564d56e2007d6d710043c411ae5e339e731a2d33f95ad854",
+            "id": 10214
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10215.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10215.asset",
+            "rowId": "760f63ac-ab37-4ba5-bbc4-0f5b3f4b36ff",
+            "normalizedSha256": "a903c7ba33384b7e70795b765962153f006a27923c309294efe3a5be5a84e988",
+            "id": 10215
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10216.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10216.asset",
+            "rowId": "fab56a4b-dc66-4a76-9c3c-83a37ca07b4f",
+            "normalizedSha256": "0420890972883cb7c12fa559847e8134c8c314d8a1284b9277b22963518312ab",
+            "id": 10216
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10217.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10217.asset",
+            "rowId": "1faae7b9-9d00-4f9a-8f79-acbe327655d1",
+            "normalizedSha256": "792c17997f5a7143638beea1fe638349461d3098ebc4982c33e2170d2d92be31",
+            "id": 10217
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10218.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10218.asset",
+            "rowId": "5849b50f-a5f2-4d00-a33c-a9d2f810aa49",
+            "normalizedSha256": "96d11dd168e00081ca715d04d18ef99a75b436f616362b7779d546f71885f540",
+            "id": 10218
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10219.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10219.asset",
+            "rowId": "8d6f7b5e-29c6-450c-95c4-0d94ef309a60",
+            "normalizedSha256": "2637292302e565ecaccc11d8038ba85b096cb1c7c412e9bb1fc46ff66bc54391",
+            "id": 10219
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10220.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10220.asset",
+            "rowId": "315d6d87-769b-4cb9-8e9d-9f74822f23e4",
+            "normalizedSha256": "04d0124872f17693f6baddfadf99244cbfada02c123d2e21059830a35614e702",
+            "id": 10220
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10221.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10221.asset",
+            "rowId": "24fb8082-f35c-44c8-8738-4b27c0c6cfe6",
+            "normalizedSha256": "5f5455ec8207d066124ee97b2aec6888486c4b03559882e738190aa5084cef7b",
+            "id": 10221
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10222.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10222.asset",
+            "rowId": "abf0a954-6263-40af-8506-9047b9d18f10",
+            "normalizedSha256": "4ebb0d64e1d9254c37fefac830e2d9db91afcda0fecfdb415981ab87c0f4ea2e",
+            "id": 10222
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10223.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10223.asset",
+            "rowId": "87bbe54e-973a-4a32-82c6-b21d10dc3e64",
+            "normalizedSha256": "4bea729c8291e0c240eb4e4c73e84566971240aa72bae4b1679449896b84c3de",
+            "id": 10223
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10224.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10224.asset",
+            "rowId": "3c18ce66-1fa6-4f36-96d8-77e49738a361",
+            "normalizedSha256": "e8a295bac80b85eed92382e07d35f11c3ca59865da8464eba2360518c352cf1e",
+            "id": 10224
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10225.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10225.asset",
+            "rowId": "32bbe661-d4eb-4d84-9b5a-35e7709841fb",
+            "normalizedSha256": "fc0799d697d2b5c55885f78bd002f944881e7a2cce6343e4bbcf5c335bac4db7",
+            "id": 10225
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10226.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10226.asset",
+            "rowId": "64dc3a34-4a69-4916-adfe-8f1b2945e627",
+            "normalizedSha256": "315b280f07d1d13567325b9f1f9545160c89eb28c47269fc0c754d91354169cb",
+            "id": 10226
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10227.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10227.asset",
+            "rowId": "0fe7a285-f388-41c1-803c-823e56d26b61",
+            "normalizedSha256": "840ae537ecdb30975c27788108908ea598e9b1fd4b8a627fb64ed878245a8dbb",
+            "id": 10227
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10228.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10228.asset",
+            "rowId": "290dd548-114e-4024-9b70-4d014bb9c349",
+            "normalizedSha256": "143dbfa02f2878b5eea0c1be577a9a6caf7b1124c1f6448a6fe5dcf225faf772",
+            "id": 10228
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10229.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10229.asset",
+            "rowId": "bc21976c-2f54-4331-9143-a05943381659",
+            "normalizedSha256": "ab09fbac63872bae53e80e2cf7c505897f7db2d9335093733b20048f9ab21082",
+            "id": 10229
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10230.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10230.asset",
+            "rowId": "ad15a758-bb62-4c7f-85f9-b5468151e7d3",
+            "normalizedSha256": "85f6149d52b30d60c171d89bc273abef1f5f180fa1e4dd348d17bfb31a8f6f20",
+            "id": 10230
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10231.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10231.asset",
+            "rowId": "ae2bdefc-b089-457d-89f1-494349ca75b0",
+            "normalizedSha256": "822f955284a8949bb2bce03c51a1304fc302ebf5c0336f77d1928fa58f724f69",
+            "id": 10231
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10232.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10232.asset",
+            "rowId": "0a368e93-5c5f-436a-a466-d876231cffb8",
+            "normalizedSha256": "6f9f30a708c04e9773b0058fb5bd96dc5d760e02d8d473dac285fed359a5d273",
+            "id": 10232
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10233.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10233.asset",
+            "rowId": "fd7241fc-fdb3-44a3-898a-9eda86c0a57b",
+            "normalizedSha256": "86f28ba869dea2616e2a1f679c588a118991a8b73e5fedd5a13b5657dae7565f",
+            "id": 10233
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10234.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10234.asset",
+            "rowId": "1383cca8-0448-4676-9863-9d8b5502b49f",
+            "normalizedSha256": "ba2c576186f6f401fabb3d3d70eff99c26593615ac075603fac297fce389d9b6",
+            "id": 10234
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10235.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10235.asset",
+            "rowId": "ed8d8279-c89b-4625-bd91-ae7df3fcf3b8",
+            "normalizedSha256": "2e26321c0304a7c36d2eb96d6268d692934c8fb182257313d3b68b5557cdc463",
+            "id": 10235
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10236.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10236.asset",
+            "rowId": "a4589655-ec60-4cf5-a35a-703b765c5cc1",
+            "normalizedSha256": "7e4c437679fac19f109aa50bbec5aef3e7e7b40bd2f88190c65e133ae73515fc",
+            "id": 10236
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10237.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10237.asset",
+            "rowId": "815c2ee1-2b05-486f-a528-fa69846652aa",
+            "normalizedSha256": "53b328835996d60ddde43eb86d0888dcf43c97ba6c934fd33189dae2312296f8",
+            "id": 10237
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10238.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10238.asset",
+            "rowId": "be20bedf-971e-4ea6-a0fb-5ff5eb8905ed",
+            "normalizedSha256": "4d02f91c944e21007d6762e12a7a92eee719226d2db9eba1f5ecb53d839ba2e2",
+            "id": 10238
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10239.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10239.asset",
+            "rowId": "0caa5c76-1e37-41f6-b4b3-8cb20d054564",
+            "normalizedSha256": "d84f8b660c0664bac15d51b8525283eb32de6be6d10949ed17c66707873cbe3f",
+            "id": 10239
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10240.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10240.asset",
+            "rowId": "51a8b501-2d79-40ea-b7c0-0504a640e7d3",
+            "normalizedSha256": "9c57349aa99e79b4b5da7d082ffe6b281d0b771a2da051eb0cef8d264f0b3394",
+            "id": 10240
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10241.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10241.asset",
+            "rowId": "d83731e2-7d49-44af-a94a-73a1a568f9ed",
+            "normalizedSha256": "da9ded4f5faa89432baf5252f306d7eff6f64d953e380d8d301ac3d11e18bc9d",
+            "id": 10241
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10242.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10242.asset",
+            "rowId": "9c701d9b-1406-439a-ba90-c582ecc8ff58",
+            "normalizedSha256": "333914d9b0fe3eb01aab830f74d4896bdb1fe2121c685da7d5eb4b817059a1a7",
+            "id": 10242
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10243.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10243.asset",
+            "rowId": "b2245c60-a105-4c80-8510-f8562c64d90b",
+            "normalizedSha256": "42322d1c8443c8d3e3a5e5400b555228f29ddbb3ba53367bb3063461b80ef7cb",
+            "id": 10243
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10244.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10244.asset",
+            "rowId": "79a5faea-42cd-454d-b900-04986c1a8233",
+            "normalizedSha256": "31fa8b33be1d2bdd4455e75debb4bed5b76e347f70996b267260ce2853a1d60d",
+            "id": 10244
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10245.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10245.asset",
+            "rowId": "df094d7a-12cd-4551-90e9-7684c1f2972c",
+            "normalizedSha256": "dd95d0f770abc81931ff70803fc77273ef97524f6c0919acc585d1cb7e94c030",
+            "id": 10245
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10246.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10246.asset",
+            "rowId": "4da9e4bb-db15-4fa4-8e14-a3ecfae5921d",
+            "normalizedSha256": "f71cd239ac60e7ce7f62c64fcd3cc50a8f6110d4895b460be463b853ba849fe5",
+            "id": 10246
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10247.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10247.asset",
+            "rowId": "f44b149a-2a8e-4a49-b41a-cd1ef6263282",
+            "normalizedSha256": "ed209fec8c04ecd090f9a4d1caf8ffc400c9763c5b9f0ccb216ded53e89882ad",
+            "id": 10247
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10248.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10248.asset",
+            "rowId": "9e0f1bbc-1fb5-4279-8130-f6f577ba80b4",
+            "normalizedSha256": "ef659fe587598db67a23aee62487fe9f9444651337fb835fb78b3b7049ea8b4f",
+            "id": 10248
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10249.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10249.asset",
+            "rowId": "318cf65f-cef9-4d60-813a-97152d91ba28",
+            "normalizedSha256": "cd15c5c0e6f8fba476a634230213d7342ec13ebdc64802eb05e668107b0a82fe",
+            "id": 10249
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10250.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10250.asset",
+            "rowId": "5c4f529c-97e4-446d-b8bf-d2b9630f229b",
+            "normalizedSha256": "77006ff370e1969366fbed8ed2023b940ca4a57884ffcc2aeb2412b60fcda7c7",
+            "id": 10250
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10251.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10251.asset",
+            "rowId": "1b6f43f4-582a-4de7-816c-f96690263a98",
+            "normalizedSha256": "686b76212fafbc1002c14f243f96ad9ad27ee76001b2363cc60d653c9ceefb48",
+            "id": 10251
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10252.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10252.asset",
+            "rowId": "2ef55291-6b35-4002-be86-7a01a00a5a72",
+            "normalizedSha256": "a2007553b8b5bdbbdb7a9146f9b1fce3a56d001d4a2b97a4403040a600691f18",
+            "id": 10252
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-5/10253.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-5/10253.asset",
+            "rowId": "38ddb7de-0f60-41f0-b5b7-96e3212225aa",
+            "normalizedSha256": "b081d269c9d8a744ecfe12bcbc409a64c8e3e6f44a9f596ebba26bf751191272",
+            "id": 10253
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10254.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10254.asset",
+            "rowId": "6971b5a3-8cde-4d22-b9d6-b8d02127265b",
+            "normalizedSha256": "a59c9fa80fac6f09dec6a1aef3b65cd290779dcf8bc3127f2e6a4bda2f7c19ac",
+            "id": 10254
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10255.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10255.asset",
+            "rowId": "a596ef7a-b14f-42d1-b5fe-582fa1e48054",
+            "normalizedSha256": "70055c809f5d2bacfab2d1f31ab43440abd4cbd3f1fe50cb5cb55c4a2ffe2904",
+            "id": 10255
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10256.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10256.asset",
+            "rowId": "12019e4f-61db-433a-8c4f-2e4bda9627e6",
+            "normalizedSha256": "9ebcd7ad90d4a9213efa8709921e977787583e50ec4b452648d6e1ba6f0b01c3",
+            "id": 10256
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10257.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10257.asset",
+            "rowId": "18509b7e-53d7-4841-bc00-4cb646522b3c",
+            "normalizedSha256": "efd9500412a6c0d6b8f3016cc6f7c2f57f80019161d43ab58d1575cfe98606e7",
+            "id": 10257
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10258.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10258.asset",
+            "rowId": "58a587b0-ad31-42d8-8459-52773d120650",
+            "normalizedSha256": "558d40099c4002b5006b2651959d47c9eddb34f586ec632b62e0e590e8f3594e",
+            "id": 10258
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10259.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10259.asset",
+            "rowId": "85935817-186a-498a-b5cc-66012341cac8",
+            "normalizedSha256": "742c93d4c15b720e986cb11f4f53a47cad2aba73da3a4ad515ea876f134eb5f2",
+            "id": 10259
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10260.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10260.asset",
+            "rowId": "f09f1809-d14e-4a81-ab41-7aead514f572",
+            "normalizedSha256": "bc092e32efc130b16e17dc209bfc9f9f0ed9bc53d2bf2e359e6b4bea821174be",
+            "id": 10260
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10261.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10261.asset",
+            "rowId": "39df4329-effd-4bb1-8ba0-1f9ca1cd2467",
+            "normalizedSha256": "0617739c3f95ea048c187fbc8b79f533f0a77b431d29690fe61732b179e4bf4f",
+            "id": 10261
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10262.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10262.asset",
+            "rowId": "e7674ba3-9f85-49b5-99bf-ad021b5086a6",
+            "normalizedSha256": "a0c8e5ca81fdcc356c8029a79b4362b2e7c49dc02c03fe8ce07e9af80e9290ce",
+            "id": 10262
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10263.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10263.asset",
+            "rowId": "14e0b68b-72b6-4b4b-9e5a-9653199f905e",
+            "normalizedSha256": "7012a2fdf93deeef6cef0483873db65fd138b5fb0fc4796fd487b730444df03b",
+            "id": 10263
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10264.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10264.asset",
+            "rowId": "29d846ae-586a-4b4e-a502-ea42bc2bc2cd",
+            "normalizedSha256": "482d3d40ba3ce44684f992d8f8560363477e4702e40f0a252d87467c5d4c6130",
+            "id": 10264
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10265.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10265.asset",
+            "rowId": "01db4f3e-395e-4cc8-a170-9024ef1c6132",
+            "normalizedSha256": "3c0618004e9a8df6e4c1dfe4c1fd21f3151eea8613fb279a00725c0c4958d0cb",
+            "id": 10265
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10266.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10266.asset",
+            "rowId": "590cf73d-d15c-421e-ae0b-85b9f003159d",
+            "normalizedSha256": "f1e36daadc28fa3ef49c80660c38d37df035a672b2b7d7db5e6e2d3bda29a22d",
+            "id": 10266
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10267.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10267.asset",
+            "rowId": "90541515-619d-41de-bee7-a85495b3010c",
+            "normalizedSha256": "3d6c8b651e79d1a10f880d74050a3daa7b8cd908261c94133f2aec3927caca03",
+            "id": 10267
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10268.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10268.asset",
+            "rowId": "93c3e411-a797-4df3-858a-0828e23dcf68",
+            "normalizedSha256": "71b54feeafbe8684926c797f2fb3d819cf2d9354f61a2ab46e284972c10b9301",
+            "id": 10268
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10269.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10269.asset",
+            "rowId": "c2b2e9f2-cf15-413b-b949-bcdd67bed124",
+            "normalizedSha256": "6ee5cf382f591c755711d8b613697a338d32a6493f1104ebdedeed88d0a0b98c",
+            "id": 10269
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10270.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10270.asset",
+            "rowId": "1cd2eea7-2ccf-4cd9-af78-c99b56e5891b",
+            "normalizedSha256": "43aaf3e98d4029e105abace1e248c96e7a8817c594ae039a9b747b7724a963e4",
+            "id": 10270
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10271.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10271.asset",
+            "rowId": "eebb3dc1-8c11-4c07-a8d1-69cf6e81bdcf",
+            "normalizedSha256": "3115377513c01db6c07691091e706b83c805f27158306dd17bd68fd6ced8b673",
+            "id": 10271
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10272.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10272.asset",
+            "rowId": "95ca62ff-a21c-440e-a88d-a8cc9df3e1c4",
+            "normalizedSha256": "d4853752896605aa140866d6991c068a6cc546ffe3dabe285257a0acee7a4b2d",
+            "id": 10272
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10273.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10273.asset",
+            "rowId": "4e87a7e4-b5f5-49fe-aa6c-7dfaa69f93fb",
+            "normalizedSha256": "7175daff2737e5ca3fdc614021769728a45b5d4b2be785a441f42f216898f618",
+            "id": 10273
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10274.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10274.asset",
+            "rowId": "8ddc7c18-b48a-47a4-adf4-3551c1e55130",
+            "normalizedSha256": "80e8b58d7fe7651ffa884fb8bbf7858efd200456feecadfce7fd44bcec4f769c",
+            "id": 10274
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10275.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10275.asset",
+            "rowId": "97f581fe-b972-4a92-8616-d843f00019be",
+            "normalizedSha256": "d941293fef19904e415b8462c85640b780a2f4af022b6c851b8803c2fe262939",
+            "id": 10275
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10276.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10276.asset",
+            "rowId": "1f1b2a00-ed1c-4d5d-8b4e-3dae15890653",
+            "normalizedSha256": "d27aa4f52aab8024c25e6cd61fdf320077e109bd1d51197fab46a92ffaed10fd",
+            "id": 10276
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10277.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10277.asset",
+            "rowId": "a4e88154-aa68-473a-bb6e-5a059ff1e8d1",
+            "normalizedSha256": "b5dbb0b5f5e14e0fb514d946b2463cec701f308b50e05c2927fb6135f653e243",
+            "id": 10277
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10278.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10278.asset",
+            "rowId": "9b00e880-4e20-4f97-8e4d-86fd6fe9af1c",
+            "normalizedSha256": "7011ec56c70ea3de4a0c29c24c6c5f80de01e7aedb51667c99b47301d0e8d12c",
+            "id": 10278
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10279.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10279.asset",
+            "rowId": "6d100236-20fc-4088-8c13-194a0fc7c505",
+            "normalizedSha256": "1081aaad9514cd31b0e46c69299a5fac628bb9651a62ab789a0cd599050b21ec",
+            "id": 10279
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10280.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10280.asset",
+            "rowId": "01607348-ffa3-4097-827d-229c00c82b8e",
+            "normalizedSha256": "2b69926804160984f673af7aba7a61b50e18213a5a8b111171cb49da074014e9",
+            "id": 10280
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10281.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10281.asset",
+            "rowId": "ebb3094f-09bc-48c6-bafc-e31851ce3fd5",
+            "normalizedSha256": "bd7f3825c93ff9a15215ff755ffc44fa942ce0ac44823ad9f82287ab80aafd7d",
+            "id": 10281
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10282.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10282.asset",
+            "rowId": "08d11099-332c-4e1c-a03c-21b30a05c4c5",
+            "normalizedSha256": "3ed85058fb82bfee69297471b7708446e99fe41dbd2425d0781e6866baa432d4",
+            "id": 10282
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10283.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10283.asset",
+            "rowId": "2fb8332e-5b15-467b-8820-02c311725d3f",
+            "normalizedSha256": "f3963ce62c37dfd6cd771ff0b5286d92c9a631f9351391170c5fbcdaf14e8fb7",
+            "id": 10283
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10284.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10284.asset",
+            "rowId": "f22a054f-f0e3-466a-a682-426f67ba3110",
+            "normalizedSha256": "7f28257931c76bbd342a7cc2a4bb4d807b057b7f25142c1bf3de3050ced92543",
+            "id": 10284
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10285.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10285.asset",
+            "rowId": "f63df09b-a7a1-464e-a627-0a8922756fa8",
+            "normalizedSha256": "a42d0b85465ed405952243c7487e65d1d4b68e9155789417cec28e33f6433d9f",
+            "id": 10285
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10286.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10286.asset",
+            "rowId": "4518ab48-3ca8-4968-aeed-5be23eb8a749",
+            "normalizedSha256": "5b590044d7f708350f1b9c785ba63418ee7ddfbaeca83bcc761767f808c7650d",
+            "id": 10286
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10287.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10287.asset",
+            "rowId": "8ee284cb-c41f-4eec-b5f0-5ea7b2991eb8",
+            "normalizedSha256": "4c4171a8fe980158ea639b95618c9028c5aaec76260db0e263baaa8243098a43",
+            "id": 10287
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10288.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10288.asset",
+            "rowId": "d1fddfa1-7230-4a1c-8a8d-12c944057891",
+            "normalizedSha256": "9154892b9114fa3155fed8eb7b35f37c69da2deeab71448d783ad7c1e17778a3",
+            "id": 10288
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10289.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10289.asset",
+            "rowId": "fbe6c861-8da4-46ef-9f6b-b8c45ad9c9c1",
+            "normalizedSha256": "9887b885fffbad8f20ab0550c8cc005106a7d9913ee33a748c81c21378014468",
+            "id": 10289
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10290.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10290.asset",
+            "rowId": "09e8a657-c9ed-420e-a1e3-39e47a2e7e08",
+            "normalizedSha256": "6130b21f7a3468a7f57a8c2bce526fe7529f21487f6a9f8673154f8d85bba1e1",
+            "id": 10290
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10291.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10291.asset",
+            "rowId": "74d1f847-c4a7-4188-bb1c-eb2373544b05",
+            "normalizedSha256": "19c19c563545633ab09b14d650797effcb79fcadd5c8e757e2a500460cbd3b34",
+            "id": 10291
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10292.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10292.asset",
+            "rowId": "57374eda-9809-453d-b950-03a2c0580cfa",
+            "normalizedSha256": "c0e2ee71c524c72073daf6011dc6e5f1146d72055d047258f75588d502f06c6c",
+            "id": 10292
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10293.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10293.asset",
+            "rowId": "47f87205-24e6-40ae-9eae-0394d10599a2",
+            "normalizedSha256": "91896ec06e8e2c8f06715491276811cbc667816f7b9a11bcf9fd1751b2857193",
+            "id": 10293
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10294.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10294.asset",
+            "rowId": "f217604f-4ea9-4dbb-a903-fd2151fc4001",
+            "normalizedSha256": "705e9be5eb9780087ae80a7344c6f77c3a93710513a355ff78c02bf97edc15be",
+            "id": 10294
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10295.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10295.asset",
+            "rowId": "f136c453-969f-44d3-b9ce-91932c99f80d",
+            "normalizedSha256": "ce926a4fa216837b8c82518e2d3facbb1d127a6cfa4289aafe5292496e35f73c",
+            "id": 10295
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10296.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10296.asset",
+            "rowId": "95fca43f-cf67-4333-a2ab-2ac38d2916fa",
+            "normalizedSha256": "1eb96fabcde48dbecb8ecdde83bd9baf38011e085e92b0efe78cdb8671b7071b",
+            "id": 10296
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10297.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10297.asset",
+            "rowId": "a93e9841-2138-4841-a5b1-c91142e80ce0",
+            "normalizedSha256": "83915576abbf59df158fdac8f7cf20c4f603b54e1d9b3917a47d9c29919d2514",
+            "id": 10297
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10298.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10298.asset",
+            "rowId": "3b46a76a-90b1-4ce5-bcfd-98ebeb6c9b5a",
+            "normalizedSha256": "5ccc19dabe62cdd192b46f6d860f9c59129c551fcb42a5f81c962c653445c9ba",
+            "id": 10298
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10299.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10299.asset",
+            "rowId": "8b2304c5-de15-462b-865e-54b4f0111f91",
+            "normalizedSha256": "d33855596958dc965b7b8595770f75bbb5a47a6891880d354e91b4639d2a652e",
+            "id": 10299
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10300.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10300.asset",
+            "rowId": "a5f1f31c-74e2-42e5-ad11-5e6a192495d7",
+            "normalizedSha256": "b25e9ee333a61fcbc216423cf6020f627cacea0966d17cd52ffca7814fa740bb",
+            "id": 10300
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10301.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10301.asset",
+            "rowId": "50994d64-027a-4ada-9e4d-99a2e5c4ed03",
+            "normalizedSha256": "757205b78f378e9c32b69b31d1d227f73f34272143ffee6516f81ef31d56eb82",
+            "id": 10301
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10302.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10302.asset",
+            "rowId": "ed39d2d7-2a40-48fa-a227-57588e6dad9b",
+            "normalizedSha256": "715b4dfd592681a75d3c9ca7dfb5c19289f660a799aee6191ec4bab9602114cd",
+            "id": 10302
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10303.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10303.asset",
+            "rowId": "f78d0069-0e00-4847-8376-3c00ae92ce83",
+            "normalizedSha256": "628f8d347a238db1cf3d092704fc35cf72d551658e978871d8f6dde12cf42ad9",
+            "id": 10303
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10304.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10304.asset",
+            "rowId": "d35fe3f1-251f-44c7-8ae1-900ca24c6d7d",
+            "normalizedSha256": "0e61f286f8faf1666caf4bb631b84aabcbe90755510b0e2f627c74077384f2b3",
+            "id": 10304
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10305.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10305.asset",
+            "rowId": "2079439f-a45c-4d07-a4b3-92a92d31ed24",
+            "normalizedSha256": "363e69666ecba327a60c878164bf9836b38c173882fcc5dfe52d4e9819997f4d",
+            "id": 10305
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10306.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10306.asset",
+            "rowId": "5d5ff31b-e00d-4ef9-8d57-157c5553777d",
+            "normalizedSha256": "c6e9e637bd38d3360b03bbc25ae580c28fd7253e4e9803645fa9c7fbdb2bb4de",
+            "id": 10306
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10307.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10307.asset",
+            "rowId": "cd098c6e-6bb5-4ef5-bc73-6fbeb6cc1fc2",
+            "normalizedSha256": "4875199cd8b301cde6f789509c83e5de3ecd8f609d4ab62eb58f31223ed31f80",
+            "id": 10307
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10308.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10308.asset",
+            "rowId": "4cb84499-d9d5-48d5-899e-ab90ff38b295",
+            "normalizedSha256": "763d3392c1a938270f5fcea1a23d2bfb6973bee24cf6b2a17091e0b6eb586973",
+            "id": 10308
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10309.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10309.asset",
+            "rowId": "c10b652e-3065-40d8-8071-8ef0a563822a",
+            "normalizedSha256": "54d78a3757400a3a1093dd863487a42db4528d8b2ec2009410227e81c25e937f",
+            "id": 10309
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10310.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10310.asset",
+            "rowId": "e4dd8c58-3dfe-465e-a0f2-15ad72883bb8",
+            "normalizedSha256": "c94c0cd9224280b2d474a5a83c93348c5881c8c289268ff775ece4eb0d403d1f",
+            "id": 10310
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10311.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10311.asset",
+            "rowId": "00cf7daf-9e3f-4ca7-be7d-6c7b43aa680e",
+            "normalizedSha256": "38d3ccf0f07e6dfbd394c4c926533802837f73b9e80b4a4b4a4c480022c0239b",
+            "id": 10311
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10312.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10312.asset",
+            "rowId": "e033105e-2c0b-4d41-8bb4-988ba8301f3d",
+            "normalizedSha256": "39c80492714ff3054babb9d2e04bcbfd61598c832cabf116811c94fac05e60a9",
+            "id": 10312
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10313.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10313.asset",
+            "rowId": "edae9411-d594-4453-9fad-12a57dec6735",
+            "normalizedSha256": "f53e6e59d995d05bc30f0c8d560cd3d4039e4980968e412de9bac89da644b6a8",
+            "id": 10313
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10314.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10314.asset",
+            "rowId": "c0974d28-8467-47a5-83e5-8266d9441939",
+            "normalizedSha256": "4bdf7c679113d85f9341ad2db2974e80346a97b4cae9aded4be54a9c40a567d7",
+            "id": 10314
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-6/10315.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-6/10315.asset",
+            "rowId": "19cbbe59-6960-4635-a74b-5bcee423e771",
+            "normalizedSha256": "abeb9293cac1dea55294be1897c75b64d1ababbc7c9c94d68af50aa8471dce9d",
+            "id": 10315
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10316.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10316.asset",
+            "rowId": "892fa3ed-19a1-4380-a53d-d2049cbcfbf2",
+            "normalizedSha256": "89688ffccb12edcaffb4db496b966ce317435d0cc04cf02af2dd6d7c109631a6",
+            "id": 10316
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10317.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10317.asset",
+            "rowId": "a1e31d79-6e56-4c69-9c14-3d7b78fff42f",
+            "normalizedSha256": "7881f1ab78d4af164faebb6a4585ab5e77d1cb8af813dec43dba49a5e31df046",
+            "id": 10317
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10318.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10318.asset",
+            "rowId": "b677f8fd-564a-4f03-9e11-f5364a71082a",
+            "normalizedSha256": "5d7a179ea67dd5ce040dd6c2a3a17ef69a4dcd01c9bea9e9f79b95090eed0cbe",
+            "id": 10318
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10319.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10319.asset",
+            "rowId": "dd16b91b-9621-475f-8e20-7c8ef399e2b6",
+            "normalizedSha256": "a9474a33d92238581d9403cc785b277cbfa96444cfd5cd8e4a2103a6fb6ce6fa",
+            "id": 10319
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10320.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10320.asset",
+            "rowId": "6b8c8c10-a240-4dfa-b45a-8686edc5ea41",
+            "normalizedSha256": "1fde21c3f1b3624e0ba1ed5ad8fdec48f538601c44bbe8d45591c3073b840c78",
+            "id": 10320
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10321.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10321.asset",
+            "rowId": "378a220a-b592-4052-972a-9935ba44eee5",
+            "normalizedSha256": "acf72ada91371f6f23b013134ac409518594d64b8e2d0a8fedf273786173208e",
+            "id": 10321
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10322.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10322.asset",
+            "rowId": "8207534d-9604-489e-a22c-c657f9a04e2e",
+            "normalizedSha256": "dce2743654c66f316db9e61cd5318e75ca941b179287c1be3993c55586af5290",
+            "id": 10322
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10323.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10323.asset",
+            "rowId": "7460d6d7-9557-4638-92e4-c892b3279d98",
+            "normalizedSha256": "090d7cd0a81b94830b791b8ccba377449c62dfd749f5413c1dedc51fe6e4b4d1",
+            "id": 10323
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10324.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10324.asset",
+            "rowId": "826fd338-2d67-41b9-bc48-9a8843fe4597",
+            "normalizedSha256": "476e2cf602d6631f193e62005059b019fd5045f48ff430e93949ce4cbbb2a8a4",
+            "id": 10324
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10325.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10325.asset",
+            "rowId": "3efec989-93d7-4e88-9604-963f8b0b02cf",
+            "normalizedSha256": "84b922e0521ecbb1371540febcbeb3a2b2f9a3c4245c347cc05c98ef666f573d",
+            "id": 10325
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10326.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10326.asset",
+            "rowId": "fd145efe-19f7-4821-bf38-94e637d0e02f",
+            "normalizedSha256": "2bf2f3576601b34d639a4d6e6e1237e30018452f6be6112870e0448a625bc2d2",
+            "id": 10326
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10327.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10327.asset",
+            "rowId": "d2f430f7-9fa5-4386-97ed-3fdb4da90155",
+            "normalizedSha256": "573bc37f4196d5143eb1b23ff98d3f0573d52516966442d9989b5376e7e750a3",
+            "id": 10327
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10328.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10328.asset",
+            "rowId": "3dbcc28e-f7f0-4e33-bd53-1fade43b5a5d",
+            "normalizedSha256": "c9f6cd6f4dc23bd8364f34dbbf3773e70f5d12e725ad1248aae39448e9137ec3",
+            "id": 10328
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10329.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10329.asset",
+            "rowId": "d1c05bf7-24e5-4218-b517-4257c8b9d714",
+            "normalizedSha256": "e4454fcbd1fd57faae872747c5d7a13d76903afa328b0c119e8d638eed354f26",
+            "id": 10329
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10330.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10330.asset",
+            "rowId": "c6c80475-d0a5-49d3-bc57-5855f650196b",
+            "normalizedSha256": "d3189e92f8ffcedc470f3e4da7b0217976e91fba826e3a11f28d024599d20112",
+            "id": 10330
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10331.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10331.asset",
+            "rowId": "fca54d8b-835b-4516-85f6-82a460f06d38",
+            "normalizedSha256": "a472890f8ccea2eaf2beca734e0f9b971bdf463faeba92e18ff57444310c2875",
+            "id": 10331
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10332.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10332.asset",
+            "rowId": "ff759c57-a8e2-4349-8998-cbe4555c5469",
+            "normalizedSha256": "5297612e70fa453d45ae4a802fd2cd07562ea2bdc1b3f2153486287090e06f78",
+            "id": 10332
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10333.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10333.asset",
+            "rowId": "cd3c0d1e-17ed-4501-93a7-7f77f67e1838",
+            "normalizedSha256": "f91ecba61a0f7ca695a5b979958dc2556e3b7560d52745f0518ed19a5373fe9a",
+            "id": 10333
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10334.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10334.asset",
+            "rowId": "c4ecda3c-3260-4334-8a91-55a50bf69126",
+            "normalizedSha256": "7338664015e58fa84ee803c0f96c59da20f3d8b84ef57b3869b1df285b721df0",
+            "id": 10334
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10335.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10335.asset",
+            "rowId": "c056b3fa-4eab-4280-816b-c372e701c791",
+            "normalizedSha256": "f8bc0a2646fe2290ed8bcef2c7c3abcd4611c8e63e2508d024973d1fc29c1e63",
+            "id": 10335
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10336.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10336.asset",
+            "rowId": "0601d9f9-6e30-442e-ae5f-4ae681705107",
+            "normalizedSha256": "1f2630942be55199787a1b50c063cd63c9386b5ba05d7773aa2471e4812d2b8b",
+            "id": 10336
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10337.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10337.asset",
+            "rowId": "ea98e0cf-71e3-43dd-b105-ac24f3caddc5",
+            "normalizedSha256": "63fc8e85cc251e6dc4553bf567e7aae8e03b6589c37ac856b74bd81169c131dd",
+            "id": 10337
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10338.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10338.asset",
+            "rowId": "965d731e-8b14-407f-bd3a-f4a1f6b06aa9",
+            "normalizedSha256": "5b83ab512e2a76300a5301afe789be423740f8d6877292e0384fe3c22ecb2ba2",
+            "id": 10338
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10339.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10339.asset",
+            "rowId": "6a57aeca-616f-4063-b738-d9851eb5e5c2",
+            "normalizedSha256": "63c8e12610182a0e3a912c98e41756e2fd4a75863b84b260edbbfc0c2674acc3",
+            "id": 10339
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10340.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10340.asset",
+            "rowId": "83427f7f-2fc4-4930-959e-1f677f807c41",
+            "normalizedSha256": "d78919f054f5b966a9a13a26d44e911791861b1905ae8123d5b471e6e8c01747",
+            "id": 10340
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10341.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10341.asset",
+            "rowId": "31febc9c-4189-41a6-9406-08652c3ecc57",
+            "normalizedSha256": "dc29110395b6955bd22e22ec73165a291f7dbf1a700630a8c741cff26e7d9a66",
+            "id": 10341
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10342.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10342.asset",
+            "rowId": "28ac50fd-bf62-480e-8cb3-a8f3149892f5",
+            "normalizedSha256": "dc05dc3cedc09fac8a8cfd84c68640b2ea882bdc17182076a71900437ce9dafe",
+            "id": 10342
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10343.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10343.asset",
+            "rowId": "f0a30bfa-f95a-400e-aed6-51c7aca5a0d6",
+            "normalizedSha256": "c8c80433c3cf7ee91b28996409df1eb88c218a972dcb2c869f60fbed259d1211",
+            "id": 10343
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10344.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10344.asset",
+            "rowId": "c80981d6-c6ac-4460-9053-92bc08a4926b",
+            "normalizedSha256": "86cfca9d4d2c2ae06c76401e575e44f7cce83a3656dad0ce5f30642260cf3824",
+            "id": 10344
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10345.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10345.asset",
+            "rowId": "b7e7e3bf-52d0-4242-bc4e-91f7de9a7516",
+            "normalizedSha256": "abe5b3ff85a5ca07210ad6419373bf4d98a2c38bd153d5eaf015ab66fd2faa6c",
+            "id": 10345
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10346.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10346.asset",
+            "rowId": "aaf70635-e846-489d-9e92-66b261f36d6e",
+            "normalizedSha256": "bf2279b091f6725f710e5d3c7341be4db4873e77f82ef8bc37a5bea15bbd3a3a",
+            "id": 10346
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10347.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10347.asset",
+            "rowId": "cd0d5883-701c-4bdd-a3d1-a37c82f1055a",
+            "normalizedSha256": "24f45c674d0d97ccfa36ce655f082167fd12f88c3a5b87ef76dfacdfc25d4332",
+            "id": 10347
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10348.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10348.asset",
+            "rowId": "308a3532-2b9f-4051-9027-53f3bcc68e89",
+            "normalizedSha256": "ab8c3410f74ab2c07e9af6e06bc558ed626a8f88a64c42daf220362c00f80b4f",
+            "id": 10348
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10349.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10349.asset",
+            "rowId": "f6aaf770-d050-453f-927c-58dc147776c4",
+            "normalizedSha256": "94afc6de41aa433095167f4d96eb1bf3ebca5cc29bc420565438273d9bc94354",
+            "id": 10349
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10350.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10350.asset",
+            "rowId": "47b87996-ea5b-4c40-9e9b-51404d5c762c",
+            "normalizedSha256": "21c2bd2e1e65b487ee289a1a3f81378f5a4b0745f83b2d06493ea802791dd30a",
+            "id": 10350
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10351.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10351.asset",
+            "rowId": "8e31c28d-75df-4bee-910c-720dc08e758a",
+            "normalizedSha256": "5a93edc1ac40e3db1effa2d9bd9881d07e7e92216a8b32ec436f2ec7a372a86a",
+            "id": 10351
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10352.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10352.asset",
+            "rowId": "359a4cc7-1c79-488c-99bb-068953b066ab",
+            "normalizedSha256": "1d4ddd886807b19ba18d06679f0dd62034927dc4b424d9e199b88ba3da085fe1",
+            "id": 10352
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-7/10353.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-7/10353.asset",
+            "rowId": "920d1083-d7b9-41cb-8057-613ed22b49e0",
+            "normalizedSha256": "f7c5bcb719c4ff3979b3a9b9b62612f62775020fb524c272769889fd3f0e407f",
+            "id": 10353
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10354.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10354.asset",
+            "rowId": "0a151c69-d1af-4516-a575-0a57e26147cc",
+            "normalizedSha256": "bbd17195bfe4c5c2f6cedc9da28ed7cb6a824009f077204c6fd22354d4b27786",
+            "id": 10354
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10355.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10355.asset",
+            "rowId": "fc5b6b97-b32d-4394-b0d5-d42df3cba990",
+            "normalizedSha256": "fdd658b40ea4951a277116635b3645b0748d35224ad3953183321548bd41ff2d",
+            "id": 10355
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10356.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10356.asset",
+            "rowId": "cce1a193-9bd5-4bd9-8b38-936847018119",
+            "normalizedSha256": "ac01e15151c0112b5da0fb43df7624b6e1e1aa99eab4bee777ff05a7ec8a9e68",
+            "id": 10356
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10357.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10357.asset",
+            "rowId": "2f3a7ade-edd5-4a34-adb2-f0731327c562",
+            "normalizedSha256": "0ef6e6e9a13bc167a5061688ada7c8deafd2a467e1ca2fd09ec30f20451389b7",
+            "id": 10357
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10358.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10358.asset",
+            "rowId": "ef7166fd-fde5-4f74-a37b-aa4f7d521fa9",
+            "normalizedSha256": "1ce6d25a009027188b199db2c5764597ec47244520e0e6db1f40c763cfc0326a",
+            "id": 10358
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10359.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10359.asset",
+            "rowId": "cbe05949-ce1c-4783-96ee-b3cbe9599322",
+            "normalizedSha256": "17a13bb8617c14beb9a0c9d7f0a07a8057dbf75ca03299230f8c84e11ffcf2ef",
+            "id": 10359
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10360.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10360.asset",
+            "rowId": "4048bfbd-a1f1-4dd1-ade8-be49295443c5",
+            "normalizedSha256": "78fbf7b3e91cdb4ca61ee48201965a023032849bf952b05decbebdb891b68003",
+            "id": 10360
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10361.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10361.asset",
+            "rowId": "1f7b4f3a-1bce-43f8-87bf-dee073fd05c5",
+            "normalizedSha256": "fb61d79314161a8ed83c96f526d85beaad137e32cc77bff2d4c4684dfeb161db",
+            "id": 10361
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10362.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10362.asset",
+            "rowId": "e742f2da-11e2-41f8-9713-0bcbeed1c247",
+            "normalizedSha256": "2980142bfdd6f6662495da46275976131a5ee61d887545f8dfe632ec614d81ef",
+            "id": 10362
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10363.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10363.asset",
+            "rowId": "e3d74f4b-9a15-4ce6-aa54-047a523676f6",
+            "normalizedSha256": "26f390d2e95390c32a3dd2c2605221b1d597eb4bef981154c8db2d76fd79ea90",
+            "id": 10363
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10364.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10364.asset",
+            "rowId": "83dbe00b-42b2-4785-9779-e40802e9bf5b",
+            "normalizedSha256": "a4ee1ea5a801effc45490e865577ae528f6c7ea34105f849345c96595169337b",
+            "id": 10364
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10365.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10365.asset",
+            "rowId": "6dacb887-cbe1-498d-a07b-a62388ba792e",
+            "normalizedSha256": "bec19daf8acfe686670fca177595fbc020db3e3452109376010a4609e0b11359",
+            "id": 10365
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10366.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10366.asset",
+            "rowId": "cd37d4c3-e987-47fc-84ac-556aa628da17",
+            "normalizedSha256": "3797f485db3ba5973abaa6728c140353bdeb1a4d4f2353276604c342dd9e7fd8",
+            "id": 10366
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10367.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10367.asset",
+            "rowId": "22dfa88f-e96b-414f-a5ae-faee8c1ce063",
+            "normalizedSha256": "2eaa8f0f7d2b7aefc2a6f7a5c7f06e6f7e61462a022f38e938ff773a499c824c",
+            "id": 10367
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10368.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10368.asset",
+            "rowId": "12e64ea3-628d-46e9-93c5-4b83a25a1266",
+            "normalizedSha256": "163849629e23a948b19527487d8529b3ed0e7c8b5863a35a86921ae3809aabbb",
+            "id": 10368
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10369.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10369.asset",
+            "rowId": "7e57e5bd-9f4d-461e-9ba2-54f11b059ac6",
+            "normalizedSha256": "dbc1e86064fba8ad68cd933c349862c0017b519ecc87086be689d501fb6c95f7",
+            "id": 10369
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10370.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10370.asset",
+            "rowId": "e9c6c736-7c13-4e10-aaea-40cb78052b41",
+            "normalizedSha256": "9254bfbb154400f0cbd8dd44860524247b451c8214cfda97b6d7da959fd75ba9",
+            "id": 10370
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10371.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10371.asset",
+            "rowId": "9d13f380-4649-402c-b1b1-4c8ebbd4011f",
+            "normalizedSha256": "4b6a8ccaae5dc3aa6cf87b46d7243638e0c8cfe2b668e3b10756cabe7f164c6b",
+            "id": 10371
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10372.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10372.asset",
+            "rowId": "c93c0faf-c707-474c-a44a-136c38f875b1",
+            "normalizedSha256": "c02cf9278ccc66638ddd5e8b0aa9b6d27d4cfef156a2a6bfce843c1e445a269f",
+            "id": 10372
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10373.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10373.asset",
+            "rowId": "204b24ee-c6ed-405f-971a-dc301f331ea6",
+            "normalizedSha256": "56f8a4940c9c598dd4f3c0d9cc5e7f170d294da22eb035370576292bb1af3781",
+            "id": 10373
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10374.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10374.asset",
+            "rowId": "1dfb3774-15dd-4072-8602-63fcd6d742e4",
+            "normalizedSha256": "84e74ec5cc36b51d5a2d3c6ed6f8aeb4cea5b3685e5c4eb10f8a834978568376",
+            "id": 10374
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10375.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10375.asset",
+            "rowId": "1e813aae-8ba8-4f04-bc47-e521d8e97e57",
+            "normalizedSha256": "807cab5ee0374048489be1dad79e6552f6edd02758821647f4a581fee700b226",
+            "id": 10375
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10376.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10376.asset",
+            "rowId": "739d1d40-4d8f-47e0-9e95-c366cad373cb",
+            "normalizedSha256": "9b9ffb02a7884231f76f6d53bd95f67755f8e0b890f02f9518fc0edb7d88f4a8",
+            "id": 10376
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10377.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10377.asset",
+            "rowId": "0e447a8f-1e90-4a3f-bcb5-096ac2cf2609",
+            "normalizedSha256": "c22a684db5ab2b94bc805479426268f5c6a0d57fc2fdfe408faadd8f866f9386",
+            "id": 10377
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10378.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10378.asset",
+            "rowId": "efc6f682-a449-4f40-bbe9-c9660aa79eca",
+            "normalizedSha256": "a49755bb60a96ddec5f5347f18baac8e453be3dd9f7a57cb3f52766215e7a7ce",
+            "id": 10378
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10379.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10379.asset",
+            "rowId": "b2f5faf8-f740-403a-b1dc-7bd8c2ad4661",
+            "normalizedSha256": "4dc9afd8848ede6b4a4164a9bf2bb3c06bbad06bab2c7f1b849a9a40dc20df49",
+            "id": 10379
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10380.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10380.asset",
+            "rowId": "7f9b3adb-0fe6-4f00-a733-066cfc7f05f0",
+            "normalizedSha256": "1165db4f3c310273313ad0da04076ba46cff50a69ae05852ce2d9028ba67b6cd",
+            "id": 10380
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10381.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10381.asset",
+            "rowId": "501e6a21-1bce-4025-89bc-ad6a5d4bdbfd",
+            "normalizedSha256": "ec7af1e68c999eeffd06af9604c324b49f96fab12ace44cae3fc6d651bb6fe6f",
+            "id": 10381
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10382.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10382.asset",
+            "rowId": "1fc35d12-1e1a-4569-93f0-7c30faadc405",
+            "normalizedSha256": "93a1c86d4fdde7d8464217eb2fbd5301fffbb3cab80ef69d6c40113c930ab803",
+            "id": 10382
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10383.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10383.asset",
+            "rowId": "4812a0f5-c0ea-4f47-bbc3-f0bc77dc2a38",
+            "normalizedSha256": "bc6faaca240bdeebed4728f8dadb900513492d9ba55685107b9c48a7fcbdf103",
+            "id": 10383
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10384.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10384.asset",
+            "rowId": "ed150e40-96f9-46c2-ae5e-51655d73cfdd",
+            "normalizedSha256": "f3d0c013562c1701586b7c48d785af52a1b421810dc86460fd7f8fa2b005befe",
+            "id": 10384
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10385.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10385.asset",
+            "rowId": "4c2cdeed-65bc-4550-9f7a-1b783a917348",
+            "normalizedSha256": "fad0f3e4f3251b7e89c6a26c157a6eb83913eeaf31a28371a6fc8cb3ae3ab9b3",
+            "id": 10385
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10386.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10386.asset",
+            "rowId": "b193b8d3-b210-4f98-a115-699b1fa28dcf",
+            "normalizedSha256": "b0f738937c2a12ffd178d065002299126ac7cb8c81da4604c5beae40abccd88a",
+            "id": 10386
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10387.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10387.asset",
+            "rowId": "bcf01f24-d7f3-4a24-9056-e37d9494dde1",
+            "normalizedSha256": "58ae97ead850f547f323e1f207bf9d72c2e7ff66e205853e453d8d78d9a182ce",
+            "id": 10387
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10388.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10388.asset",
+            "rowId": "66873ec9-63b5-4098-bf7e-6c67e9efe42b",
+            "normalizedSha256": "76ce96a731e3c654f47aec453ce8c303874e3cf50bdc794aac0ad556918350aa",
+            "id": 10388
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10389.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10389.asset",
+            "rowId": "7b1214cb-a5ab-4fed-ba59-17ae033fc187",
+            "normalizedSha256": "40ea19de7746363ed185d224f343f47668acd734010012c35370f3bbef047160",
+            "id": 10389
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10390.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10390.asset",
+            "rowId": "88c48766-e9d0-4ab5-85e7-43a1a3d7ceba",
+            "normalizedSha256": "f6c7ca3f943d5b5141a1d1b8378a41c5902d6b0f1b433a202757100b455f6c95",
+            "id": 10390
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10391.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10391.asset",
+            "rowId": "fabc75c9-5f29-49e0-b1ca-fafae82d1234",
+            "normalizedSha256": "1276cb9053ed5fd1ad1b38448ec13b0e4c073fea164eb004d2f331659166ec1d",
+            "id": 10391
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10392.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10392.asset",
+            "rowId": "fde20485-e2b4-4626-9d02-59fefa02c03f",
+            "normalizedSha256": "42bb355bb4e75a41d8c7780969fad89c222d87aea3009630195073e8b142e3d3",
+            "id": 10392
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10393.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10393.asset",
+            "rowId": "13319367-d8b6-4131-a8fc-e1f3d3ff7d15",
+            "normalizedSha256": "1fe82ace4e560361491a8c450a30f1af76156a3622564f40b124d23ff3217f8d",
+            "id": 10393
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10394.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10394.asset",
+            "rowId": "06685732-dc54-44f7-9b3d-22b42ad8f7fa",
+            "normalizedSha256": "8347c04a78dcd3feb138554adc99b2490c3c8c3259642e806eaa74d7c5f004f0",
+            "id": 10394
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10395.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10395.asset",
+            "rowId": "7e0ef007-3cdf-401d-b80b-81f05ef91455",
+            "normalizedSha256": "7b3f9deed688ab61a5add77eef669befac46b7f0d3635babb8e52af4fcda012c",
+            "id": 10395
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10396.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10396.asset",
+            "rowId": "8c336bd9-88eb-44a9-a9ef-7c7757b07664",
+            "normalizedSha256": "8b698dfa81d6d3b4a7c0115f075a2bef41c2428152569dc7fafc5436602977c7",
+            "id": 10396
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10397.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10397.asset",
+            "rowId": "b5b9e251-f810-4f6d-a184-9a01a9d9da67",
+            "normalizedSha256": "485aa8009d8fe4a0d28d948b41532cf9123e7417a6557a05fb56b0027e0132f8",
+            "id": 10397
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10398.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10398.asset",
+            "rowId": "fe93a5a9-4709-4a33-8c25-e49d79060994",
+            "normalizedSha256": "6e918ac9db930571cc35583294a54f682728251094127cb738151810816c1d8b",
+            "id": 10398
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10399.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10399.asset",
+            "rowId": "aa611535-7e12-4979-812d-9da955ab437b",
+            "normalizedSha256": "8ed078d37f26ea83459439c16e58f4668a620547e98c86685ed88822bf547720",
+            "id": 10399
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10400.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10400.asset",
+            "rowId": "0d8e909a-be46-4f90-80e0-dcc1d10ca330",
+            "normalizedSha256": "70100d4b37c0a64a79268a164f33efea4d9380b33c5b5f9e4a199eeee9ffe0b2",
+            "id": 10400
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10401.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10401.asset",
+            "rowId": "30153f0a-4448-4bd2-bf74-57f9cdc4e37d",
+            "normalizedSha256": "f7ace2903a52b4d0701776d2a6f933c878a01995355ea3d40e56dbcbced667eb",
+            "id": 10401
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10402.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10402.asset",
+            "rowId": "494f5923-dd55-4f4f-8c51-9d2c2982ba7a",
+            "normalizedSha256": "c6904ba684164620b89d159d49153fab0f5c58160ead855d8bb73ad0ad852290",
+            "id": 10402
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10403.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10403.asset",
+            "rowId": "342b56a0-a8e6-4aaf-89f2-1d10574d70d8",
+            "normalizedSha256": "56f1aad88c7436d118f938e5e05b5c5e92d864a785e5f7c158e686fc45deea71",
+            "id": 10403
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10404.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10404.asset",
+            "rowId": "a54fdba1-3d05-498a-b283-fd1eec54c4d1",
+            "normalizedSha256": "c42155a0a8f8dcbff815a746b31575d2835ed942e1cef2a80ec372bdac17f4a1",
+            "id": 10404
+        },
+        {
+            "source": "Assets/PlotEditor/Data/NodeData/1-8/10405.asset",
+            "asset": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Nodes/1-8/10405.asset",
+            "rowId": "8892f92f-8e64-4a03-a490-8b275623948b",
+            "normalizedSha256": "e3cf291711b11d7a68d4e96ba1ab626cf8b660770bc5a00ee5f9a09181d7000a",
+            "id": 10405
+        }
+    ],
+    "warnings": []
+}

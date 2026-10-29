@@ -1,0 +1,11 @@
+{
+  "sourceReport": "Tools/PlotWeaveMigration/imported-ui.json",
+  "sourceSha256": "2b3e090e0e81cc9a8bd635f4ef0da3f6a247678c754c201ae91ca95953c8547b",
+  "id": "b133310d8da6448d890e7bfad1a21c66",
+  "status": "layout-and-resources-rebuilt-behaviours-pending",
+  "summaryOnly": true,
+  "root": "Assets/PlotWeaveLocal/OriginalUI/Import_bd3086775b",
+  "layoutsCount": 43,
+  "issuesCount": 2,
+  "resourcesCount": 104
+}

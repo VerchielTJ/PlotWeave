@@ -1,0 +1,16 @@
+{
+    "files": [
+        {
+            "path": "DataContracts.g.cs",
+            "sha256": "4cac485e32a5926d995fb64bd5a9f408878362943ed6ad6d63b79a3dcfd83e02"
+        },
+        {
+            "path": "EditorAdapters.g.cs",
+            "sha256": "186be52eb22759d7e0d8b88935dde994af95917ede91eb5722eba1583947f52d"
+        },
+        {
+            "path": "GameAdapters.g.cs",
+            "sha256": "a6d5a1bac15b607ea79afa50b5214fa6e52da3897a8d70953dd058d28fb1a17d"
+        }
+    ]
+}

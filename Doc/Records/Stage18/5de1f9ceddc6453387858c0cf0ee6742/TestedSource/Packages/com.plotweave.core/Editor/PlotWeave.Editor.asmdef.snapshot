@@ -1,0 +1,13 @@
+{
+  "name": "PlotWeave.Editor",
+  "rootNamespace": "PlotWeave.Editor",
+  "references": [
+    "PlotWeave.Runtime",
+    "UnityEngine.UI",
+    "Unity.TextMeshPro"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
+  "autoReferenced": true
+}

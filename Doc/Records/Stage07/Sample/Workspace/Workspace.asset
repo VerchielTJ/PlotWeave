@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1cb1d03369147d4e3f5e3ef8e11db9, type: 3}
+  m_Name: Workspace
+  m_EditorClassIdentifier: 
+  header: {fileID: 11400000, guid: 91cd5e0511d079940b4a2c5f07744f49, type: 2}
+  dialogs: {fileID: 11400000, guid: 436d1e9300459724a99d3ee3ad6f5e49, type: 2}
+  constants: {fileID: 11400000, guid: 80cd4a5e5adaa1b459c9be61bc0892da, type: 2}
+  actors: {fileID: 11400000, guid: 640c743a6a1a8b148999c41b61fd13f6, type: 2}
+  nodeFolder: Assets/PlotWeaveMigration/Stage05_Playback/Workspace/Nodes
+  idColumn: ScenesID
+  dialogColumn: Dialog
+  visuals: {fileID: 11400000, guid: 63bc7036eb31c334c80899c2459b5d4f, type: 2}

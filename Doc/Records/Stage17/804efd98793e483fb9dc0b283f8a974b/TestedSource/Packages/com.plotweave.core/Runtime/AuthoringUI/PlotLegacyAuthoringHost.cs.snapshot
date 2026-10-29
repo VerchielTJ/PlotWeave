@@ -1,0 +1,155 @@
+#if UNITY_EDITOR
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using PlotWeave.Authoring;
+using PlotWeave.Authoring.UI;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using ValueType=PlotWeave.Authoring.PlotEventTypeAsset.ValueType;
+
+namespace PlotWeave.Legacy.Editor
+{
+    /// <summary>用共享事务模型接管原制作界面；旧组件仅提供控件引用，不执行旧程序集。</summary>
+    public sealed class PlotLegacyAuthoringHost:MonoBehaviour
+    {
+        public PlotAuthoringProject project;
+        public PlotLegacyTemplateBindings template;
+        public PlotEditingSession Session {get;private set;}
+        public PlotNodeView NodeView {get;private set;}
+        public string LastError {get;private set;}="";
+        private readonly List<PlotLegacyBehaviourProxy> _units=new List<PlotLegacyBehaviourProxy>();
+        private readonly List<PlotLegacyBehaviourProxy> _listRows=new List<PlotLegacyBehaviourProxy>();
+        private PlotLegacyBehaviourProxy _current,_list;
+        private ScrollRect _listScroll;
+        private PlotAtomDataHeaderAsset.ColumnDefinition _listColumn;
+        public Action<int> Preview;
+        public Action ValidatePreview,ClosePreview;
+        public static Action<PlotLegacyAuthoringHost> InitializationRequested;
+        private bool _rendering;
+        private int? _from,_to;
+        private TMP_InputField _dialogInput,_keyInput;
+        private TMP_Dropdown _language;
+        private int _selectedLanguage;
+        private Func<UnsavedChoice> _choose;
+        private Func<string,bool> _confirm;
+        private string DraftPath {get{using(var sha=System.Security.Cryptography.SHA256.Create())return "Library/PlotWeaveRecovery/"+BitConverter.ToString(sha.ComputeHash(System.Text.Encoding.UTF8.GetBytes(project.nodeFolder))).Replace("-","").ToLowerInvariant()+"-legacy.json";}}
+        private static List<PlotLegacyBehaviourProxy> Scripts(Component root,string name) => root.GetComponentsInChildren<PlotLegacyBehaviourProxy>(true).Where(p=>p.sourceScript.EndsWith("/"+name+".cs",StringComparison.Ordinal)).ToList();
+        private static T Find<T>(Component root,string name) where T:Component => PlotLegacyWidgets.Find<T>(root,name);
+        private void Start(){if(Session==null&&project!=null)InitializationRequested?.Invoke(this);}
+        public void Initialize(IPlotAuthoringStore store,Func<UnsavedChoice> choose=null,Func<string,bool> confirm=null)
+        {
+            if(Session!=null)throw new InvalidOperationException("原布局制作宿主已经初始化");
+            project=store.Project;template=template!=null?template:GetComponent<PlotLegacyTemplateBindings>();if(template==null)throw new InvalidOperationException("缺少原布局引用");
+            var originalCanvas=Find<Canvas>(template,"PlotEditorCanvas");if(originalCanvas!=null){var scaler=originalCanvas.GetComponent<CanvasScaler>();if(scaler==null)scaler=originalCanvas.gameObject.AddComponent<CanvasScaler>();scaler.uiScaleMode=CanvasScaler.ScaleMode.ScaleWithScreenSize;scaler.referenceResolution=new Vector2(3200,1500);scaler.screenMatchMode=CanvasScaler.ScreenMatchMode.Expand;}
+            _choose=choose??(()=>UnsavedChoice.Cancel);_confirm=confirm??(_=>false);Session=new PlotEditingSession(store);
+            _current=Scripts(template,"CurrentNodeEditor").Single();_list=Scripts(template,"ParameterList").Single();
+            _units.AddRange(Scripts(template,"RowUnit").OrderBy(p=>p.transform.GetSiblingIndex()));
+            _listRows.AddRange(Scripts(template,"EvtListParameterEditor").OrderBy(p=>p.transform.GetSiblingIndex()));foreach(var item in _listRows)item.gameObject.SetActive(false);
+            _listScroll=_list.Field<ScrollRect>("LoopVerticalScrollRect");if(_listScroll==null||_listRows.Count==0||_units.Count==0)throw new InvalidOperationException("原布局缺少行模板");
+            DisableContentLayout(_listScroll);_listScroll.onValueChanged.RemoveAllListeners();_listScroll.onValueChanged.AddListener(_=>RenderList());
+            PlotLegacyWidgets.Click(_list.Field<Button>("AddButton"),()=>Safe(()=>{if(_listColumn!=null)Session.AddListRow(_listColumn.columnName);}));
+            foreach(var creator in Scripts(template,"NodeCreater"))
+            {var input=creator.Field<TMP_InputField>("NewNodeInputField");PlotLegacyWidgets.Click(creator.Field<Button>("CreatNewNodeButton"),()=>Safe(()=>{Session.Create(Parse(input.text),_choose);ReloadNodes();}));}
+            var loader=Scripts(template,"NodeListLoader").Single();var from=loader.Field<TMP_InputField>("FromInputField");var to=loader.Field<TMP_InputField>("ToInputField");
+            PlotLegacyWidgets.Click(loader.Field<Button>("LoadNodeButton"),()=>Safe(()=>{_from=Parse(from.text);_to=Parse(to.text);ReloadNodes();}));
+            PlotLegacyWidgets.Click(loader.Field<Button>("LoadAllNodeButton"),()=>Safe(()=>{_from=_to=null;ReloadNodes();}));
+            PlotLegacyWidgets.Click(_current.Field<Button>("RenameNodeButton"),()=>Safe(()=>{Session.Rename(Parse(_current.Field<TMP_InputField>("RenameInputField").text),_choose);ReloadNodes();}));
+            PlotLegacyWidgets.Click(_current.Field<Button>("DeletNodeButton"),()=>Safe(()=>{if(Session.CurrentAsset!=null&&_confirm("删除当前节点资产？")){Session.Delete(_choose);ReloadNodes();}}));
+            var node=Scripts(template,"PlotNodeView").Single();var scroll=node.Field<ScrollRect>("nodelistScrollRect");DisableContentLayout(scroll);
+            var buttons=Scripts(template,"PlotNodeButton");if(buttons.Count==0)throw new InvalidOperationException("缺少节点按钮模板");var buttonTemplate=buttons[0].GetComponent<Button>();foreach(var item in buttons)item.gameObject.SetActive(false);
+            NodeView=scroll.gameObject.AddComponent<PlotNodeView>();NodeView.Initialize(scroll,project.idColumn,id=>Safe(()=>{Session.Select(id,_choose);ReloadNodes();}),parent=>{var clone=Instantiate(buttonTemplate,parent,false);clone.gameObject.SetActive(true);return clone;});
+            BindDialog();BindPreview();AddToolbar();
+            Session.SelectionChanged+=Render;Session.Changed+=Changed;
+            ReloadNodes();var first=store.ListRows().FirstOrDefault();if(first!=null)Session.Select(Id(first),null);else Render();
+        }
+        private static void DisableContentLayout(ScrollRect scroll)
+        {foreach(var layout in scroll.content.GetComponents<LayoutGroup>())layout.enabled=false;var fitter=scroll.content.GetComponent<ContentSizeFitter>();if(fitter!=null)fitter.enabled=false;scroll.content.anchorMin=new Vector2(0,1);scroll.content.anchorMax=Vector2.one;scroll.content.pivot=new Vector2(.5f,1);}
+        private int Id(PlotAtomRowData row)=>Parse(row.GetColumnSingleValue(project.idColumn));
+        private static int Parse(string value){if(!int.TryParse(value,NumberStyles.Integer,CultureInfo.InvariantCulture,out var id)||id<=0)throw new FormatException("节点ID必须为正整数");return id;}
+        public void Safe(Action action){if(_rendering)return;try{action();LastError="";}catch(Exception error){LastError=error.Message;Status(error.Message);}}
+        private void Status(string text)=>PlotLegacyWidgets.Caption(_current?.Field<Component>("TipsText"),text);
+        private void Changed()
+        {
+            if(Session.WorkingRow!=null&&Session.HasUnsavedChanges){Directory.CreateDirectory(Path.GetDirectoryName(DraftPath));File.WriteAllText(DraftPath,Session.ExportDraft());}
+            else if(File.Exists(DraftPath))File.Delete(DraftPath);
+            Status(Session.HasUnsavedChanges?"有未保存修改（已保留恢复草稿）":"已保存");
+        }
+        public void Save(){Session.Save();Render();}
+        public void RestoreDraft(){if(!File.Exists(DraftPath))throw new FileNotFoundException("没有可恢复草稿");var json=File.ReadAllText(DraftPath);if(Session.ResolveUnsaved(_choose))Session.RestoreDraft(json);}
+        private void ReloadNodes()=>NodeView.SetRows(Session.Store.ListRows(_from,_to),Session.CurrentAsset==null?0:Id(Session.CurrentAsset));
+        private void AddToolbar()
+        {
+            var canvas=template.GetComponentsInChildren<Canvas>(true).First(c=>c.isRootCanvas);var bar=PlotUiFactory.Rect("PlotWeaveMigrationToolbar",canvas.transform);bar.anchorMin=new Vector2(0,1);bar.anchorMax=new Vector2(1,1);bar.pivot=new Vector2(.5f,1);bar.sizeDelta=new Vector2(0,38);bar.anchoredPosition=Vector2.zero;
+            var layout=bar.gameObject.AddComponent<HorizontalLayoutGroup>();layout.childForceExpandWidth=false;
+            PlotUiFactory.Button(bar,"SaveAll","保存全部",()=>Safe(Save),110);PlotUiFactory.Button(bar,"RecoverDraft","恢复草稿",()=>Safe(RestoreDraft),110);PlotUiFactory.Button(bar,"Validate","校验",()=>Safe(()=>{Session.WorkingRow?.Validate().ThrowIfInvalid();Status("校验通过");}),90);
+        }
+        private void BindPreview()
+        {
+            var preview=Scripts(template,"TestPlayerButton").Single();var input=Find<TMP_InputField>(preview,"PlayerStartInputField");
+            PlotLegacyWidgets.Click(Find<Button>(preview,"PlayButton"),()=>Safe(()=>{if(Session.ResolveUnsaved(_choose))Preview?.Invoke(string.IsNullOrWhiteSpace(input.text)?Id(Session.CurrentAsset):Parse(input.text));}));
+            PlotLegacyWidgets.Click(Find<Button>(preview,"RefreshPlayDataButton"),()=>Safe(()=>{if(Session.ResolveUnsaved(_choose)){ValidatePreview?.Invoke();Status("播放快照已重新校验，下一次预览使用最新数据");}}));
+            foreach(var old in Scripts(template,"EditorPlotPlayerUI"))old.gameObject.SetActive(false);
+        }
+        private void BindDialog()
+        {
+            var editor=Scripts(template,"DiaLogKeyEditor").Single();_dialogInput=Find<TMP_InputField>(editor,"DialogInputField");_keyInput=Find<TMP_InputField>(editor,"KeyInputField");_language=Find<TMP_Dropdown>(editor,"LanguageDropdown");
+            _language.ClearOptions();_language.AddOptions(new List<string>{"简体中文","繁体中文","英语","日语","韩语"});_language.SetValueWithoutNotify(0);_language.onValueChanged.RemoveAllListeners();_language.onValueChanged.AddListener(index=>{_selectedLanguage=index;RenderDialog();});
+            _dialogInput.onValueChanged.RemoveAllListeners();_dialogInput.onValueChanged.AddListener(value=>Safe(()=>{if(string.IsNullOrWhiteSpace(Session.CurrentDialogKey))throw new InvalidOperationException("请先生成或填入对话KEY");Session.SetText(false,Session.CurrentDialogKey,_selectedLanguage,value);}));
+            PlotLegacyWidgets.Click(Find<Button>(editor,"GenerateKey"),()=>Safe(()=>Session.GenerateDialogKey()));
+            PlotLegacyWidgets.Click(Find<Button>(editor,"FillKey"),()=>Safe(()=>Session.SetDialogKey(_keyInput.text)));
+            PlotLegacyWidgets.Click(Find<Button>(editor,"DeletKEYButton"),()=>Safe(()=>{if(_confirm("删除当前对话KEY及各语言文本？"))Session.RemoveText(false,Session.CurrentDialogKey);}));
+            var save=Find<Button>(editor,"SaveDialogKey");if(save==null){save=PlotUiFactory.Button(editor.transform,"SaveDialogKey","保存对话",null,120);var rect=(RectTransform)save.transform;rect.anchorMin=rect.anchorMax=new Vector2(1,0);rect.pivot=new Vector2(1,0);rect.anchoredPosition=new Vector2(-12,12);rect.sizeDelta=new Vector2(120,34);}PlotLegacyWidgets.Click(save,()=>Safe(Save));
+            var toggle=Find<Button>(editor,"DialogBoxSwitch");var dialogBox=Find<Transform>(editor,"DialogBoxBG");if(toggle!=null&&dialogBox!=null)PlotLegacyWidgets.Click(toggle,()=>dialogBox.gameObject.SetActive(!dialogBox.gameObject.activeSelf));
+        }
+        private void RenderDialog(){if(_keyInput==null)return;_keyInput.SetTextWithoutNotify(Session.CurrentDialogKey);_dialogInput.SetTextWithoutNotify(Session.Dialogs?.GetDialogContent(Session.CurrentDialogKey,_selectedLanguage)??"");}
+        private void Render()
+        {
+            if(_rendering)return;_rendering=true;
+            try
+            {
+                var row=Session.WorkingRow;PlotLegacyWidgets.Caption(_current.Field<Component>("NowNodeName"),row==null?"未选择节点":row.GetColumnSingleValue(project.idColumn));
+                var columns=row?.headerDefinition.sheets??new List<PlotAtomDataHeaderAsset.ColumnDefinition>();
+                while(_units.Count<columns.Count){var clone=Instantiate(_units[0].gameObject,_units[0].transform.parent,false);_units.Add(Scripts(clone.transform,"RowUnit").Single());}
+                for(var i=0;i<_units.Count;i++)
+                {
+                    var unit=_units[i];unit.gameObject.SetActive(i<columns.Count);if(i>=columns.Count)continue;var column=columns[i];PlotLegacyWidgets.Caption(unit.Field<Component>("Text"),column.description+" ["+column.columnName+"]");
+                    var panel=unit.Field<PlotLegacyBehaviourProxy>("ParameterEditor");if(panel==null)throw new InvalidOperationException("参数面板引用丢失");
+                    var open=unit.Field<Button>("OpenButton");PlotLegacyWidgets.Click(open,()=>Safe(()=>panel.gameObject.SetActive(!panel.gameObject.activeSelf)));
+                    var list=panel.Field<Button>("OpenListButton");list.gameObject.SetActive(column.IsList);PlotLegacyWidgets.Click(list,()=>Safe(()=>{_listColumn=column;_list.gameObject.SetActive(true);RenderList();}));
+                    PlotLegacyWidgets.Click(panel.Field<Button>("SaveButton"),()=>Safe(Save));BindParameters(panel,column,0,column.IsList);
+                }
+                if(row==null||_listColumn==null||!columns.Contains(_listColumn)){_listColumn=null;_list.gameObject.SetActive(false);}else RenderList();RenderDialog();ReloadNodes();
+            }finally{_rendering=false;}
+        }
+        private void BindParameters(PlotLegacyBehaviourProxy container,PlotAtomDataHeaderAsset.ColumnDefinition column,int rowIndex,bool hide)
+        {
+            var widgets=Scripts(container,"Parameter");var header=Session.WorkingRow.headerDefinition;var leaves=column.valueType==ValueType.CustomBean?PlotBeanLayout.Leaves(header.parameterBean,column.typeKey):null;var count=hide?0:leaves?.Count??1;
+            if(widgets.Count==0&&count>0)throw new InvalidOperationException("缺少参数模板");while(widgets.Count<count){var clone=Instantiate(widgets[0].gameObject,widgets[0].transform.parent,false);widgets.Add(Scripts(clone.transform,"Parameter").Single());}
+            var rows=Session.WorkingRow.GetColumnRows(column.columnName);var nodeId=Id(Session.WorkingRow);
+            for(var i=0;i<widgets.Count;i++)
+            {
+                var widget=widgets[i];widget.gameObject.SetActive(i<count);if(i>=count)continue;var member=i;var parameter=leaves?[i].Parameter;var type=parameter?.valueType??column.valueType;var enums=leaves==null?header.parameterEnums:header.parameterBean.parameterEnums;var enumName=parameter?.enumType??column.typeKey;
+                var value=rowIndex<rows.Count&&i<rows[rowIndex].values.Count?rows[rowIndex].values[i]:"";PlotLegacyWidgets.Caption(widget.Field<Component>("ParameterName"),leaves?[i].Label??column.description);
+                var input=widget.Field<TMP_InputField>("ParameterInputField");var dropdown=widget.Field<TMP_Dropdown>("ParameterDropdown");input.gameObject.SetActive(type!=ValueType.CustomEnum);dropdown.gameObject.SetActive(type==ValueType.CustomEnum);
+                void Set(string next){if(Session.WorkingRow==null||Id(Session.WorkingRow)!=nodeId)throw new InvalidOperationException("节点已切换，忽略过期输入");Session.SetValue(column.columnName,rowIndex,member,next);}
+                if(type==ValueType.CustomEnum)
+                {var keys=(enums?.GetEnumKeys(enumName)??Array.Empty<string>()).ToList();var labels=keys.Select(k=>enums.GetDisplayName(enumName,k)??k).ToList();var index=keys.IndexOf(value);if(index<0){keys.Insert(0,value);labels.Insert(0,"[未绑定] "+value);index=0;}dropdown.onValueChanged.RemoveAllListeners();dropdown.ClearOptions();dropdown.AddOptions(labels);dropdown.SetValueWithoutNotify(index);dropdown.onValueChanged.AddListener(choice=>Safe(()=>Set(keys[choice])));}
+                else PlotLegacyWidgets.Input(input,value,next=>Safe(()=>Set(next)),column.columnName==project.idColumn);
+            }
+        }
+        private void RenderList()
+        {
+            if(_listColumn==null||Session.WorkingRow==null)return;var count=Session.WorkingRow.GetColumnRows(_listColumn.columnName).Count;PlotLegacyWidgets.Caption(_list.Field<Component>("Title"),_listColumn.description);PlotLegacyWidgets.Caption(_list.Field<Component>("CountText"),"数量："+count);
+            var height=Mathf.Max(100,((RectTransform)_listRows[0].transform).rect.height);_listScroll.content.sizeDelta=new Vector2(_listScroll.content.sizeDelta.x,count*height);var visible=Mathf.Min(count,Mathf.Max(1,Mathf.CeilToInt(_listScroll.viewport.rect.height/height)+2));
+            while(_listRows.Count<visible){var clone=Instantiate(_listRows[0].gameObject,_listScroll.content,false);_listRows.Add(Scripts(clone.transform,"EvtListParameterEditor").Single());}
+            var first=Mathf.Clamp(Mathf.FloorToInt(_listScroll.content.anchoredPosition.y/height),0,Mathf.Max(0,count-visible));
+            for(var i=0;i<_listRows.Count;i++){var view=_listRows[i];view.gameObject.SetActive(i<visible);if(i>=visible)continue;var index=first+i;var rect=(RectTransform)view.transform;rect.SetParent(_listScroll.content,false);rect.anchorMin=new Vector2(0,1);rect.anchorMax=Vector2.one;rect.pivot=new Vector2(.5f,1);rect.anchoredPosition=new Vector2(0,-index*height);PlotLegacyWidgets.Caption(view.Field<Component>("RowNumberText"),(index+1).ToString(CultureInfo.InvariantCulture));var name=_listColumn.columnName;PlotLegacyWidgets.Click(view.Field<Button>("DeletButton"),()=>Safe(()=>Session.RemoveListRow(name,index)));BindParameters(view,_listColumn,index,false);}
+        }
+        private void OnDestroy(){ClosePreview?.Invoke();Session?.Dispose();Session=null;}
+    }
+}
+#endif

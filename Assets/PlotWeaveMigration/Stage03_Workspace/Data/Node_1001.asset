@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956fb524bd60d355f8bcfab76441ac30, type: 3}
+  m_Name: Node_1001
+  m_EditorClassIdentifier: 
+  headerDefinition: {fileID: 11400000, guid: 06863eedbd9dd0e4ba2d49bd40b85414, type: 2}
+  rowId: a2eefb42-e10f-4c2a-bf92-83262bacea70
+  rowTitle: 1001
+  columns:
+  - columnName: ScenesID
+    rows:
+    - values:
+      - 1001
+  - columnName: PlotRoleID
+    rows:
+    - values:
+      - 101
+  - columnName: Dialog
+    rows:
+    - values:
+      - demo.start
+  - columnName: Next
+    rows:
+    - values:
+      - 1002
+  - columnName: '*RoleAction'
+    rows:
+    - values:
+      - 101
+      - Default
+      - Neutral
+      - 0
+    - values:
+      - 102
+      - Shake
+      - Happy
+      - 2
+  - columnName: '*PlotSetBack'
+    rows:
+    - values:
+      - Default
+      - demo.stage
+  - columnName: '*Branch'
+    rows:
+    - values:
+      - demo.choice.forward
+      - 1002
+    - values:
+      - demo.choice.wait
+      - 1003

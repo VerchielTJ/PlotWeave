@@ -1,0 +1,2656 @@
+{
+    "id": "5de1f9ceddc6453387858c0cf0ee6742",
+    "step": "tests",
+    "status": "passed",
+    "error": "",
+    "passed": 277,
+    "failed": 0,
+    "startedAtUtc": "2026-10-28T12:57:21.9168023Z",
+    "recordedAtUtc": "2026-10-28T12:58:44.1024005Z",
+    "sourceFiles": [
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/C2Contracts/DataContracts.g.cs",
+            "sha256": "da99323b7fac69456453ee4a17c5cc935a6ce8400f4472be46216a53d10935e3"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/C2Contracts/EditorAdapters.g.cs",
+            "sha256": "2417695c3761b1e64a09735ae95a7345b4535f9e2b43ad18062d694915e06f71"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/C2Contracts/GameAdapters.g.cs",
+            "sha256": "45c6ef54879980d9e2e9a5f18392cb18d03cbb52c31b3652c3d5dc2c81fa5bb2"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/C2Contracts/PlotWeave.Original.Contracts.asmdef",
+            "sha256": "47517204ad86e4ba95a11470f63c0d59b5f5a76e7ca2672949622304bf0823d8"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotAtomData.cs",
+            "sha256": "4f80148a30aca7d7889d1b45a7a7039f645b3fde79df29a59de052a572cd7665"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotBranch.cs",
+            "sha256": "f574175fde79085b9b5a29b765453015af4ab9777283545eb62d0a40d40edffd"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotConstantKey.cs",
+            "sha256": "90b3f9eaa884c9bc7bdf2a7aad658c49a36408ca65bedd63519f9c04c3fca2f4"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotDialogKey.cs",
+            "sha256": "7f840307c3772b454c0308825a6accbabb62924db99f69d9534050243c93fee8"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotEvtType.cs",
+            "sha256": "085ba5807e9c48ced3757fa159563a7526d2f87b91873285a83b6e3f6ec4afb3"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotRoleAction.cs",
+            "sha256": "6b5682542ef7d1a07448137ac5c46fd0bdf42a6a25f189765ad3c43f6276bc5c"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotSetBackground.cs",
+            "sha256": "cf8289de443e2c884aa1bf3bd5b10e3e8f9bbd7a11f308d066e2b746688b58e0"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotThespianData.cs",
+            "sha256": "ddf8c4bd40d35737a78fe3d68b0f36e183c99cd5beab20aafca2bc16277df0f5"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/RoleActionType.cs",
+            "sha256": "39ea73e7e884c05955711dec3f0bc3167619835fe838535f485bd1d54221c5e4"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/RoleEmote.cs",
+            "sha256": "862a87f2677ab4311606a372274c153700d899f7a02fe99bbf7c2d135b4dd53b"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/RolePosType.cs",
+            "sha256": "aeac1ae1c0ef70cd8fd653101d54e8a3f60fe158701e03a653861ef1ebbb423d"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/RoleSet.cs",
+            "sha256": "be6150e3dc5d345bb3bb2e7533c63984dfbe7ab48d59ef2d92edbafe45b71485"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/SetBackType.cs",
+            "sha256": "c469c0ee428fbcbe5426ff0d03b21e0a9626aa4eacd4984d15c2a04ad6cde2ba"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/Tables.cs",
+            "sha256": "c1dd3db703eb634c5a0b3a296725650c8067178ac2291d24635ae2ec91a7c938"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/TbActor.cs",
+            "sha256": "e428401996201122e328e875de474c5df87a0b2253b10ea922896ecd5f6d943f"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/TbConstant.cs",
+            "sha256": "108ed0cc0b334075c5d7bdb327f81edc191deb9d37072275ae5ae9903e3c7ca7"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/TbDialog.cs",
+            "sha256": "7ca000b9873ce66de90406e39173a9b08e8457a9bdcd0f647a93fc239e554893"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/TbPlotAtom.cs",
+            "sha256": "f165f43b9ffb73910727d8e347a88eb7a75c9a85f9da810f21e4346ee50d8e8c"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/PlotWeave.Luban.Original.Runb634e485.asmdef",
+            "sha256": "0fe603b624ee0b7a9581470328fd58d9b8124d189166a0d4d1b4ca621cf1090d"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/link.xml",
+            "sha256": "2d3185a8cc1b0c0c4f25648a6ea7c3d943c1b18b8811867b8ed60bdb443f0995"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_39e1c77786/Player/PlotOriginalLubanPlayer.cs",
+            "sha256": "4cdb86de19e7e0aa356ea0352fcb9da5c7cb4a2de048a0ce9c2855b74bc4d302"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_39e1c77786/Player/PlotWeave.Luban.Original.Runb634e485.PlaybackRun39e1c777.asmdef",
+            "sha256": "791c59eaa04191e147d67f5fc31da92ecfe03014a67345fcabc1199690467f38"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_4069c78aa5/Player/PlotOriginalLubanPlayer.cs",
+            "sha256": "0739303b144c5c12857e9d4cb4f39c0fd4da8eb9161a34aaee75d1615617d51f"
+        },
+        {
+            "path": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_4069c78aa5/Player/PlotWeave.Luban.Original.Runb634e485.PlaybackRun4069c78a.asmdef",
+            "sha256": "59687b5222135820fcb993d2e9dbed3a3167f357f31608ff9eda6775f4b123d8"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage02_Generated/Custom/DataContracts.g.cs",
+            "sha256": "2bc754035633824ff29553914c70984dfc6a0a15ca6e5a4b40875bcf0329eaff"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage02_Generated/Custom/EditorAdapters.g.cs",
+            "sha256": "cbb0cbc46b098b67098b0ae230d9c5b7d0a5e79b606b510f42bb752ef6aca8bf"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage02_Generated/Custom/GameAdapters.g.cs",
+            "sha256": "22ba0f27c89dd52e5109f357a9bcdb8983902000d770799eaab4e7cedda3873b"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage02_Generated/Default/DataContracts.g.cs",
+            "sha256": "ab9b2e0e16310d713c88a982b81dd633a148136425056624518e9c1062368568"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage02_Generated/Default/EditorAdapters.g.cs",
+            "sha256": "22d761cd9190ce18882879f0f00e1c9cf5316d0d05920d7ea84ffe20e3379255"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage02_Generated/Default/GameAdapters.g.cs",
+            "sha256": "ddb953220146d2cee6ce1ea1f518a0691e7c2e40b5b123812c6aa268ba1b8ff7"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage02_Generated/EdgeCases/DataContracts.g.cs",
+            "sha256": "accf9ef67c64361d027b31492bf85d588a1bffb653b035334c85379e81c6f512"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage02_Generated/EdgeCases/EditorAdapters.g.cs",
+            "sha256": "e770a805e8f6f2d0290e2e16ae3f8014a58b0c318b3e6a032aa788755d226ad3"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage02_Generated/EdgeCases/GameAdapters.g.cs",
+            "sha256": "55d196c738e58c783d3a1cbbfeaf0ea78fb18b9dd502a64279d761c52c12deec"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/PlotAtomData.cs",
+            "sha256": "36a987de32496970d60b249363e06c5c415715c3505811bc1916991690f7d39d"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/PlotBranch.cs",
+            "sha256": "938448d54309687676a4a2a46332acb353fcaab989f1827ef34cd86c7d545103"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/PlotConstantKey.cs",
+            "sha256": "3f660370024adff813d8718f56baab2c2ed364f3fdbb65ac033a3000196866cd"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/PlotDialogKey.cs",
+            "sha256": "1658fe8a6b9d5a603da127e18a0c5c87f2583e34ad4e1e66accbe035b320fb0b"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/PlotRoleAction.cs",
+            "sha256": "b510ba07f21d22bd6bc579fcf8a52af4d9a7578bdefe87b9df3a37eabdc95476"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/PlotSetBackground.cs",
+            "sha256": "854ca6277c88516aa920b4c3722094a4f9624157460cdd6da9ff5588a236573b"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/PlotThespianData.cs",
+            "sha256": "686b5c74d14845d205b34b099dc5c04d74d7b4db3d709ad9fe6d8539471f51ad"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/RoleActionType.cs",
+            "sha256": "8e9401f0a7e31a660ff1d1f5be82feb354abeb5526e3587b4f28bd22e4ab13c2"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/RoleEmote.cs",
+            "sha256": "7640c2cea604a026baed6714234c58046eb57b823bd30bc0288c26712fa62f1e"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/SetBackType.cs",
+            "sha256": "410e04900febdfa292640248f62c02b009078d6ab4cf04c16aaa8a14c32e9dde"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/Tables.cs",
+            "sha256": "69de2a3b7e87785a8313bd73a1f57f4e995616828b104053d5f619b59c025f97"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/TbActor.cs",
+            "sha256": "7062ed8e7eddd1de496788a0087a0f69afbd213cafbae3f4a327b022576ec20e"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/TbConstant.cs",
+            "sha256": "daf1bc0ff39659f836973a1ccfd174820c36276fcf75a5eed384bfd4a16d5961"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/TbDialog.cs",
+            "sha256": "116f4a3e9ae43f823d57fa4e84ae971112e6a8d31fe290317c013a4dd14ced26"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/TbPlotAtom.cs",
+            "sha256": "2ebb1db15e3b8245b9a6f36e176c84144a9832c39ac2ceed6a007d7fd2aba62d"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/PlotWeave.Luban.Generated.Sample.asmdef",
+            "sha256": "f65be30a837a18b36636840c4e8f29045fbadf037a1e678f0e2f38b0be9bf4c2"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/link.xml",
+            "sha256": "df2a9cd11d244ccb06adfa4ef725cac4e7908d8ac855ac9e233c20b909756030"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/LubanRuntime/BeanBase.cs",
+            "sha256": "2b3fb576f2d2cb3b6c74c2ffd8c75c4f035ab42d857547b1a9c0d892d5c45201"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/LubanRuntime/ByteBuf.cs",
+            "sha256": "c784561036714b73a23834969a3c3426ce32f0aa15690e47ad3ac4c56fe0f017"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/LubanRuntime/ITypeId.cs",
+            "sha256": "effd56be2ec82d7650b23172ad396341cf7248f7ca34dfeda362f88a6c1bb477"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/LubanRuntime/PlotWeave.LubanRuntime.Sample.asmdef",
+            "sha256": "5992b3337e2503b4db0551b461d85e7db5ec1fd3784a7db46f6eb7acd1e57b4c"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/LubanRuntime/StringUtil.cs",
+            "sha256": "513ed1b536cac41cd1bbb0cff42466f4f289255422b2e6149be67097951a791d"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Playback/PlotLubanSamplePlayer.cs",
+            "sha256": "264b6cebdfc977f11b6ddde8f63492d2dd21eb738f731890dfac72eb77dc520b"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage09_Luban/Playback/PlotWeave.Luban.Playback.Sample.asmdef",
+            "sha256": "b04ff207a64221c13f29496fdbdb4b96b00f72459b71b8cc10e55bffaeca4944"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/Contracts/DataContracts.g.cs",
+            "sha256": "4cac485e32a5926d995fb64bd5a9f408878362943ed6ad6d63b79a3dcfd83e02"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/Contracts/EditorAdapters.g.cs",
+            "sha256": "186be52eb22759d7e0d8b88935dde994af95917ede91eb5722eba1583947f52d"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/Contracts/GameAdapters.g.cs",
+            "sha256": "a6d5a1bac15b607ea79afa50b5214fa6e52da3897a8d70953dd058d28fb1a17d"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/CameraCue.cs",
+            "sha256": "410aefa077267724f45439bb67db76bc9bb9b860d4d36fb19393298b7eb041f5"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/PlotAtomData.cs",
+            "sha256": "e090af1eb500a0d710247936637820fd9874da3c561bff1bc034fd9f6d866061"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/PlotBranch.cs",
+            "sha256": "cf8cc5d023e595de2a58d2a46069b96e48749e2c10bf27bd688d0e9270118be4"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/PlotConstantKey.cs",
+            "sha256": "2506356aaf472b5efa420bb1b766bcfc8deb3487ac19dce6178e67591f820caa"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/PlotDialogKey.cs",
+            "sha256": "4dbd8a263b3f1ce31e26d1018e88f62817b95d51360491cea4bb537612b9f46a"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/PlotRoleAction.cs",
+            "sha256": "9a6649e300a36efcb36ef5ce6d134deeae0931fa00e4e37f3279ccdaa3dcff14"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/PlotSetBackground.cs",
+            "sha256": "9a22dd4b1f3e1cb1f5dbf939e856acef4db0503680b838e9dba4ed1cd4004083"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/PlotThespianData.cs",
+            "sha256": "5c6dc705b199cadf2d258aa342e0b893b589211a063800e2bebf30830c2edfd7"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/RoleActionType.cs",
+            "sha256": "a88e5267b33a8f73096451c859eed0b1ff0ae81d1fa5ca3695d94cd3d08168cc"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/RoleEmote.cs",
+            "sha256": "a4db1fdf342beb997b5d241f7d8d854acced1bf1b297c1200f894837629e2235"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/SetBackType.cs",
+            "sha256": "270ef366225f3fac1490181443729a74b5cb02c9f62790ad7b645bf2966e4c8e"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/Tables.cs",
+            "sha256": "8cfbcbefb708ebd56f42c4a56aac8ca46f76546d8eec4dde911cebcf17a8076f"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/TbActor.cs",
+            "sha256": "babf31c14a88d1b2f301d07f089a8ba2d4c68ccd919369d057db2f9e0ba527ce"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/TbConstant.cs",
+            "sha256": "5aa9b1ecd31e40948373f639828962e7c85112ab761322629d46576026b02fe2"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/TbDialog.cs",
+            "sha256": "001a61cdb3e415f04197ecdf42e37294c4cccf2c07c888c640f7d6f2f2c10945"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/TbPlotAtom.cs",
+            "sha256": "cf2226e551182bc62986f49f609114c76b8ab68806ed21fd721aefdb1154d7d9"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/TransformCue.cs",
+            "sha256": "b680754914d119407e67ab0517de5c3f7370371000b2580f927e494b3451187f"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/PlotWeave.Luban.Nested.Sample.asmdef",
+            "sha256": "1e9c49a082b015818c89fa8507f24eb31b68e99cbe269285ce7f4ad1a4fd9de2"
+        },
+        {
+            "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/link.xml",
+            "sha256": "00032353d4bf2625d33502210a01f658bb21b368fa068c84dd39d7f6ea91d364"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringBootstrap.cs",
+            "sha256": "aae2a56dba110f419fe139cc05f36da7a8589d8e57c2ddcc7c08860cf2a5db2a"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringInspectorControls.cs",
+            "sha256": "23d6ab00c1e9e5e59f0f01253e9209d27d357796343fabd9c26f12f1f4894132"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringPreviewVerification.cs",
+            "sha256": "f45ccd699a25851a422d98e57a0e2ddba13abf6c12390e61ef0926d16403b93b"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+            "sha256": "30c11ae6591b8669bdb6f439583f41c5ed38e84ed23b624a7184482471601515"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotSchemaDrawers.cs",
+            "sha256": "31d0be62ee4d8d1371ced8ac07689cf19d1665b6bf75718d39ba647cf1127d19"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringAssetEditor.cs",
+            "sha256": "4a6125331e24bac714569a50e2f1eb1b4784b30e13bbfb95bc79088b5cac2801"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringExample.cs",
+            "sha256": "cff9d15fee0b7352f8d704de4e999065323a62ad816b77ce393ff73fcbb805be"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Excel/PlotAuthoringExcel.cs",
+            "sha256": "27ac82f38d366b4750f138350c53b038bf173e15e94293beeff71145e71d816b"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelExchange.cs",
+            "sha256": "75dfac5c15be48b836a5ce2ea9a9f987b263bbbcc33d4ebcce430c1aad257a3c"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelSheet.cs",
+            "sha256": "162b5eb7d61f0b1decb41d99e60da1465b110d431d561b0d976d5dd02b900adb"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs",
+            "sha256": "cf60834e21474a1cc9d9871bce34a532b9f29e2f9529429f4de1a91f6cec3aa7"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs",
+            "sha256": "b2120e9aa1aa309b78536a524eedef459d1a4e8d1450bf3c0a57f7cbeaee654a"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Generation/PlotGenerationExample.cs",
+            "sha256": "513f274213cee8c601c0270150746da2b4a45e98949e33aed9b5ef1eb39ef793"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Generation/PlotGenerationProfile.cs",
+            "sha256": "90202b005eb8547a616451f0aa141800f3ee5a42902812d3f353e3402902a33d"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Generation/PlotNestedBeanExample.cs",
+            "sha256": "ee383f919111e3fc4f9ab4513203695b1a5c723d14c68826a90d5afbd20c293e"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/CustomEnumDrawers.cs",
+            "sha256": "93063a2876467ff93c357799344e3f4f513a598d7a4c9097f3f9f85f5176f058"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/EditorBaseExpansion.cs",
+            "sha256": "d48159a3da35479acfbd9604945f695638822dd28d9313308fa1f0e145cc787d"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotAotPreservationMigration.cs",
+            "sha256": "7fbe9c6083600077e37d80931a57818c603fc3c6a1208c2e87d64c7838a9c24f"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotEditorDataToExcel.cs",
+            "sha256": "f24b18d5c0f077238c2bee299215a247883e13bc3690d50797a03bf1b97e9493"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAssetImport.cs",
+            "sha256": "4d7b53f23012b5bebdb16f8daf4232d75b09a9b507cff48e7a0835a965dee1ca"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+            "sha256": "d90fb122ede2f76a4eadc100baad2c5acf2242c2141018099ae15ac4b29e3c5b"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyCampaignImport.cs",
+            "sha256": "c63135aff53ab192ad0871850b5c447118a8ca9de12eec8068783025965b8416"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyCampaignMigration.cs",
+            "sha256": "8e0d5d99f3549b659342955468f14ccd86969567937a32934d417155634f4761"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyCampaignPreviewVerification.cs",
+            "sha256": "d673917ac303b6b8a72ca965ed48ffdfe280ef522cb6aab299834511c92f7425"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyFullBuildVerification.cs",
+            "sha256": "43b0a8b7a94d250721dd1189d9e8723b99315b862b82a9fe680eec93309ad0e4"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyInteractionMigration.cs",
+            "sha256": "d1b672e1715fdf26cbd8f90cdf47b58759f012d8641bed319bde4f196708d26a"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyLubanPlaybackMigration.cs",
+            "sha256": "9d913aa0d70fab23546637a7072ba264a3e7f7b3149232da97866503a73e08a7"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyMediaFolderMigration.cs",
+            "sha256": "d435f4b02658fdb38af3d2b551b79eb1be1c38ad0374cd48eeb5a38f37a243b7"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyOriginalContractsMigration.cs",
+            "sha256": "2eac749fb9511ef72097f20b693c19e7a9954013c9a561b9e3536f6853a56303"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyPreviewVerification.cs",
+            "sha256": "a93420639a97ea94da17df13ad8ce73a64950ec8138f9246edfeee630a714421"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyUiMigration.cs",
+            "sha256": "dc69da415ad3887a77d1f17891ed3ca9df586b4c63e432a20c91e745ac4fad03"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyUiModel.cs",
+            "sha256": "988209ab10d5ef97dae2a69c87244dbdd2e041fa82dcffd906cd64639cb72138"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyUiRebuilder.cs",
+            "sha256": "f5d0c39271a8b84979a8fe2e1a551b564e55e42820d1b55f9457c8e66c45884c"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyUiResources.cs",
+            "sha256": "79e959ade4a6e12cf91583bb74f5467006267aede90d271b1e1f2a264c7d29ac"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyWorkspaceMenus.cs",
+            "sha256": "b6a72af0cbf50e339db0a63c2e5242234418ff423cce1acb7b14c337a64d5dbc"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Luban/PlotLubanExample.cs",
+            "sha256": "4e445cda2e3c5113102d7f8cd50bf317b8b7d87d2bcdb3530f0b730d0628ab0e"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Luban/PlotLubanPipeline.cs",
+            "sha256": "db92570b1de904fd6e4adac89d87206b3896c8227999f1fd1ff793f789ed40c9"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Luban/PlotLubanProfile.cs",
+            "sha256": "c259bb70e8c22b03056d3bcccca636de563cc7dd55388f0eedead4038d1de3d7"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Luban/PlotLubanSchema.cs",
+            "sha256": "c823c0887b8273b5228492fd3d1dfd6257d365277aacb0e2f3c52415ab746331"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs",
+            "sha256": "ffb38254ea5cf9f45c440a4d4870a07b1c3f4150d359e4f1757e75aa4d56b314"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Playback/PlotAdvancedExample.cs",
+            "sha256": "e36ccdaa0d48f098d2549edf91c2f88dd42b85f0258de2f761f372e080187031"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Playback/PlotAdvancedPreviewVerification.cs",
+            "sha256": "b607f1f9fa248b49facebd7b9654109c4bdf8a39b6175d2be746a6e89fbc3f63"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Playback/PlotCampaignReferenceExample.cs",
+            "sha256": "39aaaebf29d3990d6eb33b44491cf5ed36f1ecea0b50772b6463db190b9d0f39"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Playback/PlotCampaignReferencePreviewVerification.cs",
+            "sha256": "b47022f9c289b378d5c154f500756ce23274c3bc7a7b4aa8249ecd52f93856d0"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Playback/PlotChapterExample.cs",
+            "sha256": "9560ea3d9e651c4fbf4c0f77d070b50d18c904a35c347421cc021fd7d38791a0"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Playback/PlotChapterPreviewVerification.cs",
+            "sha256": "245736834053b089768c69ac9e502d71e93c3a447134a7a9899228d8020576a9"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Playback/PlotEventTrackEditor.cs",
+            "sha256": "332e2de348aa8d469bfe5a534b2a9d411158c30c071f104e27ec5bf99689e3ba"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackBuildVerification.cs",
+            "sha256": "90b95e73e46f211103985076548fe65fb2fb58dea948aaca366c4fdbf888811f"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackCompiler.cs",
+            "sha256": "7e22ceadbab501c7e71a4a306a84d423a0d4e83f03b214c3bd6c5073ca32b255"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackExample.cs",
+            "sha256": "18d8c618544637d5fcac5ae6f5f8667d759c2339681384adc30663e5ad2d3847"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackPreviewVerification.cs",
+            "sha256": "cb7c776376a18bb1dddbf08749610de87b896d57653ff5bdd641aa673c281d2f"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/Playback/PlotPresentationMigration.cs",
+            "sha256": "2b01ee44ddffa34a9e6c1cb40e5b02954bf0b3d80f1169e69112ce94d2e3aabd"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/PlotBuildVerification.cs",
+            "sha256": "27d2636eb80e0f42532dec81b660f0139d0bc45ce8d59c8f8b8d36b4c4209f0b"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/PlotCodeGenerator.cs",
+            "sha256": "f3201817d6308fe598669fd8a58b0b634b87249aa5841600294183a8cb7cf4dd"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/PlotCommandDrawer.cs",
+            "sha256": "af93fa09ef61556738d21d1b5ba4676c191d1e43a65841a77be26139f5d18d49"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/PlotMenus.cs",
+            "sha256": "ba2fdbadfff2de23ad952209399cbeec0bb2c7e37eb0bb01fe1da7a84aca950d"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/PlotPreviewWindow.cs",
+            "sha256": "5d59624965146a75d17be8f9d0c6bef59ed6b10b41a37720ffd8dbc2d4df2598"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/PlotWeave.Editor.asmdef",
+            "sha256": "59de0cf130307756d6b357aa93f8147dcc1e4511d8ec2a9bda3b152499b243b5"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/PlotWeaveWindow.cs",
+            "sha256": "118d682d314bdf7ae7e86f7d4783f3d444ce3cda3aa6907e23c7f5a4918af715"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Editor/PlotWorkbook.cs",
+            "sha256": "6ef0fb465dfdcb303eec803393ce8cff52cac52780e8a25b314db55466abeb6f"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/DiaLogKeyEditor.cs",
+            "sha256": "e40f5df7d3984cbe1e65c658877e64bcddc81bacfcc8252acf46d2e379d1f296"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/ParameterEditor.cs",
+            "sha256": "8ae04e7061db35092392eac7c8a0292842d3882f133154b74d94be3b469ba44f"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/ParameterList.cs",
+            "sha256": "41379214d59d8e8af68b96420d1deed46886f9d4be388a06b4efba7a9a335342"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+            "sha256": "eb7204e1556bbe68b4f10261cb133377a91fd3931cf3c65a3121becfdb7c4752"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+            "sha256": "4086fee5ea540cf6b26892657129dcd92413da969d0516491ed9772d3b55a1b2"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+            "sha256": "a02201bceaff9334f1e18663302bf579f89e47d24eae897d6ed2e4a3607b99f4"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeButton.cs",
+            "sha256": "7821d998bb8324527ed88fc7f375a651e91862d3599c9135ba823431e1b4847e"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeView.cs",
+            "sha256": "eff8f23d777c65cad455d203d9b9cc02e82ca3a422d37084271d87f0c97dd79e"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotUiFactory.cs",
+            "sha256": "55ecdff3eccaf026ddd650990f95d50096f3b41899d1ab470401f608c2ddc378"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs",
+            "sha256": "aafceb37d050edea164bfee368eae0776818ad6487303241148ea14b19bd9b62"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomRowData.cs",
+            "sha256": "f25393b2d558d49407d415708e141b757ba055499b546645c7f4367a343b1409"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAuthoringAsset.cs",
+            "sha256": "063a896940162e6d0a3ce8542e5dd9babf3fd0f545a6692052f61f1418aa2a37"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAuthoringProject.cs",
+            "sha256": "93dc27304a28ea6d78fa602c41ea7ca2d1fc82d0a68fe6e149f49898c7b7c461"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotBeanLayout.cs",
+            "sha256": "18b7096b0482da9dd1951483674fd3e5eeb1665fb94b57b58f1b266cf2d357c1"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotConstantKeyAsset.cs",
+            "sha256": "a3bf0df843bd6a97bfa198ec88e5bcd7fc8304b52feb6cc2cf884c839cdccf62"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotDialogKeyAsset.cs",
+            "sha256": "53a34d597a99191f70f7cc270186b153921791a2acc99e63d977c7bb22d47733"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEnumAsset.cs",
+            "sha256": "64f389952e0b07b0eafe1d5d37672eff33550412bd4c2cdcf518aba125f3fab7"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs",
+            "sha256": "2f14845668d7468ae665b4a9fe4d32bb456910dd03d96d6d976c06e9f85210eb"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotNodeEventTrackAsset.cs",
+            "sha256": "35b24792b4ff7b895d1ebad2ce130c6b977e6e8044faa037540df6770419cdc9"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotTableAsset.cs",
+            "sha256": "957de10695b408e61f2b84a91bed6eeb46b9920e1e35d61ccb61b9aaefc08fd6"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotTextKeyAsset.cs",
+            "sha256": "59c536f48ad0e56605148f8c80220578dfa335497d15d4a78f88f6177226d726"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+            "sha256": "3c5c8a4cebdfc852e261741008857fc2781f47cd0107f2ccd523b6bedfaeea0e"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+            "sha256": "0b05c3e08401674d8580eea66634bcc9261b33cd4923b0802ed78f8787b4911d"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+            "sha256": "2ad35e67d9843b5ee058bf4b14fa7311db374e441d9b8273d8af535b6bcf0b91"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterDemo.cs",
+            "sha256": "1daa2f8504a909a95cbb3759d4ba768350793e9bfd1e078e7cef2a2d020a7532"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterHostPlayer.cs",
+            "sha256": "ac0459a87d26339ed362f95359f33b99beef022419ae1ac3a8108c59d730b8f2"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+            "sha256": "daa30808ed9484d62bd1551f1456ec493d6022be6fd7da2c2f15c5c7886f14f7"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs",
+            "sha256": "202772ef3b90004ba7710eca41400164d490aa18c8e198c51b741123ded004e8"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotLocalChapterBackend.cs",
+            "sha256": "5220a8a905e402594f3a3c3b46a587297b928692f4826d9bf1ec8e26c501e901"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/DataContracts/AuthoringPlotValueSource.cs",
+            "sha256": "6e1f268845e9f1d8f59d0947b509ebac22ed8f5c8073c378b27d2a1944859d40"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+            "sha256": "fc8f86cb082a42e3cdae7fa10103910587826fcb5d1348ccddf07d78edd796d6"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/DataContracts/PlotJson.cs",
+            "sha256": "41da81fd9b110d87ab0ff961f2cebbab499d6b92ea66114472fcdbaf035524b4"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/DataContracts/PlotValueSources.cs",
+            "sha256": "6726e5bf1e5535093a3b24256cd7fd4e7860c5987e890430ef2a9a5000dfe33a"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Legacy/CustomEnumAttribute.cs",
+            "sha256": "0b396aa311ee7722421a2e95c5136a7499101d7a8805a0ae36527a2328593fa6"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Legacy/EnumMappingUtility.cs",
+            "sha256": "1f057608d69ed6c99d06991d0e6d2b3701d1909991d869566e645a422227df63"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotEventJsonData.cs",
+            "sha256": "6a095b96f765a81c46332219b919bdcf1bfbb3ea65e9bb7392e0c5dca6b670c6"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyBehaviourProxy.cs",
+            "sha256": "86f859428e337bd297fb77fb9c96a00f174e20a3ed03af59a80ac6d43684b6c3"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+            "sha256": "d2d5eca03239511f13af3b19ddb9c9733c7bf904e8fa35a999ec6562dcbe563f"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs",
+            "sha256": "aeb888da05a4990fa227d74b0f66fd2fbe1f570cf7a165b21a52edabf78f2ace"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacySkipController.cs",
+            "sha256": "f5cadd20009ddeb22b82ebe45b9c8d05c9c47f7ec685ecd6ee637f53fb5f8406"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyTemplateBindings.cs",
+            "sha256": "361bacd286c0e2d6e87df6db302cf6afa089ae90f0d62dbd7b2fb6daa1d3e6e3"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+            "sha256": "4d8758c895a8091d8413bfa13fa2d6fb7209bd8254aac408831e1feb1fca84a1"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyWidgets.cs",
+            "sha256": "e31aa4a9811464b17c4aa7e769d098ef457d1274e63b71f6ce1d0b12bd23a3a5"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+            "sha256": "051dd3eab9ec2ec7fb95e1576bdfb2ad1e9d26b29d7c8ef28be3378085d000c8"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotActorVisualState.cs",
+            "sha256": "c5899d7c94adecd9c036ea49604ac04fd807dbcf1d40c321c12adf29679cd610"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotEventScheduler.cs",
+            "sha256": "cdc795d56bb71930770377171242a46acaf5341cf60b8d4f81f1f9976412ddfa"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotLegacyPlaybackProjection.cs",
+            "sha256": "3dd7d0c965990b3a742f73ea0c18d7c2be792026eb6c1578ec0199609dae3e4d"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotLubanTableReader.cs",
+            "sha256": "2ed13e267b34367febc48649f602b453643b5d7733dc5dc9ff98baf57da4c90c"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotOperations.cs",
+            "sha256": "958ffbcdb299ba34fdd888af40292d535aadf13043315941a47cb7ef02d5ffc1"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlaybackAsset.cs",
+            "sha256": "e843ba88604eb1977f03f6c3f04836e1354fa341756009d64f5e4acfb2fc4a77"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlaybackData.cs",
+            "sha256": "915d7ff821199a39a044858e863791ad7cf20fb2ee2ccf2d42cdc185d127ed5f"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlaybackVisualCatalog.cs",
+            "sha256": "df0996a2352679f35d43e6f3189685d6d7988773e12aff8b615e87f7d3d25717"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerChoices.cs",
+            "sha256": "9481e5ead27aef868fdc372937961c8db4c4f92afba7134e2797850d4dc72ebb"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+            "sha256": "321cab59e492227e5a57585d79d3620800f2e3bffa1d22dd9c530994d496fdf5"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerHost.cs",
+            "sha256": "6fc3414c22e09a7e0109592d2aa90586ae2c55daf463eb63bf5218bf4cd0f980"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerServices.cs",
+            "sha256": "6c4c15efab8d34f5b56d1889c8b8c2acac888fef7481a328c9cb18485f159861"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.Actions.cs",
+            "sha256": "7c96b28d5a00861a7f054b7a3fe409c02b50bb27a04fce4c9506a3c52472f659"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.cs",
+            "sha256": "f5b5c3fc3fe4af4b3c11c06e081c6ddf55794851803f3363ebffc103a6a59cf1"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerViewBindings.cs",
+            "sha256": "be8bc1482c213cf95a2d25fc592cbe75160f746e3f544932a762e8c095523c90"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotResourceOperation.cs",
+            "sha256": "3121afbf2b7ac70992c12c123b24db5d1c7ca2b89fcae96f23a1983ca835059b"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/Playback/PlotTMPText.cs",
+            "sha256": "1777461043545a9aa042ee76f9fca255b5e4010d1aa7463bc69fd8a525ba42a0"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/PlotArgumentReader.cs",
+            "sha256": "105ba7684cb5a4874ca0f6ed923363633c3885d1a5259eeb37c266f73d92ab63"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/PlotAsset.cs",
+            "sha256": "824b47f291b4e2ad11176514f828e997ffaa3e6bf109251c9cfe80990d8972dc"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/PlotData.cs",
+            "sha256": "637058f08eea941fba834f3ffa3be7e43ab451b1a511701ee9aeb75395bac8e8"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/PlotDemoPlayer.cs",
+            "sha256": "0291c6e68dd5984791808466e44539e328da39c9e3198b56855964ba705ec6ab"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/PlotSample.cs",
+            "sha256": "c472f2e24f27c94fae4e635128d95649a11fe140f223d23b58291fe3b6009996"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/PlotSession.cs",
+            "sha256": "9592aafb7682e24f34284fb517401780d5822c5da8850c7901036784d76d1be5"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/PlotValidation.cs",
+            "sha256": "0f402c58af731e936020a7c87a0d105c3dc960e940e1ec70539bcc54f14cf977"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Runtime/PlotWeave.Runtime.asmdef",
+            "sha256": "f595b55654bcb9fd249635e053e787c61dd90dc5b571c51c2a36744d121e5102"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotAdvancedPlaybackTests.cs",
+            "sha256": "fa0a8aae20c5d9e7956ff3596b8283321caab14e8284324d0190a16c8299d478"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringPanelTests.cs",
+            "sha256": "6456698527f6f66ccba51fac8622e95910bff47f57ea8ca9d53be5828ba9da94"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringTests.cs",
+            "sha256": "cbc74ee2cc16851e8f2bc49fa4c6b48fcb4586f069277ac23fbfae78daeab9ec"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotCampaignReferenceExampleTests.cs",
+            "sha256": "1751d4f54724e9b9f531d69821d458ef93f40f4ea29d1722386860c0f7d01be6"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotCampaignTests.cs",
+            "sha256": "9015e5009979eac638788240beac1d675de07a375ddcb9e9c8269fc48783d4dc"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotChapterSessionTests.cs",
+            "sha256": "672835cf559c5f29b82a78f73e41f08848ca8dfb7520d7e6830589c31dac40ac"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotContractGenerationTests.cs",
+            "sha256": "2a1ec6b14176f568f3b828f314a1dccf92647d25206e9c8404881ab2e1e60485"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotEditingSessionTests.cs",
+            "sha256": "e827b6c7e777d7fea25619ddb07b5e6530afe04db59fb60d3e53b2732c960356"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotEventSchedulerTests.cs",
+            "sha256": "4b73f93becab9c55627791cedd5d49f16f4d59cfe464e47f11e6e0b8860d706a"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotExcelExchangeTests.cs",
+            "sha256": "378cb83110531f1eabbd12eb71050abe4fc3cf48c45f7569b2c840df0fa3e6fe"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotExcelLayoutTests.cs",
+            "sha256": "73bc7a7e3f10c3cec708ea3485b247605c55a6e1c88a9c1ebc174c88aa29f8e6"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotJsonTests.cs",
+            "sha256": "7b6e8e42db15b326959d48c47a1eb76d8de9395bd3a5c87a93a51611f0a7aad2"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotLegacyAssetImportTests.cs",
+            "sha256": "4a5f201833398f631273be91a72b43f149a2f4c528f2fa9b5b2c9c78a5d1ddb7"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotLegacyCampaignImportTests.cs",
+            "sha256": "2c906c3bffd0a7493a248a663ee8c058b40cd5c363ffd2ae9bc75b34d6d0a052"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotLegacyChapterHitAreaTests.cs",
+            "sha256": "55ed401f447b434d8425533b31a7d34c670abb9ae2438bbea5351e8c0f954fa4"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotLegacyEventTests.cs",
+            "sha256": "bb6cc866b9284419353c4f3642774dc2134b58d93c9e276739fd2c0a4d3fc890"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotLegacyInteractionTests.cs",
+            "sha256": "e21164c12f7ede7e8d155753b10929c798e6e4f35807b762e7973702e8f52557"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotLegacyNetworkBackendTests.cs",
+            "sha256": "abd542b1c9b1fb62278c88d63987c2ceb9140324d9240eb6952034c8204975cf"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotLegacyOriginalContractsTests.cs",
+            "sha256": "ad274ee959c07c7f9d27dc6eb4f615e4faa723da726bf12e492858b6ff23f8f9"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotLegacyReviewRegressionTests.cs",
+            "sha256": "3d641f6ccf4e8ec1d63c6df2170a7d4588deda34a3a83354f8873376eede0763"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotLegacyRewardPresentationTests.cs",
+            "sha256": "f083d1db9042c0b00a05623aa3001ff1346ee1e7e905a1bae1b2fa0e6b414622"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotLegacyRuntimeReviewTests.cs",
+            "sha256": "735714a48650cf0ee2586cc8233e24d0d75c9889118c4a23c1b77d6a47a68bd4"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotLegacyUiRebuildTests.cs",
+            "sha256": "6b840f216eaaab9faf88a3f5b382aa81fac75352b8eb7c03cdaf00d6a9095700"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotLocalChapterBackendTests.cs",
+            "sha256": "b173547eb9e3478ce20c0c88a6ba32af9655e0d8ba944c160ab85af4d55525a8"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotLubanAotPreservationTests.cs",
+            "sha256": "273e872507f73aa589743b5fd67d0ddbe93cd950c477cf4ff59b55161596f3ac"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotLubanIntegrationTests.cs",
+            "sha256": "553c9f7897a4e57d7680962de214590b7138d1982947f7f5284b8f619db99606"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotNestedBeanTests.cs",
+            "sha256": "cda0013185195302d08b844005f823bb9700350f03ef9826f86b08df345a1ba4"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotPlaybackIntegrationTests.cs",
+            "sha256": "3a3dfedb839b9941fc3b3d2893109f8086db9cd13492dc47a29a6b84b6f2d9ba"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotPlayerCoreTests.cs",
+            "sha256": "7575e6a191c0b4a6c132c5cfb8027de2d3e0ef8991e4e7c0ea09bc081cabf34c"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotPresentationMigrationTests.cs",
+            "sha256": "27e7965d4ea65fdff8a0dc674a8a78966bff10f653aa797358b5a30b463ba56b"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotVerificationBridge.cs",
+            "sha256": "aa1ded984cd968c880d76f281ff69dcce127aac6c171b3f4422f51ad79597aea"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotWeave.Editor.Tests.asmdef",
+            "sha256": "f92a56d2b9374e9b72d2e97fda2d0c2dec6804b1e21189f399bff6c56856984b"
+        },
+        {
+            "path": "Packages/com.plotweave.core/Tests/Editor/PlotWeaveTests.cs",
+            "sha256": "982a3641abf7fa6f5c72959f12ccbfd9265119f64f47b09360e54495d3fb0781"
+        }
+    ],
+    "cases": [
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.AutomaticPlaybackWaitsForChoiceAndTerminalChoiceCompletesOnce",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.BackgroundCrossFadeProgressesAndCommitsOnlyOnCompletion",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.ChoiceButtonLoadsItsTargetAndStaleClicksCannotAdvanceAgain",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.EffectInstancesAreRemovedWhenPlaybackIsClosed",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.EventMovementModesUseTheirDeclaredCurves(\"Smooth\",0.5f)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.EventMovementModesUseTheirDeclaredCurves(\"Accelerating\",0.25f)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.EventMovementModesUseTheirDeclaredCurves(\"Decelerating\",0.75f)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.EventMovementModesUseTheirDeclaredCurves(\"Capering\",0.5f)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.JumpFromEventHandlerCancelsTheOldSchedulerWithoutContaminatingTheNewNode",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.LegacyMoveRoleUsesTheActualThreeParameterMapping",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.MovementAndEmotionSpritesActuallyChangeTheActorAndPauseCorrectly",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.PausedChoicesAreDisabledAndCloseInvalidatesTheirCallbacks",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.SoundOperationWaitsAndDisposesItsSourceBeforeCallback",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.UnknownEventFailsBeforeAnyActorIsPresented",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAdvancedPlaybackTests.WaitAndCallbacksGateInputAndCarryVariablesToTheNextNode",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringPanelTests.BeanListPanelUsesTypedEnumKeysAndStagesNewRows",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringPanelTests.CancelledDeleteDoesNotModifyTheNodeOrKeyAssets",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringPanelTests.MainPanelBuildsTheOriginalWorkflowAreasFromTheWorkspace",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringPanelTests.NodeListReusesOnlyVisibleButtonsForLargeDataSets",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringPanelTests.ParameterListReusesVisibleEditorsForLargeBeanLists",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringPanelTests.SavedAuthoringSceneHasAValidRuntimeScriptAndWorkspaceReference",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringPanelTests.UiFieldChangesStayInDraftUntilSaveIsInvoked",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringPanelTests.UnsavedTextStopsNodeSwitchWhenUserChoosesCancel",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.ComplexSampleHasIndependentValidTypeAndDataAssets",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.DuplicateEnumAndParameterDisplayLabelsAreRejected",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.DuplicateKeysAndDifferentLanguageCountsAreRejected",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.EnumKeysRemainDifferentFromDisplayLabels",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.GenericTableRetainsStringIdsAndUsesInvariantNumericConversion",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.HeaderDetectsExpandedMemberColumnOverlap",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.HeaderKeepsBeanMemberIndicesAndParameterMaps",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.HeaderValidationDoesNotSilentlyRewriteMemberCounts",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.InvalidTypedValuesAreRejected(\"NaN\",Float)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.InvalidTypedValuesAreRejected(\"Infinity\",Float)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.InvalidTypedValuesAreRejected(\"2147483648\",Int)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.InvalidTypedValuesAreRejected(\"maybe\",Bool)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.InvalidTypedValuesAreRejected(\"1,2\",Vector3)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.InvalidTypedValuesAreRejected(\"1,NaN,3\",Vector3)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.LanguageIndicesAndSeparateDialogConstantTablesArePreserved",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.LubanConstraintPrefixDoesNotTurnScalarIntoList",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.MissingEnumReferencesAndDefaultsAreReported",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.MissingReadAndInvalidWriteDoNotCreateColumns",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.NativeUnityAssetsReloadComplexColumnsReferencesAndLanguages",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.NestedBeanIsExplicitlyUnboundRatherThanPretendingToConvert",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.RowEditingRetainsOtherMembersAndRows",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.UnknownColumnsAreReportedWithoutDeletingTheirValues",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotAuthoringTests.WrongBeanArityAndScalarMultipleRowsAreRejected",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotCampaignReferenceExampleTests.EverySyntheticEpisodeReachesAnEndAndAllTextHasFiveLanguages",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotCampaignReferenceExampleTests.GeneratedPublicAssetsPlayBrowseRewardReplayAndDailyWithoutLocalInputs",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotCampaignReferenceExampleTests.PublicTemplatesSupplyTheHostNamedControlsAndOwnScrollContracts",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotCampaignReferenceExampleTests.SyntheticCatalogSupportsOrderedNonContinuousIdsLocksFirstRewardAndReplay",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotCampaignTests.BackendRejectsLockedEpisodesAndReplaysWithoutAnotherReport",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotCampaignTests.CancelledOrOverflowingRewardTransactionsCannotAdvanceProgress",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotCampaignTests.CfgPropertiesAndNeutralDictionariesUseTheSameReader",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotCampaignTests.CorruptSavedReceiptsAreRejected",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotCampaignTests.DateAreaAndPreviousChapterMustAllBeUnlocked",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotCampaignTests.FirstRewardsAndReceiptPersistAtomicallyAndRetryDoesNotGrantAgain",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotCampaignTests.ImportingLegacyProgressDoesNotGrantRewardsAndAllReadSelectionIsValid",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotCampaignTests.InvalidCatalogDoesNotHideMissingReferencesOrDates",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotCampaignTests.MissingLegacyTitleKeysUseReadableFallbackWithoutChangingSourceMetadata",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotCampaignTests.NonConsecutiveIdsFollowConfiguredOrderAndSelectTheFirstUnreadEpisode",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotChapterSessionTests.CancelledLoadCannotOpenThePlayerWhenTheBackendIgnoresCancellation",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotChapterSessionTests.ClosingPlaybackCancelsWithoutReportingACompletion",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotChapterSessionTests.CompletionReportsTheCorrectChapterAndReturnsOnlyAfterAcknowledgement(Main)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotChapterSessionTests.CompletionReportsTheCorrectChapterAndReturnsOnlyAfterAcknowledgement(Daily)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotChapterSessionTests.DisposingDetachesCallbacksAndRejectsNewRequests",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotChapterSessionTests.FailedReportRetriesWithTheSameIdWithoutReplaying",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotChapterSessionTests.LateReportCannotReturnFromANewerChapter",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotChapterSessionTests.PlaybackFailureReturnsOnceAndNeverReportsSuccess",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotChapterSessionTests.ReplayingAnAcknowledgedChapterReturnsWithoutReportingOrClaimingItAsNew",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotContractGenerationTests.ActorTablesHaveTypedItemsAndSharedRoleContractForBothHosts",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotContractGenerationTests.CustomShapeSupportsFloatBoolVectorEnumsAndDifferentColumns",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotContractGenerationTests.DialogAndConstantTablesKeepLanguagesAndImplementTextDataBridge",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotContractGenerationTests.EditorSnapshotAndReturnedListsDoNotChangeTheAuthoringAsset",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotContractGenerationTests.ExplicitStringKeyTableRetainsLeadingZeroes",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotContractGenerationTests.HostCanSupplyAValueSourceWithoutReflectingItsConfigObject",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotContractGenerationTests.MalformedPresentValuesAreNotSilentlyConvertedToDefaults",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotContractGenerationTests.NonMultilingualKeyValueTableReadsScalarValuesForBothHosts",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotContractGenerationTests.NormalizedAndInfrastructureNamesCannotProduceBrokenCode",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotContractGenerationTests.OriginalShapeGeneratesCommonInterfaceAndEquivalentTypedBeanLists",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotContractGenerationTests.RegenerationRefusesToOverwriteManuallyEditedCode",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotContractGenerationTests.RequestsAndResponsesRetainTheCommonDataObject",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotContractGenerationTests.ScalarBeansAndConstraintPrefixedKeywordColumnsCompileAndRead",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotContractGenerationTests.TableCacheKeepsOrderAndDefensiveCollectionsAcrossUpdates",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.BeanListEditingUsesDefinitionDefaultsAndMemberPositions",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.CancelSwitchKeepsWorkingNodeAndPendingText",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.CreatingMoreNodesDoesNotMakeTheFirstCreatedAssetStale",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.DiscardSwitchDropsChangesAndSaveSwitchPersistsThem",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.DraftCanRestoreUnsavedRowAndLanguagesWithoutAssetReferences",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.EditingDoesNotChangePersistentDataUntilSave",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.ExternalEditsAreDetectedBeforeOverwritingTheAsset",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.GeneratedKeysAndLanguageEditsRemainStagedTogether",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.InvalidLanguageWriteDoesNotCreateAnUntrackedKey",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.InvalidRowPreventsRowAndTextTablesFromBeingWritten",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.NodeRangesAndDuplicatesAreHandledWithinTheWorkspace",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.RenameAndDeleteKeepOtherNodeFilesIntact",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.RestoreDoesNotOverwriteAnotherUnsavedDraftEvenOnTheSameNode",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.SavedChangesRemainConsistentAfterSynchronousAssetReimport",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.StoreRefusesSavingAnAssetOutsideItsNodeDirectory",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.UnknownDraftVersionsAreRejectedBeforeChangingTheSelection",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEditingSessionTests.WorkspacesWithoutOptionalTextTablesCanStillEditNodes",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEventSchedulerTests.CancellationDisposesActiveWorkWithoutRunningCallbacks",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEventSchedulerTests.ExecutionFailurePreventsLaterEvents",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEventSchedulerTests.InvalidCallbackGraphsAreRejectedBeforeExecution(\"missing\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEventSchedulerTests.InvalidCallbackGraphsAreRejectedBeforeExecution(\"duplicate\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEventSchedulerTests.InvalidCallbackGraphsAreRejectedBeforeExecution(\"cycle\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEventSchedulerTests.ReentrantCancellationDisposesTheJustCreatedOperation",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEventSchedulerTests.RootsAndCallbacksExecuteInDeclaredDepthFirstOrder",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEventSchedulerTests.SchedulerOwnsItsDefinitionSnapshot",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEventSchedulerTests.SynchronousWorkHasAPerFrameBudget",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotEventSchedulerTests.WaitDefersCallbacksUntilTheOperationCompletes",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelExchangeTests.ChangedAssetInvalidatesPreviouslyCheckedPlan",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelExchangeTests.ChangedWorkbookInvalidatesPreviouslyCheckedPlan",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelExchangeTests.ExportRefusesToOverwriteNonEmptyDirectory",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelExchangeTests.ImportAddsNewNodesAndRetainsNodesAbsentFromWorkbook",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelExchangeTests.InspectionDoesNotWriteAndCommitPreservesGuidAndListData",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelExchangeTests.InvalidLateWorkbookCannotPartiallyApplyEarlierWorkbooks",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelExchangeTests.LubanHandoffCopiesOnlyKnownFilesAndBacksUpPreviousVersions",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelExchangeTests.NewNodeInvalidatesPreviouslyCheckedSchemaPlan",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelExchangeTests.RoundtripPreservesExplicitEmptyListContainersOrderAndIdentity",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.BeanParametersAndUnrepresentedMetadataArePreserved",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.ContinuationCannotSilentlyOverrideScalarData",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.DuplicateNodeIdsAndOrphanContinuationsFail",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.DuplicateTextKeysDoNotPartiallyClearAsset",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.EmptyListItemsAreRejectedInsteadOfDisappearingDuringExport",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.EnumContinuationRowsAndEmptyDefinitionsRoundTrip",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.FailedWorkbookWritePreservesPreviousFile",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.FiveLanguagesUnicodeNewlinesAndXmlCharactersSurviveDiskRoundTrip",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.FixedFiveLanguageLayoutRefusesSilentTruncation",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.GenericTableKeepsStringIdsGapsAndUnrepresentedMetadata",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.HeaderPreservesStarPrefixPhysicalColumnsAndListFlag",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.InvalidTableDoesNotDestroyExistingData",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.ListsWithDifferentLengthsReadEveryContinuationMember",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.NumericNodeIdsHaveOneCanonicalAssetIdentity",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.OrphanEnumRowIsRejectedWithoutClearingDestination",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.ScalarBeanRetainsEveryMember",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.UnknownBeanParameterTypeIsRejectedWithoutMutation",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotExcelLayoutTests.XlsxWritesMergedHeadersAndRejectsFormulaInputs",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotJsonTests.EscapedChineseAndNestedComponentPropertiesRoundTrip",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotJsonTests.InvalidOrAmbiguousInputIsRejected(\"{\\\"key\\\":1,\\\"key\\\":2}\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotJsonTests.InvalidOrAmbiguousInputIsRejected(\"[1,]\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotJsonTests.InvalidOrAmbiguousInputIsRejected(\"01\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotJsonTests.InvalidOrAmbiguousInputIsRejected(\"1.\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotJsonTests.InvalidOrAmbiguousInputIsRejected(\"{\\\"x\\\":true}garbage\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotJsonTests.InvalidOrAmbiguousInputIsRejected(\"\\\"\\\\x\\\"\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotJsonTests.NonFiniteOutputCannotReachUnitySerializedProperties",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotJsonTests.UiReferencesKeepTheirFull64BitIdentifiers",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyAssetImportTests.ChinesePresentationKeysExecuteWithoutChangingTheAuthoredKeys",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyAssetImportTests.MissingScalarsAndEmptyEnumFieldsUseExplicitSchemaDefaults",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyAssetImportTests.OnlyEmptyExtraMembersCanBeNormalizedAndRowIdentityIsPreserved",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyAssetImportTests.RealOriginalAssetsAllReadBackWithTheirNormalizedSemanticsAndCompile",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyAssetImportTests.RowSemanticHashDoesNotDependOnUnityObjectInstanceIds",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyCampaignImportTests.AllOriginalLubanBinariesDecodeToExactlyTheAuthoringPlaybackDocument",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyCampaignImportTests.OriginalCampaignContinuationRewardsAndBothStoryKindsAreImported",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyChapterHitAreaTests.ImportedEvenStaggeredCardCenterHitsItsVisibleBackgroundAndInvokesTheBoundButton",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyChapterHitAreaTests.ImportedOddStaggeredCardCenterHitsItsVisibleBackgroundAndInvokesTheBoundButton",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyChapterHitAreaTests.UnmarkedUserChapterButtonKeepsItsOwnGraphicAndRaycastConfiguration",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyEventTests.BeanDefaultsAndCallbackFieldsSurviveIndependentJsonRoundTrip",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyEventTests.CallbackParserRetainsLegacyToleranceButValidationReportsBadTokens",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyEventTests.ClonePreservesIdentityMetadataAndDeepCopiesParameters",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyEventTests.ContainerRejectsDuplicateIdentityAndSortsStableExecutionOrder",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyEventTests.InvalidParameterIndexAndNestedBeanDoNotPartiallyModifyData",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyInteractionTests.OriginalDialogLanguageKeyAndAddedSaveButtonActuallyPersist",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyInteractionTests.OriginalNestedListControlsKeepDraftsSeparateAndPersistOnlyOnSave",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyInteractionTests.OriginalNodeCreateRenameDeleteButtonsUseTheSharedStore",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.CachedReadProgressCannotMakeABackwardCompletionResponseValid",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.CompletionAcceptsTheRequestedOrLaterConfiguredPrefixDespiteNumericIdOrder(500,500,False)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.CompletionAcceptsTheRequestedOrLaterConfiguredPrefixDespiteNumericIdOrder(500,100,True)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.CompletionAcceptsTheRequestedOrLaterConfiguredPrefixDespiteNumericIdOrder(100,100,True)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.CompletionAcceptsTheRequestedOrLaterConfiguredPrefixDespiteNumericIdOrder(500,501,True)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.CompletionAcceptsTheRequestedOrLaterConfiguredPrefixDespiteNumericIdOrder(100,501,True)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.ConcurrentDuplicateCompletionSharesOneRequestAndCannotChangeItsChapter",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.ExplicitlyIdempotentTransportRetriesWithTheSameCompletionIdentity",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.IncompleteEmptyOrUnknownCompletionPrefixCannotPublishProgressOrResponse(100,500)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.IncompleteEmptyOrUnknownCompletionPrefixCannotPublishProgressOrResponse(500,0)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.IncompleteEmptyOrUnknownCompletionPrefixCannotPublishProgressOrResponse(100,0)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.IncompleteEmptyOrUnknownCompletionPrefixCannotPublishProgressOrResponse(500,300)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.IncompleteEmptyOrUnknownCompletionPrefixCannotPublishProgressOrResponse(100,300)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.IncompleteEmptyOrUnknownCompletionPrefixCannotPublishProgressOrResponse(500,-1)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.IncompleteEmptyOrUnknownCompletionPrefixCannotPublishProgressOrResponse(100,-1)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.LostAcknowledgementIsReconciledFromServerProgressWithoutResending",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.MismatchedServerResponseCannotAdvanceProgress",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.OriginalCommandAndTypeMappingAreExactAndRemoteRewardsAreNotGrantedLocally(Main,0)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.OriginalCommandAndTypeMappingAreExactAndRemoteRewardsAreNotGrantedLocally(Daily,1)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyNetworkBackendTests.OriginalNonIdempotentProtocolIsNotBlindlyRetriedAfterAnUnknownOutcome",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyOriginalContractsTests.ActualGeneratedEditorAdapterReadsEveryOriginalAuthoringNode",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyOriginalContractsTests.ActualGeneratedGameAdapterReadsEveryDecodedOriginalLubanNode",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyOriginalContractsTests.OriginalHeaderBeansEnumsAndTablesCompileInProtectedRuntimeOnlyAssembly",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyReviewRegressionTests.FullImageMetadataDoesNotCreateAZeroSizedSprite(\"null\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyReviewRegressionTests.FullImageMetadataDoesNotCreateAZeroSizedSprite(\"{\\\"x\\\":0,\\\"y\\\":0,\\\"width\\\":0,\\\"height\\\":0}\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyReviewRegressionTests.PackedUnityColor32KeepsItsOriginalChannels",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyRewardPresentationTests.ImportedItemRootIsPlacedInsideTheCellAndResizingKeepsItsAuthoredSize",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyRewardPresentationTests.OldImportedAspectIsRestoredOnlyFromExplicitMetadata(True)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyRewardPresentationTests.OldImportedAspectIsRestoredOnlyFromExplicitMetadata(False)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyRewardPresentationTests.PublicSyntheticEpisodeTemplateShowsRewardsAndUsesTheReturnBarHeader",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyRewardPresentationTests.ReusedRewardWithoutAnIconAlwaysShowsItsIdAndQuantity",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyRewardPresentationTests.UserAndPublicTemplatesWithoutAnImportMarkerKeepTheirChildLayout",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyRuntimeReviewTests.CancellingATransitionRestoresItAndItsLateIteratorCannotResetANewerTransition",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyRuntimeReviewTests.LegacyProgressUsesTheConfiguredPrefixRatherThanNumericIdOrder",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyRuntimeReviewTests.ReportFailureClosesTheUpperPlayerAndRequiresRetryOrExplicitCancel(True)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyRuntimeReviewTests.ReportFailureClosesTheUpperPlayerAndRequiresRetryOrExplicitCancel(False)",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyRuntimeReviewTests.RewardQualityIsAppliedToTheOriginalItemFrame",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyRuntimeReviewTests.UnknownLegacyProgressCannotGuessOrPartiallyAdvanceThePrefix",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyRuntimeReviewTests.ZeroAndBeyondMaximumLegacyProgressHaveExplicitMeanings",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyUiRebuildTests.HierarchyAndBehaviourReferencesAreRebuiltWithoutOldScriptAssemblies",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyUiRebuildTests.MissingParentIsAnExplicitImportError",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyUiRebuildTests.NativeRectTransformAndCameraAreRestoredWithoutUnsupportedJsonCalls",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyUiRebuildTests.SavedPrefabCanReloadItsNewProxyScriptsAndObjectReferences",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyUiRebuildTests.TmpInputFieldGetsItsActualTextComponentBeforeFontsAreApplied",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyUiRebuildTests.UnityAspectRatioFitterIsNativeAndKeepsItsSizingContract(\"Behaviour\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLegacyUiRebuildTests.UnityAspectRatioFitterIsNativeAndKeepsItsSizingContract(\"AspectRatioFitter\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLocalChapterBackendTests.AReceiptCannotBeReusedForAnotherChapter",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLocalChapterBackendTests.CancelledCompletionDoesNotChangeProgress",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLocalChapterBackendTests.DurableReceiptsAreIdempotentAcrossBackendInstancesAndChapterKinds",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLubanAotPreservationTests.CompleteOriginalLubanMembersHaveExplicitStrippingPreservation",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLubanAotPreservationTests.GeneratedC2AdapterAndNestedBeanAvoidUnprotectedReflection(\"PlotWeave.Generated.Stage02.Default.GamePlotAtomDataAdapter\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLubanAotPreservationTests.GeneratedC2AdapterAndNestedBeanAvoidUnprotectedReflection(\"PlotWeave.Generated.Stage12.Nested.CameraCue\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLubanAotPreservationTests.RealGeneratedLubanMembersHaveExplicitStrippingPreservation(\"Assets/PlotWeaveMigration/Stage09_Luban/LubanProfile.asset\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLubanAotPreservationTests.RealGeneratedLubanMembersHaveExplicitStrippingPreservation(\"Assets/PlotWeaveMigration/Stage12_Nested/LubanProfile.asset\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLubanIntegrationTests.EventSidecarRejectsUnknownNodesBeforeMutatingTheDocument",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLubanIntegrationTests.GenerationCannotEscapeItsAssetsSubdirectory(\"Assets/../Outside\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLubanIntegrationTests.GenerationCannotEscapeItsAssetsSubdirectory(\"Packages/Generated\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLubanIntegrationTests.GenerationCannotEscapeItsAssetsSubdirectory(\"Assets\")",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLubanIntegrationTests.RealBinaryTablesPreserveRepeatedBeansEnumsAndBranchesThroughGeneratedGameAdapter",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLubanIntegrationTests.RealBinaryTextAndActorTablesReachTheSameSharedCore",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLubanIntegrationTests.SchemaAdapterKeepsContinuationFieldsUnderTheirRootAndAvoidsDuplicateAliases",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotLubanIntegrationTests.TextShapeNormalizationAlsoWorksWithTheGeneratedTextTableAdapter",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotNestedBeanTests.ActualGeneratedEditorAndGameContractsConsumeNestedObjects",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotNestedBeanTests.ActualLubanBinaryPreservesNestedScalarAndRepeatedBeans",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotNestedBeanTests.CyclesAndDanglingReferencesAreRejectedBeforeLayoutExpansion",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotNestedBeanTests.NestedBeansAndRowsRoundTripThroughRealWorkbookFiles",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotNestedBeanTests.NestedEventDefaultsUseTheSamePhysicalMemberOrder",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotNestedBeanTests.NestedRowValidationChecksEachLeafType",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotNestedBeanTests.NestedTypesFlattenToLeavesAndRebuildTypedValueSources",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlaybackIntegrationTests.ActorActionsReachHostHooksWithoutDiscardingEmoteData",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlaybackIntegrationTests.CurtainTicksCompleteOnceAndCanBeReplaced",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlaybackIntegrationTests.InvalidRefreshPreservesThePreviouslyWorkingHost",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlaybackIntegrationTests.LateSpriteCallbacksCannotRepopulateTheatreAfterClose",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlaybackIntegrationTests.ObjectPoolRejectsDoubleReturnAndReusesOwnedObjects",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlaybackIntegrationTests.RoleTheatreRetainsCurrentActorsAndReturnsThoseAbsentFromNextNode",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlaybackIntegrationTests.WorkspaceAssetAndJsonHostsRunTheSameCoreAndReachSameResult",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlayerCoreTests.AutomaticAdvanceWaitsForAllPresentationAndItsSingleDelay",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlayerCoreTests.CloseCancelsWorkAndCannotBeResurrectedByCompletion",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlayerCoreTests.CurtainBlocksAdvanceUntilItsOwnCompletionAndCloseCancelsIt",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlayerCoreTests.ExplicitLegacyNextModeCanBypassBranchSelection",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlayerCoreTests.ExtremelyLargeTicksFinishTypingWithoutIntegerOverflow",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlayerCoreTests.FirstClickRevealsThenAdvancesAndCompletesExactlyOnce",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlayerCoreTests.GeneratedEditorAndGameAdaptersProduceTheSamePlaybackSnapshot",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlayerCoreTests.InvalidTimingAndPositionConfigFailsBeforePlayback",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlayerCoreTests.JumpCancelsOldWorkAndIgnoresItsLateError",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlayerCoreTests.MissingNodeReportsFailureInsteadOfFalselyLoadingIt",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlayerCoreTests.PauseFreezesTypingPresentationTicksAndInput",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlayerCoreTests.ProviderCopiesInputAndDoesNotLeakMutableNodeLists",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlayerCoreTests.TextTablesLanguageAndEscapesAreIsolated",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPlayerCoreTests.UnicodeTypingDoesNotSplitSurrogatesOrCombiningMarks",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPresentationMigrationTests.CombiningMarksStayTogetherUnderRichFormatting",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPresentationMigrationTests.DefaultTmpFontActuallyContainsChineseGlyphs",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPresentationMigrationTests.EnumDrawersResolveTheOwnersAssetInsteadOfGlobalFirstMatch",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPresentationMigrationTests.InlineSpriteCountsAsOneVisibleElement",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPresentationMigrationTests.LegacyNodeLifecycleMembersAndPortsNowHaveWorkingBehavior",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPresentationMigrationTests.RichTagsDoNotConsumeTypingTimeOrProduceBrokenFragments",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPresentationMigrationTests.SavedPrefabBindingsCanDriveTheSameCore",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotPresentationMigrationTests.StaticEnumCompatibilityMapsByDeclaredValueRatherThanOrder",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.AssetAndWorkbookCompileProduceEquivalentDocuments",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.BranchesAndVariablesAreTheSameForAssetAndCompiledSource",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.CodeGenerationRejectsNormalizedNameCollisions",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.ConditionalChoicesUseOwnerContext",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.CyclicGraphDoesNotSpinWithoutPlayerInput",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.GeneratedAdaptersUseInvariantReaders",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.GraphEditorCanConstructAndReloadSample",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.InvalidTargetsAndDuplicateIdsAreRejected",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.JsonSourceCanBeReadAgainWithoutRetainingRuntimeState",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.OversizedWorkbookDoesNotReplaceExistingFile",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.PlaybackUsesSnapshotWithoutChangingSourceVariables",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.StopDisposesPendingExternalCommand",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.TypedCommandArgumentsAreValidated",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.UnsupportedCommandsFailExplicitly",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        },
+        {
+            "name": "PlotWeave.Tests.PlotWeaveTests.WorkbookNumbersUseInvariantCulture",
+            "state": "Passed",
+            "message": "",
+            "stackTrace": ""
+        }
+    ]
+}

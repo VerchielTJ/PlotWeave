@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1cb1d03369147d4e3f5e3ef8e11db9, type: 3}
+  m_Name: Workspace
+  m_EditorClassIdentifier: 
+  header: {fileID: 11400000, guid: d63ecfecaf2021c4e9072a3ce59f7bf3, type: 2}
+  dialogs: {fileID: 11400000, guid: 02a42c6c172f87f49af31335b6004a75, type: 2}
+  constants: {fileID: 11400000, guid: 6fa2894657e6ab9448fcd9d07fb0fc05, type: 2}
+  actors: {fileID: 11400000, guid: 974f8996bdf6ace4697beb7a234dab56, type: 2}
+  nodeFolder: Assets/PlotWeaveMigration/Stage12_Nested/Nodes
+  idColumn: ScenesID
+  dialogColumn: Dialog
+  visuals: {fileID: 0}
+  eventTracks: {fileID: 0}
+  legacyEmptyActorSlots: 0

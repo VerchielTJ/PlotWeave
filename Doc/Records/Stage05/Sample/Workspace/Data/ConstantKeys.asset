@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b18f39f2c4b0132ad5ebb03101cd9d0, type: 3}
+  m_Name: ConstantKeys
+  m_EditorClassIdentifier: 
+  constantKeyDataList:
+  - key: demo.title
+    value:
+    - "\u7EC7\u5E55\u6F14\u793A"
+    - 
+    - 
+    - 
+    - 

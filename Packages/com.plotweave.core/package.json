@@ -1,0 +1,27 @@
+{
+  "name": "com.plotweave.core",
+  "version": "0.1.0",
+  "displayName": "PlotWeave 织幕",
+  "description": "Standalone narrative authoring, playback and spreadsheet compilation for Unity.",
+  "unity": "2022.3",
+  "keywords": [
+    "dialogue",
+    "narrative",
+    "authoring",
+    "spreadsheet"
+  ],
+  "dependencies": {
+    "com.unity.ugui": "1.0.0",
+    "com.unity.textmeshpro": "3.0.7"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "CodeV",
+    "url": "https://github.com/VerchielTJ"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VerchielTJ/PlotWeave.git"
+  },
+  "documentationUrl": "https://github.com/VerchielTJ/PlotWeave#readme"
+}

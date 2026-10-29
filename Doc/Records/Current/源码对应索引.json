@@ -1,0 +1,1317 @@
+{
+  "dateAsiaHongKong": "2026-10-28",
+  "scopeStatus": "verified-with-explicit-boundaries",
+  "sourceFiles": 78,
+  "initialFiles": 65,
+  "stage11AdditionalFiles": 11,
+  "sharedFilesWithSelectedTypeScope": 2,
+  "baselineFilesVerifiedUnchanged": 76,
+  "firstObservedSharedHashes": 2,
+  "historicalNativeTestReport": "Doc/Records/Stage14/9e3ab5fa48f3437e87afee8fd5cdc7c0/native-tests.json",
+  "limits": [
+    "索引是人工功能归宿与静态源码审计，不等于完整行为/画面验收，不将文件数转换为完成率。",
+    "初始65及阶段11新增11份文件与各自已有SHA256基线一致；2份共享大文件只记录本次只读哈希，范围限定到selectedTypes。",
+    "221项是已归档历史精确源码的EditMode结果，原证据保留不变；本轮 277 项通过、0项失败及实际检查范围见 Doc/Records/Current/验收总览.json，不以测试数或文件数换算完成率。",
+    "原UI/美术/剧情的本地语义重建不作为公开候选包的通用演示内容。",
+    "原GameCtrl/XUI/NodePoolSystem/背包/网络栈整体不复制；其剧情职责由接口、独立会话和本地实现承接。"
+  ],
+  "integrationBoundaries": [
+    {
+      "id": "production-transport",
+      "state": "adapter-written-production-not-connected",
+      "description": "IPlotLegacyStoryTransport须接实际登录、发送和回包处理；1503/1504、主0日1已有显式语义，原Type-only协议不虚构幂等字段。"
+    },
+    {
+      "id": "item-catalog-and-quality-art",
+      "state": "injectable-presentation-boundary",
+      "description": "奖励池ID/数量迁入；原全局道具名称/图标/品质背景/说明和背包仍由调用方提供。公开合成道具展示不代表原生产道具库已经接入。"
+    },
+    {
+      "id": "ui-rendering",
+      "state": "current-proof-results",
+      "description": "画面与交互：originalEditor=passed（485节点）；originalAssetPlayer=passed（51节点）；originalLubanPlayer=passed（51节点）；originalCampaign=passed（13次点击、3次返回）；publicReference=complete/passed（27次点击、5次返回）。详情和各项完整report见 `Doc/Records/Current/验收总览.json#visuals`。",
+      "evidence": "Doc/Records/Current/验收总览.json#visuals"
+    },
+    {
+      "id": "full-binary-readback",
+      "state": "current-proof-results",
+      "description": "完整Luban二进制：passed，485节点，Editor/Game双适配器检查通过。详情和完整测试report见 `Doc/Records/Current/验收总览.json#fullBinary`。",
+      "evidence": "Doc/Records/Current/验收总览.json#fullBinary"
+    },
+    {
+      "id": "windows-build",
+      "state": "current-proof-results",
+      "description": "Windows构建：passed，9场景，设置恢复=true，平台恢复=true；完整report见 `Doc/Records/Current/验收总览.json#builds.windows`。构建结果不替代目标设备运行验收。",
+      "evidence": "Doc/Records/Current/验收总览.json#builds.windows"
+    },
+    {
+      "id": "android-build",
+      "state": "current-proof-results",
+      "description": "Android构建：passed，9场景，设置恢复=true，平台恢复=true；完整report见 `Doc/Records/Current/验收总览.json#builds.android`。构建结果不替代目标设备运行验收。",
+      "evidence": "Doc/Records/Current/验收总览.json#builds.android"
+    },
+    {
+      "id": "ios-device",
+      "state": "not-validated-on-ios-device",
+      "description": "iOS真机运行尚未验证；工具链检查、导出或其他平台构建不替代iOS真机验收。"
+    },
+    {
+      "id": "public-release",
+      "state": "local-candidate-not-published",
+      "description": "项目仍为本地开源候选，尚未公开发布；本机原剧情、美术及布局不作为公开候选内容。"
+    }
+  ],
+  "records": [
+    {
+      "source": "Assets/Editor/PlotEditor/PlotEditorDataToExcel/PlotEditorDataToExcel.cs",
+      "sourceSha256": "1efb5e866a5fc3f1d31ee36af2b6070100a68610eb622a33addfdb018c09776e",
+      "phase": "07-09",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Legacy/PlotEditorDataToExcel.cs",
+        "Packages/com.plotweave.core/Editor/Luban/PlotLubanPipeline.cs"
+      ],
+      "note": "原空入口现转接实际六表导入导出；真实编译另由生成配置执行。",
+      "scope": "initial-65",
+      "implementationStatus": "completed-original-placeholder",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/Editor/PlotEditor/PlotEditorInterface/INodeDataControl.cs",
+      "sourceSha256": "3154c71aeed574843d165ced27a02af35c4374c86d4db24303a2acdd7fecbb7b",
+      "phase": "07",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs"
+      ],
+      "note": "保留接口职责，补齐原空方法的成员/端口/生命周期/坐标行为；命名空间为PlotWeave.Legacy。",
+      "scope": "initial-65",
+      "implementationStatus": "completed-legacy-contract",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/Editor/PlotEditor/PlotEditorInterface/INodeLifecycle.cs",
+      "sourceSha256": "de270b30a348aa763dc90e87811f8484f01f5e2e59036c41e1579e8afd10d4b1",
+      "phase": "07",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs"
+      ],
+      "note": "保留接口职责，补齐原空方法的成员/端口/生命周期/坐标行为；命名空间为PlotWeave.Legacy。",
+      "scope": "initial-65",
+      "implementationStatus": "completed-legacy-contract",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/Editor/PlotEditor/PlotEditorInterface/INodeMoveable.cs",
+      "sourceSha256": "715cdcdb84d449822fa41d73e62dadad01747f4ce13709d0594be3e2679ba196",
+      "phase": "07",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs"
+      ],
+      "note": "保留接口职责，补齐原空方法的成员/端口/生命周期/坐标行为；命名空间为PlotWeave.Legacy。",
+      "scope": "initial-65",
+      "implementationStatus": "completed-legacy-contract",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/Editor/PlotEditor/PlotEventTypeControl/EditorBaseExpansion.cs",
+      "sourceSha256": "39c0cc3574260d56d411f32e90429684ee1d36a390ffb69f97dcc3de17615acb",
+      "phase": "07",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Legacy/EditorBaseExpansion.cs"
+      ],
+      "note": "原GraphView辅助与类型转换成为可用兼容工具；UGUI主链不依赖GraphView。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/Editor/PlotEditor/PlotEventTypeControl/EnumMappingUtility.cs",
+      "sourceSha256": "58c44e10e55e370b6d1d005cfdcc491e08e777abd8b0f61c7b7599e94212316f",
+      "phase": "07-08",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/EnumMappingUtility.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/CustomEnumAttribute.cs",
+        "Packages/com.plotweave.core/Editor/Legacy/CustomEnumDrawers.cs"
+      ],
+      "note": "恢复特性、显式类型注册、泛型/字符串枚举查询。底层值须一一对应，未定义值拒绝，同名查询歧义返回false。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-compatible-api",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/Editor/PlotEditor/PlotEventTypeControl/PlotEventMaping.cs",
+      "sourceSha256": "142116be5dc1f0497d151f3ff8527f6219ef8f2e8697f491ccfa8c6132cee6b3",
+      "phase": "01-08",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotEnumAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotSchemaDrawers.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotEventScheduler.cs"
+      ],
+      "note": "静态游戏资源类型由动态key/label和Bean参数替代，执行注册表提供行为绑定；资源枚举名须由游戏映射到演员ID/资源Key，不携带原游戏资源集合。",
+      "scope": "initial-65",
+      "implementationStatus": "replaced-by-dynamic-definitions",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Editor/EditorPlotAtomDataAdapter.cs",
+      "sourceSha256": "593a6e1bb45a6677ecb2a60ba8806805760c95c526be9d50ca87587a7a9a7082",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs"
+      ],
+      "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。",
+      "scope": "initial-65",
+      "implementationStatus": "generated-and-compiled",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Editor/EditorPlotConstantKeyAdapters.cs",
+      "sourceSha256": "69273afbc23f071e60ba8a6163d2d59b4ec2368a028d62c5257be5a567e85e41",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs"
+      ],
+      "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。",
+      "scope": "initial-65",
+      "implementationStatus": "generated-and-compiled",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Editor/EditorPlotDialogKeyAdapters.cs",
+      "sourceSha256": "c4e348367f7ebc9a529618a0d6b752379452e53ed53dad0f67e652f5517ff6bc",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs"
+      ],
+      "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。",
+      "scope": "initial-65",
+      "implementationStatus": "generated-and-compiled",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Editor/EditorPlotThespianDataAdapters.cs",
+      "sourceSha256": "8456f18e9d7cf81039b6bc8d63cdc62dbb65b520532a60b40c6c5f9e0ba24096",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs"
+      ],
+      "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。",
+      "scope": "initial-65",
+      "implementationStatus": "generated-and-compiled",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Game/GamePlotAtomDataAdapter.cs",
+      "sourceSha256": "13ce81fbb6305e55a4b1c0c63fcaec1d464c7a0108b3bcc848fdc015576068a8",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs"
+      ],
+      "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。",
+      "scope": "initial-65",
+      "implementationStatus": "generated-and-compiled",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Game/GamePlotConstantKeyAdapters.cs",
+      "sourceSha256": "67dff3d40d268bfa230a83b463d0ab26c32d8b79032de56f3df7ea0ff223c98b",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs"
+      ],
+      "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。",
+      "scope": "initial-65",
+      "implementationStatus": "generated-and-compiled",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Game/GamePlotDialogKeyAdapters.cs",
+      "sourceSha256": "d66d2363796d62c3c6e7f84b3af0f7ac1bd8cae6bcade5af462c31c5d515ec19",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs"
+      ],
+      "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。",
+      "scope": "initial-65",
+      "implementationStatus": "generated-and-compiled",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Game/GamePlotThespianDataAdapters.cs",
+      "sourceSha256": "1bef80d963ee0258068d4024673ecd2c28ab6492820e612fe903da71bf819469",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs"
+      ],
+      "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。",
+      "scope": "initial-65",
+      "implementationStatus": "generated-and-compiled",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Interfaces/IPlotAtomData.cs",
+      "sourceSha256": "08b6233275301096cff272dc02e237f70049c43865274fc7b76c0f92a441bafd",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs"
+      ],
+      "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。",
+      "scope": "initial-65",
+      "implementationStatus": "generated-and-compiled",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Interfaces/IPlotDataBase.cs",
+      "sourceSha256": "b2987f7b5687229caa61a8e9060c9a71a0b9ad642228292574b561fecaeadb1f",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs"
+      ],
+      "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。",
+      "scope": "initial-65",
+      "implementationStatus": "generated-and-compiled",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Interfaces/PlotConstantKeyInterfaces.cs",
+      "sourceSha256": "32e51a25697951ae6c702ea9e01c8bdef7bbc59f6bf2fd0c2a60c82f13f90ce5",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs"
+      ],
+      "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。",
+      "scope": "initial-65",
+      "implementationStatus": "generated-and-compiled",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Interfaces/PlotDialogKeyInterfaces.cs",
+      "sourceSha256": "579d41d62a54bd46f0324ca1fb9e7270f427c083e0649e1036e0b63d76886111",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs"
+      ],
+      "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。",
+      "scope": "initial-65",
+      "implementationStatus": "generated-and-compiled",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Interfaces/PlotThespianDataInterfaces.cs",
+      "sourceSha256": "3feddf23421ca43849504987bdf37e7fd52108f630c0a871e1dce75891f294ec",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs"
+      ],
+      "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。",
+      "scope": "initial-65",
+      "implementationStatus": "generated-and-compiled",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+      "sourceSha256": "a8c96963c4303a107e897278f757aada2e3955929a2acdda64fe63fb088ef0cf",
+      "phase": "05",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerServices.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacySkipController.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterHostPlayer.cs"
+      ],
+      "note": "源文件实际同时容纳六项服务、环境和Factory。 扩展到章节目录、选中状态、原1503/1504协议语义边界；生产传输实现与服务器实际联调不在已验证结论内。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI.cs",
+      "sourceSha256": "7e9895a424c688a416c6c90a5e19b666b77e72a222d729a6a1897bf76d605034",
+      "phase": "05-10",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerHost.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterHostPlayer.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLocalChapterBackend.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterDemo.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacySkipController.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs"
+      ],
+      "note": "主线/日常、加载、结算确认、幂等重试、进度与返回UI迁成接口及离线可运行示例；正式服务器协议由接入方实现。 扩展到章节目录、选中状态、原1503/1504协议语义边界；生产传输实现与服务器实际联调不在已验证结论内。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI_NodeClass.cs",
+      "sourceSha256": "ec62e24e75342954611487f04c1395a18286b4c866019723675d7935b65a9d80",
+      "phase": "05-08",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.Actions.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotTMPText.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerServices.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerChoices.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerViewBindings.cs",
+        "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyUiRebuilder.cs",
+        "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyUiResources.cs"
+      ],
+      "note": "共享Core、TMP、幕布、剧院；补齐原未消费的Branch、动作/表情与背景过渡，参考演出可替换。 原布局/资源重建已加入；当前运行画面检查及范围见 Doc/Records/Current/验收总览.json 的visuals及其报告。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/Attributes/ChineseEnumAttribute.cs",
+      "sourceSha256": "b3c2a54afd45f0e36dbfa9e67c6092aedb3fe05c980119c2e3580dee5583ef64",
+      "phase": "07-08",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/EnumMappingUtility.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/CustomEnumAttribute.cs",
+        "Packages/com.plotweave.core/Editor/Legacy/CustomEnumDrawers.cs"
+      ],
+      "note": "恢复特性、显式类型注册、泛型/字符串枚举查询。底层值须一一对应，未定义值拒绝，同名查询歧义返回false。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-compatible-api",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/CurrentNodeEditor.cs",
+      "sourceSha256": "6da95663b80170044c088c3225ce331f000e7964b0ad84d3d22eceb06bed4b42",
+      "phase": "03 / 14",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs"
+      ],
+      "note": " 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/DiaLogKeyEditor.cs",
+      "sourceSha256": "4b4c7fd758b78278d9dc9b9fb79b3a2c1278d3a91c1e40d92ecb671780c1af6d",
+      "phase": "03 / 14",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/DiaLogKeyEditor.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+      ],
+      "note": " 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/EditorPlotPlayerUI.cs",
+      "sourceSha256": "88734674136df06feb82e09fa04ae7f34d92dc1d0d521f517b4f71e08d614605",
+      "phase": "05",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.Actions.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerViewBindings.cs",
+        "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyUiRebuilder.cs",
+        "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyUiResources.cs"
+      ],
+      "note": "制作面板按钮通过同一Host/Core播放。 原布局/资源重建已加入；当前运行画面检查及范围见 Doc/Records/Current/验收总览.json 的visuals及其报告。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/EvtListParameterEditor.cs",
+      "sourceSha256": "b52ac6ee4e9a51dfdb6cec8d1f6994f42dd5dc5141f00e00980f971deed68cc8",
+      "phase": "03 / 14",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/ParameterList.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+      ],
+      "note": "多行Bean参数面板与可见区复用。 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/NodeCreater.cs",
+      "sourceSha256": "966f647ee5f003edf8c93133f3eb32627a2caf60fddb0aa57bb071547e02c7e0",
+      "phase": "03 / 14",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs"
+      ],
+      "note": " 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/NodeListLoader.cs",
+      "sourceSha256": "a7b0009c0812c0fe8d9371b65757d72f295e20350894f7bf8e248e19a1141329",
+      "phase": "03 / 14",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs"
+      ],
+      "note": " 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/NodeRowDataEditor.cs",
+      "sourceSha256": "f617742ac7a298046975ff91ae30a5d43cafcf3c026da2ad516d8c9a33a74af6",
+      "phase": "03 / 14",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs"
+      ],
+      "note": " 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/Parameter.cs",
+      "sourceSha256": "4d9f00963d9be233de6c0cc81b289644290a2853664aa1721a0ed4be2550ca15",
+      "phase": "03 / 14",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/ParameterEditor.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotUiFactory.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+      ],
+      "note": "成员控件按表头与Bean顺序生成，字段与列表分工保留。 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/ParameterEditor.cs",
+      "sourceSha256": "039748e19869bec472e62bef94d5caf73850727f563a58ed1968db60304bc38a",
+      "phase": "03 / 14",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/ParameterEditor.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotUiFactory.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+      ],
+      "note": "成员控件按表头与Bean顺序生成，字段与列表分工保留。 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/ParameterList.cs",
+      "sourceSha256": "169558cb608ac7aeae837bc8c7af2a49e38f85377c643b4eba9f08371ccc4809",
+      "phase": "03 / 14",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/ParameterList.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+      ],
+      "note": "多行Bean参数面板与可见区复用。 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/PlotEditorPanel.cs",
+      "sourceSha256": "2b3d5464b63b17acdcd25bc284b10af3341c26489919d90b3657593d353a9689",
+      "phase": "03 / 14",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs"
+      ],
+      "note": " 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/PlotNodeButton.cs",
+      "sourceSha256": "bf28a7f5dfd0a8cc48def9ecc8e0da689df5ca48705240e0e483f7d2662fd379",
+      "phase": "03",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeButton.cs"
+      ],
+      "note": "",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/PlotNodeView.cs",
+      "sourceSha256": "7f2578ba5cfcea8d179745c2801e7d4186bfbb3fe2e14395514ccd34f686c456",
+      "phase": "03",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeView.cs"
+      ],
+      "note": "",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/RowUnit.cs",
+      "sourceSha256": "79b7eb1e31098aa64444d3633ef27b5a13b10d588ac98b7bedb2ea0c20fbbf77",
+      "phase": "03 / 14",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/ParameterEditor.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotUiFactory.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+      ],
+      "note": "成员控件按表头与Bean顺序生成，字段与列表分工保留。 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/TestPlayerButton.cs",
+      "sourceSha256": "1bcfdf8388ff8a1dcef85c5c35495476246d5015871f20ff8741ff21b348ab16",
+      "phase": "05",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs"
+      ],
+      "note": "制作面板按钮通过同一Host/Core播放。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotDataEnums/PlotEventEnums.cs",
+      "sourceSha256": "811b6592f70bfeb37dbfd2481aecebf6a1701872363d2b9d184143d5f40636c4",
+      "phase": "01-08",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotEnumAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotSchemaDrawers.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotEventScheduler.cs"
+      ],
+      "note": "静态游戏资源类型由动态key/label和Bean参数替代，执行注册表提供行为绑定；资源枚举名须由游戏映射到演员ID/资源Key，不携带原游戏资源集合。",
+      "scope": "initial-65",
+      "implementationStatus": "replaced-by-dynamic-definitions",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditor/PlotEditorEvent.cs",
+      "sourceSha256": "c7fb67c4242fb931256ac4573a57bf1459b68d74ed0b2ecd49640d7410ef2b36",
+      "phase": "03-05",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+        "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs"
+      ],
+      "note": "由每工作区事件替代静态总线，避免跨工作区串消息。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditor/PlotEditorManager.cs",
+      "sourceSha256": "f36d782837f20cbb6fc0cefdddbc8db2c8836344c126a654eb1e0c7a7905c2ad",
+      "phase": "03",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs"
+      ],
+      "note": "目录、节点生命周期、范围读取、重命名删除及唯一标识均由工作区存取服务负责。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorDataClasses/PlotEventJsonData.cs",
+      "sourceSha256": "08788743efce9bb9b5be1c753f399522a3651ef7ec18c64e07fc2571a4fe4996",
+      "phase": "06-08",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotEventJsonData.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotEventScheduler.cs",
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotNodeEventTrackAsset.cs",
+        "Packages/com.plotweave.core/Editor/Playback/PlotEventTrackEditor.cs"
+      ],
+      "note": "数据载体和回调ID保留；补齐原未接通的可取消调度器，-1根事件、非负回调ID、深度优先顺序、等待、变量、信号及表现。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorDataClasses/PlotEventsJsonContainer.cs",
+      "sourceSha256": "8b27a7a88217b2c7fbda978297d2a87ea86438303c6195968cd2ebc6e7a6f294",
+      "phase": "06-08",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotEventJsonData.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotEventScheduler.cs",
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotNodeEventTrackAsset.cs",
+        "Packages/com.plotweave.core/Editor/Playback/PlotEventTrackEditor.cs"
+      ],
+      "note": "数据载体和回调ID保留；补齐原未接通的可取消调度器，-1根事件、非负回调ID、深度优先顺序、等待、变量、信号及表现。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorDataClasses/PlotNodeDataBase.cs",
+      "sourceSha256": "dad70d1689066533c0988ddb932a5074d6c4654c8aa59a58bcb27a394278c5c6",
+      "phase": "07",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs"
+      ],
+      "note": "保留接口职责，补齐原空方法的成员/端口/生命周期/坐标行为；命名空间为PlotWeave.Legacy。",
+      "scope": "initial-65",
+      "implementationStatus": "completed-legacy-contract",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorTools/PlotDataStructureGenerator.cs",
+      "sourceSha256": "57e328f2e0d36cc2bb27238c8f6dc56d52fa9164d81d4d61eef9f7182f86992b",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotGenerationExample.cs",
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotBeanLayout.cs"
+      ],
+      "note": " 阶段12增加显式beanType、有界嵌套叶成员布局、循环/缺失引用校验及生成/Excel/Luban链路。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorTools/PlotDataStructureGeneratorExample.cs",
+      "sourceSha256": "6e457d20d9bacb293a68c555f42ca120daed035b5ab43556e3433715b7bdd048",
+      "phase": "02",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs",
+        "Packages/com.plotweave.core/Editor/Generation/PlotGenerationExample.cs"
+      ],
+      "note": "",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorTools/PlotEditorAssetDataManager.cs",
+      "sourceSha256": "812ac9a990bc8e9f0343b2d9b7aa372ea841b9bbb8f341e486867d003af3165c",
+      "phase": "05",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackCompiler.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerServices.cs",
+        "Packages/com.plotweave.core/Runtime/DataContracts/AuthoringPlotValueSource.cs"
+      ],
+      "note": "缓存按播放器实例建立与整体替换；不保留全局固定路径缓存。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorTools/PlotEditorTools.cs",
+      "sourceSha256": "b653743e481c899462456be44a259a94fec32e2509c0ddca68b45297c04c3401",
+      "phase": "03",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs"
+      ],
+      "note": "目录、节点生命周期、范围读取、重命名删除及唯一标识均由工作区存取服务负责。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorTools/PlotExcelTools.cs",
+      "sourceSha256": "f6b14d32b20bfa01398b71627a46cb51b0ba8fc9efaf1dd9147b4d472d215d51",
+      "phase": "04-09",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Excel/PlotAuthoringExcel.cs",
+        "Packages/com.plotweave.core/Editor/Excel/PlotExcelExchange.cs",
+        "Packages/com.plotweave.core/Editor/Excel/PlotExcelSheet.cs",
+        "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs",
+        "Packages/com.plotweave.core/Editor/Luban/PlotLubanSchema.cs",
+        "Packages/com.plotweave.core/Editor/Luban/PlotLubanPipeline.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotLubanTableReader.cs"
+      ],
+      "note": "保留原六表交换；独立适配Luban4并执行真实编译，生成代码、二进制与游戏适配器进入共享Core。原游戏缺失的Luban配置未复制。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/CustomEnumAttribute.cs",
+      "sourceSha256": "351576b3ff0a20c49d01a1b31cb7d3bd50048ada4a16c8f953ba9a3fe80db173",
+      "phase": "07-08",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/EnumMappingUtility.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/CustomEnumAttribute.cs",
+        "Packages/com.plotweave.core/Editor/Legacy/CustomEnumDrawers.cs"
+      ],
+      "note": "恢复特性、显式类型注册、泛型/字符串枚举查询。底层值须一一对应，未定义值拒绝，同名查询歧义返回false。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-compatible-api",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomDataHeaderAsset.cs",
+      "sourceSha256": "af670e36b92e3a9efd56e7ec06aa16f412e479b2df11678e34c67081a916ee56",
+      "phase": "01",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotBeanLayout.cs"
+      ],
+      "note": " 阶段12增加显式beanType、有界嵌套叶成员布局、循环/缺失引用校验及生成/Excel/Luban链路。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomDataHeaderAssetEditor.cs",
+      "sourceSha256": "43395becc628687c5ff20ca5e75997cc593cadf017b32290542be0d4ecf76cbe",
+      "phase": "03",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringAssetEditor.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringInspectorControls.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotSchemaDrawers.cs"
+      ],
+      "note": "统一Inspector和PropertyDrawer承接职责，不机械复制近似编辑器文件。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomRowData.cs",
+      "sourceSha256": "f6c25ec43a3a55d8d814397ac6c573d9cbb3523a3de567ef5b2e21d67887b1f6",
+      "phase": "01",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomRowData.cs",
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotBeanLayout.cs"
+      ],
+      "note": " 阶段12增加显式beanType、有界嵌套叶成员布局、循环/缺失引用校验及生成/Excel/Luban链路。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomRowDataEditor.cs",
+      "sourceSha256": "41d8ffbb0a1791a8f87acaa75cc1838874a0bf9d580991b89626627494e8cc9e",
+      "phase": "03",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringAssetEditor.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringInspectorControls.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotSchemaDrawers.cs"
+      ],
+      "note": "统一Inspector和PropertyDrawer承接职责，不机械复制近似编辑器文件。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotConstantKeyAsset.cs",
+      "sourceSha256": "77032e4417c5a44c26959e2b97293ef1ac6f0a8f1974f129c39e19e8a9a19442",
+      "phase": "01",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotConstantKeyAsset.cs"
+      ],
+      "note": "",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotConstantKeyAssetEditor.cs",
+      "sourceSha256": "9d1e9df79364d44b2dfd294a58961c35121a48bf2f6dad4414a8b2cd263b9c49",
+      "phase": "03",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringAssetEditor.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringInspectorControls.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotSchemaDrawers.cs"
+      ],
+      "note": "统一Inspector和PropertyDrawer承接职责，不机械复制近似编辑器文件。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotDialogKeyAsset.cs",
+      "sourceSha256": "d3a4d8ae2eab193db074a164da67a66aebb6a473b003d5865b027b3578c7bddd",
+      "phase": "01",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotDialogKeyAsset.cs"
+      ],
+      "note": "",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotDialogKeyAssetEditor.cs",
+      "sourceSha256": "013cb28b83891200b40aaa729357ba6faa21d45092a55dad8d1e5b6bbcbab548",
+      "phase": "03",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringAssetEditor.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringInspectorControls.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotSchemaDrawers.cs"
+      ],
+      "note": "统一Inspector和PropertyDrawer承接职责，不机械复制近似编辑器文件。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotEnumAsset.cs",
+      "sourceSha256": "514aead4869ffb0746e48facfe1096adc671de780eaa95ae0703e7fd7d27e35b",
+      "phase": "01",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotEnumAsset.cs"
+      ],
+      "note": "",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotEnumAssetEditor.cs",
+      "sourceSha256": "459eff192526d5a43f30c3e7486243097ee04961534da4ce46b9bc5d4a0ac4d6",
+      "phase": "03",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringAssetEditor.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringInspectorControls.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotSchemaDrawers.cs"
+      ],
+      "note": "统一Inspector和PropertyDrawer承接职责，不机械复制近似编辑器文件。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotEventTypeAsset.cs",
+      "sourceSha256": "07bf880bbba9b7e6690df49cdf53e9c884d71c45cc6f1a1c2584a40f254f6715",
+      "phase": "01",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotBeanLayout.cs"
+      ],
+      "note": " 阶段12增加显式beanType、有界嵌套叶成员布局、循环/缺失引用校验及生成/Excel/Luban链路。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotEventTypeAssetEditor.cs",
+      "sourceSha256": "7ec38544fbc17a41fb594f3898efcaa15a0988211d707a01effc1f33378c8b38",
+      "phase": "03",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringAssetEditor.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringInspectorControls.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotSchemaDrawers.cs"
+      ],
+      "note": "统一Inspector和PropertyDrawer承接职责，不机械复制近似编辑器文件。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotTableAsset.cs",
+      "sourceSha256": "d169e58517f494e544caaea8231d2abc9d54c31d5949a40d67f4f6b9f53a085d",
+      "phase": "01",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotTableAsset.cs"
+      ],
+      "note": "",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotTableAssetEditor.cs",
+      "sourceSha256": "990b7971194198828e9f40f51846bfa757487373f9ed5f317ce121208e1d5c45",
+      "phase": "03",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringAssetEditor.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringInspectorControls.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotSchemaDrawers.cs"
+      ],
+      "note": "统一Inspector和PropertyDrawer承接职责，不机械复制近似编辑器文件。",
+      "scope": "initial-65",
+      "implementationStatus": "implemented-equivalent",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "selectedTypes": []
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotMianUI/IChapterData.cs",
+      "sourceSha256": "8f90c26fd46da5db8fd30aca86d0ef27ba4729242dc72a7a1adc1f3a76f3862b",
+      "phase": "15-16",
+      "implementationStatus": "implemented-responsibility-adapter; integration-boundaries-explicit",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "scope": "expanded-stage11",
+      "selectedTypes": [],
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs"
+      ],
+      "note": "IPlotCampaignChapter保留ID/Name/PlotIDs语义；不再引用原cfg类型。",
+      "hashBaseline": "stage11"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotMianUI/PlotMianUI.cs",
+      "sourceSha256": "adacab6d7028e367d7cbcc5cc339ce83f1f0a16265e142c3fc4efa3698f51bf6",
+      "phase": "13-16",
+      "implementationStatus": "implemented-responsibility-adapter; integration-boundaries-explicit",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "scope": "expanded-stage11",
+      "selectedTypes": [],
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs"
+      ],
+      "note": "原主线/日常章节列表、进度、锁定与返回在独立浏览器接线；场景装配与最终画面验收分开记录。",
+      "hashBaseline": "stage11"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotMianUI/PlotMianUI_NodeClass.cs",
+      "sourceSha256": "30a21f8621ddb3982fea2ee11125b45e82ec01b5abbe45b9a5c1da396da5a658",
+      "phase": "13-16",
+      "implementationStatus": "implemented-responsibility-adapter; integration-boundaries-explicit",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "scope": "expanded-stage11",
+      "selectedTypes": [],
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs"
+      ],
+      "note": "PlotBackLoadCtrl、PlotItemNodeData、PlotItemNode的缩放过渡、交错布局、缩略图、日期与进度职责迁入新宿主/虚拟列表。",
+      "hashBaseline": "stage11"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotChapterUI/IPlotData.cs",
+      "sourceSha256": "cd6e70d0bc21be1079ad21e2964f57292a9d0d07617666cf77487a702c015c02",
+      "phase": "15-16",
+      "implementationStatus": "implemented-responsibility-adapter; integration-boundaries-explicit",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "scope": "expanded-stage11",
+      "selectedTypes": [],
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs"
+      ],
+      "note": "IPlotCampaignEpisode保留ID/Name/Desc语义；静态cfg属性或中性值源经同一Reader读取。",
+      "hashBaseline": "stage11"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotChapterUI/PlotChapterUI.cs",
+      "sourceSha256": "a7270157c6a972c0f0fd2a04788c8f5ef07270878871e47be572b05f8c75f910",
+      "phase": "13-16",
+      "implementationStatus": "implemented-responsibility-adapter; integration-boundaries-explicit",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "scope": "expanded-stage11",
+      "selectedTypes": [],
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs"
+      ],
+      "note": "章节背景、标题/简介、小节/奖励列表、开始与返回接线；结算和重试独立为章节会话。",
+      "hashBaseline": "stage11"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotChapterUI/PlotChapterUI_NodeClass.cs",
+      "sourceSha256": "2fdd7121d4f01d405de57c0b55b11d49849c5707be483cf8bdc18d5a85e18327",
+      "phase": "13-16",
+      "implementationStatus": "implemented-responsibility-adapter; integration-boundaries-explicit",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "scope": "expanded-stage11",
+      "selectedTypes": [],
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs"
+      ],
+      "note": "BeginStoryBtn和StoryScrollRectWrap按配置顺序选择小节，消除ID+1及i-1的空/负选择问题。",
+      "hashBaseline": "stage11"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotSkipTop/PlotSkipTop.cs",
+      "sourceSha256": "c059171a74f33c689cf9150a10b63eae38ca5439d43460434c17c03975ceed3b",
+      "phase": "14-16",
+      "implementationStatus": "implemented-responsibility-adapter; integration-boundaries-explicit",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "scope": "expanded-stage11",
+      "selectedTypes": [],
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacySkipController.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterHostPlayer.cs"
+      ],
+      "note": "取消恢复原暂停状态，确认调用Core.Skip且仅完成一次；SkipKey从章节内容传递。旧占位文本不被视为已接数据。",
+      "hashBaseline": "stage11"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotSkipWD.cs",
+      "sourceSha256": "58d03d25bd439f5e821e59c47edbc5e4805ad6f3c2229a8e8f33307f149747d9",
+      "phase": "14-16",
+      "implementationStatus": "implemented-responsibility-adapter; integration-boundaries-explicit",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "scope": "expanded-stage11",
+      "selectedTypes": [],
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacySkipController.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterHostPlayer.cs"
+      ],
+      "note": "原为空UIBase子类，没有独有字段/行为；职责并入可执行的跳过确认控制器，不保留空壳类。",
+      "hashBaseline": "stage11"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/UIComponent/UIItemClass/UIItemPlotRewards.cs",
+      "sourceSha256": "d49bb78982f7669ad37cc906aa2bde472b597054008a7a828c438eaf237950f8",
+      "phase": "15-16",
+      "implementationStatus": "implemented-responsibility-adapter; integration-boundaries-explicit",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "scope": "expanded-stage11",
+      "selectedTypes": [],
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs"
+      ],
+      "note": "原构造/Get/Recycle为空，Init仅调用基类；替代为奖励绑定与虚拟项复用。道具名称、图标、品质属于可注入展示数据，原完整道具库不随剧情包迁入。",
+      "hashBaseline": "stage11"
+    },
+    {
+      "source": "Assets/HotUpdate/MainAssemble/DataManager/PlotProgressDataMgr.cs",
+      "sourceSha256": "564ebabf228fb438daba091f6b70dc9e07969365f8e1c73482a4bd9950bc1eb9",
+      "phase": "15-16",
+      "implementationStatus": "implemented-responsibility-adapter; integration-boundaries-explicit",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "scope": "expanded-stage11",
+      "selectedTypes": [],
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs"
+      ],
+      "note": "主线/日常进度、章节按序小节查询和百分比迁入独立模型；旧数值游标通过ImportLegacyProgress导入。",
+      "hashBaseline": "stage11"
+    },
+    {
+      "source": "Assets/HotUpdate/MainAssemble/DataManager/PlotDataMgr.cs",
+      "sourceSha256": "39090c883e68656ecbbf8c53646c7c4f5cd5481708b6e40bdee28a90620ddb64",
+      "phase": "15-16",
+      "implementationStatus": "implemented-responsibility-adapter; integration-boundaries-explicit",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "scope": "expanded-stage11",
+      "selectedTypes": [],
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs"
+      ],
+      "note": "原当前章节/小节/新读标记及cfg查询拆为目录、宿主选中状态和后端；原GameCtrl/DataManager大类不整体复制。",
+      "hashBaseline": "stage11"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/Public/Public_NodeClass.cs",
+      "sourceSha256": "417eeb27b12c79069e664277b5a3c91e7221475714c04f52533db39e7452c423",
+      "phase": "13-16",
+      "implementationStatus": "implemented-responsibility-adapter; integration-boundaries-explicit",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "scope": "shared-selected-types",
+      "selectedTypes": [
+        "ReturnBtn",
+        "ButtonExtend",
+        "SelectLevelMenuBase",
+        "PlotItemSelect"
+      ],
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyWidgets.cs"
+      ],
+      "note": "只审计ReturnBtn、ButtonExtend、SelectLevelMenuBase、PlotItemSelect；返回/选择/锁定/已读/池化职责迁入浏览器，其他战斗/背包/装备组件不在剧情范围内。",
+      "hashBaseline": "first-observed-read-only-hash"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/Public/PropNodeClass.cs",
+      "sourceSha256": "58a77540283bb275024a4c4f8ae96b54af457163e36f0496e23d40f3ccbdda77",
+      "phase": "13-16",
+      "implementationStatus": "implemented-responsibility-adapter; integration-boundaries-explicit",
+      "verificationState": "current-acceptance: Doc/Records/Current/验收总览.json",
+      "scope": "shared-selected-types",
+      "selectedTypes": [
+        "PropNode_Award"
+      ],
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs"
+      ],
+      "note": "只审计PropNode_Award。数量、可注入图标与详情已有新绑定；原全局QualitybgPath、道具说明与背包服务属于接入边界，不能写成整份道具系统迁移完成。",
+      "hashBaseline": "first-observed-read-only-hash"
+    }
+  ],
+  "currentAcceptance": {
+    "report": "Doc/Records/Current/验收总览.json",
+    "scope": "full-migration-2026-10-28",
+    "status": "verified-with-explicit-boundaries",
+    "passed": 277,
+    "failed": 0,
+    "reports": {
+      "tests": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/native-tests.json",
+      "importedUi": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/pointer-importedUi-summary.json",
+      "interaction": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/pointer-interaction-summary.json",
+      "campaignUi": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/pointer-campaignUi-summary.json",
+      "originalContracts": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/pointer-originalContracts-summary.json",
+      "importedCampaign": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/pointer-importedCampaign-summary.json",
+      "mediaFolders": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/pointer-mediaFolders-summary.json",
+      "originalLubanPlayback": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/pointer-originalLubanPlayback-summary.json",
+      "originalEditor": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/visual-originalEditor-2aea4eafa70c4b289d5af775316e2bdc.json",
+      "originalAssetPlayer": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/visual-originalAssetPlayer-5f106da79820431d9743b2f3b2077ce9.json",
+      "originalLubanPlayer": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/visual-originalLubanPlayer-76f0ac7cf6184a52aee29ca3dff3494a.json",
+      "originalCampaign": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/visual-originalCampaign-b15f575ea96a4b14b0fabf1dafa24022.json",
+      "publicReference": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/visual-publicReference-27b5ad0e5a244f31bf2e49cbd2fcabc8.json",
+      "windowsBuild": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/build-windows-94aca51726e84af0877805f4437f3f17.json",
+      "androidBuild": "Doc/Records/Final/5de1f9ceddc6453387858c0cf0ee6742/build-android-790ef71955f04450a50d19b0359a1127.json"
+    }
+  }
+}

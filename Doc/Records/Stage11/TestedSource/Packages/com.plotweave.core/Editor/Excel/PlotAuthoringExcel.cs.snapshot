@@ -1,0 +1,286 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using UnityEngine;
+using ValueType = PlotWeave.Authoring.PlotEventTypeAsset.ValueType;
+
+namespace PlotWeave.Authoring.Excel
+{
+    /// <summary>恢复原枚举/Bean/节点/文本/通用表布局，解析后校验，调用者决定是否写入资产。</summary>
+    public static class PlotAuthoringExcel
+    {
+        private static readonly string[] BasicTypes = { "int", "float", "string", "bool", "vector3" };
+        private static PlotExcelSheet Sheet(string[] names, string[] types, string[] descriptions = null)
+        {
+            var sheet = new PlotExcelSheet();
+            sheet.Rows.Add(new[] { "##var" }.Concat(names).ToArray());
+            sheet.Rows.Add(new[] { "##type" }.Concat(types).ToArray());
+            sheet.Rows.Add(new[] { "##" }.Concat(descriptions ?? names).ToArray());
+            return sheet;
+        }
+        private static void Check(PlotAuthoringAsset asset) => asset.Validate().ThrowIfInvalid();
+        private static FormatException Error(int row, string message) => new FormatException("Excel第" + (row + 1) + "行: " + message);
+        private static ValueType Type(string type, PlotEnumAsset enums, PlotEventTypeAsset beans, out string key)
+        {
+            var index = Array.IndexOf(BasicTypes, type.ToLowerInvariant()); key = "";
+            if (index >= 0) return (ValueType)index;
+            key = type;
+            if (enums?.GetEnum(type) != null) return ValueType.CustomEnum;
+            if (beans?.GetEventTypeByKey(type) != null) return ValueType.CustomBean;
+            throw new FormatException("未知类型: " + type);
+        }
+        private static string TypeName(ValueType type, string key)
+        {
+            if ((int)type >= 0 && (int)type < BasicTypes.Length) return BasicTypes[(int)type];
+            if (type == ValueType.CustomEnum || type == ValueType.CustomBean) return key;
+            throw new FormatException("无效值类型: " + type);
+        }
+
+        public static PlotExcelSheet ExportEnums(PlotEnumAsset asset)
+        {
+            Check(asset);
+            var sheet = new PlotExcelSheet();
+            sheet.Rows.Add(new[] { "##var", "full_name", "flags", "unique", "comment", "tags", "*items", "", "", "", "" });
+            sheet.Rows.Add(new[] { "##var", "", "", "", "", "", "name", "alias", "value", "comment", "tags" });
+            sheet.Rows.Add(new[] { "##", "枚举全名", "位标记", "唯一", "注释", "标签", "枚举名", "别名", "值", "注释", "标签" });
+            sheet.Merge(0, 6, 5);
+            var row = 3;
+            foreach (var item in asset.dynamicLists)
+            {
+                // A列保留原编辑器的显示名；Luban的comment列同时给出可读名称。
+                sheet.Set(row, 0, item.displayName); sheet.Set(row, 1, item.enumName); sheet.Set(row, 4, item.displayName);
+                if (item.values.Count == 0) { row++; continue; }
+                foreach (var value in item.values) { sheet.Set(row, 6, value.key); sheet.Set(row, 7, value.label); row++; }
+                row++;
+            }
+            return sheet;
+        }
+        public static void ReadEnums(PlotExcelSheet sheet, PlotEnumAsset destination)
+        {
+            sheet.RequireHeaders("##var");
+            var definitions = new List<PlotEnumAsset.ParameterEnum>(); PlotEnumAsset.ParameterEnum current = null;
+            for (var row = 3; row < sheet.Height; row++)
+            {
+                if (sheet.Empty(row) || sheet.Comment(row)) continue;
+                var name = sheet.Get(row, 1);
+                if (name != "" && (current == null || name != current.enumName))
+                { current = new PlotEnumAsset.ParameterEnum { enumName = name, displayName = sheet.Get(row, 0) == "" ? sheet.Get(row, 4) : sheet.Get(row, 0) }; definitions.Add(current); }
+                if (sheet.Get(row, 6) == "") continue;
+                if (current == null) throw Error(row, "枚举项没有所属类型");
+                current.values.Add(new PlotEnumAsset.ParameterEnumValue { key = sheet.Get(row, 6), label = sheet.Get(row, 7) });
+            }
+            var temporary = ScriptableObject.CreateInstance<PlotEnumAsset>();
+            try { temporary.dynamicLists = definitions; Check(temporary); destination.dynamicLists = definitions; }
+            finally { UnityEngine.Object.DestroyImmediate(temporary); }
+        }
+        public static PlotExcelSheet ExportBeans(PlotEventTypeAsset asset)
+        {
+            Check(asset); var sheet = new PlotExcelSheet();
+            sheet.Rows.Add(new[] { "##var", "full_name", "parent", "sep", "alias", "comment", "tags", "*fields", "", "", "", "" });
+            sheet.Rows.Add(new[] { "##var", "", "", "", "", "", "", "name", "type", "group", "comment", "tags" });
+            sheet.Rows.Add(new[] { "##", "Bean全名", "父类", "分隔符", "别名", "注释", "标签", "字段名", "类型", "分组", "注释", "标签" });
+            sheet.Merge(0, 7, 5);
+            var row = 3;
+            foreach (var bean in asset.eventTypes)
+            {
+                sheet.Set(row, 1, bean.eventKey); sheet.Set(row, 5, bean.displayName);
+                if (bean.parameters.Count == 0) row++;
+                foreach (var parameter in bean.parameters)
+                {
+                    if (parameter.valueType == ValueType.CustomBean) throw new NotSupportedException("Bean参数尚未定义嵌套Bean类型引用，不能导出为猜测类型");
+                    sheet.Set(row, 7, parameter.paramKey); sheet.Set(row, 8, TypeName(parameter.valueType, parameter.enumType)); sheet.Set(row, 10, parameter.displayName); row++;
+                }
+                row++;
+            }
+            return sheet;
+        }
+        public static void ReadBeans(PlotExcelSheet sheet, PlotEventTypeAsset destination, PlotEnumAsset enums)
+        {
+            sheet.RequireHeaders("##var"); var definitions = new List<PlotEventTypeAsset.EventTypeDefinition>(); PlotEventTypeAsset.EventTypeDefinition current = null;
+            for (var row = 3; row < sheet.Height; row++)
+            {
+                if (sheet.Empty(row) || sheet.Comment(row)) continue;
+                var name = sheet.Get(row, 1);
+                if (name != "" && (current == null || current.eventKey != name))
+                {
+                    var old = destination.GetEventTypeByKey(name);
+                    current = new PlotEventTypeAsset.EventTypeDefinition { eventKey = name, displayName = sheet.Get(row, 5), defaultCallbackValue = old?.defaultCallbackValue ?? -1, defaultCallbackList = old?.defaultCallbackList ?? "" }; definitions.Add(current);
+                }
+                var key = sheet.Get(row, 7); if (key == "") continue;
+                if (current == null) throw Error(row, "Bean参数没有所属类型");
+                var type = Type(sheet.Get(row, 8), enums, null, out var typeKey);
+                var previous = destination.GetEventTypeByKey(current.eventKey)?.parameters?.Find(p => p.paramKey == key);
+                current.parameters.Add(new PlotEventTypeAsset.EventParameter { paramKey = key, displayName = sheet.Get(row, 10), valueType = type, enumType = typeKey, paramSign = previous?.paramSign ?? "param", enumValue = previous != null && previous.enumType == typeKey ? previous.enumValue : "" });
+            }
+            var temporary = ScriptableObject.CreateInstance<PlotEventTypeAsset>();
+            try { temporary.parameterEnums = enums; temporary.eventTypes = definitions; Check(temporary); destination.eventTypes = definitions; destination.parameterEnums = enums; }
+            finally { UnityEngine.Object.DestroyImmediate(temporary); }
+        }
+
+        public static PlotExcelSheet ExportHeader(PlotAtomDataHeaderAsset header)
+        {
+            Check(header); var sheet = Sheet(Array.Empty<string>(), Array.Empty<string>());
+            foreach (var column in header.sheets.OrderBy(c => c.columnIndex))
+            {
+                if (column.columnIndex == 0) throw new FormatException("A列保留给配表控制标记，数据列须从B列开始");
+                sheet.Set(0, column.columnIndex, column.columnName); sheet.Set(1, column.columnIndex, (column.IsList ? "list," : "") + TypeName(column.valueType, column.typeKey)); sheet.Set(2, column.columnIndex, column.description);
+                for (var offset = 1; offset < column.members; offset++) for (var row = 0; row < 3; row++) sheet.Set(row, column.columnIndex + offset, "");
+                for (var row = 0; row < 3; row++) sheet.Merge(row, column.columnIndex, column.members);
+            }
+            return sheet;
+        }
+        public static void ReadHeader(PlotExcelSheet sheet, PlotAtomDataHeaderAsset destination, PlotEnumAsset enums, PlotEventTypeAsset beans)
+        {
+            sheet.RequireHeaders(); var definitions = new List<PlotAtomDataHeaderAsset.ColumnDefinition>();
+            for (var column = 1; column < sheet.Width; column++)
+            {
+                var name = sheet.Get(0, column); if (name == "") continue;
+                var typeName = sheet.Get(1, column); var list = typeName.StartsWith("list,", StringComparison.Ordinal);
+                var type = Type(list ? typeName.Substring(5) : typeName, enums, beans, out var key);
+                var members = type == ValueType.CustomBean ? beans.GetEventParameterCount(key) : 1;
+                if (members <= 0) throw new FormatException(name + "不支持零成员Bean数据列");
+                definitions.Add(new PlotAtomDataHeaderAsset.ColumnDefinition { columnName = name, description = sheet.Get(2, column), columnIndex = column, IsList = list, valueType = type, typeKey = key, members = members });
+                for (var offset = 1; offset < members; offset++)
+                    if (sheet.Get(0, column + offset) != "" || sheet.Get(1, column + offset) != "") throw new FormatException(name + "的Bean成员列与下一逻辑列重叠");
+                column += members - 1;
+            }
+            if (definitions.Count == 0) throw new FormatException("节点表头没有数据列");
+            var temporary = ScriptableObject.CreateInstance<PlotAtomDataHeaderAsset>();
+            try { temporary.parameterEnums = enums; temporary.parameterBean = beans; temporary.sheets = definitions; Check(temporary); destination.sheets = definitions; destination.parameterEnums = enums; destination.parameterBean = beans; }
+            finally { UnityEngine.Object.DestroyImmediate(temporary); }
+        }
+        private static PlotAtomDataHeaderAsset.ColumnDefinition IdColumn(PlotAtomDataHeaderAsset header, string idColumn)
+        {
+            var id = header.GetColumnByName(idColumn);
+            if (id == null || id.valueType != ValueType.Int || id.IsList) throw new FormatException("节点ID列须为标量int");
+            return id;
+        }
+        public static PlotExcelSheet ExportNodes(PlotAtomDataHeaderAsset header, IEnumerable<PlotAtomRowData> nodes, string idColumn = "ScenesID")
+        {
+            var sheet = ExportHeader(header); IdColumn(header, idColumn); var seen = new HashSet<int>(); var excelRow = 3;
+            foreach (var node in nodes.OrderBy(n => int.Parse(n.GetColumnSingleValue(idColumn), CultureInfo.InvariantCulture)))
+            {
+                if (node.headerDefinition != header) throw new FormatException("节点表头不属于当前工作区"); Check(node);
+                var id = int.Parse(node.GetColumnSingleValue(idColumn), CultureInfo.InvariantCulture);
+                if (id <= 0 || !seen.Add(id)) throw new FormatException("节点ID无效或重复: " + id);
+                var height = Math.Max(1, header.sheets.Where(c => c.IsList).Select(c => node.GetColumnRowCount(c.columnName)).DefaultIfEmpty(0).Max());
+                foreach (var column in header.sheets)
+                {
+                    var rows = node.GetColumn(column.columnName)?.rows;
+                    for (var offset = 0; offset < height; offset++) for (var member = 0; member < column.members; member++)
+                        sheet.Set(excelRow + offset, column.columnIndex + member, rows != null && offset < rows.Count && (offset == 0 || column.IsList) ? rows[offset].values[member] : "");
+                    if (column.IsList && rows != null && rows.Any(r => r.values.All(string.IsNullOrEmpty)))
+                        throw new FormatException(column.columnName + "包含完全空白的列表项，原表格布局无法区分它与空占位行");
+                }
+                excelRow += height;
+            }
+            return sheet;
+        }
+        public static List<PlotAtomRowData> ReadNodes(PlotExcelSheet sheet, PlotAtomDataHeaderAsset header, string idColumn = "ScenesID")
+        {
+            sheet.RequireHeaders(); Check(header); var idDefinition = IdColumn(header, idColumn);
+            foreach (var column in header.sheets) if (sheet.Get(0, column.columnIndex) != column.columnName || sheet.Get(1, column.columnIndex) != (column.IsList ? "list," : "") + TypeName(column.valueType, column.typeKey)) throw new FormatException("表头与节点定义不一致: " + column.columnName);
+            var result = new List<PlotAtomRowData>(); var ids = new HashSet<int>(); PlotAtomRowData current = null;
+            try
+            {
+                for (var row = 3; row < sheet.Height; row++)
+                {
+                    if (sheet.Empty(row) || sheet.Comment(row)) continue;
+                    var rawId = sheet.Get(row, idDefinition.columnIndex); var first = rawId != "";
+                    if (first)
+                    {
+                        if (!int.TryParse(rawId, NumberStyles.Integer, CultureInfo.InvariantCulture, out var id) || id <= 0 || !ids.Add(id)) throw Error(row, "无效或重复节点ID: " + rawId);
+                        current = ScriptableObject.CreateInstance<PlotAtomRowData>(); current.headerDefinition = header; current.rowId = id.ToString(CultureInfo.InvariantCulture); current.rowTitle = current.rowId; result.Add(current);
+                    }
+                    if (current == null) throw Error(row, "列表续行缺少起始节点");
+                    foreach (var column in header.sheets)
+                    {
+                        var values = Enumerable.Range(0, column.members).Select(i => sheet.Get(row, column.columnIndex + i)).ToList();
+                        if (column.IsList) { if (values.Any(v => v != "")) current.AddRowToColumn(column.columnName, values); }
+                        else if (first) { if (column == idDefinition) values[0] = current.rowId; current.SetColumnRowValues(column.columnName, values); }
+                        else if (values.Any(v => v != "")) throw Error(row, "续行不能覆盖标量列: " + column.columnName);
+                    }
+                }
+                foreach (var node in result) Check(node); return result;
+            }
+            catch { foreach (var node in result) UnityEngine.Object.DestroyImmediate(node); throw; }
+        }
+
+        public static PlotExcelSheet ExportTexts(PlotTextKeyAsset asset)
+        {
+            Check(asset); var sheet = Sheet(new[] { "keyID", "simpleChinese", "traditionalChinese", "english", "japanese", "korean" }, Enumerable.Repeat("string", 6).ToArray());
+            var row = 3;
+            foreach (var entry in TextEntries(asset))
+            { if (entry.value.Count != 5) throw new FormatException("原文本表格式固定5种语言，不能静默截断或补足: " + entry.key); sheet.Set(row, 1, entry.key); for (var i = 0; i < 5; i++) sheet.Set(row, i + 2, entry.value[i]); row++; }
+            return sheet;
+        }
+        private static IEnumerable<PlotTextEntry> TextEntries(PlotTextKeyAsset asset)
+        {
+            if (asset is PlotDialogKeyAsset dialogs) return dialogs.dialogKeyDataList;
+            if (asset is PlotConstantKeyAsset constants) return constants.constantKeyDataList;
+            throw new NotSupportedException("未知文本资产类型");
+        }
+        public static void ReadTexts(PlotExcelSheet sheet, PlotTextKeyAsset destination)
+        {
+            sheet.RequireHeaders(); var entries = new List<PlotTextEntry>(); var keys = new HashSet<string>();
+            var names = new[] { "keyID", "simpleChinese", "traditionalChinese", "english", "japanese", "korean" };
+            for (var i = 0; i < names.Length; i++) if (sheet.Get(0, i + 1) != names[i] || sheet.Get(1, i + 1) != "string") throw new FormatException("文本表布局不正确: " + names[i]);
+            for (var row = 3; row < sheet.Height; row++)
+            {
+                if (sheet.Empty(row) || sheet.Comment(row)) continue; var key = sheet.Get(row, 1);
+                if (key == "" || !keys.Add(key)) throw Error(row, "文本KEY为空或重复: " + key);
+                entries.Add(new PlotTextEntry { key = key, value = Enumerable.Range(2, 5).Select(c => sheet.Get(row, c)).ToList() });
+            }
+            if (destination is PlotDialogKeyAsset dialogs) dialogs.dialogKeyDataList = entries.Select(e => new PlotDialogKeyAsset.DialogKeyData { key = e.key, value = e.value }).ToList();
+            else if (destination is PlotConstantKeyAsset constants) constants.constantKeyDataList = entries.Select(e => new PlotConstantKeyAsset.ConstantKeyData { key = e.key, value = e.value }).ToList();
+            else throw new NotSupportedException("未知文本资产类型");
+        }
+        public static PlotExcelSheet ExportTable(PlotTableAsset asset)
+        {
+            Check(asset); var sheet = Sheet(Array.Empty<string>(), Array.Empty<string>()); sheet.Name = asset.sheetName;
+            var id = asset.headers.Find(c => c.columnIndex == 1 && c.columnName.Equals("ID", StringComparison.OrdinalIgnoreCase));
+            var shift = id == null ? 1 : 0;
+            if (shift != 0)
+            {
+                if (asset.headers.Any(c => c.columnName.Equals("ID", StringComparison.OrdinalIgnoreCase))) throw new FormatException("显式ID列必须位于B列");
+                sheet.Set(0, 1, "ID"); sheet.Set(1, 1, "string"); sheet.Set(2, 1, "行ID（资产独立标识）");
+            }
+            foreach (var header in asset.headers)
+            {
+                if (header.columnIndex < 1) throw new FormatException("A列保留给配表控制标记");
+                sheet.Set(0, header.columnIndex + shift, header.columnName); sheet.Set(1, header.columnIndex + shift, header.columnType); sheet.Set(2, header.columnIndex + shift, header.description);
+            }
+            var row = 3;
+            foreach (var entry in asset.rows)
+            {
+                sheet.Set(row, 1, entry.id);
+                foreach (var header in asset.headers) sheet.Set(row, header.columnIndex + shift, header == id ? entry.id : asset.GetColumnValue(entry.id, header.columnName));
+                var recorded = id == null ? null : entry.columns.Find(c => c.columnName == id.columnName);
+                if (recorded != null && recorded.value != entry.id) throw new FormatException("通用表行ID和ID单元格冲突: " + entry.id);
+                row++;
+            }
+            return sheet;
+        }
+        public static void ReadTable(PlotExcelSheet sheet, PlotTableAsset destination)
+        {
+            sheet.RequireHeaders(); var temporary = ScriptableObject.CreateInstance<PlotTableAsset>();
+            try
+            {
+                temporary.tableName = destination.tableName; temporary.sheetName = sheet.Name;
+                var shift = destination.headers.Count > 0 && !destination.headers.Any(c => c.columnIndex == 1 && c.columnName.Equals("ID", StringComparison.OrdinalIgnoreCase)) && sheet.Get(0, 1) == "ID" ? 1 : 0;
+                for (var column = 1 + shift; column < sheet.Width; column++) if (sheet.Get(0, column) != "") temporary.headers.Add(new PlotTableAsset.ColumnHeader { columnName = sheet.Get(0, column), columnIndex = column - shift, columnType = sheet.Get(1, column), description = sheet.Get(2, column) });
+                if (sheet.Get(0, 1) == "") throw new FormatException("通用表缺少B列ID");
+                var seen = new HashSet<string>();
+                for (var row = 3; row < sheet.Height; row++)
+                {
+                    if (sheet.Empty(row) || sheet.Comment(row)) continue; var id = sheet.Get(row, 1);
+                    if (id == "" || !seen.Add(id)) throw Error(row, "通用表ID为空或重复: " + id);
+                    temporary.SetRowData(id, temporary.headers.ToDictionary(c => c.columnName, c => sheet.Get(row, c.columnIndex + shift)));
+                }
+                Check(temporary); destination.headers = temporary.headers; destination.rows = temporary.rows; destination.sheetName = sheet.Name;
+            }
+            finally { UnityEngine.Object.DestroyImmediate(temporary); }
+        }
+    }
+}

@@ -1,0 +1,223 @@
+{
+    "formatVersion": 1,
+    "id": "plotweave_demo",
+    "title": "织幕演示 从资产到表格",
+    "entryNodeId": "welcome",
+    "nodes": [
+        {
+            "id": "welcome",
+            "title": "欢迎",
+            "position": {
+                "x": 80.0,
+                "y": 100.0
+            },
+            "sceneId": "",
+            "actorId": "guide",
+            "text": "",
+            "textKey": "welcome.line",
+            "nextNodeId": "route",
+            "choices": [],
+            "commands": [
+                {
+                    "key": "background",
+                    "arguments": [
+                        {
+                            "key": "key",
+                            "value": "demo_evening"
+                        }
+                    ]
+                },
+                {
+                    "key": "actor.show",
+                    "arguments": [
+                        {
+                            "key": "id",
+                            "value": "guide"
+                        },
+                        {
+                            "key": "position",
+                            "value": "0.5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "route",
+            "title": "选择路线",
+            "position": {
+                "x": 400.0,
+                "y": 100.0
+            },
+            "sceneId": "",
+            "actorId": "guide",
+            "text": "你想先探索哪部分？",
+            "textKey": "",
+            "nextNodeId": "",
+            "choices": [
+                {
+                    "label": "查看剧情事件",
+                    "textKey": "",
+                    "targetNodeId": "events",
+                    "conditionVariable": "",
+                    "conditionValue": "true"
+                },
+                {
+                    "label": "直接结束",
+                    "textKey": "",
+                    "targetNodeId": "end",
+                    "conditionVariable": "",
+                    "conditionValue": "true"
+                }
+            ],
+            "commands": []
+        },
+        {
+            "id": "events",
+            "title": "事件与变量",
+            "position": {
+                "x": 730.0,
+                "y": 60.0
+            },
+            "sceneId": "",
+            "actorId": "guide",
+            "text": "${player}，事件、文本和分支仍然由同一套播放核心处理。",
+            "textKey": "",
+            "nextNodeId": "end",
+            "choices": [],
+            "commands": [
+                {
+                    "key": "set",
+                    "arguments": [
+                        {
+                            "key": "name",
+                            "value": "player"
+                        },
+                        {
+                            "key": "value",
+                            "value": "探索者"
+                        }
+                    ]
+                },
+                {
+                    "key": "wait",
+                    "arguments": [
+                        {
+                            "key": "seconds",
+                            "value": "0.3"
+                        }
+                    ]
+                },
+                {
+                    "key": "actor.emote",
+                    "arguments": [
+                        {
+                            "key": "id",
+                            "value": "guide"
+                        },
+                        {
+                            "key": "emote",
+                            "value": "微笑"
+                        }
+                    ]
+                },
+                {
+                    "key": "signal",
+                    "arguments": [
+                        {
+                            "key": "name",
+                            "value": "demo.visited"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "end",
+            "title": "结束",
+            "position": {
+                "x": 1060.0,
+                "y": 180.0
+            },
+            "sceneId": "",
+            "actorId": "",
+            "text": "演示结束。你可以修改节点、连线和表格，验证自己的工作流。",
+            "textKey": "",
+            "nextNodeId": "",
+            "choices": [],
+            "commands": []
+        }
+    ],
+    "actors": [
+        {
+            "id": "guide",
+            "name": "向导",
+            "resourceKey": "demo_guide"
+        }
+    ],
+    "texts": [
+        {
+            "key": "welcome.line",
+            "value": "你好，${player}。这段剧情可以直接预览，也可以导成表格再编回 JSON。"
+        }
+    ],
+    "variables": [
+        {
+            "key": "player",
+            "value": "旅人"
+        }
+    ],
+    "commands": [
+        {
+            "key": "wait",
+            "displayName": "等待",
+            "parameters": [
+                {
+                    "key": "seconds",
+                    "displayName": "秒数",
+                    "type": 2,
+                    "enumKey": "",
+                    "defaultValue": "0",
+                    "required": true
+                }
+            ]
+        },
+        {
+            "key": "set",
+            "displayName": "设置变量",
+            "parameters": [
+                {
+                    "key": "name",
+                    "displayName": "",
+                    "type": 0,
+                    "enumKey": "",
+                    "defaultValue": "",
+                    "required": true
+                },
+                {
+                    "key": "value",
+                    "displayName": "",
+                    "type": 0,
+                    "enumKey": "",
+                    "defaultValue": "",
+                    "required": false
+                }
+            ]
+        },
+        {
+            "key": "signal",
+            "displayName": "游戏事件",
+            "parameters": [
+                {
+                    "key": "name",
+                    "displayName": "",
+                    "type": 0,
+                    "enumKey": "",
+                    "defaultValue": "",
+                    "required": true
+                }
+            ]
+        }
+    ],
+    "enums": []
+}

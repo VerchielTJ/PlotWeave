@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3dc84fa9ac41e040313c4063b02d537, type: 3}
+  m_Name: Campaign
+  m_EditorClassIdentifier: 
+  data:
+    chapters:
+    - kind: 0
+      id: 10
+      name: "\u98CE\u4E4B\u4E66"
+      desc: "\u5FAA\u7740\u6D77\u98CE\uFF0C\u627E\u5230\u7B2C\u4E00\u76CF\u706F\u3002"
+      unlockArea: studio
+      unlockDate: 
+      thumbnail: reference.blue
+      background: reference.blue
+      episodes: 64000000f4010000
+    - kind: 0
+      id: 80
+      name: "\u672A\u6765\u6765\u4FE1"
+      desc: "\u8FD9\u5C01\u4FE1\u5C06\u5728\u672A\u6765\u5F00\u542F\u3002"
+      unlockArea: 
+      unlockDate: 2099-1-1
+      thumbnail: reference.green
+      background: reference.green
+      episodes: 84030000
+    - kind: 0
+      id: 90
+      name: "\u661F\u5149\u6863\u6848"
+      desc: "\u89E3\u9501\u89C2\u6D4B\u7AD9\u540E\u9605\u8BFB\u3002"
+      unlockArea: observatory
+      unlockDate: 
+      thumbnail: reference.gold
+      background: reference.gold
+      episodes: dc050000
+    - kind: 1
+      id: 20
+      name: "\u5348\u540E\u77ED\u7BC7"
+      desc: "\u968F\u65F6\u53EF\u4EE5\u91CD\u8BFB\u7684\u5C0F\u6545\u4E8B\u3002"
+      unlockArea: 
+      unlockDate: 2020-1-1
+      thumbnail: reference.gold
+      background: reference.gold
+      episodes: bc020000b0040000
+    episodes:
+    - kind: 0
+      id: 100
+      awardID: 101
+      entryNode: 1101
+      name: "\u7B2C\u4E00\u76CF\u706F"
+      desc: "\u5411\u5BFC\u9080\u8BF7\u4F60\u70B9\u4EAE\u5DE5\u4F5C\u5BA4\u3002"
+      topTitle: "\u98CE\u4E4B\u4E66"
+      bottomTitle: "\u7B2C\u4E00\u76CF\u706F"
+      skipKey: reference.skip
+    - kind: 0
+      id: 500
+      awardID: 303
+      entryNode: 2401
+      name: "\u5C94\u8DEF\u7684\u793C\u7269"
+      desc: "\u9009\u62E9\u4E00\u6761\u559C\u6B22\u7684\u5C0F\u8DEF\u3002"
+      topTitle: "\u98CE\u4E4B\u4E66"
+      bottomTitle: "\u5C94\u8DEF\u7684\u793C\u7269"
+      skipKey: reference.skip
+    - kind: 0
+      id: 900
+      awardID: 303
+      entryNode: 1101
+      name: "\u5C1A\u672A\u5BC4\u51FA\u7684\u4FE1"
+      desc: "\u65E5\u671F\u5230\u8FBE\u540E\u5F00\u542F\u3002"
+      topTitle: "\u98CE\u4E4B\u4E66"
+      bottomTitle: "\u5C1A\u672A\u5BC4\u51FA\u7684\u4FE1"
+      skipKey: reference.skip
+    - kind: 0
+      id: 1500
+      awardID: 303
+      entryNode: 2401
+      name: "\u89C2\u6D4B\u7AD9\u4E4B\u591C"
+      desc: "\u65B0\u7684\u533A\u57DF\u91CC\u8FD8\u6709\u65B0\u7684\u6545\u4E8B\u3002"
+      topTitle: "\u98CE\u4E4B\u4E66"
+      bottomTitle: "\u89C2\u6D4B\u7AD9\u4E4B\u591C"
+      skipKey: reference.skip
+    - kind: 1
+      id: 700
+      awardID: 101
+      entryNode: 8101
+      name: "\u4E00\u676F\u8336\u7684\u65F6\u95F4"
+      desc: "\u7ED9\u5FD9\u788C\u7559\u4E00\u4E2A\u77ED\u6682\u7684\u505C\u987F\u3002"
+      topTitle: "\u5348\u540E\u77ED\u7BC7"
+      bottomTitle: "\u4E00\u676F\u8336\u7684\u65F6\u95F4"
+      skipKey: reference.skip
+    - kind: 1
+      id: 1200
+      awardID: 909
+      entryNode: 9201
+      name: "\u7ED9\u660E\u5929\u7684\u4FBF\u7B3A"
+      desc: "\u6545\u4E8B\u4F1A\u5728\u4E0B\u4E00\u9875\u7EE7\u7EED\u3002"
+      topTitle: "\u5348\u540E\u77ED\u7BC7"
+      bottomTitle: "\u7ED9\u660E\u5929\u7684\u4FBF\u7B3A"
+      skipKey: reference.skip
+    rewards:
+    - id: 101
+      items:
+      - itemID: 7
+        count: 3
+      - itemID: 9
+        count: 1
+    - id: 303
+      items:
+      - itemID: 7
+        count: 5
+    - id: 909
+      items:
+      - itemID: 9
+        count: 2

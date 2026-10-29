@@ -1,0 +1,20 @@
+{
+    "id": "cc001d3293f04d1aae10e90687d97a6c",
+    "mode": "asset",
+    "scene": "Assets/PlotWeaveMigration/Stage05_Playback/GamePlayback.unity",
+    "phase": "captured",
+    "image": "Doc/Records/Stage05/Images/asset-cc001d3293f04d1aae10e90687d97a6c.png",
+    "error": "",
+    "previousScene": "",
+    "playerState": "Playing",
+    "text": "欢迎使用类型与数据迁移样例。",
+    "background": "demo.stage",
+    "previousBackground": false,
+    "previousMaximized": false,
+    "hadView": true,
+    "ready": true,
+    "node": 1001,
+    "actors": 2,
+    "deadline": 46236.1189522,
+    "captureAfter": 46150.3631731
+}

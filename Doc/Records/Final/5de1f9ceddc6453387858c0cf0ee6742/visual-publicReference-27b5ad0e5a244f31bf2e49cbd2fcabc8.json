@@ -1,0 +1,135 @@
+{
+    "id": "27b5ad0e5a244f31bf2e49cbd2fcabc8",
+    "status": "passed",
+    "phase": "complete",
+    "error": "",
+    "scene": "Assets/PlotWeaveMigration/Stage18_CampaignReference/CampaignReference.unity",
+    "startedAtUtc": "2026-10-28T12:58:48.7788826Z",
+    "recordedAtUtc": "2026-10-28T12:59:12.4128098Z",
+    "previousScene": "",
+    "pendingImage": "Tools/PlotWeaveMigration/Inputs/Images/reference-campaign-daily-completed-27b5ad0e5a244f31bf2e49cbd2fcabc8.png",
+    "afterImage": "finish",
+    "background": false,
+    "maximized": false,
+    "hadView": true,
+    "readsOriginalContent": false,
+    "returnTitleChecks": 12,
+    "rewardChecks": 8,
+    "playerChecks": 6,
+    "skipCancelChecks": 1,
+    "branchChecks": 1,
+    "inventoryChecks": 5,
+    "lockChecks": 2,
+    "returned": 5,
+    "deadline": 74140.229488,
+    "next": 73923.5544104,
+    "images": [
+        {
+            "label": "main-chapters",
+            "path": "Tools/PlotWeaveMigration/Inputs/Images/reference-campaign-main-chapters-27b5ad0e5a244f31bf2e49cbd2fcabc8.png",
+            "sha256": "0b0a5a06f9e3a652a26b4fb91fb6af8cf6c5cc094c799654510c87e8f6ca691c",
+            "width": 1920,
+            "height": 907
+        },
+        {
+            "label": "main-episodes",
+            "path": "Tools/PlotWeaveMigration/Inputs/Images/reference-campaign-main-episodes-27b5ad0e5a244f31bf2e49cbd2fcabc8.png",
+            "sha256": "5e5267389c5c804bfce172791307970d20890e13464f0b3e72ccb116ea6e94c4",
+            "width": 1920,
+            "height": 907
+        },
+        {
+            "label": "player-dialog",
+            "path": "Tools/PlotWeaveMigration/Inputs/Images/reference-campaign-player-dialog-27b5ad0e5a244f31bf2e49cbd2fcabc8.png",
+            "sha256": "6ea71497f3b8b1e6e917583ce2ce111714df80264211aeb8b723a235ca29183c",
+            "width": 1920,
+            "height": 907
+        },
+        {
+            "label": "skip-confirmation",
+            "path": "Tools/PlotWeaveMigration/Inputs/Images/reference-campaign-skip-confirmation-27b5ad0e5a244f31bf2e49cbd2fcabc8.png",
+            "sha256": "4b3cae24afdc7b5d2b4716c9c2bc4044b3dd666ca896a405ba4d77d81a4c1761",
+            "width": 1920,
+            "height": 907
+        },
+        {
+            "label": "replay-episodes",
+            "path": "Tools/PlotWeaveMigration/Inputs/Images/reference-campaign-replay-episodes-27b5ad0e5a244f31bf2e49cbd2fcabc8.png",
+            "sha256": "500aa92aef7e247fdff7885614426c851e293981c3095e9fe83fb3d86337633b",
+            "width": 1920,
+            "height": 907
+        },
+        {
+            "label": "branch-choices",
+            "path": "Tools/PlotWeaveMigration/Inputs/Images/reference-campaign-branch-choices-27b5ad0e5a244f31bf2e49cbd2fcabc8.png",
+            "sha256": "b999ba7c5638356eb3c6bbcdc3426562a93ebfc1db523fde00f6ecc34a5fe3e1",
+            "width": 1920,
+            "height": 907
+        },
+        {
+            "label": "daily-chapters",
+            "path": "Tools/PlotWeaveMigration/Inputs/Images/reference-campaign-daily-chapters-27b5ad0e5a244f31bf2e49cbd2fcabc8.png",
+            "sha256": "febe505ccf09b072a51ade661a701aea409fe028fe383c1795242fc8875e1aff",
+            "width": 1920,
+            "height": 907
+        },
+        {
+            "label": "daily-episodes",
+            "path": "Tools/PlotWeaveMigration/Inputs/Images/reference-campaign-daily-episodes-27b5ad0e5a244f31bf2e49cbd2fcabc8.png",
+            "sha256": "11c134ec32502a44ef0e04564cb5b45e0aa33f9ebd54c22c6f6b2e6b835b08f7",
+            "width": 1920,
+            "height": 907
+        },
+        {
+            "label": "daily-completed",
+            "path": "Tools/PlotWeaveMigration/Inputs/Images/reference-campaign-daily-completed-27b5ad0e5a244f31bf2e49cbd2fcabc8.png",
+            "sha256": "a18005fd60a5b824e482fae7ee94f9d20279684a4cb9808ab7eb4b395c8fddb3",
+            "width": 1920,
+            "height": 907
+        }
+    ],
+    "uiHits": [
+        "主线章节10 -> Public Campaign Reference/StoryBrowser/ChapterPanel(Clone)/StoryScrollRect/Viewport/Content/ChapterCard(Clone) @(349.74, 403.62)",
+        "查看奖励道具详情 -> Public Campaign Reference/StoryBrowser/EpisodePanel(Clone)/Details/AwardScrollRect/Viewport/Content/RewardCard(Clone) @(1103.68, 263.03)",
+        "关闭奖励详情 -> Public Campaign Reference/StoryBrowser/StoryDetail/CloseDetail @(960.00, 311.16)",
+        "Main开始/重看100 -> Public Campaign Reference/StoryBrowser/EpisodePanel(Clone)/SelectBtn @(1420.80, 81.63)",
+        "首次打开跳过确认 -> Public Campaign Reference/Player(Clone)/PlotPlaybackCanvas/SkipStory @(972.00, 871.00)",
+        "取消跳过 -> Public Campaign Reference/Player(Clone)/SkipPopup(Clone)/Confirmation/CancelBtn @(721.54, 303.85)",
+        "再次打开跳过确认 -> Public Campaign Reference/Player(Clone)/PlotPlaybackCanvas/SkipStory @(972.00, 871.00)",
+        "首次确认跳过并结算 -> Public Campaign Reference/Player(Clone)/SkipPopup(Clone)/Confirmation/ConfirmBtn @(1198.46, 303.85)",
+        "选择已读小节100重看 -> Public Campaign Reference/StoryBrowser/EpisodePanel(Clone)/StoryScrollRect/Viewport/Content/EpisodeCard(Clone) @(489.60, 635.40)",
+        "Main开始/重看100 -> Public Campaign Reference/StoryBrowser/EpisodePanel(Clone)/SelectBtn @(1420.80, 81.63)",
+        "重看打开跳过确认 -> Public Campaign Reference/Player(Clone)/PlotPlaybackCanvas/SkipStory @(972.00, 871.00)",
+        "重看确认跳过 -> Public Campaign Reference/Player(Clone)/SkipPopup(Clone)/Confirmation/ConfirmBtn @(1198.46, 303.85)",
+        "选择分支小节500 -> Public Campaign Reference/StoryBrowser/EpisodePanel(Clone)/StoryScrollRect/Viewport/Content/EpisodeCard(Clone) @(489.60, 509.43)",
+        "Main开始/重看500 -> Public Campaign Reference/StoryBrowser/EpisodePanel(Clone)/SelectBtn @(1420.80, 81.63)",
+        "继续至剧情分支 -> Public Campaign Reference/Player(Clone)/PlotPlaybackCanvas/Next @(1728.00, 871.00)",
+        "选择海边分支 -> Public Campaign Reference/Player(Clone)/PlotPlaybackCanvas/PlotChoices/Choice_0 @(960.00, 495.50)",
+        "完成分支末节点 -> Public Campaign Reference/Player(Clone)/PlotPlaybackCanvas/Next @(1728.00, 871.00)",
+        "小节返回主线章节 -> Public Campaign Reference/StoryBrowser/EpisodePanel(Clone)/ReturnBtn/BackBtn @(109.18, 806.22)",
+        "切换日常故事 -> Public Campaign Reference/StoryBrowser/StoryNavigation/DailyStory @(214.15, 888.52)",
+        "日常章节20 -> Public Campaign Reference/StoryBrowser/ChapterPanel(Clone)/StoryScrollRect/Viewport/Content/ChapterCard(Clone) @(349.74, 403.62)",
+        "Daily开始/重看700 -> Public Campaign Reference/StoryBrowser/EpisodePanel(Clone)/SelectBtn @(1420.80, 81.63)",
+        "日常首次打开跳过确认 -> Public Campaign Reference/Player(Clone)/PlotPlaybackCanvas/SkipStory @(972.00, 871.00)",
+        "日常首次确认跳过 -> Public Campaign Reference/Player(Clone)/SkipPopup(Clone)/Confirmation/ConfirmBtn @(1198.46, 303.85)",
+        "选择日常第二小节1200 -> Public Campaign Reference/StoryBrowser/EpisodePanel(Clone)/StoryScrollRect/Viewport/Content/EpisodeCard(Clone) @(489.60, 509.43)",
+        "Daily开始/重看1200 -> Public Campaign Reference/StoryBrowser/EpisodePanel(Clone)/SelectBtn @(1420.80, 81.63)",
+        "日常末节打开跳过确认 -> Public Campaign Reference/Player(Clone)/PlotPlaybackCanvas/SkipStory @(972.00, 871.00)",
+        "日常末节确认跳过 -> Public Campaign Reference/Player(Clone)/SkipPopup(Clone)/Confirmation/ConfirmBtn @(1198.46, 303.85)"
+    ],
+    "checks": [
+        "奖励UI kind=Main episode=100 items=2",
+        "奖励账本 coin=3 gem=1 returns=1",
+        "奖励UI kind=Main episode=500 items=1",
+        "奖励UI kind=Main episode=100 items=2",
+        "奖励账本 coin=3 gem=1 returns=2",
+        "奖励UI kind=Main episode=500 items=1",
+        "奖励账本 coin=8 gem=1 returns=3",
+        "奖励UI kind=Main episode=500 items=1",
+        "奖励UI kind=Daily episode=700 items=2",
+        "奖励账本 coin=11 gem=2 returns=4",
+        "奖励UI kind=Daily episode=1200 items=1",
+        "奖励账本 coin=11 gem=4 returns=5",
+        "奖励UI kind=Daily episode=1200 items=1"
+    ]
+}

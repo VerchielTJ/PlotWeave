@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6b93fc82e244a1a840dc0654c4ef11, type: 3}
+  m_Name: NodeHeader
+  m_EditorClassIdentifier: 
+  sheets:
+  - columnName: ScenesID
+    description: ScenesID
+    IsList: 0
+    valueType: 0
+    typeKey: 
+    columnIndex: 1
+    members: 1
+  - columnName: PlotRoleID
+    description: PlotRoleID
+    IsList: 0
+    valueType: 0
+    typeKey: 
+    columnIndex: 2
+    members: 1
+  - columnName: Dialog
+    description: Dialog
+    IsList: 0
+    valueType: 2
+    typeKey: 
+    columnIndex: 3
+    members: 1
+  - columnName: Next
+    description: Next
+    IsList: 0
+    valueType: 0
+    typeKey: 
+    columnIndex: 4
+    members: 1
+  - columnName: '*RoleAction'
+    description: '*RoleAction'
+    IsList: 1
+    valueType: 6
+    typeKey: PlotRoleAction
+    columnIndex: 5
+    members: 4
+  - columnName: '*PlotSetBack'
+    description: '*PlotSetBack'
+    IsList: 1
+    valueType: 6
+    typeKey: PlotSetBackground
+    columnIndex: 9
+    members: 2
+  - columnName: '*Branch'
+    description: '*Branch'
+    IsList: 1
+    valueType: 6
+    typeKey: PlotBranch
+    columnIndex: 11
+    members: 2
+  headerColor: {r: 1, g: 1, b: 1, a: 1}
+  contentColor: {r: 1, g: 1, b: 1, a: 1}
+  parameterEnums: {fileID: 11400000, guid: eca05353786973a4f819b1b95a884fe7, type: 2}
+  parameterBean: {fileID: 11400000, guid: 07461ad635745b84ba1e5471d0f6a762, type: 2}

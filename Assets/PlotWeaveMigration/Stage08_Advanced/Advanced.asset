@@ -1,0 +1,155 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8720df7ea0900770b516578104d8605, type: 3}
+  m_Name: Advanced
+  m_EditorClassIdentifier: 
+  data:
+    FormatVersion: 1
+    Nodes:
+    - ScenesID: 2001
+      PlotRoleID: 101
+      Dialog: "<b>PlotWeave \xB7 \u5206\u652F\u4E0E\u4E8B\u4EF6</b>\n\u6B22\u8FCE\u6765\u5230\u5C94\u8DEF\u53E3\u3002\u4F60\u60F3\u53BB\u54EA\u91CC\uFF1F"
+      Next: 0
+      RoleAction:
+      - RoleID: 101
+        ActionType: Pop
+        Emote: Happy
+        RolePos: 0
+      PlotSetBack:
+      - SetType: CrossFade
+        BackName: demo.stage
+      Branch:
+      - Key: "\u6CBF\u68EE\u6797\u5C0F\u5F84\u524D\u8FDB"
+        Target: 2002
+      - Key: "\u8FD4\u56DE\u6E29\u6696\u7684\u6751\u5E84"
+        Target: 2003
+      Events:
+      - eventId: 797ec8fd-b6fe-41b0-9ca0-f7a1475da8b1
+        eventName: wait
+        parameters:
+        - .2
+        executionOrder: -1
+        description: 
+        createdAt: 1793166092197
+        callbackList: 1
+      - eventId: cbb7212d-a25f-472f-b184-ba73b9e2d314
+        eventName: signal
+        parameters:
+        - junction.ready
+        executionOrder: 1
+        description: 
+        createdAt: 1793166092198
+        callbackList: 
+    - ScenesID: 2002
+      PlotRoleID: 101
+      Dialog: "\u4F60\u9009\u62E9\u4E86\u68EE\u6797\u3002\n\u89D2\u8272\u79FB\u52A8\u3001\u8868\u60C5\u3001\u80CC\u666F\u3001\u97F3\u6548\u3001\u7279\u6548\u4E0E\u56DE\u8C03\u94FE\u5171\u4EAB\u540C\u4E00\u4E2A\u64AD\u653E\u6838\u5FC3\u3002"
+      Next: 0
+      RoleAction:
+      - RoleID: 101
+        ActionType: Move
+        Emote: Surprised
+        RolePos: 2
+      PlotSetBack:
+      - SetType: CrossFade
+        BackName: demo.stage
+      Branch: []
+      Events:
+      - eventId: a72088e5-0b86-440c-91dd-8872d1ddbaa3
+        eventName: set
+        parameters:
+        - route
+        - "\u68EE\u6797"
+        executionOrder: -1
+        description: 
+        createdAt: 1793166092198
+        callbackList: 1
+      - eventId: 26ced310-0e89-45f0-8ffc-ee3547f91a0a
+        eventName: sound
+        parameters:
+        - demo.bell
+        executionOrder: 1
+        description: 
+        createdAt: 1793166092198
+        callbackList: 2
+      - eventId: c96a00a0-b19c-4d38-8761-1429ea6189e0
+        eventName: effect
+        parameters:
+        - demo.flash
+        - .25
+        executionOrder: 2
+        description: 
+        createdAt: 1793166092198
+        callbackList: 3
+      - eventId: eebe0481-565a-4541-ba60-96176bbb374d
+        eventName: signal
+        parameters:
+        - route.ready
+        - ${route}
+        executionOrder: 3
+        description: 
+        createdAt: 1793166092198
+        callbackList: 
+    - ScenesID: 2003
+      PlotRoleID: 101
+      Dialog: "\u4F60\u9009\u62E9\u4E86\u6751\u5E84\u3002\n\u89D2\u8272\u79FB\u52A8\u3001\u8868\u60C5\u3001\u80CC\u666F\u3001\u97F3\u6548\u3001\u7279\u6548\u4E0E\u56DE\u8C03\u94FE\u5171\u4EAB\u540C\u4E00\u4E2A\u64AD\u653E\u6838\u5FC3\u3002"
+      Next: 0
+      RoleAction:
+      - RoleID: 101
+        ActionType: Move
+        Emote: Happy
+        RolePos: 0
+      PlotSetBack:
+      - SetType: CrossFade
+        BackName: demo.stage
+      Branch: []
+      Events:
+      - eventId: ef0059ca-04ac-4d85-9151-f62701c73bc6
+        eventName: set
+        parameters:
+        - route
+        - "\u6751\u5E84"
+        executionOrder: -1
+        description: 
+        createdAt: 1793166092198
+        callbackList: 1
+      - eventId: 9b215d33-1d43-47ac-a076-ecdd17547765
+        eventName: sound
+        parameters:
+        - demo.bell
+        executionOrder: 1
+        description: 
+        createdAt: 1793166092198
+        callbackList: 2
+      - eventId: 1d01b07e-249d-4d9c-befb-73c907adc682
+        eventName: effect
+        parameters:
+        - demo.flash
+        - .25
+        executionOrder: 2
+        description: 
+        createdAt: 1793166092198
+        callbackList: 3
+      - eventId: 5779b09c-eaee-4d80-a7aa-da86a72e4617
+        eventName: signal
+        parameters:
+        - route.ready
+        - ${route}
+        executionOrder: 3
+        description: 
+        createdAt: 1793166092198
+        callbackList: 
+    Actors:
+    - ID: 101
+      Name: "\u5411\u5BFC"
+      Thespian: demo.guide
+    Dialogs: []
+    Constants: []

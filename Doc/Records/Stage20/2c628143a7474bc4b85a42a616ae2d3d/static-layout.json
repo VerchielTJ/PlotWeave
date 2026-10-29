@@ -1,0 +1,17 @@
+{
+    "id": "2f5e5d94562e4ffa9d5a51943b53157b",
+    "scene": "Assets/PlotWeaveLocal/OriginalUI/Import_bd3086775b/Interactive_392c3521/OriginalAuthoring.unity",
+    "before": "e15ea027123d41493323ea9f371ab5fca297e4ffcd2675f0b942e5a38021c577",
+    "after": "e4db937a47b66b6742fc9adb227e86be614afbc0ef36873d9602e01efea6c85d",
+    "backup": "Library/PlotWeaveRecovery/StaticLayout/2f5e5d94562e4ffa9d5a51943b53157b/OriginalAuthoring.unity",
+    "status": "passed",
+    "previousMode": "ConstantPixelSize",
+    "previousReference": {
+        "x": 800.0,
+        "y": 600.0
+    },
+    "reference": {
+        "x": 3200.0,
+        "y": 1500.0
+    }
+}

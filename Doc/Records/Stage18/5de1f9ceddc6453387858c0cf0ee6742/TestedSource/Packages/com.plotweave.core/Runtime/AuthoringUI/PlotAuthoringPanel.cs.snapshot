@@ -1,0 +1,153 @@
+#if UNITY_EDITOR
+using System;
+using System.Globalization;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+namespace PlotWeave.Authoring.UI
+{
+    public sealed class PlotAuthoringPanel : MonoBehaviour
+    {
+        public PlotAuthoringProject project;
+        public PlotEditingSession Session { get; private set; }
+        public PlotNodeView NodeView { get; private set; }
+        public ParameterList ListEditor { get; private set; }
+        public Text Status { get; private set; }
+        private RectTransform _canvas;
+        private RectTransform _fields;
+        private Text _current;
+        private DiaLogKeyEditor _textEditor;
+        private Func<UnsavedChoice> _choose;
+        private Func<string, bool> _confirm;
+        private Action<UnityEngine.Object> _inspect;
+        private PlotAtomRowData _rendered;
+        private bool _building;
+        private int? _from;
+        private int? _to;
+        private Button _previewButton;
+        private Button _recoveryButton;
+        private Action _recover;
+        public event Action<int> PreviewRequested;
+        public void Initialize(IPlotAuthoringStore store, Func<UnsavedChoice> choose, Func<string, bool> confirm, Action<UnityEngine.Object> inspect = null)
+        {
+            if (Session != null) throw new InvalidOperationException("制作面板已经初始化");
+            project = store.Project; _choose = choose; _confirm = confirm; _inspect = inspect;
+            foreach (Transform child in transform)
+                if (child.name == "PlotWeaveAuthoringCanvas" || child.name == "AuthoringEventSystem")
+                { child.gameObject.SetActive(false); if (Application.isPlaying) Destroy(child.gameObject); else DestroyImmediate(child.gameObject); }
+            Session = new PlotEditingSession(store); Build();
+            Session.Changed += RefreshStatus; Session.SelectionChanged += RefreshFields;
+            ReloadNodes();
+            var first = store.ListRows().FirstOrDefault(); if (first != null) Session.Select(Id(first), null); else RefreshFields();
+        }
+        private int Id(PlotAtomRowData row) => int.Parse(row.GetColumnSingleValue(project.idColumn), CultureInfo.InvariantCulture);
+        public void Safe(Action action)
+        {
+            if (_building) return;
+            try { action(); }
+            catch (Exception ex) { if (Status != null) { Status.text = ex.Message; Status.color = new Color(1, .62f, .55f); } }
+        }
+        private void Build()
+        {
+            _canvas = PlotUiFactory.Rect("PlotWeaveAuthoringCanvas", transform);
+            var canvas = _canvas.gameObject.AddComponent<Canvas>(); canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            var scale = _canvas.gameObject.AddComponent<CanvasScaler>(); scale.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize; scale.referenceResolution = new Vector2(1600, 900); scale.matchWidthOrHeight = 0;
+            _canvas.gameObject.AddComponent<GraphicRaycaster>();
+            if (UnityEngine.Object.FindObjectOfType<EventSystem>() == null)
+            {
+                var events = new GameObject("AuthoringEventSystem", typeof(EventSystem)); events.transform.SetParent(transform, false);
+                var inputType = Type.GetType("UnityEngine.InputSystem.UI.InputSystemUIInputModule, Unity.InputSystem");
+                if (inputType != null)
+                {
+                    var module = events.AddComponent(inputType); inputType.GetMethod("AssignDefaultActions")?.Invoke(module, null);
+                }
+                else events.AddComponent<StandaloneInputModule>();
+            }
+            var root = PlotUiFactory.Stack(_canvas, "AuthoringRoot", background: true); PlotUiFactory.Stretch(root);
+            var toolbar = PlotUiFactory.Stack(root, "TopToolbar", true);
+            toolbar.GetComponent<HorizontalLayoutGroup>().childForceExpandWidth = false;
+            _current = PlotUiFactory.Label(toolbar, "CurrentNode", "PlotWeave 制作工具", 36, 20);
+            PlotUiFactory.Size(_current.gameObject).flexibleWidth = 1;
+            PlotUiFactory.Button(toolbar, "SaveWorkspace", "保存", () => Safe(() => { _textEditor.Commit(); Session.Save(); }), 86);
+            PlotUiFactory.Button(toolbar, "ReloadCurrent", "刷新当前", () => Safe(() => { _textEditor.Commit(); if (Session.ResolveUnsaved(_choose)) Session.Discard(); }), 110);
+            PlotUiFactory.Button(toolbar, "ValidateRow", "校验", () => Safe(() => { _textEditor.Commit(); var result = Session.WorkingRow?.Validate(); if (result == null) throw new InvalidOperationException("请选择节点"); result.ThrowIfInvalid(); Status.text = "当前节点校验通过"; }), 86);
+            _previewButton = PlotUiFactory.Button(toolbar, "PreviewNode", "从此节点预览", () => Safe(() => { _textEditor.Commit(); if (Session.CurrentAsset != null && Session.ResolveUnsaved(_choose)) PreviewRequested?.Invoke(Id(Session.CurrentAsset)); }), 155);
+            _previewButton.interactable = false;
+            _recoveryButton = PlotUiFactory.Button(toolbar, "RecoverDraft", "恢复草稿", () => Safe(() => _recover?.Invoke()), 110); _recoveryButton.interactable = false;
+            Status = PlotUiFactory.Label(root, "Status", "准备就绪", 30, 14);
+            var body = PlotUiFactory.Stack(root, "AuthoringBody", true); PlotUiFactory.Size(body.gameObject, flexible: true);
+            body.GetComponent<HorizontalLayoutGroup>().childForceExpandWidth = false;
+            var left = PlotUiFactory.Stack(body, "NodePanel", background: true); PlotUiFactory.Size(left.gameObject, width: 255, flexible: true).flexibleWidth = 0;
+            PlotUiFactory.Label(left, "NodeTitle", "节点管理", 30, 20);
+            var last = Session.Store.ListRows().Select(Id).DefaultIfEmpty(1000).Max();
+            var idInput = PlotUiFactory.Input(left, "NewNodeId", last < int.MaxValue ? (last + 1).ToString(CultureInfo.InvariantCulture) : "", null, placeholderText: "新节点ID");
+            PlotUiFactory.Button(left, "CreateNode", "创建节点", () => Safe(() => { _textEditor.Commit(); Session.Create(Parse(idInput.text), _choose); ReloadNodes(); }));
+            var from = PlotUiFactory.Input(left, "RangeFrom", "", null, placeholderText: "起始ID"); var to = PlotUiFactory.Input(left, "RangeTo", "", null, placeholderText: "结束ID");
+            PlotUiFactory.Button(left, "LoadRange", "读取范围", () => Safe(() => { _from = Parse(from.text); _to = Parse(to.text); ReloadNodes(); }));
+            PlotUiFactory.Button(left, "LoadAll", "读取全部", () => Safe(() => { _from = null; _to = null; ReloadNodes(); }));
+            var scroll = PlotUiFactory.Scroll(left, "NodeScroll"); NodeView = scroll.gameObject.AddComponent<PlotNodeView>();
+            NodeView.Initialize(scroll, project.idColumn, node => Safe(() => { _textEditor.Commit(); Session.Select(node, _choose); ReloadNodes(); }));
+            var rename = PlotUiFactory.Input(left, "RenameId", "", null, placeholderText: "新的节点ID");
+            PlotUiFactory.Button(left, "RenameNode", "重命名当前节点", () => Safe(() => { _textEditor.Commit(); Session.Rename(Parse(rename.text), _choose); ReloadNodes(); Status.text = "已重命名。其他节点的跳转引用请单独检查。"; }));
+            PlotUiFactory.Button(left, "DeleteNode", "删除当前节点", () => Safe(() =>
+            {
+                _textEditor.Commit(); if (Session.CurrentAsset == null) return;
+                if (_confirm != null && !_confirm("删除节点 " + Id(Session.CurrentAsset) + " 的资产文件？其他节点的引用不会自动清理。")) return;
+                Session.Delete(_choose); ReloadNodes();
+            }));
+            var middle = PlotUiFactory.Stack(body, "NodeFieldsPanel", background: true); PlotUiFactory.Size(middle.gameObject, flexible: true);
+            PlotUiFactory.Label(middle, "FieldsTitle", "节点参数", 30, 20);
+            _fields = PlotUiFactory.ScrollStack(PlotUiFactory.Scroll(middle, "NodeFieldsScroll"));
+            var rightScroll = PlotUiFactory.Scroll(body, "TextAndSchemaScroll"); PlotUiFactory.Size(rightScroll.gameObject, width: 400, flexible: true).flexibleWidth = 0;
+            var right = PlotUiFactory.ScrollStack(rightScroll);
+            var texts = PlotUiFactory.Stack(right, "TextEditor"); texts.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            _textEditor = new DiaLogKeyEditor(texts, Session, Safe, _confirm);
+            var schema = PlotUiFactory.Stack(right, "SchemaAssets"); schema.gameObject.AddComponent<ContentSizeFitter>().verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            PlotUiFactory.Label(schema, "SchemaTitle", "类型与基础数据", 30, 18);
+            AssetButton(schema, "表头定义", project.header); AssetButton(schema, "枚举定义", project.header.parameterEnums); AssetButton(schema, "Bean定义", project.header.parameterBean);
+            AssetButton(schema, "演员与通用表", project.actors); AssetButton(schema, "对话表", project.dialogs); AssetButton(schema, "常量表", project.constants);
+            ListEditor = new ParameterList(_canvas, Session, Safe);
+        }
+        private void AssetButton(Transform parent, string title, UnityEngine.Object asset)
+        { if (asset != null) PlotUiFactory.Button(parent, "Inspect_" + title, title, () => _inspect?.Invoke(asset)); }
+        private static int Parse(string text) => int.Parse(text, NumberStyles.Integer, CultureInfo.InvariantCulture);
+        public void ReloadNodes() => NodeView.SetRows(Session.Store.ListRows(_from, _to), Session.CurrentAsset == null ? 0 : Id(Session.CurrentAsset));
+        public void RefreshFields()
+        {
+            if (Session == null || _building) return;
+            _building = true;
+            try
+            {
+                if (_rendered != Session.CurrentAsset) ListEditor.Close();
+                _rendered = Session.CurrentAsset;
+                PlotUiFactory.Clear(_fields);
+                if (Session.WorkingRow != null)
+                {
+                    var editor = new ParameterEditor(Session, Safe, RefreshFields, column => ListEditor.Open(column));
+                    foreach (var column in Session.WorkingRow.headerDefinition.sheets) editor.DrawColumn(_fields, column);
+                }
+                _textEditor.Draw(true); ListEditor.Refresh(); RefreshStatus();
+            }
+            finally { _building = false; }
+        }
+        private void RefreshStatus()
+        {
+            if (Status == null || Session == null) return;
+            Status.color = PlotUiFactory.Foreground;
+            Status.text = Session.HasUnsavedChanges ? "有未保存修改" : "工作副本与保存状态一致";
+            _current.text = "PlotWeave · " + (Session.CurrentAsset == null ? "未选择节点" : "节点 " + Id(Session.CurrentAsset)) + (Session.HasUnsavedChanges ? " *" : "");
+        }
+        public void BindPreview(Action<int> preview) { PreviewRequested += preview; _previewButton.interactable = preview != null; }
+        public void BindRecovery(Action recover) { _recover = recover; _recoveryButton.interactable = recover != null; }
+        public void CommitText() => _textEditor?.Commit();
+        private void Update() { ListEditor?.Update(); }
+        private void OnDestroy()
+        {
+            ListEditor?.Dispose();
+            if (Session != null) { Session.Changed -= RefreshStatus; Session.SelectionChanged -= RefreshFields; Session.Dispose(); }
+        }
+    }
+}
+#endif

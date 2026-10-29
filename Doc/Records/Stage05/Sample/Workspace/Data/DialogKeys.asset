@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9ae956320830b8f87df20c3e97fd342, type: 3}
+  m_Name: DialogKeys
+  m_EditorClassIdentifier: 
+  dialogKeyDataList:
+  - key: demo.start
+    value:
+    - "\u6B22\u8FCE\u4F7F\u7528\u7C7B\u578B\u4E0E\u6570\u636E\u8FC1\u79FB\u6837\u4F8B\u3002"
+    - 
+    - Welcome to the authoring data example.
+    - 
+    - 

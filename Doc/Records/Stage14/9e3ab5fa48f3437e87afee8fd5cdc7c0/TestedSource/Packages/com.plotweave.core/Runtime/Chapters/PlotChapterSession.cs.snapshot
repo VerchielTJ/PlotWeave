@@ -1,0 +1,107 @@
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using PlotWeave.Playback;
+
+namespace PlotWeave.Chapters
+{
+    public enum PlotChapterKind { Main, Daily }
+    public enum PlotChapterState { Idle, Loading, Playing, Reporting, ReportFailed, Completed, Cancelled, Failed, Disposed }
+    public enum PlotChapterExit { Completed, Cancelled, Failed }
+    public sealed class PlotChapterRequest
+    {
+        public PlotChapterKind Kind { get; }
+        public string ChapterID { get; }
+        public PlotChapterRequest(PlotChapterKind kind, string chapterID)
+        { if (!Enum.IsDefined(typeof(PlotChapterKind), kind) || string.IsNullOrWhiteSpace(chapterID)) throw new ArgumentException("章节类型或ID无效"); Kind = kind; ChapterID = chapterID; }
+    }
+    public sealed class PlotChapterContent
+    {
+        public PlotPlaybackDocument Document { get; }
+        public int EntryNode { get; }
+        public bool RequiresCompletionReport { get; }
+        public PlotChapterContent(PlotPlaybackDocument document, int entryNode, bool requiresCompletionReport = true)
+        { Document = (document ?? throw new ArgumentNullException(nameof(document))).Snapshot(); if (entryNode <= 0 || !Document.Nodes.Exists(n => n.ScenesID == entryNode)) throw new ArgumentException("章节入口不存在"); EntryNode = entryNode; RequiresCompletionReport = requiresCompletionReport; }
+    }
+    public sealed class PlotChapterCompletion
+    {
+        public PlotChapterRequest Request { get; }
+        /// <summary>重试时复用；远程实现须用此ID实现结算幂等。</summary>
+        public string CompletionID { get; }
+        public PlotChapterCompletion(PlotChapterRequest request, string completionID)
+        { Request = request ?? throw new ArgumentNullException(nameof(request)); if (string.IsNullOrWhiteSpace(completionID)) throw new ArgumentException("结算ID为空"); CompletionID = completionID; }
+    }
+    public sealed class PlotChapterAcknowledgement { public bool NewlyCompleted { get; } public PlotChapterAcknowledgement(bool newlyCompleted) { NewlyCompleted = newlyCompleted; } }
+    public interface IPlotChapterBackend
+    {
+        Task<PlotChapterContent> LoadAsync(PlotChapterRequest request, CancellationToken cancellation);
+        Task<PlotChapterAcknowledgement> CompleteAsync(PlotChapterCompletion completion, CancellationToken cancellation);
+    }
+    public interface IPlotChapterPlayer
+    { event Action Completed; event Action Closed; event Action<string> Failed; void Play(PlotChapterContent content); void Close(); }
+    public interface IPlotChapterNavigation
+    { void Enter(PlotChapterRequest request); void Return(PlotChapterRequest request, PlotChapterExit reason, bool newlyCompleted); void ShowFailure(string message, bool canRetryReport); }
+
+    /// <summary>主线/日常章节加载、播放、结算确认和返回UI。仅依赖接口；迟到结果不污染后续会话。</summary>
+    public sealed class PlotChapterSession : IDisposable
+    {
+        private readonly IPlotChapterBackend _backend; private readonly IPlotChapterPlayer _player; private readonly IPlotChapterNavigation _navigation;
+        private CancellationTokenSource _cancellation; private int _epoch; private bool _disposed, _entered, _completionClaimed;
+        private PlotChapterRequest _request; private PlotChapterCompletion _completion; private bool _requiresReport;
+        public PlotChapterState State { get; private set; } = PlotChapterState.Idle;
+        public string Error { get; private set; } = "";
+        public Task PendingReport { get; private set; } = Task.CompletedTask;
+        public event Action<PlotChapterState> StateChanged;
+        public PlotChapterSession(IPlotChapterBackend backend, IPlotChapterPlayer player, IPlotChapterNavigation navigation)
+        { _backend = backend ?? throw new ArgumentNullException(nameof(backend)); _player = player ?? throw new ArgumentNullException(nameof(player)); _navigation = navigation ?? throw new ArgumentNullException(nameof(navigation)); _player.Completed += OnCompleted; _player.Closed += OnClosed; _player.Failed += OnFailure; }
+        private void Change(PlotChapterState state) { State = state; StateChanged?.Invoke(state); }
+        private bool Current(int epoch) => !_disposed && epoch == _epoch && _cancellation != null && !_cancellation.IsCancellationRequested;
+        public async Task StartAsync(PlotChapterRequest request)
+        {
+            if (_disposed) throw new ObjectDisposedException(nameof(PlotChapterSession)); if (request == null) throw new ArgumentNullException(nameof(request)); Cancel();
+            _request = request; _completion = null; _completionClaimed = false; PendingReport = Task.CompletedTask; Error = ""; _cancellation = new CancellationTokenSource(); var epoch = ++_epoch; var token = _cancellation.Token; Change(PlotChapterState.Loading);
+            try
+            {
+                var content = await _backend.LoadAsync(request, token); if (!Current(epoch)) return; if (content == null) throw new InvalidOperationException("章节后端返回空内容");
+                _requiresReport = content.RequiresCompletionReport; _entered = true; _navigation.Enter(request); if (!Current(epoch)) return; Change(PlotChapterState.Playing); if (Current(epoch) && State == PlotChapterState.Playing) _player.Play(content);
+            }
+            catch (OperationCanceledException) { if (Current(epoch)) Fail("章节加载已取消"); }
+            catch (Exception error) { if (Current(epoch)) Fail(error.Message); }
+        }
+        private void OnCompleted()
+        {
+            if (_disposed || State != PlotChapterState.Playing || _completionClaimed) return; _completionClaimed = true;
+            if (!_requiresReport) { CompletePlayback(_epoch, false); return; }
+            _completion = new PlotChapterCompletion(_request, Guid.NewGuid().ToString("N")); PendingReport = ReportAsync(_epoch);
+        }
+        private async Task ReportAsync(int epoch)
+        {
+            if (!Current(epoch)) return; Error = ""; Change(PlotChapterState.Reporting); if (!Current(epoch)) return; var token = _cancellation.Token;
+            try
+            {
+                var ack = await _backend.CompleteAsync(_completion, token); if (!Current(epoch)) return; if (ack == null) throw new InvalidOperationException("章节结算返回空确认");
+                CompletePlayback(epoch, ack.NewlyCompleted);
+            }
+            catch (Exception error)
+            { if (!Current(epoch)) return; Error = error.Message; Change(PlotChapterState.ReportFailed); if (Current(epoch)) _navigation.ShowFailure(Error, true); }
+        }
+        public Task RetryReportAsync()
+        { if (_disposed) throw new ObjectDisposedException(nameof(PlotChapterSession)); if (State != PlotChapterState.ReportFailed || _completion == null) throw new InvalidOperationException("没有待重试的结算"); PendingReport = ReportAsync(_epoch); return PendingReport; }
+        private void OnClosed() { if (State == PlotChapterState.Playing) Cancel(); }
+        private void CompletePlayback(int epoch, bool newlyCompleted)
+        { Change(PlotChapterState.Completed); if (!Current(epoch)) return; _player.Close(); if (Current(epoch)) Return(PlotChapterExit.Completed, newlyCompleted); }
+        private void OnFailure(string error) { if (State == PlotChapterState.Playing) Fail(error); }
+        private void Fail(string message)
+        { var epoch = _epoch; Error = message ?? "章节失败"; Change(PlotChapterState.Failed); if (!Current(epoch)) return; _player.Close(); if (!Current(epoch)) return; Return(PlotChapterExit.Failed, false); if (Current(epoch)) _navigation.ShowFailure(Error, false); }
+        private void Return(PlotChapterExit reason, bool newlyCompleted)
+        { if (!_entered) return; _entered = false; _navigation.Return(_request, reason, newlyCompleted); }
+        public void Cancel()
+        {
+            if (_disposed) return; var active = State == PlotChapterState.Loading || State == PlotChapterState.Playing || State == PlotChapterState.Reporting || State == PlotChapterState.ReportFailed;
+            _epoch++; _cancellation?.Cancel(); _cancellation?.Dispose(); _cancellation = null;
+            if (!active) return; var epoch = _epoch; Change(PlotChapterState.Cancelled); if (_epoch != epoch) return; _player.Close(); if (_epoch == epoch) Return(PlotChapterExit.Cancelled, false);
+        }
+        public void Dispose()
+        { if (_disposed) return; Cancel(); _disposed = true; _player.Completed -= OnCompleted; _player.Closed -= OnClosed; _player.Failed -= OnFailure; Change(PlotChapterState.Disposed); }
+    }
+}

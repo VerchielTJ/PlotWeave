@@ -1,0 +1,12 @@
+{
+  "sourceReport": "Tools/PlotWeaveMigration/imported-campaign.json",
+  "sourceSha256": "703e911750abed11d72feb64e156e717385e8042f41fd3637f2d717f50044dab",
+  "id": "b634e485453b4c5d8c359f88fdb01589",
+  "status": "tables-roundtrip-luban-generated-runtime-read-pending",
+  "summaryOnly": true,
+  "root": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545",
+  "nodes": 485,
+  "chapters": 2,
+  "episodes": 4,
+  "rewards": 4
+}

@@ -1,0 +1,12 @@
+{
+  "sourceReport": "Tools/PlotWeaveMigration/campaign-ui.json",
+  "sourceSha256": "d18d51047af657820fcba65f3c67bb5efce991496d41d1d6ba96b5ce6aec610d",
+  "id": "4369937d50c649caae4828cddaf1e310",
+  "status": "prepared-runtime-verification-pending",
+  "summaryOnly": true,
+  "root": "Assets/PlotWeaveLocal/OriginalUI/Import_bd3086775b/Campaign_4369937d",
+  "scene": "Assets/PlotWeaveLocal/OriginalUI/Import_bd3086775b/Campaign_4369937d/OriginalCampaign.unity",
+  "chapters": 2,
+  "episodes": 4,
+  "rewards": 4
+}

@@ -1,0 +1,50 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using PlotWeave.Authoring;
+using PlotWeave.Authoring.Luban;
+using UnityEditor;
+using UnityEngine;
+using ValueType = PlotWeave.Authoring.PlotEventTypeAsset.ValueType;
+
+namespace PlotWeave.Generation
+{
+    public static class PlotNestedBeanExample
+    {
+        public const string Root = "Assets/PlotWeaveMigration/Stage12_Nested";
+        public const string ProjectPath = Root + "/Workspace.asset";
+        public const string Generated = Root + "/Contracts";
+        public static PlotAuthoringExample Create()
+        {
+            var data = PlotGenerationExample.CreateDefault();
+            data.Beans.eventTypes.Add(new PlotEventTypeAsset.EventTypeDefinition { eventKey = "TransformCue", displayName = "变换参数", parameters = new List<PlotEventTypeAsset.EventParameter> { Parameter("X", ValueType.Float), Parameter("Visible", ValueType.Bool) } });
+            data.Beans.eventTypes.Add(new PlotEventTypeAsset.EventTypeDefinition { eventKey = "CameraCue", displayName = "嵌套镜头", parameters = new List<PlotEventTypeAsset.EventParameter> { Parameter("ActorID", ValueType.Int), new PlotEventTypeAsset.EventParameter { paramKey = "Transform", displayName = "变换", valueType = ValueType.CustomBean, beanType = "TransformCue" } } });
+            data.Header.sheets.Add(new PlotAtomDataHeaderAsset.ColumnDefinition { columnName = "CameraCue", description = "镜头参数", valueType = ValueType.CustomBean, typeKey = "CameraCue", columnIndex = 13, members = 3 });
+            data.Header.sheets.Add(new PlotAtomDataHeaderAsset.ColumnDefinition { columnName = "*CameraCues", description = "镜头列表", valueType = ValueType.CustomBean, typeKey = "CameraCue", columnIndex = 16, members = 3, IsList = true });
+            data.Row.SetColumnRowValues("CameraCue", new List<string> { "101", "1.25", "true" }); data.Row.AddRowToColumn("*CameraCues", new List<string> { "102", "-.5", "false" }); data.Row.AddRowToColumn("*CameraCues", new List<string> { "103", "0", "true" }); return data;
+        }
+        private static PlotEventTypeAsset.EventParameter Parameter(string key, ValueType type) => new PlotEventTypeAsset.EventParameter { paramKey = key, displayName = key, valueType = type };
+        [MenuItem("Tools/PlotWeave/迁移样例/生成嵌套Bean全链样例")]
+        public static void PrepareVerification()
+        {
+            Directory.CreateDirectory(Root); AssetDatabase.Refresh(); var project = AssetDatabase.LoadAssetAtPath<PlotAuthoringProject>(ProjectPath);
+            if (project == null)
+            {
+                var sample = Create();
+                try
+                {
+                    sample.Save(Root + "/Data"); var nodes = Root + "/Nodes"; Directory.CreateDirectory(nodes); AssetDatabase.Refresh(); var node = UnityEngine.Object.Instantiate(sample.Row); AssetDatabase.CreateAsset(node, nodes + "/1001.asset");
+                    project = ScriptableObject.CreateInstance<PlotAuthoringProject>(); project.header = sample.Header; project.dialogs = sample.Dialog; project.constants = sample.Constant; project.actors = sample.Actors; project.nodeFolder = nodes; AssetDatabase.CreateAsset(project, ProjectPath); AssetDatabase.SaveAssets();
+                }
+                finally { foreach (var asset in sample.Assets) if (!EditorUtility.IsPersistent(asset)) UnityEngine.Object.DestroyImmediate(asset); }
+            }
+            var store=new PlotEditorManager(project);if(!project.dialogs.HasKey("nested.end")){project.dialogs.AddDialogKey("nested.end");project.dialogs.SetDialogContent("nested.end",0,"嵌套数据已生成并读回。");EditorUtility.SetDirty(project.dialogs);}
+            foreach(var id in new[]{1002,1003})if(store.FindRow(id)==null){var terminal=store.CreateRow(id);terminal.SetColumnSingleValue(project.dialogColumn,"nested.end");EditorUtility.SetDirty(terminal);}AssetDatabase.SaveAssets();
+            PlotDataStructureGenerator.GenerateAllDataStructures(project.header, new[] { new PlotTableGeneration { Asset = project.actors, IsThespianTable = true } }, new[] { new PlotKeyValueGeneration { Name = "PlotDialogKey" }, new PlotKeyValueGeneration { Name = "PlotConstantKey" } }, "PlotWeave.Generated.Stage12.Nested").Write(Generated);
+            var profile = AssetDatabase.LoadAssetAtPath<PlotLubanProfile>(Root + "/LubanProfile.asset");
+            if (profile == null)
+            { profile = ScriptableObject.CreateInstance<PlotLubanProfile>(); profile.project = project; profile.generatedRoot = Root + "/LubanGenerated"; profile.generatedNamespace = "PlotWeaveLubanNested"; profile.assemblyName = "PlotWeave.Luban.Nested.Sample"; profile.dotnetPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFiles), "dotnet/dotnet.exe"); AssetDatabase.CreateAsset(profile, Root + "/LubanProfile.asset"); AssetDatabase.SaveAssetIfDirty(profile); }
+            var report = PlotLubanPipeline.Run(profile); Debug.Log("PLOTWEAVE_STAGE12_NESTED " + report.id);
+        }
+    }
+}

@@ -1,0 +1,1512 @@
+{
+  "layouts": [
+    {
+      "source": "Assets/Scenes/PlotEditorScene.unity",
+      "nodes": 3904,
+      "components": {
+        "Toggle": 171,
+        "Animator": 83,
+        "Button": 89,
+        "Behaviour": 243,
+        "Image": 2141,
+        "CanvasRenderer": 3196,
+        "LayoutElement": 411,
+        "Text": 304,
+        "TMP_Text": 736,
+        "Mask": 175,
+        "TMP_InputField": 180,
+        "ScrollRect": 175,
+        "TMP_Dropdown": 171,
+        "RectMask2D": 181,
+        "Scrollbar": 174,
+        "GridLayoutGroup": 180,
+        "ContentSizeFitter": 17,
+        "VerticalLayoutGroup": 16,
+        "GraphicRaycaster": 2,
+        "CanvasScaler": 1,
+        "Canvas": 2,
+        "HorizontalLayoutGroup": 4,
+        "AudioListener": 1,
+        "Camera": 1,
+        "StandaloneInputModule": 1,
+        "EventSystem": 1,
+        "CanvasGroup": 6
+      },
+      "behaviours": {
+        "Assets/PlotEditor/PlotComponent/Scripts/PlotNodeButton.cs": 30,
+        "Assets/PlotEditor/PlotComponent/Scripts/Parameter.cs": 170,
+        "Assets/PlotEditor/PlotComponent/Scripts/ParameterEditor.cs": 10,
+        "Assets/PlotEditor/PlotComponent/Scripts/EvtListParameterEditor.cs": 10,
+        "Assets/PlotEditor/PlotComponent/Scripts/RowUnit.cs": 10,
+        "Assets/PlotEditor/PlotComponent/Scripts/NodeCreater.cs": 2,
+        "Assets/PlotEditor/PlotComponent/Scripts/TestPlayerButton.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/NodeListLoader.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/PlotNodeView.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/ParameterList.cs": 1,
+        "UnityPackage/UniversalAdditionalCameraData.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/DiaLogKeyEditor.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/NodeRowDataEditor.cs": 1,
+        "Assets/HotUpdate/MainAssemble/Pool/ObjectPool.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/PlotEditorPanel.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/CurrentNodeEditor.cs": 1,
+        "Assets/PlotEditor/PlotComponent/Scripts/EditorPlotPlayerUI.cs": 1
+      }
+    },
+    {
+      "source": "Assets/Prefabs/UI/PlotPlayerUI/PlotButton.prefab",
+      "nodes": 3,
+      "components": {
+        "CanvasRenderer": 3,
+        "Image": 2,
+        "LayoutElement": 1,
+        "Button": 1,
+        "Animator": 1,
+        "HorizontalLayoutGroup": 1,
+        "TMP_Text": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/Prefabs/UI/PlotPlayerUI/PlotPlayerUI.prefab",
+      "nodes": 98,
+      "components": {
+        "CanvasRenderer": 92,
+        "Image": 47,
+        "Text": 30,
+        "LayoutElement": 4,
+        "Mask": 1,
+        "CanvasGroup": 6,
+        "TMP_Text": 6,
+        "Button": 3,
+        "Animator": 4,
+        "HorizontalLayoutGroup": 5,
+        "ContentSizeFitter": 3,
+        "Canvas": 1,
+        "GraphicRaycaster": 1,
+        "Behaviour": 1,
+        "VerticalLayoutGroup": 1,
+        "ScrollRect": 1
+      },
+      "behaviours": {
+        "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI.cs": 1
+      }
+    },
+    {
+      "source": "Assets/Prefabs/UI/PlotPlayerUI/WindowMask.prefab",
+      "nodes": 97,
+      "components": {
+        "CanvasRenderer": 91,
+        "Text": 30,
+        "Image": 48,
+        "CanvasGroup": 6,
+        "Animator": 4,
+        "TMP_Text": 4,
+        "Canvas": 1,
+        "GraphicRaycaster": 1,
+        "VerticalLayoutGroup": 1,
+        "LayoutElement": 1,
+        "ScrollRect": 1,
+        "Button": 3,
+        "RectMask2D": 1,
+        "Mask": 1,
+        "HorizontalLayoutGroup": 2,
+        "ContentSizeFitter": 2
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/Prefabs/UI/PlotMianUI/PlotMianUI.prefab",
+      "nodes": 21,
+      "components": {
+        "CanvasGroup": 5,
+        "RectMask2D": 1,
+        "CanvasRenderer": 13,
+        "Image": 11,
+        "ContentSizeFitter": 2,
+        "Behaviour": 2,
+        "HorizontalLayoutGroup": 4,
+        "Canvas": 1,
+        "GraphicRaycaster": 1,
+        "Animator": 3,
+        "ScrollRect": 1,
+        "Button": 2,
+        "TMP_Text": 1,
+        "LayoutElement": 1
+      },
+      "behaviours": {
+        "Assets/HotUpdate/MainAssemble/UI/BtnGroup.cs": 1,
+        "Assets/HotUpdate/UI/PlotMianUI/PlotMianUI.cs": 1
+      }
+    },
+    {
+      "source": "Assets/Prefabs/UI/PlotChapterUI/PlotChapterUI.prefab",
+      "nodes": 34,
+      "components": {
+        "CanvasRenderer": 21,
+        "Image": 16,
+        "Button": 3,
+        "Animator": 4,
+        "CanvasGroup": 5,
+        "TMP_Text": 5,
+        "ContentSizeFitter": 4,
+        "Behaviour": 3,
+        "VerticalLayoutGroup": 2,
+        "ScrollRect": 3,
+        "RectMask2D": 3,
+        "GridLayoutGroup": 1,
+        "Canvas": 1,
+        "GraphicRaycaster": 1,
+        "HorizontalLayoutGroup": 3,
+        "LayoutElement": 1
+      },
+      "behaviours": {
+        "Assets/HotUpdate/MainAssemble/UI/BtnGroup.cs": 2,
+        "Assets/HotUpdate/UI/PlotChapterUI/PlotChapterUI.cs": 1
+      }
+    },
+    {
+      "source": "Assets/Prefabs/UI/PlotSkipTop/PlotSkipTop.prefab",
+      "nodes": 16,
+      "components": {
+        "CanvasRenderer": 14,
+        "TMP_Text": 5,
+        "HorizontalLayoutGroup": 1,
+        "ContentSizeFitter": 1,
+        "Image": 8,
+        "LayoutElement": 2,
+        "Button": 4,
+        "Animator": 4,
+        "CanvasGroup": 3,
+        "Canvas": 1,
+        "GraphicRaycaster": 1,
+        "Behaviour": 1
+      },
+      "behaviours": {
+        "Assets/HotUpdate/UI/PlotSkipTop/PlotSkipTop.cs": 1
+      }
+    },
+    {
+      "source": "Assets/Prefabs/PrefabDynamicLoad/UI/ScrollItem/PlotItemNode.prefab",
+      "nodes": 11,
+      "components": {
+        "CanvasRenderer": 11,
+        "Image": 4,
+        "TMP_Text": 3,
+        "Button": 1,
+        "Animator": 1,
+        "CanvasGroup": 1,
+        "LayoutElement": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/Prefabs/PrefabDynamicLoad/UI/ScrollItem/PlotItemSelect.prefab",
+      "nodes": 9,
+      "components": {
+        "CanvasRenderer": 9,
+        "Image": 7,
+        "TMP_Text": 1,
+        "Button": 1,
+        "Animator": 1,
+        "CanvasGroup": 1,
+        "LayoutElement": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1001.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1002.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1003.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1004.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1005.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1006.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1007.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1008.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1009.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1010.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1011.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1012.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1013.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1014.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1015.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1016.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1017.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1018.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1019.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1020.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1021.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1022.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1023.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2001.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2002.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2003.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2004.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2005.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2006.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2007.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2008.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2009.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2010.prefab",
+      "nodes": 2,
+      "components": {
+        "CanvasRenderer": 2,
+        "Image": 1,
+        "RectMask2D": 1
+      },
+      "behaviours": {}
+    },
+    {
+      "source": "Assets/Prefabs/PrefabDynamicLoad/UI/ScrollItem/PropNode_Award.prefab",
+      "nodes": 5,
+      "components": {
+        "CanvasRenderer": 5,
+        "Image": 3,
+        "AspectRatioFitter": 3,
+        "Button": 1,
+        "Animator": 1,
+        "CanvasGroup": 1,
+        "TMP_Text": 1
+      },
+      "behaviours": {}
+    }
+  ],
+  "resourcesByKind": {
+    ".controller": 6,
+    ".jpg": 27,
+    ".png": 60,
+    ".mat": 2,
+    ".anim": 9
+  },
+  "issues": [],
+  "sources": [
+    {
+      "path": "Assets/Scenes/PlotEditorScene.unity",
+      "sha256": "005f0629d0c6dafebb861760776d7db8d05a0a82b40d8fda4597c8c86f9b71cb"
+    },
+    {
+      "path": "Assets/Prefabs/UI/PlotPlayerUI/PlotButton.prefab",
+      "sha256": "7edf5b666a4e3f61098ab7b2723998fb74d510952bbc17a0d1a7a65117f56deb"
+    },
+    {
+      "path": "Assets/Prefabs/UI/PlotPlayerUI/PlotPlayerUI.prefab",
+      "sha256": "b9d5e97760461cb0456aaef348725f0fe42631d21879c23ebf7c25d30d2d2501"
+    },
+    {
+      "path": "Assets/Prefabs/UI/PlotPlayerUI/WindowMask.prefab",
+      "sha256": "bdf0b6113018ef0e46a1e2ff264c3cf71010a5a6c459f90c5a28d2c983cdcf7a"
+    },
+    {
+      "path": "Assets/Prefabs/UI/PlotMianUI/PlotMianUI.prefab",
+      "sha256": "6c64c6f284f89675d377e490c5dc805291f390cf11c2ebdbec9d4499257f92ed"
+    },
+    {
+      "path": "Assets/Prefabs/UI/Public/ReturnBtn.prefab",
+      "sha256": "633964f0573e73b42b5f6b59e90171ffc14827994b2d31f222064c2e784fb694"
+    },
+    {
+      "path": "Assets/Prefabs/UI/PlotChapterUI/PlotChapterUI.prefab",
+      "sha256": "baae47a07928d1774fcb1ed6d452d9714d3f1703c8dd9bf61b68e6a684de0d1e"
+    },
+    {
+      "path": "Assets/Prefabs/UI/PlotSkipTop/PlotSkipTop.prefab",
+      "sha256": "d8e25d71ce152918a8e2eec0ca88a1cc0a9a6f9f02ea008514c45de8b1964be2"
+    },
+    {
+      "path": "Assets/Prefabs/PrefabDynamicLoad/UI/ScrollItem/PlotItemNode.prefab",
+      "sha256": "a427cd3a5d4a08dcb5a4316dec5685d2beff3160bc4c9d477b40f6c65a7e0ebb"
+    },
+    {
+      "path": "Assets/Prefabs/PrefabDynamicLoad/UI/ScrollItem/PlotItemSelect.prefab",
+      "sha256": "ad49716b5b12eb29775b93e91b7c1d9fd60ef8f37b0a1e1a46bd6237b9b1c9e5"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1001.prefab",
+      "sha256": "7afbb58f6a3ff2b126aec6d71deb3c1a99db465341afa42626f77e1cddd4c3a8"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1002.prefab",
+      "sha256": "b713dc3c820abdad5e0d44527c63c740ce35d30fbf4c290d8fb64ad4fef32934"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1003.prefab",
+      "sha256": "2d02c1411805c32fbd0096ce0a1b9e0a30137167d6875069608152a1a038acfe"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1004.prefab",
+      "sha256": "d188247a9986d651068bbed4fac825396dd685b37da2e5d63f1a3e2e889dc65b"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1005.prefab",
+      "sha256": "633439bb1ddd4ba93ef7e0c13d53d04835cb9a225d524e722f7013e0979dc485"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1006.prefab",
+      "sha256": "e098265d9d7b020c84f16c47ce0864c15352d3f8f704e1f82c87309a6b28152e"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1007.prefab",
+      "sha256": "2ecfed20d4fc53119a8a8e93317de869fd8295b1e809602d92f00dabe9a64291"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1008.prefab",
+      "sha256": "607cb612b9697d6c6a46e61eb55af18015798c1febdb3662ce27cd4bf3a010d4"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1009.prefab",
+      "sha256": "d60641e9696f301b06349f0552f2ad67ebb3d1fd9f0888ea252867d4c558dbe0"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1010.prefab",
+      "sha256": "9c2526c1ef95f7e193e7efa085019bf1eb79ba02e4e70e232beee09bdc18f2c7"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1011.prefab",
+      "sha256": "74a25c55877aa1c83cd59cbeb3f570e5c6ad6fd310ee92f570f88a083e84b721"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1012.prefab",
+      "sha256": "3e820762cba02952a43ba71f737f6c89b0f82f544283bbabfd2ab1f7c77039a0"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1013.prefab",
+      "sha256": "50ce2c4953efc78913921fd2b000ad0e8d2b2e54df9566f3a92ee25cbf29cd58"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1014.prefab",
+      "sha256": "d14ab4878647c60c65bb2026df57cb79a6cbd88d49e37beff1f2b46d3e908d9f"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1015.prefab",
+      "sha256": "99c35b534797e32e865e32b2d6341d56ecd7347ddfc812ef0543822923a1ab2c"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1016.prefab",
+      "sha256": "8f9601ff526a8fdf133730f199cd133a917dc6bee4b6add969a3d3a1865945a5"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1017.prefab",
+      "sha256": "89a45b849a2403265892c3dd73bda2682d5592b8a67f1846b4929e3785c7e164"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1018.prefab",
+      "sha256": "b6c6839a54ec7d21af8adf18733ed5d2c8c986ca113579cbf7fbb3e006794efa"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1019.prefab",
+      "sha256": "274912a61435bf8c8838917ccccd5147eff1c4b074fe95c4a274b7ec1aaa831e"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1020.prefab",
+      "sha256": "97bae73f5d0afe013719093bf6d2bbd32d1944081c87b2515dcf851b1558ff96"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1021.prefab",
+      "sha256": "9149771637e0407b28fbd91fc32c9d94f67f214507136659758f25fda91e05e9"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1022.prefab",
+      "sha256": "854873cb3629a371e7d7808b045f2a22f2d5d20058ef9f5f9e14268948429cb1"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian1023.prefab",
+      "sha256": "7240da71894b4016db781b2781287178c74819d629704d5a5e3cd5c60ed63ce0"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2001.prefab",
+      "sha256": "778264ae5c79985771642c93fd8e0132b53e7df4d66275ef8f5f9a1e1a030f5b"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2002.prefab",
+      "sha256": "8efbb9ada099f56dd93c383d6d968b7a95963645d05735b2d70b7d5c255dde87"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2003.prefab",
+      "sha256": "f76cbeb1d39e0560c061d72631a7bb1069c889a4ca910b91764f08cedbaa3b2b"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2004.prefab",
+      "sha256": "ec0ebd05297d05cc933b252801584d6c180e7cb5a57c321da33c1162c403dfca"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2005.prefab",
+      "sha256": "2e3958c9954c73ff5dc8d48c45c562f3f3846242e33cd1203c62e4694584c336"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2006.prefab",
+      "sha256": "7f8a858409db2a966977c53242b0a47c7e43381af9627d5da53795686d1f07e8"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2007.prefab",
+      "sha256": "6fc3d0cd1b3cd3d1a08456d8351cb5b392fe109afb71a0f9da411b42cb8ae92e"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2008.prefab",
+      "sha256": "0e45483371852f495e4f36190ca0c51837f8fadd2763f0e11f8dc785fcf93636"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2009.prefab",
+      "sha256": "d520d7fb70e417a285c7a813de33f54cc208d694a7e7164bb9e7ce494c5b13d1"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PThespian/Thespian2010.prefab",
+      "sha256": "af78ba393c79e1276edb27b4c95ed917ca0671b076f1a5c46023d26e85a23112"
+    },
+    {
+      "path": "Assets/Prefabs/PrefabDynamicLoad/UI/ScrollItem/PropNode_Award.prefab",
+      "sha256": "b69d0dc4b13bc87299fee748af4ce99178a5e8119c7f3face35e20d576a4ed78"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/Public/Button.controller",
+      "sha256": "96575ac8af65ad611b19db1ade65c42a2de7ff226938143ebbd7b412d5fec227"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/PlotPlayerUI/JumpIcon.controller",
+      "sha256": "cf5ccb26e1b0945ef568dde3ae11258807b5bbb3858ab5c10b380c0c5014fa9e"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/SceneArtWork/业务区1.jpg.meta",
+      "sha256": "7324bb175603b8e77a5f36045f84202116521b957624801f24b12402487ba840"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/SceneArtWork/业务区1.jpg",
+      "sha256": "de60b5f1b1d1dce13c545d2106885cfea2cc631f0afa1f891751886978194862"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_Play_Button_Play_St_icon.png.meta",
+      "sha256": "b1e186fc45d7969236f09d7e16035d0bae543663ae893a5009d0fefbb631f4c1"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_Play_Button_Play_St_icon.png",
+      "sha256": "e69ad3e2662c20bed7c5759ed58788c1b5404e66c24b9d9a2cea7543e8a0b2a7"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_Ctrl_ButtonCom_Line.png.meta",
+      "sha256": "68b5bbdd7dd9007025fdd0fc92bb0396cb4dd5a04f4aea0412f9cdb54e6012c6"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_Ctrl_ButtonCom_Line.png",
+      "sha256": "0a72687223330cbebac0ba6bb82ed0641b1f8f5bb901820b78b1e1bef2cedb8f"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_Dialog_Box_bg.png.meta",
+      "sha256": "57ce8917297211e1df08a6ac5bced43b247323bc3f10bf963c0e9e6fb343015a"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_Dialog_Box_bg.png",
+      "sha256": "0228e1b6cceaafa3cc5dba6475eb885ef1428815e0adb5771805ecf14d39d00e"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_RoloNameCom_icon.png.meta",
+      "sha256": "8e73cc50801cb0d97b30d47414fd86e4daf158b3ebd73d65cbcf29c3cffc1ea2"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_RoloNameCom_icon.png",
+      "sha256": "0f5c417f6dc784ebd74db812eb2030ba9c79ff0464c32f7d132154c3fd4e6dd7"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/PlotPlayerUI/PlotPlayerUI.controller",
+      "sha256": "0c3827ac2d810abdece29432c3cc691d66b14dd0a68e2b39615815eb981b9a6c"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_Play_Button_Play_bg.png.meta",
+      "sha256": "9ee94326b754bf54da3a5f34a58eaa2da03597325f37713b2f2b9887161bbfae"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_Play_Button_Play_bg.png",
+      "sha256": "89090524ed562b5399338c8c19ef35bd724e18cd358c8d00de03855827d58771"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_Dialog_Box_icon.png.meta",
+      "sha256": "ee609e253792013c9cb4250a9b247d400a2fca959a8ee4c32cf0bb272ec6667f"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_Dialog_Box_icon.png",
+      "sha256": "f172a230699668db731d4fdde11b50a5c1aaa9f2d401558b48f792b58ad5d756"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_Play_Button_Play_Go_icon.png.meta",
+      "sha256": "b479c0971ac62fb55517a20a5cc34d24c63312611550a6d85e4c38e22b20338b"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_Play_Button_Play_Go_icon.png",
+      "sha256": "a5f67c22f932849b2307eff3d5d4afee03bdcab3562eb39fb882d319f60eef2a"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_Skip_Button_btn.png.meta",
+      "sha256": "09832bcfce01b15e6fa9f97efcc56e24110bb728acba1fa8332db80744caa7bb"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_Skip_Button_btn.png",
+      "sha256": "4b236c140615ad4712e16de520cd18773f16eaefeb5a612033ce31c0d3c5042e"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_RoloNameCom_bg.png.meta",
+      "sha256": "5c8a8dd727c1b595f1e13da46b840d8e37a3b57326bd1d41eb5eedbcc4ccc669"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlay/PlotPlay_RoloNameCom_bg.png",
+      "sha256": "23ce44348a086c8fb93dd9ccdcbb824e232cdde8e8c8a931b77165a790c7a785"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_kaiq_icon.png.meta",
+      "sha256": "704e0b1b19e93cd63af69201ecca9d1932dd5d02507faf485447d347d95fc4de"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_kaiq_icon.png",
+      "sha256": "c78c25b088c1e5ec12a5791ed6dc47fa133339f88b1b4148a8060f14ffbf0c2a"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Public_ItemBox_bg/PlotButton_White.png.meta",
+      "sha256": "5bc22bf679ab404b0ba1ac73748bc74336d6875df8fb6bbd47193e9c43cd575f"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Public_ItemBox_bg/PlotButton_White.png",
+      "sha256": "9adb96e089235bea09d13954e124ddff6313e3f543e6b8dcabe68be53e4665b3"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_duihua_icon.png.meta",
+      "sha256": "78e4aefe18f469e80223ff0a96e4764b879c30f124494ad8defd7d265a9688cd"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_duihua_icon.png",
+      "sha256": "f448a7b03ad54c2bd65b52dac91592accd58e5f3d7ea88d5db2e5846d4d5afb4"
+    },
+    {
+      "path": "Assets/UITp/剧情播放/行动界面-故事-剧情-标注图20250811.png.meta",
+      "sha256": "e3dc0b303c465da5b8332046665655bc5e898db7b2dce172ec79065e8466bed6"
+    },
+    {
+      "path": "Assets/UITp/剧情播放/行动界面-故事-剧情-标注图20250811.png",
+      "sha256": "520a65e33f534dad32113f8fea8b8d5ec0269bc06e7f14b4a5e135d67b40d37d"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_duihua_next.png.meta",
+      "sha256": "89c6bdba9ad0b97ed1815d8bf8c42679bd01fbfb30cfa79204de17f92fc98fe2"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_duihua_next.png",
+      "sha256": "a485e4853e7e35d56ea5f55f2ff20e79b9a305bd25fed0fa5607537aedd45000"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_zidkaiq_icon.png.meta",
+      "sha256": "761740a600b0602d943bd3ccb823a95ddc2028cc2c05261cbdc1fec6d7f7f755"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_zidkaiq_icon.png",
+      "sha256": "3c72fa5931765ebcb6a1be4752815fded10d59b51f0415c48ca0b65a2622608e"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/PlotChapterUI/PlotChapterUI.controller",
+      "sha256": "002de7152a6a2a8c95c52e4e225463fa9289b29b85d22066f1a254ae5d01494c"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_zidguanbi_icon.png.meta",
+      "sha256": "0b292d88cee748dfeafa1e76f83a8879a19cd82b11df38452964dea3a2a4300e"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_zidguanbi_icon.png",
+      "sha256": "f04a663c9052a94a85a38af1a0c68390073223a0a699cd854494107574b9cbde"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/SceneArtWork/保护会医疗室1_白天.jpg.meta",
+      "sha256": "5d8c497519ac81643bb770e48693183c0011c81c7267469ba22cdccb951f6258"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/SceneArtWork/保护会医疗室1_白天.jpg",
+      "sha256": "b68a50c5140c897e711f83b2541477ddb127c56551c1da2c05f3ca956e130869"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/ReturnBtn/BackBtn.controller",
+      "sha256": "1fc332ba10c817d6564eedfe8cb5eb0b392d7f6965f40ab5eed3c66fc65b3058"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/ReturnBtn/ck_fh_di.png.meta",
+      "sha256": "df449ac9872aa7417b3957516c38963f4c4e9aa364639d1f159ef1fa523bd49e"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/ReturnBtn/ck_fh_di.png",
+      "sha256": "9dfc1e7ac36a522174a88e932bc99aa5f62459deeb4125cee0f14d5a8b752f36"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/ReturnBtn/ck_fh_zhujm.png.meta",
+      "sha256": "43594aab1b2715c632d91bd58f990184772eef1b1cf4a3390f362c2518db3ac5"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/ReturnBtn/ck_fh_zhujm.png",
+      "sha256": "50321d592865001621e06705c02bbdf5023f1f9018aae35ad4bae1926ead8bb4"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/New Folder/MiSans-Demibold SDF MaterialD10.mat",
+      "sha256": "1f7796864ee4a88dd504c156a1a4641787b7dd42f5c72f03598a07dbbe7b1530"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/ReturnBtn/ck_fh_sux.png.meta",
+      "sha256": "c6a2fa9d2d4652b3545a2c2cbb326cccb495de61f72c9d215aa7ef0093c8d903"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/ReturnBtn/ck_fh_sux.png",
+      "sha256": "4e97f3ae9cd30e40130b11892d6e90d1d56de3a8a1c595d65b4b60ae254814fb"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/ReturnBtn/ck_fh_zs.png.meta",
+      "sha256": "3cbdc382121397cf71569dc39e119519c2ae1710df526d61645d860de6464490"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/ReturnBtn/ck_fh_zs.png",
+      "sha256": "7908dee814eedc3c594848d9fbe041a324f5d5eb9a8f47583fe3430083da02e0"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/ReturnBtn/ck_fh_wenh.png.meta",
+      "sha256": "efe09385d50396902d969e500b722ae5fb73bc29669f115963cc56c515c6aee6"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/ReturnBtn/ck_fh_wenh.png",
+      "sha256": "1bb83c66ca3ee375789d03558daf4d9fa3eb6e34d22224d2ebc2692de654e238"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/ReturnBtn/ck_fh_wenh_di.png.meta",
+      "sha256": "c4776a512a0a8284593b4a040dd140139bc64d92992801711d7c077aaf13f135"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/ReturnBtn/ck_fh_wenh_di.png",
+      "sha256": "1407e8b22f9aa74176c1711b1e30a0be983a3a4e2c7ffe4382cdd48f681c3961"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/ReturnBtn/ck_fh_icon.png.meta",
+      "sha256": "7344d4e8bb791516ee786fe90d66eaa34831e1eb687134e69828d53e0551dd62"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/ReturnBtn/ck_fh_icon.png",
+      "sha256": "813de40bb3f6566f70cae398c295a5f95383145d9852a6b13b293685018fb066"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/FightBtn/xd_xiaojie_anniu.png.meta",
+      "sha256": "cee402fe751e0039112b66292cc4711e0252de75c983eb9387fae56be4da5605"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/FightBtn/xd_xiaojie_anniu.png",
+      "sha256": "b74f0176fdd795c2d63880851faef3d4c7a8bb159e0761bde15d080eef5fc9fb"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/xd_xiaojie_xiaojjianjie_di.png.meta",
+      "sha256": "42018d88ffbfc3567383af7b183f6cf8d6cafbdf6f81675fa43466db648ca906"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/xd_xiaojie_xiaojjianjie_di.png",
+      "sha256": "26f815c499f01c79896b89d88555dab863086574e9e19200ee61721f5e13d924"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/FightBtn/molxunl_anniu_hui.png.meta",
+      "sha256": "5a79e1485ea68e36cea35848c6993e47973e4be7aa2077868abfc8d6965d891f"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/FightBtn/molxunl_anniu_hui.png",
+      "sha256": "b3add0073d621fab0b280d7241f32689e3e3cab582b25bdc9b88b889b541f3d3"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/xd_xiaojie_scjiangl_di.png.meta",
+      "sha256": "ceaf1a67a617c136c7d42231c1110ed9135ba0534c2f74ea577f0fa976653fbc"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/xd_xiaojie_scjiangl_di.png",
+      "sha256": "8811a38029b22222c8560961e8adae075833b12ab5bb0735838409045d1f4215"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/SceneArtWork/保护会会议室1.jpg.meta",
+      "sha256": "30ce2570e2333d395307ed487901f51cdbafec677cedb3753caab3512bef54cf"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/SceneArtWork/保护会会议室1.jpg",
+      "sha256": "d91baf407c601f30c71d6633b6b226f7f53dfdfb9927cd30650ed381d524c75c"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_tanc.png.meta",
+      "sha256": "87768f1f272a7e13bf4e1e379a41d2cc6a70aea6ecfda222f14110689f12f93b"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_tanc.png",
+      "sha256": "bc73e4b5b7e55b164089e315f3408ca21afa82ee51e7ba0006e4e4347987c503"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_tanc_zs.png.meta",
+      "sha256": "e84af2c8dd72465a77c9354a6010a0bd114d77a9e2d653ce9048c0112bbf6637"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_tanc_zs.png",
+      "sha256": "3c627ede7a51db458346e674bbb3f342caac1ed0d2f1f86e3e5eb727f989a1ea"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/Public_TopWindow/TopBack.png.meta",
+      "sha256": "a041c95b4a62ddb953b41ae43e6ba807aa53fb448f1b163916d2e0a1031839a6"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/Public_TopWindow/TopBack.png",
+      "sha256": "47a17f9f689318b1663e4c23abb9d8eb36ad5aabb13e7e97199208040f502d4a"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_tanc_guanb.png.meta",
+      "sha256": "1e05ee1823f7d2b5287776e36343de37a9c64326346ec0c1a2fe050ec91b789f"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_tanc_guanb.png",
+      "sha256": "14781e86701ba5ae5334462af10b7d4e07b41a4985d388ddbd1f4c2011913cc6"
+    },
+    {
+      "path": "Assets/TextMesh Pro/Fonts/New Folder/MiSans-Semibold SDF MaterialUy.mat",
+      "sha256": "f8b22a04d2ff38d60c722c0d1d17cb55df19ff8b53897ebf76a012c32164bc9f"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/按钮切图/gus_juq_tanc_anniu_bai.png.meta",
+      "sha256": "a6ded4a45fd2f45c17cf204c6ee1b8cd81a4034a48c78063dc3d089b95a4e3c0"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/按钮切图/gus_juq_tanc_anniu_bai.png",
+      "sha256": "e23439e8c4401417512f27eb6c5e20c847047c95b7f4804e824e4856d3312470"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_tanc_tis.png.meta",
+      "sha256": "17951b5fe206598e89fc99ed1ba0c646a0e777d8f9041940e0b60ded818bba67"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotPlayer/gus_juq_tanc_tis.png",
+      "sha256": "ca327947d7dd903145d8c501e7f573984058fde081f79af44e1196d7154e5253"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/AwardTop/AwardTop.controller",
+      "sha256": "a44dd2795be9a5e11a340fdef4faad90952d9cdf74df7e528a978c51ce1c4b51"
+    },
+    {
+      "path": "Assets/UITp/行动界面/行动界面-故事-剧情-弹窗-标注图20250811.png.meta",
+      "sha256": "b4a032a1bfca01ae4fcca86416707a6d7206eda4700d170d908044609f4af4e8"
+    },
+    {
+      "path": "Assets/UITp/行动界面/行动界面-故事-剧情-弹窗-标注图20250811.png",
+      "sha256": "59be97b1e754df285c3e68788debf3e06aa8a5d874fcf2af5596959e775ed2f6"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/按钮切图/gus_juq_tanc_anniu_lan.png.meta",
+      "sha256": "579e1555b525bba17eb0bd8c25ffc51344e1c088796b65abb650728e7a10bf1c"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/公共资源/按钮切图/gus_juq_tanc_anniu_lan.png",
+      "sha256": "0b5ef97d030e72b91a4e28951a32cccf838b18309d3f14a1a7d6eda2f527911b"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Image/PlotChatImage/PlotThumbnail01.png.meta",
+      "sha256": "7226e08c28117ae456bbb8a8ea56a6c2b736ad43f212f7cb0324e4475512e186"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Image/PlotChatImage/PlotThumbnail01.png",
+      "sha256": "cb49ee547213456fdd27250d02259e9afb5b099590e72c05f5fb39031e255326"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotModeMenu/PlotChatItemV2/xd_dazj_suo.png.meta",
+      "sha256": "d74ed42c633ebb2725b617880ece8f89a79680114af18b120b41eacd63e9604c"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotModeMenu/PlotChatItemV2/xd_dazj_suo.png",
+      "sha256": "bcd7bfb5b3baeece3dbb21b87f8cbd8ea5c0eadab42f3f24e2d9353641f72701"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotModeMenu/PlotChatItemV2/xd_dazj_di.png.meta",
+      "sha256": "694328b0dcccf015f880c7733dd145e95b99f41eb01cd0139ef5dea9c35be2b3"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotModeMenu/PlotChatItemV2/xd_dazj_di.png",
+      "sha256": "d23fdae7ae5a1a174e39217ac0fa85e7c5f86a17d92572ce1bae1291abb9c3aa"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotModeMenu/PlotChatItemV2/xd_dazj_suodzhez.png.meta",
+      "sha256": "5043b27ceb528a3ec80cdcaace386276af14b635ca35641da1376cb9121c3ab3"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/PlotModeMenu/PlotChatItemV2/xd_dazj_suodzhez.png",
+      "sha256": "de9a789eb559bedf36a48174cc3702f8d7dc7e14f899e39055424bb134d12a70"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/SwitchMenu/xd_xiaojie_xz_suo.png.meta",
+      "sha256": "5fd29e0ab62c52ea94c5b9570a31674d7a916a8b3830d8e967c67b5ff3068503"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/SwitchMenu/xd_xiaojie_xz_suo.png",
+      "sha256": "a0e74c07bff9353acf6144e93129653ff4c233d0fd9235d8566dd323757a69f8"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/SwitchMenu/xd_xiaojie_xz_yijians_di.png.meta",
+      "sha256": "f0f236c4bc96944f784991a1f01e3adb4a9936dbb32fba23db4943a6366c2946"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/SwitchMenu/xd_xiaojie_xz_yijians_di.png",
+      "sha256": "deba7dbf8d26a59f89fc77a85d78fb3a63036129e61ed22a810fbf46588bddbd"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/SwitchMenu/xd_xiaojie_scjiangl_yilingqu.png.meta",
+      "sha256": "bc6c3bdd1812758962161b9f2045c645004089ae33df44eacaaefd9694bde580"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/SwitchMenu/xd_xiaojie_scjiangl_yilingqu.png",
+      "sha256": "bdaa6fe35e06f3eedca4685c1913c876ff5861855ac0bcadee7ecf337380c355"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/SwitchMenu/xd_xiaojie_xz_xuanz_di.png.meta",
+      "sha256": "c66cbaa3013fa630c127ff6464a6380e6bc03a2665c7521847d672aa6eda5a66"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/SwitchMenu/xd_xiaojie_xz_xuanz_di.png",
+      "sha256": "2b14add8617344649c4d12e3d130698eaf8cb3a0e815f699fc7239f4a65602bb"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/SwitchMenu/xd_xiaojie_xz_suoding_di.png.meta",
+      "sha256": "b1395c75ae605489b5f446577d65de8b39c4768cb0adb21a22d322dcf4399731"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/SwitchMenu/xd_xiaojie_xz_suoding_di.png",
+      "sha256": "a42d33aa19cc6d44530f48a9c7ea2489a2dcf91878ebc1d2a4b069069ee4da03"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/SwitchMenu/xd_xiaojie_xz_xuanz_icon.png.meta",
+      "sha256": "d9ba87994b54d8833203e7068c973bbb539ea2e3bebedb7d6d230fcd921b5541"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/SwitchMenu/xd_xiaojie_xz_xuanz_icon.png",
+      "sha256": "a364291401efb13a73ccdaa9155324a5660ed354b5912fbfee6922ac44c5f7cf"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/SwitchMenu/xd_xiaojie_xz_yiwanc_di.png.meta",
+      "sha256": "e810975c90c766d13b4ea1b0e2306be83a7dfb68d4612e48cddcebaae39f0a5a"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/Training/SwitchMenu/xd_xiaojie_xz_yiwanc_di.png",
+      "sha256": "fb5d0c4452c1917e1d924adb49b4c83441ffa6a072bb83f9262c9ec35027808e"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1001.png.meta",
+      "sha256": "573e41bab54ff224aa2274b72f96961e4652a14880e10a99fed786b9dfc8145a"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1001.png",
+      "sha256": "0059c6b82a1f14cc9e6e5914f415745bf7e5e763ec3553cb44c63f225b0b3e4e"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1002.png.meta",
+      "sha256": "d871af3b83cfc3493c92a097be3709670eb64f27f1b5b791d76070d09419b3e6"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1002.png",
+      "sha256": "8e32ac494558ed349b1a4b869bbe3868e92fd36fb647484fa7aac25fbe40daa8"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1003.png.meta",
+      "sha256": "288873136e91270b5c6f9a22a1a28049c01c7099f34d564fd34429d320291f1b"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1003.png",
+      "sha256": "9906a7822efe3b683a67dad34d2016be5d2ea05d31a4796d391ed8cb5d604874"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1004.png.meta",
+      "sha256": "933943082e45543525bad8b099c4f4ea6137c94d5c38d1c7deae951504e875b1"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1004.png",
+      "sha256": "50c430e3896dda0b2b9a503a4b9707f21b1b75de2e86a41ad4fff29856a56e9c"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1005.png.meta",
+      "sha256": "31bb7c79ec04aaa0335f0bf1f8e8aaa16696456d98031e1b5609712c52264058"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1005.png",
+      "sha256": "b3a62d135193141e2f7c644e02dc9698e7cadd0bc4e0eec37e3a9483aca50c0a"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1006.png.meta",
+      "sha256": "42f82e9582806432aa965a185bcf122e3e4f9b96637e0753dbac5f2a2984231b"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1006.png",
+      "sha256": "ed2a3507cb55dfe742f732044edc9afe16bda4d712ca01392db745821890a132"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1007.png.meta",
+      "sha256": "b9c4dd34464e0bddf1457f45298f4d6f88bdaf9b00913c859920fa003ebb0ba1"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1007.png",
+      "sha256": "e1965cab3727b5e07aa0e2e80daf50b323ef49dc25fbfc03ba52fa69fea96b41"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1008.png.meta",
+      "sha256": "c0503c0a7bdbf7a2522c454579275df75b92e59208545487e1e171378d32a316"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1008.png",
+      "sha256": "a7857322b2d2d561926d0142b72243f2cd4dbd6add9736f8ca23fa198f7abc0a"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1009.png.meta",
+      "sha256": "a8a0166ba470fc05cbb6e128fa552a3dcde9d43b9e479773baf3c08a80d150d9"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1009.png",
+      "sha256": "bebdc18b36a1ac0d74b308744d02d2731cc558d8d9d13e0876fff970ac77d909"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1010.png.meta",
+      "sha256": "7b3d538bcf029e67589b2a17b1246db101fa7110f9ca0c0a19d9eba4c5aa0c3e"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/RolePortrait_1010.png",
+      "sha256": "47429d2e5b140168801b1736f06c904c8532beb35397e9d8568b51c510ad68f9"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/NPC1013.png.meta",
+      "sha256": "39ed773f79db345cb7b982e65e403dd93d407578144cd35460ae0622971a9185"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Role_Image/RolePortrait/NPC1013.png",
+      "sha256": "ff3f73fd97a37e8eb0c926c86d14f7706c82bedd4ea1f50f81c5eeef874a0291"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Public_ItemBox_bg/Public_ItemBox_long_bg_0.png.meta",
+      "sha256": "1792fd24161acf937d3315cdb3e6319fbfe88c44384b8ecded9ca2890e1fc33f"
+    },
+    {
+      "path": "Assets/ArtAsset/UISpriteDynamicLoad/Public_ItemBox_bg/Public_ItemBox_long_bg_0.png",
+      "sha256": "477f4c978bcbdf6b923080a3945280209fd3d66fcede276a7f22177db3234014"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/ShamBattle/molxunl_jianglkong.png.meta",
+      "sha256": "43a6879bcd19f5e95e792cced5a01dcd62562e1c6a3cb37329b82378c3074ce7"
+    },
+    {
+      "path": "Assets/ArtAsset/UI/ShamBattle/molxunl_jianglkong.png",
+      "sha256": "f9cb78355a28495f31e0a931a97785bee1a35113afcca600c068dd14226bc0da"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/业务区1.jpg.meta",
+      "sha256": "2350f64d14932c866ab55d1b2f4924c978c48f123784977df088056704fb3b18"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/业务区1.jpg",
+      "sha256": "de60b5f1b1d1dce13c545d2106885cfea2cc631f0afa1f891751886978194862"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/保护会会议室1.jpg.meta",
+      "sha256": "28faeca315cb9cbbf2c4eb3bc84d60f0a21e5d45cce6f277b612291328743fcf"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/保护会会议室1.jpg",
+      "sha256": "d91baf407c601f30c71d6633b6b226f7f53dfdfb9927cd30650ed381d524c75c"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/保护会医疗室1_白天.jpg.meta",
+      "sha256": "15a5dd903b6eb632a700731202ec28ac14879ec00c74c6c558ce6639ff0a3e15"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/保护会医疗室1_白天.jpg",
+      "sha256": "d6b37b6b395acddec8e517f28af9aa58054c4071a1b2dc2c9210c5b2caaf76a2"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/保护会走廊2_夜晚_关灯.jpg.meta",
+      "sha256": "46fc2c5c9807e10a9131593a02579851ee89f78ff2ee53680e4605d557e7a357"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/保护会走廊2_夜晚_关灯.jpg",
+      "sha256": "e5b3f3c1951ca4ece3b467e7354d4bb6f8ddd86f5da72919d32501afa80c50f4"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/保护会走廊2_夜晚_开灯.jpg.meta",
+      "sha256": "42d84fecdebe7d72140ff6f8b97dd8887960d4fdc5362c00051557f99cb8ff5d"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/保护会走廊2_夜晚_开灯.jpg",
+      "sha256": "bf1a02080d5fc1b892f4e37c96f14ea098a743f8148f7437aed90ca0f1dcd43f"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/保护会走廊2_白天.jpg.meta",
+      "sha256": "619a8c6963abd616f01e477789c12c22e8c229e0de16495157c7a39e645dba3d"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/保护会走廊2_白天.jpg",
+      "sha256": "afefa3cc5f2314e18e89966ed0f94d6a655dfde480f298ebc45e88393245ea52"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/保护会走廊2_黄昏.jpg.meta",
+      "sha256": "d291ba2f48743987001e318df9243fb3122ccec76cbed0bfe7255a06d9a94bb2"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/保护会走廊2_黄昏.jpg",
+      "sha256": "9dc2eaf0ddbfe8b03c91c0f27ed85d1f1145389c932d10d084dc8f6d79b5c4b1"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/办公室1_夜晚_关灯.jpg.meta",
+      "sha256": "7afbf99e4338264cf97f1fc69c2af24441bda9c270b21867693936c8b5b99b3b"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/办公室1_夜晚_关灯.jpg",
+      "sha256": "939dfa63032f9fb42ba7c672510293cca7e58c91fa46600164d91e3a7c2b038e"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/办公室1_夜晚_开灯.jpg.meta",
+      "sha256": "f5815fd1b365c9479320c87a4a32ab5b2a7c2edc8bf2be534c17cba0e7a0aa87"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/办公室1_夜晚_开灯.jpg",
+      "sha256": "fb65ead9fadd7e2f6ce289b7e0a1009eba0e6e128ff29d66463fceb8306b4d0f"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/办公室1_白天.jpg.meta",
+      "sha256": "cf6e89c860ca824cf3f5d5a6afac2330a5c78daab68ddb72b5abf4535c2a7df6"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/办公室1_白天.jpg",
+      "sha256": "2a72172ffac61e6689f15010ce6aad76d50d63373e6296d36523c836bb6b70ea"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/卧室2_夜晚_关灯.jpg.meta",
+      "sha256": "efb3101edb2fdf01f2e30f557321bca9b5ba5c34b74dfc59a4393297e16a83ce"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/卧室2_夜晚_关灯.jpg",
+      "sha256": "33251835b459c0751371a1bfca9c7f9a9a3fc83c90e9c7929dc397470fd688a2"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/卧室2_夜晚_开灯.jpg.meta",
+      "sha256": "9bb0b100186426782968678ff99532e426401e7de2dfb976c088e4bbc725799c"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/卧室2_夜晚_开灯.jpg",
+      "sha256": "a1eaeb964abe08f819dc82887e14806dd3eab8511e68d2715960e9c452853526"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/卧室2_白天.jpg.meta",
+      "sha256": "7813ca1697d121f5dac7078c82045a2fd1285b8e58fb6a025b072eefc2204d5f"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/卧室2_白天.jpg",
+      "sha256": "c64357655effe62c8c1b735d8ad9cc1e75f840143d3da3ac198b5f900d8727fe"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/商店2.jpg.meta",
+      "sha256": "29daa4f8c727ef30fc97f174727f8622681b3dbb3890230af1864440ec18e326"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/商店2.jpg",
+      "sha256": "175581de76cd4a03e759591eb348bda85369c13e37ce5d5126e4d60742773e1e"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/大桥附近_夜晚_关灯.jpg.meta",
+      "sha256": "eb00e58300b619187a9b723a51b0b9a4b7800383b6c59678b020b0ff9c37606d"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/大桥附近_夜晚_关灯.jpg",
+      "sha256": "88b09996acfb426f85c50b3f6160a3df0f5322b03cb04daaae5cff0fdcaa0b2d"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/实验室1.jpg.meta",
+      "sha256": "a85a89723964f53c5cec158d4db0ce6bd4eb9d0d2501d3526a44d50027340c52"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/实验室1.jpg",
+      "sha256": "7f296633b787e29b354a54f26da5b701f6f6fdf18e791867b11e2553bbb38516"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/客厅1_夜晚.jpg.meta",
+      "sha256": "2ca8eedacd677c3a173872036f8671c8b036a944e40b63d26669909bf921c367"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/客厅1_夜晚.jpg",
+      "sha256": "aeea9d46716f0c20736683266ee52cdc50eab372ea00d606116c39c02e3a5412"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/客厅1_白天.jpg.meta",
+      "sha256": "267cbb4f7bb59e69823ce7a009a6c70dae95fb7099857b330829052ccc28925e"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/客厅1_白天.jpg",
+      "sha256": "bf264b883c9c900f43bdc5bdf6ede37bbb32c2d9ca657cbf79db9dc5d14caa6e"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/客厅2_夜晚_关灯.jpg.meta",
+      "sha256": "ee8cc412505025080b2d4685fa9b4935436386d0cf6e4c19d08e217471680b4a"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/客厅2_夜晚_关灯.jpg",
+      "sha256": "34fae565fc304597482557dfefea17ed5938e5d8f6f3323128d7d6496f3f61b6"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/客厅2_夜晚_开灯.jpg.meta",
+      "sha256": "a75dadac8315db5415fcdee788796612aeeb3fb2ea822c81d89b0d6957ec3d8a"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/客厅2_夜晚_开灯.jpg",
+      "sha256": "cc5fa0d589369d51975d7a7c817accfa71309aa4cb8620449955ef41a7b50689"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/客厅2_白天.jpg.meta",
+      "sha256": "984cf0c1301a848f08c7f124f61717ae5dd858505e1c073025aa8cc0baabda91"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/客厅2_白天.jpg",
+      "sha256": "a15f70b74eb0422e6aa835ffd646f96b5247eb7f68c5a1c5c99c525a902d3056"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/特勤对策组1.jpg.meta",
+      "sha256": "65d06bbeed38147dbc0471eddb484ca03b6f3c5a825b87375f7018ee1e8d8bcc"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/特勤对策组1.jpg",
+      "sha256": "df59257c529f4f18994b7b350b7212550f6138579411824c0eb7594a350c378c"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/街景3_损毁.jpg.meta",
+      "sha256": "a1d1eec2b88889e187b90716ba97665f146f92b3accc51b9119a4a94e2d489d4"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/街景3_损毁.jpg",
+      "sha256": "cb28034f5c259d4b3dfc233576be5e5df1d815f6f093340f7ef0a0fde4678c6f"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/车内1.jpg.meta",
+      "sha256": "c5091169e2259acfb5d9fda0a6ce3466a8d3d9daf21082acb0f03752255c35a9"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/车内1.jpg",
+      "sha256": "bd70952525d4dafda440a70a165b7f3e42aa97fbb6c3279f081af84075252545"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/黑屏.png.meta",
+      "sha256": "a431abfcabcd24713c16f337478ee718b287ffaea494ebcb2941c0e3d1f4c350"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotResources/PScenes/黑屏.png",
+      "sha256": "be0355e25300ad03594385eeef3fa51442b6df98555ea879fe971d55b20a2c42"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/PlotPlayerUI/Jump.anim",
+      "sha256": "b849e332719927c202e554a9663bae33d01fc97436ec374c0e94fdaba52baabc"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/PlotPlayerUI/Close.anim",
+      "sha256": "f6cc34ab54128d97dde0bf17e9c6142332dd8753a0a0e5b71b50bad97c57c33a"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/PlotPlayerUI/Open.anim",
+      "sha256": "5634678b7a37e07285941f814cf3696beb1fc2227877367309cfc4cde20b018c"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/PlotChapterUI/Close.anim",
+      "sha256": "f6cc34ab54128d97dde0bf17e9c6142332dd8753a0a0e5b71b50bad97c57c33a"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/PlotChapterUI/Open.anim",
+      "sha256": "b07abad4126544c16302f800cf6e981551114af73058922e9d7b5b2b855bf853"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/PlotChapterUI/Switch.anim",
+      "sha256": "f637be0aca2b0dd63af3bb9fe83a36a632e6aca10323bbd5ccc5e29f3f5e87f6"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/AwardTop/Open.anim",
+      "sha256": "b4774e2d16d8ea4d770a483430a01bacf8324041404ea1d7227bd9686237f54c"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/AwardTop/Loop.anim",
+      "sha256": "0c0192015ad1161a523c28c9285d8b2ee499bc400875df7e4b800a157c005479"
+    },
+    {
+      "path": "Assets/ArtAsset/UIAnimation/AwardTop/Close.anim",
+      "sha256": "a662af58a2db1c1b1dcb7b97396eedc0cc17b9e9eea3874a9ba248875cfd24d6"
+    }
+  ],
+  "bundleSha256": "eb75c24c13e97cfe4bd3a33a41e2b26b5a624be1d7278631b4d3e07104cf86f3"
+}

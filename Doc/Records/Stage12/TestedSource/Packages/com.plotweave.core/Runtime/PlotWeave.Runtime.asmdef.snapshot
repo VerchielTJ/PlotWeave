@@ -1,0 +1,9 @@
+{
+  "name": "PlotWeave.Runtime",
+  "rootNamespace": "PlotWeave",
+  "references": [
+    "UnityEngine.UI",
+    "Unity.TextMeshPro"
+  ],
+  "autoReferenced": true
+}

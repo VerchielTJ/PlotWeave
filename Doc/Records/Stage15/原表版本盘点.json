@@ -1,0 +1,129 @@
+{
+  "workbooks": 23,
+  "versions": [
+    {
+      "source": "Assets/PlotEditor/Data/ExcelData/__plotbeans__.xlsx",
+      "rows": 13,
+      "sha256": "1d4b2ae3cab8671029b3682279327bb2dcd77a246229381a31d95461c765229b"
+    },
+    {
+      "source": "Assets/PlotEditor/Data/ExcelData/__plotenums__.xlsx",
+      "rows": 27,
+      "sha256": "99d5c1a15042196b08adcfca0c2e601102e21cda66ec69bbacadc59933151b93"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 505,
+      "sha256": "effb5723d19b1d56444e585b9f6a253c3f12eb6c00837df82e0b2cb3f4c6ea16"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 483,
+      "sha256": "6ced7966b6ebdda808d53544085151b857b23243efa9b17621c35d33f072cfba"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 26,
+      "sha256": "6fcd672aaae695b2aea42f1ffac568edc46a02cdd190e6f0b729e0660ed0fc77"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 26,
+      "sha256": "7f31ee33686a3e0c105b9c239fe29bb9125fd58dc15766e64f65e03ff998fb92"
+    },
+    {
+      "source": "Datas/__plotbeans__.xlsx",
+      "rows": 13,
+      "sha256": "1d4b2ae3cab8671029b3682279327bb2dcd77a246229381a31d95461c765229b"
+    },
+    {
+      "source": "Datas/__plotenums__.xlsx",
+      "rows": 27,
+      "sha256": "99d5c1a15042196b08adcfca0c2e601102e21cda66ec69bbacadc59933151b93"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 5,
+      "sha256": "f5561263b0dd882aa9be36d5b9deeb6993c87a04a43770edb2e83ff741a2e03d"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 4,
+      "sha256": "e10e280cde29e4364ad7f8d107c36e6a7316f3d7ee6ac405783a60310fb1e3b0"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 505,
+      "sha256": "effb5723d19b1d56444e585b9f6a253c3f12eb6c00837df82e0b2cb3f4c6ea16"
+    },
+    {
+      "source": "Datas/剧情奖励表.xlsx",
+      "rows": 14,
+      "sha256": "7fc4d98cd972b8f4bb2595834176f4aca9fa58d22946354c818052da63af3b41"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 483,
+      "sha256": "6ced7966b6ebdda808d53544085151b857b23243efa9b17621c35d33f072cfba"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 26,
+      "sha256": "6fcd672aaae695b2aea42f1ffac568edc46a02cdd190e6f0b729e0660ed0fc77"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 26,
+      "sha256": "7f31ee33686a3e0c105b9c239fe29bb9125fd58dc15766e64f65e03ff998fb92"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 5,
+      "sha256": "faa63c2b4d7a0e7338eda688628f5b3bdcca0378eca51c8a60a5392e61d230f5"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 4,
+      "sha256": "cb192e53ff4c65582bbf44666f3c5029a3bfa36324b4f00dcd11348e889c91d0"
+    },
+    {
+      "source": "MistChaos/Datas/__plotbeans__.xlsx",
+      "rows": 13,
+      "sha256": "a6f1c921b6f1c58e7d8b040fbead0dba0b87402b2152401671136ecef27af9f0"
+    },
+    {
+      "source": "MistChaos/Datas/__plotenums__.xlsx",
+      "rows": 26,
+      "sha256": "80673e2e1397bc01b24c35cc464a6ed88313ab77e1606c819a3a41130430bd87"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 26,
+      "sha256": "2946af55e678356a6d46670d5cc6c99d44dd2511bee27be0b4ba9e810cd1fcce"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 483,
+      "sha256": "d307f6bc9f1990a267b061113afa0a2a630ce19ca8091520d8a68d920fda5d08"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 26,
+      "sha256": "1b5d2da2a880d40a839a98210ed150bd64ef9380f22d9ea967fc8294a65572e9"
+    },
+    {
+      "source": "[local metadata omitted]",
+      "rows": 26,
+      "sha256": "8a98c82c4e3dbde0a6187d455b56c13808fbd2ce0fc9bbfb4fd4dddaea82a6c9"
+    }
+  ],
+  "issues": [],
+  "bundleSha256": "45873fb8b24cd6a9a4a50149aaccaa12f006ec82d065c724fc5bdfe1a7adb54c",
+  "publicExport": {
+    "localMetadataRedaction": {
+      "originalRecordSha256": "08c648e9d4ee9e5ca1e7b7b81aa487f34f03ce2c4ed205b829f290f712d41d95",
+      "literalReplacements": 16,
+      "note": "私有源表/界面元数据字面量在公开副本中省略；原本地记录保留，未改变测试结果。"
+    }
+  }
+}

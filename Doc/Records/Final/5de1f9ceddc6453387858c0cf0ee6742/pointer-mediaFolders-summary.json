@@ -1,0 +1,14 @@
+{
+  "sourceReport": "Tools/PlotWeaveMigration/media-folders.json",
+  "sourceSha256": "274a0dbef2b538b24e4ef694d237f50f2dd32dab688b2e67efeb99403d859937",
+  "id": "1196f86eaa174627bad03bd6deb4a78c",
+  "status": "passed",
+  "summaryOnly": true,
+  "localRoot": "Assets/PlotWeaveLocal/OriginalUI",
+  "moved": 6,
+  "alreadyMedia": 0,
+  "absent": 0,
+  "verifiedGuids": 516,
+  "movesCount": 6,
+  "rejectedReportsCount": 0
+}

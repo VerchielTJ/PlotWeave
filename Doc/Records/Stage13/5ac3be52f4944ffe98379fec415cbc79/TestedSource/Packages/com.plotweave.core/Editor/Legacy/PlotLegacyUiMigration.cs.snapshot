@@ -1,0 +1,47 @@
+using System;
+using System.IO;
+using PlotWeave.Authoring;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+namespace PlotWeave.Legacy.Editor
+{
+    public static class PlotLegacyUiMigration
+    {
+        public const string InputPath = "Tools/PlotWeaveMigration/Inputs/legacy-ui.json";
+        public const string LatestPath = "Tools/PlotWeaveMigration/imported-ui.json";
+        public const string LocalRoot = "Assets/PlotWeaveLocal/OriginalUI";
+        public static PlotLegacyUiReport Import(PlotLegacyUiBundle bundle, string sourceRoot, string output)
+        {
+            if (bundle == null || bundle.formatVersion != 1 || bundle.layouts == null || bundle.layouts.Count == 0) throw new FormatException("UI语义包无效");
+            var root=output.Replace('\\','/').TrimEnd('/');if(!root.StartsWith(LocalRoot+"/",StringComparison.Ordinal)||root.Contains(".."))throw new ArgumentException("UI仅重建到独立本地目录");if(Directory.Exists(root))throw new IOException("UI目标目录已存在，不覆盖");
+            var report=new PlotLegacyUiReport {id=Guid.NewGuid().ToString("N"),root=root,status="running"};var previous=SceneManager.GetActiveScene();var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Additive);SceneManager.SetActiveScene(scene);
+            try
+            {
+                var resources=new PlotLegacyUiResources(bundle,sourceRoot,root+"/Resources",report);Directory.CreateDirectory(root+"/Prefabs");AssetDatabase.Refresh();
+                foreach(var layout in bundle.layouts)
+                {
+                    var instance=PlotLegacyUiRebuilder.Build(layout,resources.Resolve,report.issues);
+                    try
+                    {
+                        var path=root+"/Prefabs/"+layout.name+"_"+PlotLegacyAssetImport.Hash(layout.source).Substring(0,8)+".prefab";PrefabUtility.SaveAsPrefabAsset(instance,path,out var success);if(!success)throw new IOException("UI预制体保存失败: "+layout.source);
+                        var bindings=instance.GetComponent<PlotLegacyTemplateBindings>();report.layouts.Add(new PlotLegacyUiOutput {source=layout.source,asset=path,nodes=layout.nodes.Count,components=layout.components.Count,proxies=bindings.behaviours.Count});
+                    }
+                    finally {UnityEngine.Object.DestroyImmediate(instance);}
+                }
+                AssetDatabase.SaveAssets();AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                foreach(var item in report.layouts)
+                {var asset=AssetDatabase.LoadAssetAtPath<GameObject>(item.asset);if(asset==null||asset.GetComponent<PlotLegacyTemplateBindings>()==null)throw new IOException("UI预制体回读失败: "+item.source);foreach(var transform in asset.GetComponentsInChildren<Transform>(true))if(GameObjectUtility.GetMonoBehavioursWithMissingScriptCount(transform.gameObject)!=0)throw new IOException("新预制体存在缺失脚本: "+item.source+"/"+transform.name);}
+                report.status="layout-and-resources-rebuilt-behaviours-pending";File.WriteAllText(LatestPath,JsonUtility.ToJson(report,true));return report;
+            }
+            catch(Exception error){report.status="failed";report.error=error.ToString();throw;}
+            finally
+            {if(previous.IsValid()&&previous.isLoaded)SceneManager.SetActiveScene(previous);EditorSceneManager.CloseScene(scene,true);Directory.CreateDirectory("Doc/Records/Stage13");File.WriteAllText("Doc/Records/Stage13/ui-"+report.id+".json",JsonUtility.ToJson(report,true));}
+        }
+        [MenuItem("Tools/PlotWeave/迁移工具/从本地语义包重建原UI")]
+        public static void PrepareVerification()
+        {var bundle=JsonUtility.FromJson<PlotLegacyUiBundle>(File.ReadAllText(InputPath));var report=Import(bundle,"I:/model",LocalRoot+"/Import_"+Guid.NewGuid().ToString("N").Substring(0,10));Debug.Log("PLOTWEAVE_STAGE13_UI "+report.layouts.Count+" "+report.status);}
+    }
+}

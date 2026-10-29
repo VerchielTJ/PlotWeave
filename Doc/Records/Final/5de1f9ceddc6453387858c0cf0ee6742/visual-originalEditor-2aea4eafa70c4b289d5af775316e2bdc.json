@@ -1,0 +1,18 @@
+{
+    "id": "2aea4eafa70c4b289d5af775316e2bdc",
+    "mode": "editor",
+    "phase": "passed",
+    "scene": "Assets/PlotWeaveLocal/OriginalUI/Import_bd3086775b/Interactive_392c3521/OriginalAuthoring.unity",
+    "image": "Tools/PlotWeaveMigration/Inputs/Images/legacy-editor-2aea4eafa70c4b289d5af775316e2bdc.png",
+    "error": "",
+    "previousScene": "",
+    "background": false,
+    "maximized": false,
+    "hadView": true,
+    "skipChecked": false,
+    "frames": 10,
+    "nodes": 485,
+    "deadline": 74128.0301355,
+    "next": 0.0,
+    "started": 73948.03013659999
+}

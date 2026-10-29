@@ -1,0 +1,7 @@
+{
+    "name": "PlotWeave.Luban.Generated.Sample",
+    "references": [
+        "PlotWeave.LubanRuntime.Sample"
+    ],
+    "autoReferenced": true
+}

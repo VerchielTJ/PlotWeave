@@ -1,0 +1,18 @@
+{
+    "id": "76f0ac7cf6184a52aee29ca3dff3494a",
+    "mode": "luban",
+    "phase": "passed",
+    "scene": "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_4069c78aa5/OriginalLubanPlayback.unity",
+    "image": "Tools/PlotWeaveMigration/Inputs/Images/legacy-luban-76f0ac7cf6184a52aee29ca3dff3494a.png",
+    "error": "",
+    "previousScene": "",
+    "background": false,
+    "maximized": false,
+    "hadView": true,
+    "skipChecked": true,
+    "frames": 0,
+    "nodes": 51,
+    "deadline": 74116.03552549999,
+    "next": 73942.88304219999,
+    "started": 73936.03552759999
+}

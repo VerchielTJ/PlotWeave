@@ -1,0 +1,23 @@
+{
+  "id": "4b1609d02b7d4a01a71256a5ded62491",
+  "phase": "passed",
+  "previousScene": "",
+  "error": "",
+  "image": "本地原布局截图不随公开版本分发；历史验证摘要保留。",
+  "background": false,
+  "maximized": false,
+  "hadView": true,
+  "route": 2,
+  "returns": 2,
+  "deadline": 48861.157737,
+  "trace": [
+    "enter:MainChapter",
+    "ack-and-return:Main",
+    "enter:DailyChapter",
+    "ack-and-return:Daily"
+  ],
+  "publicExport": {
+    "originalSha256": "4bd45eaf4d2f1003219ecf3ac9804de4cac57ab96b31e397e24a0afb31b5cd2d",
+    "note": "公开整理副本：省略本地原布局截图及本机根路径；未重新执行历史验收。"
+  }
+}

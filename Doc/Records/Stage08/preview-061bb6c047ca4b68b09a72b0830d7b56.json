@@ -1,0 +1,32 @@
+{
+  "id": "061bb6c047ca4b68b09a72b0830d7b56",
+  "phase": "passed",
+  "previousScene": "",
+  "error": "",
+  "image": "本地原布局截图不随公开版本分发；历史验证摘要保留。",
+  "background": false,
+  "maximized": false,
+  "hadView": true,
+  "pauseChecked": true,
+  "route": 2,
+  "completed": 2,
+  "signals": 4,
+  "deadline": 48852.0127539,
+  "next": 48736.339551100005,
+  "trace": [
+    "junction.ready:",
+    "choices:0",
+    "route.ready:森林",
+    "route:2002:森林",
+    "completed:2002",
+    "junction.ready:",
+    "choices:1",
+    "route.ready:村庄",
+    "route:2003:村庄",
+    "completed:2003"
+  ],
+  "publicExport": {
+    "originalSha256": "8014786d4cb030a6f098c6368cdddf88c2fb0e5c6bc0a54e0b608b0130b81c85",
+    "note": "公开整理副本：省略本地原布局截图及本机根路径；未重新执行历史验收。"
+  }
+}

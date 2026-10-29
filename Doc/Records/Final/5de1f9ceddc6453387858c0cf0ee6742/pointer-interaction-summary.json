@@ -1,0 +1,12 @@
+{
+  "sourceReport": "Tools/PlotWeaveMigration/legacy-interaction.json",
+  "sourceSha256": "c2cafd22e47e8e4c8f9a209f0db207ffabde4cfa58a5444dbf181527a2bb7916",
+  "id": "392c352136cc45059581a65a00206869",
+  "status": "prepared-runtime-verification-pending",
+  "summaryOnly": true,
+  "root": "Assets/PlotWeaveLocal/OriginalUI/Import_bd3086775b/Interactive_392c3521",
+  "authoringScene": "Assets/PlotWeaveLocal/OriginalUI/Import_bd3086775b/Interactive_392c3521/OriginalAuthoring.unity",
+  "playbackScene": "Assets/PlotWeaveLocal/OriginalUI/Import_bd3086775b/Interactive_392c3521/OriginalPlayback.unity",
+  "workspace": "Assets/PlotWeaveLocal/ImportedOriginal/Import_0bab6f831c/Workspace.asset",
+  "actors": 33
+}

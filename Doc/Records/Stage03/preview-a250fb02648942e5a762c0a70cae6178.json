@@ -1,0 +1,15 @@
+{
+  "id": "a250fb02648942e5a762c0a70cae6178",
+  "phase": "captured",
+  "previousStartScene": "",
+  "image": "本地原布局截图不随公开版本分发；历史验证摘要保留。",
+  "error": "",
+  "deadline": 7057.9213582,
+  "nodeCount": 3,
+  "nodePool": 3,
+  "previousRunInBackground": false,
+  "publicExport": {
+    "originalSha256": "25b161002c6c791d23ed77b90986e850807687b2595f65598f1928334da9d9f6",
+    "note": "公开整理副本：省略本地原布局截图及本机根路径；未重新执行历史验收。"
+  }
+}

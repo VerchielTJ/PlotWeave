@@ -1,0 +1,551 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:plotweave:engineering-index:1.0",
+  "title": "PlotWeave review index",
+  "description": "Versioned navigation metadata. Provenance is design lineage, not per-line authorship. Evidence is scoped acceptance, not method coverage.",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "title",
+    "generatedAt",
+    "sourceSnapshot",
+    "modules",
+    "classes",
+    "relations",
+    "provenance",
+    "statuses",
+    "evidence",
+    "readingOrder",
+    "boundaries",
+    "inventory"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sourceSnapshot": {
+      "type": "object",
+      "required": [
+        "packageFingerprint",
+        "curationSha256",
+        "provenanceSha256",
+        "acceptanceSha256",
+        "currentAcceptance",
+        "acceptanceDate",
+        "reviewDate",
+        "acceptedSourceMatches",
+        "freshnessWarning"
+      ],
+      "properties": {
+        "packageFingerprint": {
+          "$ref": "#/$defs/sha256"
+        },
+        "curationSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "provenanceSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "acceptanceSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "currentAcceptance": {
+          "$ref": "#/$defs/path"
+        },
+        "acceptedSourceMatches": {
+          "type": "boolean"
+        },
+        "changedSources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/path"
+          }
+        },
+        "unrecordedPackageSources": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/path"
+          }
+        },
+        "acceptanceDate": {
+          "type": "string"
+        },
+        "reviewDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "freshnessWarning": {
+          "type": "string"
+        }
+      }
+    },
+    "modules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "summary"
+        ],
+        "properties": {
+          "id": {
+            "$ref": "#/$defs/module"
+          },
+          "name": {
+            "type": "string"
+          },
+          "summary": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "classes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/class"
+      }
+    },
+    "relations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/relation"
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "required": [
+        "labels",
+        "source",
+        "notice"
+      ]
+    },
+    "statuses": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "label"
+        ]
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "acceptance",
+        "testRunId",
+        "passed",
+        "failed",
+        "builds"
+      ],
+      "properties": {
+        "authoringWorkflow": {
+          "$ref": "#/$defs/authoringWorkflow"
+        }
+      }
+    },
+    "readingOrder": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "title",
+          "modules",
+          "question"
+        ]
+      }
+    },
+    "boundaries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "status",
+          "title",
+          "description"
+        ]
+      }
+    },
+    "scopeNotes": {
+      "type": "array"
+    },
+    "inventory": {
+      "type": "object",
+      "required": [
+        "path",
+        "sourceFiles",
+        "declaredTypes",
+        "curatedTypes",
+        "notice"
+      ]
+    }
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "path": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*\\.\\.)(?!.*:).+$"
+    },
+    "module": {
+      "enum": [
+        "definitions",
+        "authoring",
+        "generation",
+        "exchange",
+        "playback",
+        "chapters",
+        "integration"
+      ]
+    },
+    "origin": {
+      "enum": [
+        "original-user-concept",
+        "migration-ai-assisted",
+        "new-ai-assisted-extension",
+        "external-host-contract",
+        "unknown-needs-confirmation"
+      ]
+    },
+    "status": {
+      "enum": [
+        "verified",
+        "scope-verified",
+        "historical-verified",
+        "external-injection",
+        "device-pending",
+        "not-published",
+        "origin-pending",
+        "unverified",
+        "historical-scope-verified",
+        "public-candidate"
+      ]
+    },
+    "evidence": {
+      "type": "object",
+      "required": [
+        "path"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "line": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 1
+        },
+        "label": {
+          "type": "string"
+        }
+      }
+    },
+    "authoringWorkflow": {
+      "type": "object",
+      "description": "Optional scoped authoring-loop evidence. Source matches apply only to this record's verifiedSources and do not change historical full-acceptance status or the 277-test result.",
+      "required": [
+        "record",
+        "scope",
+        "status",
+        "date",
+        "reports",
+        "testRunId",
+        "passed",
+        "failed",
+        "verifiedSourcesMatch",
+        "verifiedSourceCount",
+        "sourceMatchScope"
+      ],
+      "properties": {
+        "record": {
+          "$ref": "#/$defs/path"
+        },
+        "scope": {
+          "type": "string",
+          "maxLength": 240
+        },
+        "status": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "date": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "reports": {
+          "type": "array",
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "required": [
+              "path",
+              "label"
+            ],
+            "properties": {
+              "path": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/path"
+                  }
+                ],
+                "maxLength": 256
+              },
+              "label": {
+                "type": "string",
+                "maxLength": 120
+              }
+            }
+          }
+        },
+        "testRunId": {
+          "type": "string",
+          "maxLength": 80
+        },
+        "passed": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "failed": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "verifiedSourcesMatch": {
+          "type": "boolean"
+        },
+        "verifiedSourceCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "coveredTypes": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "maxLength": 160
+          }
+        },
+        "minimumViewport": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "properties": {
+            "width": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "height": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "policy": {
+              "type": "string"
+            }
+          }
+        },
+        "supportedSizeCount": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "allSizesPassed": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "sourceMatchScope": {
+          "type": "string"
+        },
+        "sourceComparison": {
+          "type": "object"
+        },
+        "evidenceOrigin": {
+          "const": "historical-local-source-project"
+        },
+        "runtimeNativeTestsRerun": {
+          "type": "boolean"
+        }
+      }
+    },
+    "class": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "qualifiedName",
+        "kind",
+        "module",
+        "path",
+        "line",
+        "summary",
+        "apis",
+        "designOrigin",
+        "implementationOrigin",
+        "status",
+        "evidence",
+        "sourceSha256"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "qualifiedName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "kind": {
+          "enum": [
+            "class",
+            "static_class",
+            "abstract_class",
+            "interface",
+            "struct",
+            "enum"
+          ]
+        },
+        "module": {
+          "$ref": "#/$defs/module"
+        },
+        "path": {
+          "$ref": "#/$defs/path"
+        },
+        "line": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sourceSha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "designOrigin": {
+          "$ref": "#/$defs/origin"
+        },
+        "implementationOrigin": {
+          "$ref": "#/$defs/origin"
+        },
+        "implementationOrigins": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/origin"
+          }
+        },
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "implementationStatus": {
+          "type": "string"
+        },
+        "verificationScope": {
+          "type": "string"
+        },
+        "apis": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": [
+              "name",
+              "signature"
+            ],
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "signature": {
+                "type": "string"
+              },
+              "line": {
+                "type": "integer",
+                "minimum": 1
+              }
+            }
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "provenanceEvidence": {
+          "type": "object"
+        },
+        "ownershipNote": {
+          "type": "string"
+        }
+      }
+    },
+    "relation": {
+      "type": "object",
+      "required": [
+        "from",
+        "to",
+        "kind",
+        "rationale",
+        "evidence"
+      ],
+      "properties": {
+        "from": {
+          "type": "string"
+        },
+        "to": {
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "inherits",
+            "inheritance",
+            "implements",
+            "uses",
+            "produces",
+            "contains",
+            "adapts",
+            "calls"
+          ]
+        },
+        "rationale": {
+          "type": "string"
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        }
+      }
+    }
+  }
+}

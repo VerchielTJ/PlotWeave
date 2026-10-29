@@ -1,0 +1,20 @@
+using System.Linq;
+using PlotWeave.Authoring;
+using PlotWeave.Authoring.UI;
+using PlotWeave.Authoring.Playback;
+using UnityEditor;
+using UnityEngine;
+
+namespace PlotWeave.Legacy.Editor
+{
+    [InitializeOnLoad] public static class PlotLegacyAuthoringBootstrap
+    {
+        static PlotLegacyAuthoringBootstrap(){PlotLegacyAuthoringHost.InitializationRequested=Bind;EditorApplication.update+=Poll;}
+        private static void Poll(){if(!Application.isPlaying||EditorApplication.isCompiling)return;foreach(var host in Object.FindObjectsOfType<PlotLegacyAuthoringHost>().Where(h=>h.Session==null&&h.project!=null))Bind(host);}
+        private static void Bind(PlotLegacyAuthoringHost host)
+        {
+            if(host.Session!=null)return;var player=new EditorPlotPlayerUI(host.project);host.Preview=player.Play;host.ClosePreview=player.Dispose;host.ValidatePreview=()=>PlotPlaybackCompiler.Compile(host.project);
+            host.Initialize(new PlotEditorManager(host.project),()=>{var result=EditorUtility.DisplayDialogComplex("未保存的剧情编辑","保存当前修改后继续？","保存","取消","丢弃");return result==0?UnsavedChoice.Save:result==2?UnsavedChoice.Discard:UnsavedChoice.Cancel;},text=>EditorUtility.DisplayDialog("PlotWeave",text,"确认","取消"));
+        }
+    }
+}

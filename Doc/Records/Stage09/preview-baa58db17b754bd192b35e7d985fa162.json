@@ -1,0 +1,20 @@
+{
+    "id": "baa58db17b754bd192b35e7d985fa162",
+    "mode": "luban",
+    "scene": "Assets/PlotWeaveMigration/Stage09_Luban/LubanPlayback.unity",
+    "phase": "captured",
+    "image": "Doc/Records/Stage05/Images/luban-baa58db17b754bd192b35e7d985fa162.png",
+    "error": "",
+    "previousScene": "",
+    "playerState": "Playing",
+    "text": "欢迎使用类型与数据迁移样例。",
+    "background": "demo.stage",
+    "previousBackground": false,
+    "previousMaximized": false,
+    "hadView": true,
+    "ready": true,
+    "node": 1001,
+    "actors": 2,
+    "deadline": 48840.029214,
+    "captureAfter": 48754.276365900005
+}

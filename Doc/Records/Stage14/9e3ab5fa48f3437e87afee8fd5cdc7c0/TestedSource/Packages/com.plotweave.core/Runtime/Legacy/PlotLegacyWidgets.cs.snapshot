@@ -1,0 +1,22 @@
+using System;
+using System.Linq;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace PlotWeave.Legacy
+{
+    /// <summary>旧布局中的Text/TMP混合控件通过明确引用接线。</summary>
+    public static class PlotLegacyWidgets
+    {
+        public static T Find<T>(Component root,string name) where T:Component => root.GetComponentsInChildren<T>(true).FirstOrDefault(c=>c.name==name);
+        public static void Caption(Component root,string text)
+        {if(root==null)return;var tmp=root.GetComponent<TMP_Text>()??root.GetComponentInChildren<TMP_Text>(true);if(tmp!=null){tmp.text=text??"";return;}var label=root.GetComponent<Text>()??root.GetComponentInChildren<Text>(true);if(label!=null)label.text=text??"";}
+        public static void Click(Button button,Action action)
+        {if(button==null)throw new InvalidOperationException("缺少按钮绑定");button.onClick.RemoveAllListeners();button.onClick.AddListener(()=>action());}
+        public static void Input(TMP_InputField input,string text,Action<string> changed,bool readOnly=false)
+        {if(input==null)throw new InvalidOperationException("缺少输入框绑定");input.onValueChanged.RemoveAllListeners();input.SetTextWithoutNotify(text??"");input.readOnly=readOnly;if(changed!=null)input.onValueChanged.AddListener(value=>changed(value));}
+        public static void AutoState(Button button,bool enabled)
+        {if(button==null)return;var yes=Find<Transform>(button,"Auto_Enable");var no=Find<Transform>(button,"Auto_Disable");if(yes!=null)yes.gameObject.SetActive(enabled);if(no!=null)no.gameObject.SetActive(!enabled);if(yes==null&&no==null)Caption(button,enabled?"自动：开":"自动：关");}
+    }
+}

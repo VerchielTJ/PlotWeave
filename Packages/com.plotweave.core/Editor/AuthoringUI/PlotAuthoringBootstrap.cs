@@ -1,0 +1,180 @@
+using System;
+using System.IO;
+using System.Linq;
+using PlotWeave.Authoring.UI;
+using PlotWeave.Generation;
+using PlotWeave.Authoring.Excel;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+
+namespace PlotWeave.Authoring
+{
+    [InitializeOnLoad]
+    public static class PlotAuthoringBootstrap
+    {
+        public const string ExampleRoot = "Assets/PlotWeaveMigration/Stage03_Workspace";
+        public const string ExampleScene = ExampleRoot + "/PlotEditorScene.unity";
+        static PlotAuthoringBootstrap()
+        {
+            EditorApplication.playModeStateChanged += state =>
+            {
+                if (state == PlayModeStateChange.EnteredPlayMode) AttachPanels();
+                if (state == PlayModeStateChange.ExitingPlayMode) PreserveDrafts();
+            };
+            AssemblyReloadEvents.beforeAssemblyReload += PreserveDrafts;
+            EditorApplication.quitting += PreserveDrafts;
+            EditorApplication.delayCall += () => { if (EditorApplication.isPlaying) AttachPanels(); };
+        }
+        private static PlotAuthoringPanel[] Panels() => Resources.FindObjectsOfTypeAll<PlotAuthoringPanel>().Where(p => p != null && p.gameObject.scene.IsValid()).ToArray();
+        private static string Recovery(PlotAuthoringProject project)
+        {
+            var guid = AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(project));
+            if (!Guid.TryParseExact(guid, "N", out _)) throw new InvalidOperationException("制作工作区需保存为项目资产");
+            return Path.Combine("Library", "PlotWeaveRecovery", guid + ".json");
+        }
+        private static UnsavedChoice Choose()
+        {
+            var choice = EditorUtility.DisplayDialogComplex("有未保存修改", "保存当前工作副本后继续？", "保存", "取消", "放弃");
+            return choice == 0 ? UnsavedChoice.Save : choice == 2 ? UnsavedChoice.Discard : UnsavedChoice.Cancel;
+        }
+        public static void AttachPanels()
+        {
+            foreach (var panel in Panels())
+            {
+                if (panel.Session != null || panel.project == null) continue;
+                try
+                {
+                    panel.Initialize(new PlotEditorManager(panel.project), Choose,
+                        message => EditorUtility.DisplayDialog("确认操作", message, "继续", "取消"),
+                        asset => { Selection.activeObject = asset; EditorGUIUtility.PingObject(asset); });
+                    var path = Recovery(panel.project);
+                    panel.BindDataExchange(() => PlotExcelWindow.OpenFor(panel.project,
+                        () => { panel.CommitText(); return panel.Session.ResolveUnsaved(Choose); },
+                        () => { panel.Session.Discard(); panel.ReloadNodes(); }));
+                    if (File.Exists(path))
+                    {
+                        panel.BindRecovery(() =>
+                        {
+                            panel.CommitText();
+                            if (!panel.Session.ResolveUnsaved(Choose)) return;
+                            panel.Session.RestoreDraft(File.ReadAllText(path)); panel.ReloadNodes();
+                        });
+                        panel.Status.text = "发现上次未保存草稿，可点击“恢复草稿”后检查并保存。";
+                    }
+                    panel.Session.Changed += () =>
+                    {
+                        if (!panel.Session.HasUnsavedChanges && File.Exists(path)) { File.Delete(path); panel.BindRecovery(null); }
+                    };
+                }
+                catch (Exception ex) { Debug.LogException(ex); }
+            }
+        }
+        private static void PreserveDrafts()
+        {
+            foreach (var panel in Panels())
+            {
+                if (panel.Session == null) continue;
+                try
+                {
+                    panel.CommitText();
+                    if (!panel.Session.HasUnsavedChanges || panel.Session.WorkingRow == null) continue;
+                    var path = Recovery(panel.project); Directory.CreateDirectory(Path.GetDirectoryName(path));
+                    File.WriteAllText(path, panel.Session.ExportDraft());
+                }
+                catch (Exception ex) { Debug.LogError("制作草稿备份失败: " + ex.Message); }
+            }
+        }
+        public static PlotAuthoringProject CreateWorkspace(string folder)
+        {
+            var root = Path.GetFullPath(folder);
+            var assets = Path.GetFullPath(Application.dataPath).TrimEnd(Path.DirectorySeparatorChar);
+            if (!root.StartsWith(assets + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase)) throw new ArgumentException("工作区必须位于Assets子目录");
+            if (Directory.Exists(root)) throw new IOException("工作区目录已存在");
+            var data = PlotGenerationExample.CreateDefault();
+            try
+            {
+                SaveWorkspaceData(data, folder + "/Data");
+                var project = ScriptableObject.CreateInstance<PlotAuthoringProject>();
+                project.header = data.Header; project.dialogs = data.Dialog; project.constants = data.Constant; project.actors = data.Actors; project.nodeFolder = folder + "/Nodes";
+                AssetDatabase.CreateAsset(project, folder + "/Workspace.asset");
+                var store = new PlotEditorManager(project);
+                var first = store.CreateRow(1001); store.CreateRow(1002); store.CreateRow(1003);
+                first = store.FindRow(1001);
+                var working = UnityEngine.Object.Instantiate(data.Row);
+                try { working.rowId = first.rowId; store.SaveChanges(first, working, data.Dialog, data.Constant, false); }
+                finally { UnityEngine.Object.DestroyImmediate(working); }
+                var profile = ScriptableObject.CreateInstance<PlotGenerationProfile>();
+                profile.header = project.header; profile.targetNamespace = "PlotWeave.Generated.W" + AssetDatabase.AssetPathToGUID(AssetDatabase.GetAssetPath(project)).Substring(0, 8);
+                profile.outputFolder = folder + "/Generated";
+                profile.tables.Add(new PlotTableGeneration { Asset = project.actors, IsThespianTable = true });
+                profile.texts.Add(new PlotKeyValueGeneration { Name = "PlotDialogKey" }); profile.texts.Add(new PlotKeyValueGeneration { Name = "PlotConstantKey" });
+                AssetDatabase.CreateAsset(profile, folder + "/GenerationProfile.asset");
+                AssetDatabase.SaveAssetIfDirty(project); AssetDatabase.SaveAssetIfDirty(profile); return project;
+            }
+            finally { foreach (var asset in data.Assets) if (asset != null && !EditorUtility.IsPersistent(asset)) UnityEngine.Object.DestroyImmediate(asset); }
+        }
+        private static void SaveWorkspaceData(PlotAuthoringExample data, string folder)
+        {
+            if (Directory.Exists(folder)) throw new IOException("工作区数据目录已存在，请使用新的目录");
+            foreach (var asset in data.Assets) asset.Validate().ThrowIfInvalid();
+            Directory.CreateDirectory(folder); AssetDatabase.Refresh();
+            foreach (var asset in data.Assets) AssetDatabase.CreateAsset(asset, folder + "/" + asset.name + ".asset");
+            foreach (var asset in data.Assets) AssetDatabase.SaveAssetIfDirty(asset);
+        }
+        public static void PrepareVerification()
+        {
+            var project = AssetDatabase.LoadAssetAtPath<PlotAuthoringProject>(ExampleRoot + "/Workspace.asset");
+            if (project == null) project = CreateWorkspace(ExampleRoot);
+            if (!File.Exists(ExampleScene))
+            {
+                var previous = UnityEngine.SceneManagement.SceneManager.GetActiveScene();
+                var scene = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Additive);
+                try
+                {
+                    var host = new GameObject("PlotWeave Authoring Host").AddComponent<PlotAuthoringPanel>();
+                    UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(host.gameObject, scene);
+                    host.project = project; EditorSceneManager.SaveScene(scene, ExampleScene);
+                    var camera = new GameObject("Main Camera").AddComponent<Camera>(); camera.tag = "MainCamera"; camera.clearFlags = CameraClearFlags.SolidColor; camera.backgroundColor = PlotUiFactory.Surface;
+                    UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(camera.gameObject, scene); EditorSceneManager.SaveScene(scene, ExampleScene);
+                }
+                finally { if (previous.IsValid() && previous.isLoaded) UnityEngine.SceneManagement.SceneManager.SetActiveScene(previous); EditorSceneManager.CloseScene(scene, true); }
+            }
+            Debug.Log("PLOTWEAVE_STAGE03_WORKSPACE " + ExampleRoot);
+        }
+        public static void ReloadSavedExampleNode()
+        {
+            const string path = ExampleRoot + "/Nodes/1001.asset";
+            var row = AssetDatabase.LoadAssetAtPath<PlotAtomRowData>(path);
+            if (row == null) throw new FileNotFoundException("样例节点不存在");
+            Directory.CreateDirectory("Doc/Records/Stage03");
+            File.WriteAllText("Doc/Records/Stage03/cache-before-reload-" + DateTime.UtcNow.ToString("yyyyMMddHHmmss") + ".json", EditorJsonUtility.ToJson(row, true));
+            Undo.FlushUndoRecordObjects(); Undo.ClearUndo(row);
+            Resources.UnloadAsset(row);
+            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate | ImportAssetOptions.ForceSynchronousImport);
+            Debug.Log("PLOTWEAVE_STAGE03_RELOAD RoleID=" + AssetDatabase.LoadAssetAtPath<PlotAtomRowData>(path).GetColumnSingleValue("PlotRoleID"));
+        }
+        [MenuItem("Tools/PlotWeave/制作工具/打开UGUI制作场景")]
+        public static void OpenExample()
+        {
+            PlotAuthoringStartup.OpenSceneOnly(ExampleScene, EnsureExampleScene);
+        }
+        public static void EnsureExampleScene()
+        {
+            if (!File.Exists(ExampleScene)) PrepareVerification();
+        }
+        [MenuItem("Tools/PlotWeave/打开剧情编辑器")]
+        public static void OpenMigratedEditor() => PlotAuthoringStartup.Start();
+        [MenuItem("Tools/PlotWeave/制作工具/创建独立工作区")]
+        public static void NewWorkspace()
+        {
+            var folder = EditorUtility.OpenFolderPanel("选择新工作区的父目录", Application.dataPath, "");
+            if (string.IsNullOrEmpty(folder)) return;
+            var fullAssets = Path.GetFullPath(Application.dataPath);
+            var full = Path.GetFullPath(folder);
+            if (!string.Equals(full, fullAssets, StringComparison.OrdinalIgnoreCase) && !full.StartsWith(fullAssets + Path.DirectorySeparatorChar, StringComparison.OrdinalIgnoreCase)) throw new ArgumentException("请选择Assets或它的子目录");
+            var relative = string.Equals(full, fullAssets, StringComparison.OrdinalIgnoreCase) ? "Assets" : "Assets/" + full.Substring(fullAssets.Length + 1).Replace('\\', '/');
+            Selection.activeObject = CreateWorkspace(AssetDatabase.GenerateUniqueAssetPath(relative + "/PlotWeaveWorkspace"));
+        }
+    }
+}

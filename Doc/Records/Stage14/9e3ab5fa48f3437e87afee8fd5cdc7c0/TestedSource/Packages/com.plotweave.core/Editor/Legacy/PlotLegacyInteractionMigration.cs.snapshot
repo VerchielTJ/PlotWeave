@@ -1,0 +1,77 @@
+using System;
+using System.IO;
+using System.Linq;
+using PlotWeave.Authoring;
+using PlotWeave.Authoring.Playback;
+using PlotWeave.Playback;
+using TMPro;
+using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+namespace PlotWeave.Legacy.Editor
+{
+    public static class PlotLegacyInteractionMigration
+    {
+        public const string LatestPath="Tools/PlotWeaveMigration/legacy-interaction.json";
+        [Serializable] public sealed class Report
+        {public string id,status,error,root,authoringScene,playbackScene,workspace,catalog;public int nodeButtons,actors,backgrounds,positions;}
+        private static T Required<T>(Component root,string name) where T:Component => PlotLegacyWidgets.Find<T>(root,name)??throw new InvalidOperationException("原UI缺少"+name+" ("+typeof(T).Name+")");
+        private static T Required<T>(GameObject root,string name) where T:Component => Required<T>(root.transform,name);
+        private static GameObject Prefab(PlotLegacyUiReport ui,string ending)=>AssetDatabase.LoadAssetAtPath<GameObject>(ui.layouts.Single(l=>l.source.EndsWith(ending,StringComparison.Ordinal)).asset);
+        [MenuItem("Tools/PlotWeave/迁移工具/连接原制作界面与播放器")]
+        public static void PrepareVerification()
+        {
+            var ui=JsonUtility.FromJson<PlotLegacyUiReport>(File.ReadAllText(PlotLegacyUiMigration.LatestPath));
+            var imported=JsonUtility.FromJson<PlotLegacyImportReport>(File.ReadAllText("Tools/PlotWeaveMigration/imported-original.json"));
+            var project=AssetDatabase.LoadAssetAtPath<PlotAuthoringProject>(imported.projectPath);if(project==null)throw new InvalidOperationException("先导入原制作数据");
+            var report=new Report{id=Guid.NewGuid().ToString("N"),status="running",workspace=imported.projectPath};report.root=ui.root+"/Interactive_"+report.id.Substring(0,8);Directory.CreateDirectory(report.root);AssetDatabase.Refresh();
+            var previous=SceneManager.GetActiveScene();var scene=EditorSceneManager.NewScene(NewSceneSetup.EmptyScene,NewSceneMode.Additive);SceneManager.SetActiveScene(scene);
+            try
+            {
+                var player=UnityEngine.Object.Instantiate(Prefab(ui,"/PlotPlayerUI.prefab"));
+                try
+                {
+                    player.name="PlotWeaveLegacyPlayer";var bindings=player.AddComponent<PlotPlayerViewBindings>();bindings.uiRoot=player.transform.GetChild(0).gameObject;
+                    var canvas=player.GetComponent<Canvas>();if(canvas==null)canvas=player.AddComponent<Canvas>();canvas.renderMode=RenderMode.ScreenSpaceOverlay;canvas.sortingOrder=100;player.AddComponent<GraphicRaycaster>();var scale=player.AddComponent<CanvasScaler>();scale.uiScaleMode=CanvasScaler.ScaleMode.ScaleWithScreenSize;scale.referenceResolution=new Vector2(1920,1080);
+                    bindings.stage=Required<RectTransform>(player,"ThespianParent");bindings.background=Required<Image>(player,"StageBack");bindings.dialogBox=Required<Transform>(player,"DialogBox").gameObject;
+                    bindings.speaker=Required<TMP_Text>(player,"RoloName_txt");bindings.dialog=Required<TMP_Text>(player,"DialogBox_txt");bindings.curtain=Required<CanvasGroup>(player,"Curtain");bindings.curtainTop=Required<TMP_Text>(player,"TopTitle");bindings.curtainBottom=Required<TMP_Text>(player,"BottomTitle");
+                    bindings.next=Required<Button>(player,"PlayerInput");bindings.auto=Required<Button>(player,"PlotAutoButton");
+                    var toolbar=PlotWeave.Authoring.UI.PlotUiFactory.Rect("MigrationPlayerControls",bindings.uiRoot.transform);toolbar.anchorMin=toolbar.anchorMax=new Vector2(1,1);toolbar.pivot=Vector2.one;toolbar.sizeDelta=new Vector2(350,36);toolbar.anchoredPosition=new Vector2(-16,-16);toolbar.gameObject.AddComponent<HorizontalLayoutGroup>();
+                    bindings.pause=PlotWeave.Authoring.UI.PlotUiFactory.Button(toolbar,"Pause","暂停",null,80);bindings.close=PlotWeave.Authoring.UI.PlotUiFactory.Button(toolbar,"ClosePlayer","关闭",null,80);bindings.nodeLabel=PlotWeave.Authoring.UI.PlotUiFactory.Label(toolbar,"NodeId","",32,14);
+                    var skip=player.AddComponent<PlotLegacySkipController>();skip.skipButton=Required<Button>(player,"PlotSkipButton");skip.popupPrefab=Prefab(ui,"/PlotSkipTop.prefab");bindings.Validate();
+                    player.SetActive(true);bindings.uiRoot.SetActive(true);Canvas.ForceUpdateCanvases();
+                    var x=Required<RectTransform>(player,"XPosition");var y=Required<RectTransform>(player,"YPosition");LayoutRebuilder.ForceRebuildLayoutImmediate(x);LayoutRebuilder.ForceRebuildLayoutImmediate(y);
+                    if(x.childCount<19||y.childCount<=6)throw new InvalidOperationException("原位置网格不完整");var positions=new Vector2[19];for(var i=0;i<19;i++){var xp=bindings.stage.InverseTransformPoint(x.GetChild(i).position);var yp=bindings.stage.InverseTransformPoint(y.GetChild(6).position);positions[i]=new Vector2(xp.x,yp.y);}report.positions=positions.Length;
+                    x.gameObject.SetActive(false);y.gameObject.SetActive(false);
+                    var playerPath=report.root+"/LegacyPlayer.prefab";PrefabUtility.SaveAsPrefabAsset(player,playerPath);
+                    var catalog=ScriptableObject.CreateInstance<PlotPlaybackVisualCatalog>();catalog.viewPrefab=AssetDatabase.LoadAssetAtPath<GameObject>(playerPath);catalog.playerConfig=new PlotPlayerConfig{Positions=positions};catalog.fontAsset=PlotTMPText.DefaultFont;
+                    var bundle=JsonUtility.FromJson<PlotLegacyUiBundle>(File.ReadAllText(PlotLegacyUiMigration.InputPath));
+                    foreach(var resource in bundle.resources.Where(r=>r.kind==".png"||r.kind==".jpg"||r.kind==".jpeg").GroupBy(r=>Path.GetFileNameWithoutExtension(r.source),StringComparer.Ordinal).Select(g=>g.OrderByDescending(r=>r.source.Contains("/PScenes/")).First()))
+                    {var texturePath=ui.root+"/Resources/Texture_"+PlotLegacyAssetImport.Hash(resource.source).Substring(0,16)+".asset";var sprite=AssetDatabase.LoadAllAssetsAtPath(texturePath).OfType<Sprite>().FirstOrDefault();if(sprite!=null)catalog.sprites.Add(new PlotPlaybackSpriteBinding{key=Path.GetFileNameWithoutExtension(resource.source),sprite=sprite});}
+                    foreach(var item in ui.layouts.Where(l=>l.source.Contains("/PThespian/")))
+                    {var actor=UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(item.asset));try{actor.SetActive(true);var path=report.root+"/"+Path.GetFileNameWithoutExtension(item.source)+".prefab";PrefabUtility.SaveAsPrefabAsset(actor,path);catalog.actorPrefabs.Add(new PlotActorPrefabBinding{key=Path.GetFileNameWithoutExtension(item.source),prefab=AssetDatabase.LoadAssetAtPath<GameObject>(path)});}finally{UnityEngine.Object.DestroyImmediate(actor);}}
+                    var document=PlotPlaybackCompiler.Compile(project);foreach(var actor in document.Actors)if(!catalog.actorPrefabs.Any(a=>a.key==actor.Thespian))throw new InvalidOperationException("演员资源未绑定: "+actor.Thespian);
+                    foreach(var key in document.Nodes.SelectMany(n=>n.PlotSetBack).Select(b=>b.BackName).Where(k=>!string.IsNullOrEmpty(k)).Distinct())if(!catalog.sprites.Any(s=>s.key==key))throw new InvalidOperationException("背景资源未绑定: "+key);
+                    report.actors=catalog.actorPrefabs.Count;report.backgrounds=catalog.sprites.Count;report.catalog=report.root+"/VisualCatalog.asset";AssetDatabase.CreateAsset(catalog,report.catalog);project.visuals=catalog;EditorUtility.SetDirty(project);AssetDatabase.SaveAssets();
+                    UnityEngine.Object.DestroyImmediate(player);player=null;
+                    var host=new GameObject("OriginalStoryPlayback",typeof(PlotPlayerHost)).GetComponent<PlotPlayerHost>();host.source=ScriptableObject.CreateInstance<PlotPlaybackAsset>();host.source.data=document;AssetDatabase.CreateAsset(host.source,report.root+"/PlaybackSnapshot.asset");host.entryNode=20000;host.viewPrefab=catalog.viewPrefab;host.actorPrefabs=catalog.actorPrefabs;host.sprites=catalog.sprites;host.fontAsset=catalog.fontAsset;host.config=catalog.playerConfig;
+                    var events=new GameObject("EventSystem",typeof(UnityEngine.EventSystems.EventSystem),typeof(UnityEngine.EventSystems.StandaloneInputModule));report.playbackScene=report.root+"/OriginalPlayback.unity";EditorSceneManager.SaveScene(scene,report.playbackScene);UnityEngine.Object.DestroyImmediate(host.gameObject);UnityEngine.Object.DestroyImmediate(events);
+                }
+                finally{if(player!=null)UnityEngine.Object.DestroyImmediate(player);}
+                var editor=UnityEngine.Object.Instantiate(Prefab(ui,"/PlotEditorScene.unity"));
+                try
+                {var host=editor.AddComponent<PlotLegacyAuthoringHost>();host.project=project;host.template=editor.GetComponent<PlotLegacyTemplateBindings>();host.Initialize(new PlotEditorManager(project),()=>PlotWeave.Authoring.UI.UnsavedChoice.Cancel,_=>false);if(!string.IsNullOrEmpty(host.LastError))throw new InvalidOperationException(host.LastError);report.nodeButtons=host.NodeView.PoolSize;}
+                finally{UnityEngine.Object.DestroyImmediate(editor);}
+                editor=UnityEngine.Object.Instantiate(Prefab(ui,"/PlotEditorScene.unity"));
+                try{var host=editor.AddComponent<PlotLegacyAuthoringHost>();host.project=project;host.template=editor.GetComponent<PlotLegacyTemplateBindings>();foreach(var old in host.template.Scripts("EditorPlotPlayerUI"))old.gameObject.SetActive(false);editor.SetActive(true);foreach(var canvas in editor.GetComponentsInChildren<Canvas>(true).Where(c=>c.isRootCanvas))canvas.renderMode=RenderMode.ScreenSpaceOverlay;report.authoringScene=report.root+"/OriginalAuthoring.unity";EditorSceneManager.SaveScene(scene,report.authoringScene);}
+                finally{UnityEngine.Object.DestroyImmediate(editor);}
+                report.status="prepared-runtime-verification-pending";File.WriteAllText(LatestPath,JsonUtility.ToJson(report,true));
+            }
+            catch(Exception error){report.status="failed";report.error=error.ToString();throw;}
+            finally{if(previous.IsValid()&&previous.isLoaded)SceneManager.SetActiveScene(previous);EditorSceneManager.CloseScene(scene,true);Directory.CreateDirectory("Doc/Records/Stage14");File.WriteAllText("Doc/Records/Stage14/interaction-"+report.id+".json",JsonUtility.ToJson(report,true));}
+        }
+    }
+}

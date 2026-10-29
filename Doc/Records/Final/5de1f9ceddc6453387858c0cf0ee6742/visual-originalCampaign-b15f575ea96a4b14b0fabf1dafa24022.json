@@ -1,0 +1,37 @@
+{
+    "id": "b15f575ea96a4b14b0fabf1dafa24022",
+    "phase": "passed",
+    "scene": "Assets/PlotWeaveLocal/OriginalUI/Import_bd3086775b/Campaign_4369937d/OriginalCampaign.unity",
+    "previousScene": "",
+    "error": "",
+    "image": "Tools/PlotWeaveMigration/Inputs/Images/campaign-skip-confirmation-b15f575ea96a4b14b0fabf1dafa24022.png",
+    "background": false,
+    "maximized": false,
+    "hadView": true,
+    "route": 3,
+    "returns": 3,
+    "rewardChecks": 3,
+    "returnTitleChecks": 5,
+    "deadline": 72318.08920419999,
+    "next": 72163.0562825,
+    "images": [
+        "Tools/PlotWeaveMigration/Inputs/Images/campaign-chapters-b15f575ea96a4b14b0fabf1dafa24022.png",
+        "Tools/PlotWeaveMigration/Inputs/Images/campaign-episodes-b15f575ea96a4b14b0fabf1dafa24022.png",
+        "Tools/PlotWeaveMigration/Inputs/Images/campaign-skip-confirmation-b15f575ea96a4b14b0fabf1dafa24022.png"
+    ],
+    "uiHits": [
+        "Main章节项 -> OriginalStoryBrowser/StoryBrowser/PlotMianUI_bb489b7f(Clone)/PlotMianUI/Left/StoryScrollRect/ItemViewport/PropParent/PlotItemNode_b6012990(Clone)/PlotItemNode/Item/BG @(273.81, 590.81)",
+        "Main开始/重看 -> OriginalStoryBrowser/StoryBrowser/PlotChapterUI_988f8a5f(Clone)/PlotChapterUI/Down/SelectBtn/Title @(1570.39, 98.68)",
+        "打开跳过确认 -> OriginalStoryBrowser/LegacyPlayer(Clone)/PlotPlayerUI/UP/CtrlButtons/PlotSkipButton/Title @(1769.80, 795.00)",
+        "确认跳过 -> OriginalStoryBrowser/LegacyPlayer(Clone)/PlotSkipTop_71cb680f(Clone)/PlotSkipTop/Window/BG/ConfirmBtn/Title @(1310.00, 268.50)",
+        "重看小节1001 -> OriginalStoryBrowser/StoryBrowser/PlotChapterUI_988f8a5f(Clone)/PlotChapterUI/Left/StoryScrollRect/ItemViewport/PropParent/PlotItemSelect_bf3175ab(Clone)/PlotItemSelect/PlotName @(218.35, 709.64)",
+        "Main开始/重看 -> OriginalStoryBrowser/StoryBrowser/PlotChapterUI_988f8a5f(Clone)/PlotChapterUI/Down/SelectBtn/Title @(1570.39, 98.68)",
+        "打开跳过确认 -> OriginalStoryBrowser/LegacyPlayer(Clone)/PlotPlayerUI/UP/CtrlButtons/PlotSkipButton/Title @(1769.80, 795.00)",
+        "确认跳过 -> OriginalStoryBrowser/LegacyPlayer(Clone)/PlotSkipTop_71cb680f(Clone)/PlotSkipTop/Window/BG/ConfirmBtn/Title @(1310.00, 268.50)",
+        "切换日常故事 -> OriginalStoryBrowser/StoryBrowser/StoryNavigation/DailyStory @(214.15, 888.52)",
+        "Daily章节项 -> OriginalStoryBrowser/StoryBrowser/PlotMianUI_bb489b7f(Clone)/PlotMianUI/Left/StoryScrollRect/ItemViewport/PropParent/PlotItemNode_b6012990(Clone)/PlotItemNode/Item/BG @(273.81, 590.81)",
+        "Daily开始/重看 -> OriginalStoryBrowser/StoryBrowser/PlotChapterUI_988f8a5f(Clone)/PlotChapterUI/Down/SelectBtn/Title @(1570.39, 98.68)",
+        "打开跳过确认 -> OriginalStoryBrowser/LegacyPlayer(Clone)/PlotPlayerUI/UP/CtrlButtons/PlotSkipButton/Title @(1769.80, 795.00)",
+        "确认跳过 -> OriginalStoryBrowser/LegacyPlayer(Clone)/PlotSkipTop_71cb680f(Clone)/PlotSkipTop/Window/BG/ConfirmBtn/Title @(1310.00, 268.50)"
+    ]
+}

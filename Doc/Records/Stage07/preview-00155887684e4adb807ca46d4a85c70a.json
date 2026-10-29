@@ -1,0 +1,20 @@
+{
+    "id": "00155887684e4adb807ca46d4a85c70a",
+    "mode": "json",
+    "scene": "Assets/PlotWeaveMigration/Stage05_Playback/JsonPlayback.unity",
+    "phase": "captured",
+    "image": "Doc/Records/Stage05/Images/json-00155887684e4adb807ca46d4a85c70a.png",
+    "error": "",
+    "previousScene": "",
+    "playerState": "Playing",
+    "text": "欢迎使用类型与数据迁移样例。",
+    "background": "demo.stage",
+    "previousBackground": false,
+    "previousMaximized": false,
+    "hadView": true,
+    "ready": true,
+    "node": 1001,
+    "actors": 2,
+    "deadline": 46263.4295306,
+    "captureAfter": 46178.3308106
+}

@@ -1,0 +1,149 @@
+{
+    "version": 1,
+    "files": [
+        {
+            "path": "Campaign.asset",
+            "sha256": "9337a63d2f3401d9c70c56945d03f6f2a5c432e9690b8b398957cf940fd4806b"
+        },
+        {
+            "path": "Campaign.asset.meta",
+            "sha256": "1f5729e15658feb0990a4aea9515a3010b495c898755006ab4d8006321db6d86"
+        },
+        {
+            "path": "CampaignReference.unity",
+            "sha256": "465acba13e46eaa1003197e5c578d45993e7b76259d9ae21980fc111a1712ba2"
+        },
+        {
+            "path": "CampaignReference.unity.meta",
+            "sha256": "521c8672a8faf2a49d01dd8cc346f5097be95b439ca5e8b716779d7067f123fa"
+        },
+        {
+            "path": "ChapterCard.prefab",
+            "sha256": "1c990ec2b0d880c3a5a155046fddeed47fb6712901e8f601b24e8e14c574891b"
+        },
+        {
+            "path": "ChapterCard.prefab.meta",
+            "sha256": "2ed31834586a374e338d369ec11cf9f81ed44e0902c4e3f3b2282267f17c16a2"
+        },
+        {
+            "path": "ChapterPanel.prefab",
+            "sha256": "82123460f74bcc5a40817a99277343cd8c05cf857f2de403075a649ef12d8774"
+        },
+        {
+            "path": "ChapterPanel.prefab.meta",
+            "sha256": "04ac2eb786f75c226546c448df50304412831736c2d51e56718e5a35965b3c52"
+        },
+        {
+            "path": "Content.asset",
+            "sha256": "a712d7d80075605caff209459ef55b7bbe71f28ae6dc2e8ea2dd311fe4595059"
+        },
+        {
+            "path": "Content.asset.meta",
+            "sha256": "a0de9a66b2ba0b2f3d1ed186ca194f35884eb8d17394fa31df94ab0a0a3dc08c"
+        },
+        {
+            "path": "EpisodeCard.prefab",
+            "sha256": "5f30e7694c74c17ba548f9844ce4a28f0529918faaabbec9464a9b78938675fa"
+        },
+        {
+            "path": "EpisodeCard.prefab.meta",
+            "sha256": "ffb7423a519db1d57e7b80a1b75253f8be95598816ffd4ecd0bfff798b36bcf2"
+        },
+        {
+            "path": "EpisodePanel.prefab",
+            "sha256": "010576cc46a0ce484e4d03ae46439bf79893874be29625e0f3bf59f8c3660dc0"
+        },
+        {
+            "path": "EpisodePanel.prefab.meta",
+            "sha256": "e939ed228ba8e1726185069cf4e04b9bfa7dfda0b84e30b634ec270f29ed3c98"
+        },
+        {
+            "path": "Player.prefab",
+            "sha256": "bd306c8d6ddbab2cc78af0f78d9b5d7ef8784d7f79a061862cbe21e4061b3f4d"
+        },
+        {
+            "path": "Player.prefab.meta",
+            "sha256": "ecae30b6eaf32929c9e92f53f99df8ff0975d4f0f2e3c1540860f534ec6ffeaf"
+        },
+        {
+            "path": "ReferenceFont.asset",
+            "sha256": "11f14b937d80ef1e5c697353e5c4180fe0b42d6be0e4ce22fdd5ffeae64ad0bc"
+        },
+        {
+            "path": "ReferenceFont.asset.meta",
+            "sha256": "083da0a5b880b003ca0a6ecca1c562997f964ffaef26e061188f10ce8b7a91de"
+        },
+        {
+            "path": "RewardCard.prefab",
+            "sha256": "8f2739293cf125f34a3e750f80d4e608417f9d012013f05b4e73a37789fe15d9"
+        },
+        {
+            "path": "RewardCard.prefab.meta",
+            "sha256": "691d17cbf3c80cd5ebb788bfbcd6e7dc9058c2a1a398b4ca76080b5903ea14d5"
+        },
+        {
+            "path": "SkipPopup.prefab",
+            "sha256": "1485f4a512b81ea827700e763f18f5d1c3529a392818683f05b12c550f411fcd"
+        },
+        {
+            "path": "SkipPopup.prefab.meta",
+            "sha256": "5711220f331f909c941d8ec669bf002465e90a52b8b6a854135dcd12615cedfc"
+        },
+        {
+            "path": "Visuals.asset",
+            "sha256": "1f219a7cc06d422a1fa146d63683af85b4fa280557d21b3f32029590ff792d1a"
+        },
+        {
+            "path": "Visuals.asset.meta",
+            "sha256": "5851c0e2fbb686f7d11f78ebee0dc8c52f34a88599cfd2dbde6f0f236d3af5e5"
+        },
+        {
+            "path": "blue.png",
+            "sha256": "3fcb96ceca212f817e951f2cfde90da0abe590d33adcf1879eb11bf3f98a5858"
+        },
+        {
+            "path": "blue.png.meta",
+            "sha256": "b5b615842c4664fabad51657a605278e727c12aea4bc5158cdd1a7c934545f3d"
+        },
+        {
+            "path": "coin.png",
+            "sha256": "8918ef8bc90a8209520818eeaac1b5fbfa463d9541e17bc81df70cb7d73337d9"
+        },
+        {
+            "path": "coin.png.meta",
+            "sha256": "2653ec2660d858d92677e8eee2c7d0d02956efac49bb5fdd188ed3d61adb4ed3"
+        },
+        {
+            "path": "gem.png",
+            "sha256": "2b1a7eeec93a8dce00ebd2b7e98f7ac58c3c537aefbeaa03aee436f24014908f"
+        },
+        {
+            "path": "gem.png.meta",
+            "sha256": "5ec2064ddc17e517d993a2790ae62026919a095ffeaba122a4bb5bedf5154303"
+        },
+        {
+            "path": "gold.png",
+            "sha256": "dec5ddadc8eac8d4db03357bc7abbd2678f26b9838a2b9fb65b18ab02decc0b4"
+        },
+        {
+            "path": "gold.png.meta",
+            "sha256": "5f21aececd83b4bd4eb7ff38cdac4e8dcbc0de6fbd0fed33397d38f4db09bea4"
+        },
+        {
+            "path": "green.png",
+            "sha256": "8e33d755bcf275b7da88fe4b9e11ed4ea5280eef2b7fd50a6d7029c49d3157cb"
+        },
+        {
+            "path": "green.png.meta",
+            "sha256": "8681d5fc25c3beebbd0b31abd469b74cf890037b2898976daefe56895d1ba0f9"
+        },
+        {
+            "path": "guide.png",
+            "sha256": "d4dd2f68e374e714e47378379361087657a67b25b553378eac295974558dd252"
+        },
+        {
+            "path": "guide.png.meta",
+            "sha256": "59d2f84c012a0e598745884588da55dc6d5ec2793f028318c664a70616f2dd33"
+        }
+    ]
+}

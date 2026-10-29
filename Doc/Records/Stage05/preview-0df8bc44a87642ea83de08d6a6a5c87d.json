@@ -1,0 +1,24 @@
+{
+  "id": "0df8bc44a87642ea83de08d6a6a5c87d",
+  "mode": "asset",
+  "scene": "Assets/PlotWeaveMigration/Stage05_Playback/GamePlayback.unity",
+  "phase": "captured",
+  "image": "本地原布局截图不随公开版本分发；历史验证摘要保留。",
+  "error": "",
+  "previousScene": "",
+  "playerState": "Playing",
+  "text": "欢迎使用类型与数据迁移样例。",
+  "background": "demo.stage",
+  "previousBackground": false,
+  "previousMaximized": false,
+  "hadView": true,
+  "ready": true,
+  "node": 1001,
+  "actors": 2,
+  "deadline": 41041.7263516,
+  "captureAfter": 40955.773057,
+  "publicExport": {
+    "originalSha256": "b5ba3eca34636187a41dff384adb7e16b548d27257b04fa801c9276a57d2edc7",
+    "note": "公开整理副本：省略本地原布局截图及本机根路径；未重新执行历史验收。"
+  }
+}

@@ -1,0 +1,309 @@
+classDiagram
+direction LR
+%% Generated from engineering-index.json; not an ownership percentage.
+class C0["PlotEnumAsset"] {
+  +dynamicLists()
+  +GetEnum()
+  +GetEnumKeys()
+}
+class C1["PlotEventTypeAsset"] {
+  +eventTypes()
+  +GetEventTypeByKey()
+  +GetEventParameterKeys()
+}
+class C2["PlotAtomDataHeaderAsset"] {
+  +sheets()
+  +GetColumnByName()
+  +SyncCustomBeanMembersCount()
+}
+class C3["PlotAtomRowData"] {
+  +rowId()
+  +GetColumnRows()
+  +SetColumnRowValues()
+}
+class C4["PlotBeanLayout"] {
+  +Defaults()
+  +Leaves()
+  +Read()
+}
+class C5["PlotAuthoringProject"] {
+  +header()
+  +dialogs()
+  +actors()
+}
+class C6["IPlotAuthoringStore"] {
+  <<interface>>
+  +ListRows()
+  +SaveChanges()
+  +RenameRow()
+}
+class C7["PlotEditingSession"] {
+  +WorkingRow()
+  +Select()
+  +Save()
+}
+class C8["PlotEditorManager"] {
+  +ListRows()
+  +SaveChanges()
+  +RenameRow()
+}
+class C9["PlotAuthoringPanel"] {
+  +Initialize()
+  +Session()
+  +PreviewRequested()
+}
+class C10["PlotLegacyAuthoringHost"] {
+  +Initialize()
+  +Save()
+  +RestoreDraft()
+}
+class C11["PlotDataStructureGenerator"] {
+  +GenerateAllDataStructures()
+  +GenerateSingleColumnTableStructure()
+  +GeneratePlotTableAssetStructure()
+}
+class C12["PlotGeneratedBundle"] {
+  +Files()
+  +Write()
+}
+class C13["IPlotValueSource"] {
+  <<interface>>
+  +IsValid()
+  +TryGetValue()
+}
+class C14["PlotDataAdapter"] {
+  +DataSource()
+  +IsValid()
+}
+class C15["PlotExcelExchange"] {
+  +Export()
+  +PlanImport()
+  +CopyToLubanData()
+}
+class C16["PlotExcelImportPlan"] {
+  +Summary()
+  +LastBackupDirectory()
+  +Commit()
+}
+class C17["PlotLubanPipeline"] {
+  +Run()
+  +RequireOutput()
+}
+class C18["PlotLubanTableReader"] {
+  +Read()
+  +TextValueSource()
+  +ApplyEventSidecar()
+}
+class C19["PlotPlaybackCompiler"] {
+  +Compile()
+  +Compile()
+  +CompileSelected()
+}
+class C20["PlotPlaybackDocument"] {
+  +Nodes()
+  +Validate()
+  +Snapshot()
+}
+class C21["IPlotPlayer"] {
+  <<interface>>
+  +LoadPlot()
+  +Choose()
+  +ShowCurtainAndLoadNode()
+}
+class C22["PlotPlayerCore"] {
+  +LoadPlot()
+  +Choose()
+  +Skip()
+}
+class C23["IPlotPlayerView"] {
+  <<interface>>
+  +Initialize()
+  +RenderDialog()
+  +Present()
+}
+class C24["PlotPlayerView"] {
+  +Initialize()
+  +RenderDialog()
+  +Present()
+}
+class C25["PlotPlayerHost"] {
+  +Initialize()
+  +Play()
+  +Core()
+}
+class C26["IPlotPlayerDataProvider"] {
+  <<interface>>
+  +TryGetNode()
+  +TryGetActor()
+  +TryGetText()
+}
+class C27["PlotEventScheduler"] {
+  +Validate()
+  +Tick()
+  +Dispose()
+}
+class C28["PlotChapterSession"] {
+  +StartAsync()
+  +RetryReportAsync()
+  +Cancel()
+}
+class C29["IPlotChapterBackend"] {
+  <<interface>>
+  +LoadAsync()
+  +CompleteAsync()
+}
+class C30["IPlotChapterPlayer"] {
+  <<interface>>
+  +Play()
+  +Close()
+  +Completed()
+}
+class C31["IPlotChapterNavigation"] {
+  <<interface>>
+  +Enter()
+  +Return()
+  +ShowFailure()
+}
+class C32["PlotChapterHostPlayer"] {
+  +Play()
+  +Close()
+  +Dispose()
+}
+class C33["PlotCampaignCatalog"] {
+  +Validate()
+  +InitialEpisode()
+  +Content()
+}
+class C34["PlotCampaignProgressStore"] {
+  +IsRead()
+  +Commit()
+  +ImportLegacyProgress()
+}
+class C35["PlotCampaignLocalBackend"] {
+  +LoadAsync()
+  +CompleteAsync()
+}
+class C36["PlotLegacyCampaignHost"] {
+  +Initialize()
+  +OpenKind()
+  +BeginSelectedAsync()
+}
+class C37["PlotLegacyNetworkChapterBackend"] {
+  +SynchronizeAsync()
+  +LoadAsync()
+  +CompleteAsync()
+}
+class C38["IPlotLegacyStoryTransport"] {
+  <<interface>>
+  +SupportsIdempotentCompletion()
+  +ReadProgressAsync()
+  +CompleteAsync()
+}
+class C39["IPlotResourceLoader"] {
+  <<interface>>
+  +LoadSprite()
+}
+class C40["EditorPlotPlayerUI"] {
+  +EditorPlotPlayerUI()
+  +Play()
+  +Refresh()
+}
+class C41["PlotAuthoringBootstrap"] {
+  +OpenMigratedEditor()
+  +AttachPanels()
+  +OpenExample()
+}
+class C42["PlotLegacyAuthoringBootstrap"] {
+}
+class C43["PlotExcelWindow"] {
+  +OpenFor()
+  +Project()
+}
+class C44["PlotAuthoringStartup"] {
+  +Start()
+  +Decide()
+  +EnterCurrentScene()
+}
+class C45["PlotAuthoringPopupLayout"] {
+  +Initialize()
+  +Toggle()
+  +Open()
+}
+class C46["PlotAuthoringViewportLayout"] {
+  +Install()
+  +UpdateLayout()
+  +IsViewportTooSmall()
+}
+class C47["PlotNodeView"] {
+  +Initialize()
+  +SetRows()
+  +ConfigureDisplay()
+}
+C1 ..> C0 : uses
+C2 ..> C0 : uses
+C2 ..> C1 : uses
+C3 ..> C2 : uses
+C2 ..> C4 : uses
+C5 ..> C2 : uses
+C7 ..> C6 : uses
+C7 ..> C3 : uses
+C8 ..|> C6 : implements
+C8 ..> C5 : uses
+C9 ..> C7 : uses
+C10 ..> C7 : uses
+C10 ..> C4 : uses
+C11 ..> C2 : uses
+C11 --> C12 : produces
+C14 ..> C13 : uses
+C15 ..> C5 : uses
+C15 --> C16 : produces
+C15 ..> C8 : uses
+C17 ..> C15 : uses
+C19 ..> C5 : uses
+C19 --> C20 : produces
+C18 --> C20 : produces
+C18 ..> C13 : uses
+C22 ..|> C21 : implements
+C22 ..> C26 : uses
+C22 ..> C23 : uses
+C22 ..> C39 : uses
+C22 ..> C27 : uses
+C24 ..|> C23 : implements
+C25 ..> C22 : uses
+C25 ..> C24 : uses
+C25 ..> C20 : uses
+C28 ..> C29 : uses
+C28 ..> C30 : uses
+C28 ..> C31 : uses
+C32 ..|> C30 : implements
+C32 ..> C25 : uses
+C35 ..|> C29 : implements
+C35 ..> C33 : uses
+C35 ..> C34 : uses
+C36 ..|> C31 : implements
+C36 ..> C28 : uses
+C36 ..> C32 : uses
+C36 ..> C35 : uses
+C37 ..|> C29 : implements
+C37 ..> C38 : uses
+C37 ..> C34 : uses
+C19 ..> C7 : uses
+C40 --> C25 : produces
+C40 ..> C20 : uses
+C42 ..> C10 : calls
+C42 --> C40 : produces
+C42 ..> C19 : calls
+C42 ..> C43 : calls
+C41 ..> C9 : calls
+C41 ..> C43 : calls
+C43 ..> C5 : uses
+C43 ..> C15 : calls
+C43 ..> C16 : uses
+C41 ..> C44 : calls
+C44 ..> C10 : uses
+C44 ..> C9 : uses
+C44 ..> C41 : calls
+C10 ..> C45 : contains
+C10 ..> C46 : calls
+C46 ..> C10 : calls
+C46 ..> C47 : calls

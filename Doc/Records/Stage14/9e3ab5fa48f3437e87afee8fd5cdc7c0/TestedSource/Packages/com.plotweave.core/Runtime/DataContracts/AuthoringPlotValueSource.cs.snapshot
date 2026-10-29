@@ -1,0 +1,57 @@
+using System;
+using System.Collections.Generic;
+using PlotWeave.Authoring;
+using ValueType = PlotWeave.Authoring.PlotEventTypeAsset.ValueType;
+
+namespace PlotWeave.Data
+{
+    /// <summary>将作者数据转换为结构快照；按真实表头、参数顺序解释，不硬编码7列。</summary>
+    public static class AuthoringPlotValueSource
+    {
+        public static IPlotValueSource FromRow(PlotAtomRowData row)
+        {
+            if (row == null) throw new ArgumentNullException(nameof(row));
+            row.Validate().ThrowIfInvalid();
+            var values = new Dictionary<string, object>(StringComparer.Ordinal);
+            foreach (var column in row.headerDefinition.sheets)
+            {
+                var rows = row.GetColumnRows(column.columnName);
+                var member = column.columnName.TrimStart('*');
+                if (values.ContainsKey(member)) throw new FormatException("移除约束后列名冲突: " + member);
+                if (column.IsList)
+                {
+                    var list = new List<object>();
+                    foreach (var item in rows) list.Add(ReadRow(row.headerDefinition, column, item.values));
+                    values.Add(member, list);
+                }
+                else values.Add(member, rows.Count == 0 ? null : ReadRow(row.headerDefinition, column, rows[0].values));
+            }
+            return new DictionaryPlotValueSource(values);
+        }
+        private static object ReadRow(PlotAtomDataHeaderAsset header, PlotAtomDataHeaderAsset.ColumnDefinition column, List<string> values)
+        {
+            if (column.valueType != ValueType.CustomBean) return values[0];
+            return PlotBeanLayout.Read(header.parameterBean, column.typeKey, values);
+        }
+        public static IPlotValueSource FromTableRow(PlotTableAsset.TableRow row, string idMember)
+        {
+            if (row == null) throw new ArgumentNullException(nameof(row));
+            var values = new Dictionary<string, object>(StringComparer.Ordinal) { { idMember, row.id } };
+            foreach (var column in row.columns)
+            {
+                if (column.columnName == idMember)
+                {
+                    if (!string.Equals(column.value, row.id, StringComparison.Ordinal)) throw new FormatException("通用表主键列与行ID不一致: " + row.id);
+                }
+                else values.Add(column.columnName, column.value);
+            }
+            return new DictionaryPlotValueSource(values);
+        }
+        public static IPlotValueSource FromText(PlotTextEntry entry, string keyMember = "key", string valueMember = "value", bool isMultiLanguage = true)
+        {
+            if (entry == null) throw new ArgumentNullException(nameof(entry));
+            return new DictionaryPlotValueSource(new Dictionary<string, object>(StringComparer.Ordinal)
+            { { keyMember, entry.key }, { valueMember, isMultiLanguage ? (object)(entry.value == null ? new List<string>() : new List<string>(entry.value)) : entry.value != null && entry.value.Count > 0 ? entry.value[0] : "" } });
+        }
+    }
+}

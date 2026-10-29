@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acab9a7a4426602ab7ed276ba1514619, type: 3}
+  m_Name: LubanProfile
+  m_EditorClassIdentifier: 
+  project: {fileID: 11400000, guid: 4d31d098c951dc443b396b0ef4f3b461, type: 2}
+  dotnetPath: dotnet
+  compilerDll: Tools/ThirdParty/Luban-4.10.2/Luban/Luban.dll
+  generatedRoot: Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated
+  generatedNamespace: PlotWeaveLubanNested
+  runtimeAssembly: PlotWeave.LubanRuntime.Sample
+  assemblyName: PlotWeave.Luban.Nested.Sample
+  timeoutSeconds: 45

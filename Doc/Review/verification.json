@@ -1,0 +1,190 @@
+{
+  "reviewDate": "2026-10-30",
+  "status": "passed-metadata-and-browser-scope",
+  "scope": "public-distribution-review-metadata-and-offline-renderer",
+  "runtimeNativeTestsRerun": false,
+  "historicalAcceptanceDate": "2026-10-28",
+  "acceptedSourceMatches": false,
+  "packageFingerprint": "fa3f08fe89729a8d568164da83ff9808dbbd5e070499ad2f70f3983a724c8625",
+  "historicalAcceptanceScopeNote": "277项及40项均为原本地工程记录；本次只验证公开索引、源码/API定位和评审页，不重跑历史Unity测试。公开副本的独立Unity验证另行记录。",
+  "data": {
+    "status": "passed",
+    "schemaKeywordChecks": 3447,
+    "curatedTypes": 48,
+    "relationships": 68,
+    "realApis": 155,
+    "evidenceLinksChecked": 137,
+    "missingEvidenceLinks": [],
+    "historicalSourceComparison": {
+      "recordedSourceCount": 245,
+      "matchedSourceCount": 206,
+      "changedSources": [
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringBootstrap.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+        "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs",
+        "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyWorkspaceMenus.cs",
+        "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs",
+        "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackCompiler.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeView.cs",
+        "Packages/com.plotweave.core/Tests/Editor/PlotVerificationBridge.cs"
+      ],
+      "excludedPrivateSources": [
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/C2Contracts/DataContracts.g.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/C2Contracts/EditorAdapters.g.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/C2Contracts/GameAdapters.g.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/C2Contracts/PlotWeave.Original.Contracts.asmdef",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotAtomData.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotBranch.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotConstantKey.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotDialogKey.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotEvtType.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotRoleAction.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotSetBackground.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotThespianData.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/RoleActionType.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/RoleEmote.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/RolePosType.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/RoleSet.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/SetBackType.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/Tables.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/TbActor.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/TbConstant.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/TbDialog.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/TbPlotAtom.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/PlotWeave.Luban.Original.Runb634e485.asmdef",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/link.xml",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_39e1c77786/Player/PlotOriginalLubanPlayer.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_39e1c77786/Player/PlotWeave.Luban.Original.Runb634e485.PlaybackRun39e1c777.asmdef",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_4069c78aa5/Player/PlotOriginalLubanPlayer.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_4069c78aa5/Player/PlotWeave.Luban.Original.Runb634e485.PlaybackRun4069c78a.asmdef"
+      ],
+      "missingExternalDependencies": [],
+      "missingPublicSources": [],
+      "invalidSourceEntries": 0,
+      "unrecordedPackageSources": [
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringStartup.cs",
+        "Packages/com.plotweave.core/Editor/Legacy/PlotAuthoringLayoutVerification.cs",
+        "Packages/com.plotweave.core/Editor/Legacy/PlotAuthoringSceneLayoutRepair.cs",
+        "Packages/com.plotweave.core/Editor/Legacy/PlotAuthoringWorkflowVerification.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPopupLayout.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringViewportLayout.cs",
+        "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringEmbeddedPreviewTests.cs",
+        "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringInitializationTests.cs",
+        "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringPopupLayoutTests.cs",
+        "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringStartupTests.cs",
+        "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringWorkingSnapshotTests.cs"
+      ],
+      "publicPackageSourcesMatch": false,
+      "availableSourcesMatch": false,
+      "completeSourceSetMatches": false
+    },
+    "historical40SourceComparison": {
+      "recordedSourceCount": 256,
+      "matchedSourceCount": 228,
+      "changedSources": [],
+      "excludedPrivateSources": [
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/C2Contracts/DataContracts.g.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/C2Contracts/EditorAdapters.g.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/C2Contracts/GameAdapters.g.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/C2Contracts/PlotWeave.Original.Contracts.asmdef",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotAtomData.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotBranch.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotConstantKey.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotDialogKey.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotEvtType.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotRoleAction.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotSetBackground.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/PlotThespianData.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/RoleActionType.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/RoleEmote.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/RolePosType.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/RoleSet.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/SetBackType.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/Tables.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/TbActor.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/TbConstant.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/TbDialog.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/Code/TbPlotAtom.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/PlotWeave.Luban.Original.Runb634e485.asmdef",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanGenerated/link.xml",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_39e1c77786/Player/PlotOriginalLubanPlayer.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_39e1c77786/Player/PlotWeave.Luban.Original.Runb634e485.PlaybackRun39e1c777.asmdef",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_4069c78aa5/Player/PlotOriginalLubanPlayer.cs",
+        "Assets/PlotWeaveLocal/Campaign/Import_b634e48545/LubanPlayback_4069c78aa5/Player/PlotWeave.Luban.Original.Runb634e485.PlaybackRun4069c78a.asmdef"
+      ],
+      "missingExternalDependencies": [],
+      "missingPublicSources": [],
+      "invalidSourceEntries": 0,
+      "unrecordedPackageSources": [],
+      "publicPackageSourcesMatch": true,
+      "availableSourcesMatch": true,
+      "completeSourceSetMatches": false
+    }
+  },
+  "browser": {
+    "status": "passed",
+    "checks": [
+      "public distribution and historical evidence notices",
+      "historical class status and API detail",
+      "repository and MIT boundary",
+      "AI_CONTEXT footer link",
+      "rendered local evidence links",
+      "responsive widths"
+    ],
+    "sizes": [
+      {
+        "width": 1600,
+        "overflow": false
+      },
+      {
+        "width": 1280,
+        "overflow": false
+      },
+      {
+        "width": 390,
+        "overflow": false
+      },
+      {
+        "width": 320,
+        "overflow": false
+      }
+    ],
+    "errors": [],
+    "networkRequests": 0,
+    "renderedLinksChecked": 12,
+    "missingLinks": []
+  },
+  "artifacts": [
+    {
+      "path": "Doc/Review/engineering-index.json",
+      "sha256": "ac82fa6df455760e49c2a33194c839d147e87f09b1b7989d571be23c4e78ca63"
+    },
+    {
+      "path": "Doc/Review/source-inventory.json",
+      "sha256": "f88e5e95c7e141f67ff86c245b38fcbaa9f7a7efabbb06cafa93bdcfde26f6f7"
+    },
+    {
+      "path": "Doc/Review/class-diagram.svg",
+      "sha256": "14ab77082072b457b65d1332215825e942d3f48e592e149b61502b7439d6a54d"
+    },
+    {
+      "path": "Doc/Review/class-diagram.mmd",
+      "sha256": "8804bc7ead447b1edf63c89ccb0a3219349d622fa65c1779da775e2e84ddb545"
+    },
+    {
+      "path": "Doc/Review/index.html",
+      "sha256": "ddbd25c29ba9ed87cf29a9c1173f6da536bf19e63fbe065b50f3469833677e65"
+    },
+    {
+      "path": "Doc/Review/provenance.json",
+      "sha256": "c38d26fbb40bbf4221380363b0be7cca6590643cf5d19986219faededd366139"
+    },
+    {
+      "path": "Doc/Review/engineering-index.schema.json",
+      "sha256": "4ab13b9562e1205e9f2dc7beeb660ff8a4787b1fe35a46b322bbcfa84680bb41"
+    }
+  ]
+}

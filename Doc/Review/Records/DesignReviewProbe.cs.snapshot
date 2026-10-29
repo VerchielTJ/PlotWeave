@@ -1,0 +1,643 @@
+#if UNITY_EDITOR
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
+using PlotWeave.Authoring;
+using PlotWeave.Authoring.Playback;
+using PlotWeave.Authoring.UI;
+using PlotWeave.Playback;
+using UnityEditor;
+using UnityEngine;
+
+namespace PlotWeave.DesignReview.Probes
+{
+    /// <summary>
+    /// One-shot investigation code, not part of the product. Only the fixed request
+    /// is accepted. It clones the public workspace, exercises the real APIs, and
+    /// removes only its own verified Assets/PlotWeaveDesignReview_<request-id>.
+    /// The installed Editor-code folder must be removed separately by the operator.
+    /// </summary>
+    [InitializeOnLoad]
+    internal static class PlotWeaveDesignReviewProbe
+    {
+        private const string RequestPath = "Tools/PlotWeaveMigration/design-review-request.json";
+        private const string InstalledProbePath = "Assets/PlotWeaveDesignReviewProbe/Editor/PlotWeaveDesignReviewProbe.cs";
+        private const string SourceWorkspacePath = "Assets/PlotWeaveMigration/Stage03_Workspace/Workspace.asset";
+        private const string ReportsFolder = "Doc/Review/Records";
+        private static bool _busy;
+        private static double _nextPoll;
+
+        [Serializable] private sealed class Request { public string id; }
+        [Serializable] private sealed class OperationStatus { public string status; }
+        [Serializable] private sealed class Stamp { public string path, sha256; }
+        [Serializable] private sealed class Finding
+        {
+            public string id, status = "error", phase, observation, errorType, errorStack;
+            public string verificationLevel, persistenceBoundary;
+            public List<string> steps = new List<string>();
+            public string expectedValueSha256, observedValueSha256, draftSha256;
+            public bool saveSucceeded, compileBeforeSucceeded, compileAfterSucceeded;
+            public bool diskStoreTestSkipped, compilerTestSkipped, renameTestSkipped;
+            public bool validationBeforeSucceeded, validationAfterSucceeded;
+            public int inMemoryStoreWrites;
+            public bool beforeReferencesValid, oldTargetAbsentAfterRename, danglingNext, danglingBranch;
+            public int sourceNodeID, oldTargetID, renamedTargetID, danglingCount;
+        }
+        [Serializable] private sealed class Report
+        {
+            public string id, status = "running", phase, startedAtUtc, completedAtUtc;
+            public string unityVersion, editorExecutable, editorExecutableSha256;
+            public string probePath, probeSha256, probeSha256After;
+            public string sourceWorkspace = SourceWorkspacePath, temporaryRoot;
+            public string errorType, errorStack, cleanupErrorType;
+            public string verificationMode = "undecided";
+            public bool memoryOnly, diskStoreTestSkipped, memoryObjectsReleased;
+            public bool sourceUnchanged, probeUnchanged, temporaryRootCreated;
+            public bool cleanupAttempted, cleanupSucceeded;
+            public int sourceRows, loadedDirtyAssets;
+            public List<Stamp> sourceBefore = new List<Stamp>();
+            public List<Stamp> sourceAfter = new List<Stamp>();
+            public List<Stamp> productSources = new List<Stamp>();
+            public List<string> sourceDifferences = new List<string>();
+            public List<string> setupNotes = new List<string>();
+            public List<Finding> findings = new List<Finding>();
+        }
+
+        static PlotWeaveDesignReviewProbe() { EditorApplication.update += Poll; }
+
+        private static string ProjectRoot => Path.GetFullPath(Path.Combine(Application.dataPath, ".."));
+        private static string Absolute(string relative)
+        {
+            if (string.IsNullOrWhiteSpace(relative) || Path.IsPathRooted(relative)
+                || relative.Replace('\\', '/').Split('/').Any(p => p == ".."))
+                throw new ArgumentException("Expected a project-relative path");
+            var result = Path.GetFullPath(Path.Combine(ProjectRoot, relative));
+            if (!result.StartsWith(ProjectRoot.TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar,
+                    StringComparison.OrdinalIgnoreCase))
+                throw new IOException("Path outside project");
+            return result;
+        }
+
+        private static string HashFile(string path)
+        {
+            using (var hash = SHA256.Create())
+            using (var stream = File.OpenRead(path))
+                return BitConverter.ToString(hash.ComputeHash(stream)).Replace("-", "").ToLowerInvariant();
+        }
+
+        private static string HashText(string value)
+        {
+            using (var hash = SHA256.Create())
+                return BitConverter.ToString(hash.ComputeHash(Encoding.UTF8.GetBytes(value ?? "")))
+                    .Replace("-", "").ToLowerInvariant();
+        }
+
+        private static void Save(Report report)
+        {
+            Directory.CreateDirectory(Absolute(ReportsFolder));
+            File.WriteAllText(Absolute(ReportsFolder + "/design-review-" + report.id + ".json"),
+                JsonUtility.ToJson(report, true), new UTF8Encoding(false));
+        }
+
+        private static bool OtherOperationBusy()
+        {
+            foreach (var key in new[] {
+                "PlotWeave.Stage05.Preview", "PlotWeave.Stage08.Preview", "PlotWeave.Stage10.Preview",
+                "PlotWeave.Stage14.Preview", "PlotWeave.Stage16.Preview", "PlotWeave.Stage18.ReferencePreview",
+                "PlotWeave.Stage17.MobileBuild" })
+                if (SessionState.GetString(key, "") != "") return true;
+            if (File.Exists(Absolute("Tools/PlotWeaveMigration/request.json"))) return true;
+            var tests = Absolute("Tools/PlotWeaveMigration/result-tests.json");
+            if (!File.Exists(tests)) return false;
+            var state = JsonUtility.FromJson<OperationStatus>(File.ReadAllText(tests));
+            return state != null && (state.status == "running" || state.status == "requested");
+        }
+
+        private static void Poll()
+        {
+            if (_busy || EditorApplication.timeSinceStartup < _nextPoll
+                || EditorApplication.isCompiling || EditorApplication.isUpdating
+                || EditorApplication.isPlayingOrWillChangePlaymode) return;
+            _nextPoll = EditorApplication.timeSinceStartup + 2;
+            if (!File.Exists(Absolute(RequestPath)) || OtherOperationBusy()) return;
+            Request request;
+            try { request = JsonUtility.FromJson<Request>(File.ReadAllText(Absolute(RequestPath))); }
+            catch { return; }
+            if (request == null || !Guid.TryParseExact(request.id, "N", out _)) return;
+            var handled = Absolute("Tools/PlotWeaveMigration/design-review-handled-" + request.id + ".json");
+            // Never execute a request ID twice, including after an editor/domain restart.
+            if (File.Exists(handled)) return;
+            File.Move(Absolute(RequestPath), handled);
+            _busy = true;
+            try { Run(request.id); }
+            finally { _busy = false; }
+        }
+
+        private static List<Stamp> CaptureSource(PlotAuthoringProject project)
+        {
+            var paths = new HashSet<string>(StringComparer.Ordinal) { SourceWorkspacePath };
+            var folder = Absolute(project.nodeFolder);
+            if (!Directory.Exists(folder)) throw new DirectoryNotFoundException("Public node folder is missing");
+            foreach (var path in Directory.GetFiles(folder, "*.asset", SearchOption.AllDirectories))
+            {
+                var relative = path.Substring(ProjectRoot.TrimEnd(Path.DirectorySeparatorChar).Length + 1)
+                    .Replace('\\', '/');
+                paths.Add(relative);
+            }
+            foreach (var path in AssetDatabase.GetDependencies(paths.ToArray(), true)) paths.Add(path);
+            var records = new List<Stamp>();
+            foreach (var relative in paths.OrderBy(p => p, StringComparer.Ordinal))
+            {
+                var full = Absolute(relative);
+                if (!File.Exists(full) && relative.StartsWith("Packages/", StringComparison.Ordinal))
+                {
+                    var package = UnityEditor.PackageManager.PackageInfo.FindForAssetPath(relative);
+                    if (package != null)
+                        full = Path.Combine(package.resolvedPath,
+                            relative.Substring(package.assetPath.Length).TrimStart('/', '\\'));
+                }
+                // Unity builtin virtual dependencies have no writable filesystem representation.
+                if (!File.Exists(full)) continue;
+                records.Add(new Stamp { path = relative, sha256 = HashFile(full) });
+                if (File.Exists(full + ".meta"))
+                    records.Add(new Stamp { path = relative + ".meta", sha256 = HashFile(full + ".meta") });
+            }
+            return records.OrderBy(s => s.path, StringComparer.Ordinal).ToList();
+        }
+
+        private static int CountPreexistingDirtyAssets()
+            => Resources.FindObjectsOfTypeAll<UnityEngine.Object>()
+                .Count(asset => asset != null && EditorUtility.IsPersistent(asset) && EditorUtility.IsDirty(asset));
+
+        private static void RequireNoPreexistingDirtyAssets(Report report)
+        {
+            // PlotEditorManager legitimately calls SaveAssets. Do not let that flush
+            // unrelated unsaved user work merely because this probe was requested.
+            report.loadedDirtyAssets = CountPreexistingDirtyAssets();
+            if (report.loadedDirtyAssets != 0)
+                throw new InvalidOperationException("Preexisting persistent assets are dirty; probe refused");
+        }
+
+        /// <summary>
+        /// A session-level diagnostic persistence boundary. It intentionally does not
+        /// impersonate PlotEditorManager disk/Undo/import behavior. All assigned
+        /// objects are isolated memory clones; unused CRUD operations are refused.
+        /// </summary>
+        private sealed class MemoryAuthoringStore : IPlotAuthoringStore
+        {
+            public PlotAuthoringProject Project { get; }
+            private readonly List<PlotAtomRowData> _rows;
+            public int SaveCalls { get; private set; }
+
+            public MemoryAuthoringStore(PlotAuthoringProject project, List<PlotAtomRowData> rows)
+            {
+                Project = project;
+                _rows = rows;
+                if (EditorUtility.IsPersistent(project) || rows.Any(EditorUtility.IsPersistent))
+                    throw new InvalidOperationException("Memory store received a persistent asset");
+            }
+
+            public List<PlotAtomRowData> ListRows(int? from = null, int? to = null)
+            {
+                if (from > to) throw new ArgumentException("Invalid range");
+                return _rows.Where(row => (!from.HasValue || ReadID(row, Project) >= from.Value)
+                    && (!to.HasValue || ReadID(row, Project) <= to.Value))
+                    .OrderBy(row => ReadID(row, Project)).ToList();
+            }
+
+            public PlotAtomRowData FindRow(int id) => _rows.Find(row => ReadID(row, Project) == id);
+            public PlotAtomRowData CreateRow(int id) => throw new NotSupportedException("Memory fallback does not create nodes");
+            public PlotAtomRowData RenameRow(int oldID, int newID) => throw new NotSupportedException("Memory fallback does not execute the disk rename path");
+            public bool DeleteRow(int id) => throw new NotSupportedException("Memory fallback does not delete nodes");
+
+            public void SaveChanges(PlotAtomRowData target, PlotAtomRowData working,
+                PlotDialogKeyAsset dialogs, PlotConstantKeyAsset constants)
+            {
+                if (!_rows.Contains(target) || EditorUtility.IsPersistent(target)
+                    || EditorUtility.IsPersistent(Project.dialogs) || EditorUtility.IsPersistent(Project.constants))
+                    throw new InvalidOperationException("Memory store refuses persistent or foreign targets");
+                working.Validate().ThrowIfInvalid(); dialogs?.Validate().ThrowIfInvalid(); constants?.Validate().ThrowIfInvalid();
+                if (working.headerDefinition != Project.header || ReadID(working, Project) != ReadID(target, Project)
+                    || working.rowId != target.rowId)
+                    throw new InvalidOperationException("Memory store row identity mismatch");
+                target.rowTitle = working.rowTitle;
+                target.columns = working.columns.Select(column => new PlotAtomRowData.SerializedColumnData {
+                    columnName = column.columnName,
+                    rows = column.rows.Select(row => new PlotAtomRowData.StringList {
+                        values = new List<string>(row.values) }).ToList() }).ToList();
+                if (dialogs != null && Project.dialogs != null)
+                    Project.dialogs.dialogKeyDataList = dialogs.dialogKeyDataList.Select(entry =>
+                        new PlotDialogKeyAsset.DialogKeyData { key = entry.key, value = new List<string>(entry.value) }).ToList();
+                if (constants != null && Project.constants != null)
+                    Project.constants.constantKeyDataList = constants.constantKeyDataList.Select(entry =>
+                        new PlotConstantKeyAsset.ConstantKeyData { key = entry.key, value = new List<string>(entry.value) }).ToList();
+                // No SetDirty, SaveAssets, Undo, import, filesystem or AssetDatabase mutation.
+                SaveCalls++;
+            }
+        }
+
+        private sealed class MemoryWorkspace : IDisposable
+        {
+            private readonly List<ScriptableObject> _owned = new List<ScriptableObject>();
+            private readonly Dictionary<ScriptableObject, ScriptableObject> _copies = new Dictionary<ScriptableObject, ScriptableObject>();
+            public MemoryAuthoringStore Store { get; private set; }
+
+            private T Copy<T>(T original) where T : ScriptableObject
+            {
+                if (original == null) return null;
+                if (_copies.TryGetValue(original, out var existing)) return (T)existing;
+                var copy = UnityEngine.Object.Instantiate(original);
+                if (copy == original || EditorUtility.IsPersistent(copy))
+                    throw new InvalidOperationException("Could not obtain an isolated memory clone");
+                copy.hideFlags = HideFlags.HideAndDontSave;
+                _copies.Add(original, copy); _owned.Add(copy);
+                return copy;
+            }
+
+            public MemoryWorkspace(PlotAuthoringProject original)
+            {
+                try
+                {
+                    var project = Copy(original);
+                    project.header = Copy(original.header);
+                    project.header.parameterEnums = Copy(original.header.parameterEnums);
+                    project.header.parameterBean = Copy(original.header.parameterBean);
+                    if (project.header.parameterBean != null)
+                        project.header.parameterBean.parameterEnums = Copy(original.header.parameterBean.parameterEnums);
+                    project.dialogs = Copy(original.dialogs);
+                    project.constants = Copy(original.constants);
+                    project.actors = Copy(original.actors);
+                    project.visuals = null; project.eventTracks = null;
+                    project.nodeFolder = "memory-only-not-an-asset-folder";
+                    var rows = new List<PlotAtomRowData>();
+                    // The actual manager is used only to enumerate the existing public
+                    // source rows. Its mutation methods are never called in this mode.
+                    foreach (var sourceRow in new PlotEditorManager(original).ListRows())
+                    {
+                        var row = Copy(sourceRow);
+                        row.headerDefinition = project.header;
+                        rows.Add(row);
+                    }
+                    Store = new MemoryAuthoringStore(project, rows);
+                }
+                catch { Dispose(); throw; }
+            }
+
+            public void Dispose()
+            {
+                for (var index = _owned.Count - 1; index >= 0; index--)
+                {
+                    var value = _owned[index];
+                    if (value == null) continue;
+                    if (EditorUtility.IsPersistent(value))
+                        throw new InvalidOperationException("Refusing to destroy a persistent object during memory cleanup");
+                    UnityEngine.Object.DestroyImmediate(value);
+                }
+                _owned.Clear(); _copies.Clear();
+            }
+        }
+
+        private static T CloneAsset<T>(T source, string path) where T : ScriptableObject
+        {
+            if (source == null) throw new ArgumentException("Required source asset is missing");
+            var value = UnityEngine.Object.Instantiate(source);
+            value.hideFlags = HideFlags.None;
+            AssetDatabase.CreateAsset(value, path);
+            return value;
+        }
+
+        private static PlotAuthoringProject CloneWorkspace(PlotAuthoringProject source, Report report)
+        {
+            var root = report.temporaryRoot;
+            if (Directory.Exists(Absolute(root)) || AssetDatabase.IsValidFolder(root))
+                throw new IOException("Probe asset root already exists");
+            AssetDatabase.CreateFolder("Assets", Path.GetFileName(root));
+            report.temporaryRootCreated = AssetDatabase.IsValidFolder(root);
+            if (!report.temporaryRootCreated) throw new IOException("Could not create owned probe asset root");
+            AssetDatabase.CreateFolder(root, "Data"); AssetDatabase.CreateFolder(root, "Nodes");
+            var project = CloneAsset(source, root + "/Workspace.asset");
+            project.dialogs = CloneAsset(source.dialogs, root + "/Data/Dialogs.asset");
+            project.constants = CloneAsset(source.constants, root + "/Data/Constants.asset");
+            project.actors = CloneAsset(source.actors, root + "/Data/Actors.asset");
+            project.header = source.header; // Explicitly read-only; never changed by this probe.
+            project.eventTracks = null;    // Keep this experiment limited to Next/Branch references.
+            project.visuals = null;        // No scene, visual resources or playback UI are needed.
+            report.setupNotes.Add("The cloned project shares the original header read-only; visuals and event tracks are omitted to isolate node-edge compilation.");
+            report.setupNotes.Add("Only the existing public Stage03 workspace is cloned; no private migrated story or art is loaded.");
+            project.nodeFolder = root + "/Nodes";
+            var rows = new PlotEditorManager(source).ListRows(); report.sourceRows = rows.Count;
+            foreach (var sourceRow in rows)
+            {
+                var id = ReadID(sourceRow, source);
+                var row = CloneAsset(sourceRow, project.nodeFolder + "/" + id.ToString(CultureInfo.InvariantCulture) + ".asset");
+                row.headerDefinition = project.header; row.rowId = Guid.NewGuid().ToString("N");
+                EditorUtility.SetDirty(row);
+            }
+            EditorUtility.SetDirty(project); AssetDatabase.SaveAssets();
+            return project;
+        }
+
+        private static int ReadID(PlotAtomRowData row, PlotAuthoringProject project)
+            => int.Parse(row.GetColumnSingleValue(project.idColumn), CultureInfo.InvariantCulture);
+
+        private static Finding ProbeDraft(IPlotAuthoringStore store, int firstID, int secondID, string id)
+        {
+            var result = new Finding { id = "stale-draft-overwrites-newer-unrelated-text", phase = "baseline" };
+            var memory = store as MemoryAuthoringStore;
+            result.verificationLevel = memory == null ? "actual-session-and-editor-store" : "actual-session-with-minimal-in-memory-store";
+            result.persistenceBoundary = memory == null ? "PlotEditorManager persisted the isolated Assets clone" : "Only the isolated in-memory IPlotAuthoringStore was committed; no EditorManager disk write was exercised";
+            result.diskStoreTestSkipped = memory != null;
+            result.compilerTestSkipped = true; result.renameTestSkipped = true;
+            var unrelatedKey = "design.review.unrelated." + id;
+            var draftKey = "design.review.draft." + id;
+            const string before = "probe-before";
+            const string after = "probe-after";
+            try
+            {
+                using (var session = new PlotEditingSession(store))
+                { session.Select(firstID, null); session.SetText(false, unrelatedKey, 0, before); session.Save(); }
+                string draft;
+                using (var session = new PlotEditingSession(store))
+                { session.Select(firstID, null); session.SetText(false, draftKey, 0, "probe-unsaved"); draft = session.ExportDraft(); }
+                result.draftSha256 = HashText(draft);
+                result.steps.Add("Created and exported an unsaved draft containing only synthetic probe edits.");
+                result.phase = "external-session-save";
+                using (var session = new PlotEditingSession(store))
+                { session.Select(secondID, null); session.SetText(false, unrelatedKey, 0, after); session.Save(); }
+                if (store.Project.dialogs.GetDialogContent(unrelatedKey, 0) != after)
+                    throw new InvalidOperationException("External-session prerequisite did not persist");
+                result.steps.Add("A separate actual editing session saved a newer value on another key and row.");
+                result.phase = "restore-and-save";
+                try
+                {
+                    using (var session = new PlotEditingSession(store)) { session.RestoreDraft(draft); session.Save(); }
+                    result.saveSucceeded = true;
+                }
+                catch (Exception blocked)
+                {
+                    result.status = "not-reproduced";
+                    result.observation = "Product blocked the stale restore or subsequent save.";
+                    result.errorType = blocked.GetType().FullName;
+                    return result;
+                }
+                var observed = store.Project.dialogs.GetDialogContent(unrelatedKey, 0);
+                result.expectedValueSha256 = HashText(after); result.observedValueSha256 = HashText(observed);
+                result.status = observed == before ? "reproduced" : "not-reproduced";
+                result.observation = observed == before
+                    ? "Restoring and saving the old draft replaced the independently saved newer text with the prior value."
+                    : "The independently saved newer value was preserved, or the observation differed from the proposed failure.";
+                result.steps.Add("Restored and saved through the real PlotEditingSession; compared hashes, not story text.");
+                result.phase = "complete";
+            }
+            catch (Exception error)
+            { result.errorType = error.GetType().FullName; result.errorStack = error.StackTrace; }
+            finally { if (memory != null) result.inMemoryStoreWrites = memory.SaveCalls; }
+            return result;
+        }
+
+        private static Finding ProbeDocumentValidationInMemory()
+        {
+            const int sourceID = 880001, targetID = 880002, renamedID = 880003;
+            var result = new Finding {
+                id = "synthetic-document-validator-allows-dangling-next-and-branch",
+                verificationLevel = "actual-runtime-document-validator-only",
+                persistenceBoundary = "Synthetic managed document only; no asset, EditorManager rename, compiler or disk persistence was exercised",
+                diskStoreTestSkipped = true, compilerTestSkipped = true, renameTestSkipped = true,
+                sourceNodeID = sourceID, oldTargetID = targetID, renamedTargetID = renamedID,
+                phase = "construct-valid-synthetic-document" };
+            try
+            {
+                var document = new PlotPlaybackDocument();
+                document.Nodes.Add(new PlotPlaybackNode {
+                    ScenesID = sourceID, Next = targetID,
+                    Branch = new List<PlotBranch> { new PlotBranch { Key = "probe.synthetic.choice", Target = targetID } } });
+                document.Nodes.Add(new PlotPlaybackNode { ScenesID = targetID });
+                document.Validate(); result.validationBeforeSucceeded = true;
+                result.beforeReferencesValid = Dangling(document).Count == 0;
+                if (!result.beforeReferencesValid)
+                    throw new InvalidOperationException("Synthetic valid-document prerequisite failed");
+                result.steps.Add("Constructed a fully synthetic in-memory document with a real target node; actual Document.Validate accepted it.");
+                // Deliberately model only the resulting dangling document, not a real
+                // EditorManager rename operation. The distinction is part of the evidence.
+                document.Nodes[1].ScenesID = renamedID;
+                result.steps.Add("Changed only the synthetic target ID, leaving Next and Branch targets unchanged; no production rename API was called.");
+                result.phase = "validate-synthetic-dangling-document";
+                try { document.Validate(); result.validationAfterSucceeded = true; }
+                catch (Exception blocked)
+                {
+                    result.status = "not-reproduced";
+                    result.observation = "Actual runtime document validation rejected the synthetic dangling document.";
+                    result.errorType = blocked.GetType().FullName; return result;
+                }
+                result.oldTargetAbsentAfterRename = !document.Nodes.Any(n => n.ScenesID == targetID);
+                result.danglingNext = result.oldTargetAbsentAfterRename && document.Nodes[0].Next == targetID;
+                result.danglingBranch = result.oldTargetAbsentAfterRename && document.Nodes[0].Branch.Any(b => b.Target == targetID);
+                result.danglingCount = Dangling(document).Count;
+                result.status = result.danglingNext && result.danglingBranch ? "reproduced" : "not-reproduced";
+                result.observation = result.status == "reproduced"
+                    ? "Actual PlotPlaybackDocument.Validate accepted absent Next and Branch targets in a synthetic memory document. The EditorManager rename and workspace compiler chain was not executed; that path remains source-inspection evidence."
+                    : "The synthetic validator check did not retain both proposed dangling edges.";
+                result.phase = "complete";
+            }
+            catch (Exception error)
+            { result.errorType = error.GetType().FullName; result.errorStack = error.StackTrace; }
+            return result;
+        }
+
+        private static void RunMemoryFallback(PlotAuthoringProject source, Report report)
+        {
+            report.verificationMode = "memory-only-fallback";
+            report.memoryOnly = true; report.diskStoreTestSkipped = true;
+            report.setupNotes.Add("Preexisting dirty persistent assets were left untouched; the disk-store test was skipped, not bypassed.");
+            report.setupNotes.Add("Memory-only describes the experiment boundary: the fixed handled request and diagnostic JSON report are still written, but no Assets or persistent product store is changed.");
+            report.setupNotes.Add("Public Project, header, enums, Bean schema, rows, actor and text tables are detached HideAndDontSave memory clones; no AssetDatabase mutation or SaveAssets is used in this branch.");
+            report.setupNotes.Add("Draft evidence is session-level with a minimal memory persistence boundary. Reference evidence is the actual runtime Document.Validate on a fully synthetic document; disk rename and Compiler are not claimed as executed.");
+            var scope = new MemoryWorkspace(source);
+            try
+            {
+                var rows = scope.Store.ListRows(); report.sourceRows = rows.Count;
+                if (rows.Count < 2) throw new InvalidOperationException("At least two existing public sample nodes are required");
+                report.phase = "memory-session-draft-reproduction"; Save(report);
+                report.findings.Add(ProbeDraft(scope.Store, ReadID(rows[0], scope.Store.Project),
+                    ReadID(rows[1], scope.Store.Project), report.id)); Save(report);
+                report.phase = "synthetic-runtime-validator-reproduction";
+                report.findings.Add(ProbeDocumentValidationInMemory()); Save(report);
+            }
+            finally { scope.Dispose(); report.memoryObjectsReleased = true; }
+        }
+
+        private static List<string> Dangling(PlotPlaybackDocument document)
+        {
+            var ids = new HashSet<int>(document.Nodes.Select(n => n.ScenesID));
+            var result = new List<string>();
+            foreach (var node in document.Nodes)
+            {
+                if (node.Next > 0 && !ids.Contains(node.Next)) result.Add("Next:" + node.ScenesID + "->" + node.Next);
+                foreach (var branch in node.Branch)
+                    if (branch.Target > 0 && !ids.Contains(branch.Target)) result.Add("Branch:" + node.ScenesID + "->" + branch.Target);
+            }
+            return result;
+        }
+
+        private static Finding ProbeReferences(PlotEditorManager store, int sourceID, int targetID, string id)
+        {
+            var result = new Finding { id = "renamed-target-compiles-with-dangling-next-and-branch", phase = "prepare-valid-edges", sourceNodeID = sourceID, oldTargetID = targetID,
+                verificationLevel = "actual-session-editor-store-and-workspace-compiler", persistenceBoundary = "Only the isolated Assets clone is renamed and compiled" };
+            try
+            {
+                var next = store.Project.header.sheets.Single(c => c.columnName.TrimStart('*') == "Next");
+                var branch = store.Project.header.sheets.Single(c => c.columnName.TrimStart('*') == "Branch");
+                if (next.IsList || !branch.IsList) throw new InvalidOperationException("Public sample column shape differs from probe prerequisites");
+                var leaves = PlotBeanLayout.Leaves(store.Project.header.parameterBean, branch.typeKey);
+                var targetIndex = leaves.FindIndex(l => l.Parameter.paramKey == "Target");
+                var keyIndex = leaves.FindIndex(l => l.Parameter.paramKey == "Key");
+                if (targetIndex < 0 || keyIndex < 0) throw new InvalidOperationException("Public sample branch member names differ from probe prerequisites");
+                using (var session = new PlotEditingSession(store))
+                {
+                    session.Select(sourceID, null);
+                    session.SetValue(next.columnName, 0, 0, targetID.ToString(CultureInfo.InvariantCulture));
+                    var values = PlotEditingSession.DefaultValues(branch, store.Project.header);
+                    values[targetIndex] = targetID.ToString(CultureInfo.InvariantCulture);
+                    values[keyIndex] = "design.review.choice." + id;
+                    session.WorkingRow.SetColumnRows(branch.columnName, new List<PlotAtomRowData.StringList> {
+                        new PlotAtomRowData.StringList { values = values } });
+                    session.MarkChanged(); session.Save();
+                }
+                var before = PlotPlaybackCompiler.Compile(store.Project);
+                result.compileBeforeSucceeded = true;
+                result.beforeReferencesValid = Dangling(before).Count == 0;
+                if (!result.beforeReferencesValid) throw new InvalidOperationException("The cloned baseline already contains dangling references");
+                result.steps.Add("Prepared valid Next and Branch edges and compiled the isolated clone successfully.");
+                result.renamedTargetID = checked(store.ListRows().Max(row => ReadID(row, store.Project)) + 100000);
+                result.phase = "rename-through-real-session";
+                using (var session = new PlotEditingSession(store))
+                { session.Select(targetID, null); session.Rename(result.renamedTargetID, null); }
+                result.steps.Add("Renamed the target node through PlotEditingSession.Rename and PlotEditorManager.RenameRow.");
+                result.phase = "compile-after-rename";
+                PlotPlaybackDocument after;
+                try { after = PlotPlaybackCompiler.Compile(store.Project); result.compileAfterSucceeded = true; }
+                catch (Exception blocked)
+                {
+                    result.status = "not-reproduced"; result.observation = "Product rejected compilation after the rename.";
+                    result.errorType = blocked.GetType().FullName; return result;
+                }
+                result.oldTargetAbsentAfterRename = !after.Nodes.Any(n => n.ScenesID == targetID);
+                var origin = after.Nodes.Single(n => n.ScenesID == sourceID);
+                result.danglingNext = result.oldTargetAbsentAfterRename && origin.Next == targetID;
+                result.danglingBranch = result.oldTargetAbsentAfterRename && origin.Branch.Any(b => b.Target == targetID);
+                result.danglingCount = Dangling(after).Count;
+                result.status = result.danglingNext && result.danglingBranch ? "reproduced" : "not-reproduced";
+                result.observation = result.status == "reproduced"
+                    ? "Actual workspace compilation succeeded while both Next and Branch referenced the removed target ID."
+                    : "Compilation succeeded but did not retain both proposed dangling edges.";
+                result.steps.Add("Observed compiled node IDs and numeric references; no original dialogue is recorded.");
+                result.phase = "complete";
+            }
+            catch (Exception error)
+            { result.errorType = error.GetType().FullName; result.errorStack = error.StackTrace; }
+            return result;
+        }
+
+        private static void CleanupOwnedRoot(Report report)
+        {
+            if (!report.temporaryRootCreated) { report.cleanupSucceeded = true; return; }
+            report.cleanupAttempted = true;
+            var expectedLeaf = "PlotWeaveDesignReview_" + report.id;
+            var expectedRelative = "Assets/" + expectedLeaf;
+            var full = Absolute(report.temporaryRoot).TrimEnd(Path.DirectorySeparatorChar);
+            var assets = Path.GetFullPath(Application.dataPath).TrimEnd(Path.DirectorySeparatorChar);
+            if (report.temporaryRoot != expectedRelative || Path.GetFileName(full) != expectedLeaf
+                || !string.Equals(Path.GetDirectoryName(full), assets, StringComparison.OrdinalIgnoreCase))
+                throw new IOException("Cleanup scope is not the exact owned Assets child");
+            if (Directory.Exists(full) && (File.GetAttributes(full) & FileAttributes.ReparsePoint) != 0)
+                throw new IOException("Refusing cleanup through a reparse point");
+            if (AssetDatabase.IsValidFolder(expectedRelative))
+            {
+                Undo.FlushUndoRecordObjects();
+                foreach (var guid in AssetDatabase.FindAssets("", new[] { expectedRelative }))
+                    foreach (var asset in AssetDatabase.LoadAllAssetsAtPath(AssetDatabase.GUIDToAssetPath(guid)))
+                        if (asset != null) Undo.ClearUndo(asset);
+                if (!AssetDatabase.DeleteAsset(expectedRelative)) throw new IOException("Owned probe asset cleanup failed");
+            }
+            report.cleanupSucceeded = !Directory.Exists(full) && !AssetDatabase.IsValidFolder(expectedRelative);
+        }
+
+        private static void Run(string id)
+        {
+            var report = new Report {
+                id = id, startedAtUtc = DateTime.UtcNow.ToString("O"), unityVersion = Application.unityVersion,
+                editorExecutable = EditorApplication.applicationPath, probePath = InstalledProbePath,
+                temporaryRoot = "Assets/PlotWeaveDesignReview_" + id, phase = "preconditions" };
+            PlotAuthoringProject source = null;
+            Save(report);
+            try
+            {
+                report.probeSha256 = HashFile(Absolute(InstalledProbePath));
+                report.editorExecutableSha256 = HashFile(EditorApplication.applicationPath);
+                source = AssetDatabase.LoadAssetAtPath<PlotAuthoringProject>(SourceWorkspacePath);
+                if (source == null || source.header == null) throw new InvalidOperationException("Existing public workspace is required; probe will not create or modify it");
+                report.sourceBefore = CaptureSource(source);
+                foreach (var path in new[] {
+                    "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+                    "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+                    "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackCompiler.cs",
+                    "Packages/com.plotweave.core/Runtime/Playback/PlotPlaybackData.cs" })
+                    report.productSources.Add(new Stamp { path = path, sha256 = HashFile(Absolute(path)) });
+                report.loadedDirtyAssets = CountPreexistingDirtyAssets();
+                if (report.loadedDirtyAssets != 0)
+                    RunMemoryFallback(source, report);
+                else
+                {
+                    // Retain the full original guard immediately before any asset creation
+                    // or actual Store.SaveAssets call. Dirty assets never enter this branch.
+                    RequireNoPreexistingDirtyAssets(report);
+                    report.verificationMode = "actual-editor-store-isolated-assets";
+                    report.phase = "clone-isolated-workspace"; Save(report);
+                    var cloned = CloneWorkspace(source, report);
+                    var store = new PlotEditorManager(cloned);
+                    var rows = store.ListRows();
+                    if (rows.Count < 2) throw new InvalidOperationException("At least two existing public sample nodes are required");
+                    var first = ReadID(rows[0], cloned); var second = ReadID(rows[1], cloned);
+                    report.phase = "draft-reproduction"; Save(report);
+                    report.findings.Add(ProbeDraft(store, first, second, id)); Save(report);
+                    report.phase = "reference-reproduction";
+                    report.findings.Add(ProbeReferences(store, first, second, id)); Save(report);
+                }
+                report.status = report.findings.All(f => f.status != "error") ? "completed" : "failed";
+            }
+            catch (Exception error)
+            { report.status = "failed"; report.errorType = error.GetType().FullName; report.errorStack = error.StackTrace; }
+            finally
+            {
+                try { CleanupOwnedRoot(report); }
+                catch (Exception error) { report.status = "failed"; report.cleanupErrorType = error.GetType().FullName; }
+                try
+                {
+                    if (source != null && report.sourceBefore.Count > 0)
+                    {
+                        report.sourceAfter = CaptureSource(source);
+                        var before = report.sourceBefore.ToDictionary(s => s.path, s => s.sha256, StringComparer.Ordinal);
+                        var after = report.sourceAfter.ToDictionary(s => s.path, s => s.sha256, StringComparer.Ordinal);
+                        foreach (var path in before.Keys.Union(after.Keys).OrderBy(p => p, StringComparer.Ordinal))
+                            if (!before.TryGetValue(path, out var first) || !after.TryGetValue(path, out var last) || first != last)
+                                report.sourceDifferences.Add(path);
+                        report.sourceUnchanged = report.sourceDifferences.Count == 0;
+                    }
+                    if (!string.IsNullOrEmpty(report.probeSha256))
+                    { report.probeSha256After = HashFile(Absolute(InstalledProbePath)); report.probeUnchanged = report.probeSha256After == report.probeSha256; }
+                    if (!report.sourceUnchanged || !report.probeUnchanged || !report.cleanupSucceeded) report.status = "failed";
+                }
+                catch (Exception error) { report.status = "failed"; report.errorType = error.GetType().FullName; report.errorStack = error.StackTrace; }
+                report.completedAtUtc = DateTime.UtcNow.ToString("O"); report.phase = "finished"; Save(report);
+                Debug.Log("PLOTWEAVE_DESIGN_REVIEW " + report.status + " id=" + report.id
+                    + " findings=" + string.Join(",", report.findings.Select(f => f.id + ":" + f.status))
+                    + " sourceUnchanged=" + report.sourceUnchanged + " cleaned=" + report.cleanupSucceeded);
+            }
+        }
+    }
+}
+#endif

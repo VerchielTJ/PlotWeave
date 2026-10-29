@@ -1,0 +1,662 @@
+{
+  "dateAsiaHongKong": "2026-10-28",
+  "scopeFiles": 78,
+  "automaticCandidates": 32,
+  "manualAdditionalCases": 10,
+  "auditedCases": 42,
+  "limits": [
+    "词法扫描排除注释/字符串，不是完整C#语义分析；候选逐项人工分类。",
+    "空构造、基类扩展点、调试钩子与真正未完成业务分别说明；不将所有空体判为原缺陷。",
+    "未检测到空体不代表行为完整；UI绘制、远端服务、道具展示数据和构建仍按集成边界验收。",
+    "原文本编辑器Excel方法中“这里可以调用”注释后已有真实Read/Write调用，因此不列为待实现空方法。"
+  ],
+  "records": [
+    {
+      "source": "Assets/Editor/PlotEditor/PlotEditorDataToExcel/PlotEditorDataToExcel.cs",
+      "class": "PlotEditorDataToExcel",
+      "method": "Test",
+      "line": 10,
+      "kind": "empty-body",
+      "resolution": "implemented-entry",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Legacy/PlotEditorDataToExcel.cs",
+        "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs",
+        "Packages/com.plotweave.core/Editor/Excel/PlotExcelExchange.cs"
+      ],
+      "note": "Test打开实际表格交换窗口，另提供Export/InspectImport；原空Test并不代表全部Excel工具原来为空。",
+      "evidence": "PlotExcelExchangeTests"
+    },
+    {
+      "source": "Assets/Editor/PlotEditor/PlotEventTypeControl/EditorBaseExpansion.cs",
+      "class": "EditorBaseExpansion",
+      "method": "Run",
+      "line": 10,
+      "kind": "empty-body",
+      "resolution": "implemented-example-entry",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Legacy/EditorBaseExpansion.cs"
+      ],
+      "note": "Run现在打开制作样例；与主编辑器入口区分。",
+      "evidence": "static-entry-inspection"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+      "class": "PlotPlayerObjectPool",
+      "method": "PlotPlayerObjectPool",
+      "line": 690,
+      "kind": "empty-body",
+      "resolution": "constructor-replaced-by-owned-state",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerServices.cs"
+      ],
+      "note": "空构造本身可合法保留；新池构造内部容器，租用/归还/Dispose管理自己的实例，不依赖全局NodePoolSystem。",
+      "evidence": "PlotPlayerCoreTests / PlotPresentationMigrationTests"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+      "class": "GamePlotTextDataAdapter",
+      "method": "GetAllKeys",
+      "line": 1369,
+      "kind": "not-implemented-throw",
+      "resolution": "implemented-through-generated-text-contract",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs",
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotValueSources.cs"
+      ],
+      "note": "生成的Editor/Game文本表适配器实现IPlotTextData.GetAllKeys，返回实际表KEY，而非编辑器抛异常或游戏固定空数组。",
+      "evidence": "PlotContractGenerationTests.DialogAndConstantTablesKeepLanguagesAndImplementTextDataBridge"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI.cs",
+      "class": "PlotPlayerUI",
+      "method": "OnPlotError",
+      "line": 202,
+      "kind": "warning-only-fallback",
+      "resolution": "implemented-error-state-and-navigation",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs"
+      ],
+      "note": "原方法只报错；新Core进入Faulted并取消，章节会话回退/显示错误，不会以错误当成功结算。",
+      "evidence": "PlotChapterSessionTests.PlaybackFailureReturnsOnceAndNeverReportsSuccess"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI.cs",
+      "class": "PlotPlayerUI",
+      "method": "OnPlotLoaded",
+      "line": 210,
+      "kind": "empty-body",
+      "resolution": "intentional-hook-replaced-by-event",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.cs"
+      ],
+      "note": "原空回调无额外业务；Core仅对成功加载发OnPlotLoaded，视图显示节点ID，调用方可订阅。",
+      "evidence": "PlotPlayerCoreTests"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/CurrentNodeEditor.cs",
+      "class": "CurrentNodeEditor",
+      "method": "Start",
+      "line": 23,
+      "kind": "empty-body",
+      "resolution": "unused-start-hook-not-carried",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+      ],
+      "note": "原Start为空，实际初始化在原OnEnable；新宿主集中Initialize/Start注入，未为了文件对齐保留空Start。",
+      "evidence": "PlotLegacyInteractionTests.OriginalNodeCreateRenameDeleteButtonsUseTheSharedStore"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/EditorPlotPlayerUI.cs",
+      "class": "EditorPlotPlayerUI",
+      "method": "OnPlotError",
+      "line": 1147,
+      "kind": "warning-only-fallback",
+      "resolution": "host-events-replaced-with-core-events",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerHost.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs"
+      ],
+      "note": "原只打印日志的回调不是独立业务逻辑；共享Core/Host保留可订阅事件，错误可见，完成由章节会话消费。",
+      "evidence": "PlotPlayerCoreTests / PlotChapterSessionTests"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/EditorPlotPlayerUI.cs",
+      "class": "EditorPlotPlayerUI",
+      "method": "OnPlotLoaded",
+      "line": 1155,
+      "kind": "warning-only-fallback",
+      "resolution": "host-events-replaced-with-core-events",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerHost.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs"
+      ],
+      "note": "原只打印日志的回调不是独立业务逻辑；共享Core/Host保留可订阅事件，错误可见，完成由章节会话消费。",
+      "evidence": "PlotPlayerCoreTests / PlotChapterSessionTests"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/EditorPlotPlayerUI.cs",
+      "class": "EditorPlotPlayerUI",
+      "method": "OnPlotCompleted",
+      "line": 1163,
+      "kind": "warning-only-fallback",
+      "resolution": "host-events-replaced-with-core-events",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerHost.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs"
+      ],
+      "note": "原只打印日志的回调不是独立业务逻辑；共享Core/Host保留可订阅事件，错误可见，完成由章节会话消费。",
+      "evidence": "PlotPlayerCoreTests / PlotChapterSessionTests"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/PlotEditorPanel.cs",
+      "class": "PlotEditorPanel",
+      "method": "OnTestEvent",
+      "line": 15,
+      "kind": "warning-only-fallback",
+      "resolution": "test-only-hook-not-carried",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+      ],
+      "note": "原None测试事件只打印“测试”；无产品行为需求，新实现不制造对应空入口。",
+      "evidence": "static-scope-inspection"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/PlotEditorPanel.cs",
+      "class": "PlotEditorPanel",
+      "method": "OnCreateNode",
+      "line": 29,
+      "kind": "empty-body",
+      "resolution": "implemented-through-session-and-controls",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+      ],
+      "note": "原空事件处理由会话Create/Select及Store.ListRows的全量/范围读取承接，原布局按钮显式接线。",
+      "evidence": "PlotLegacyInteractionTests.OriginalNodeCreateRenameDeleteButtonsUseTheSharedStore / PlotAuthoringPanelTests"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/PlotEditorPanel.cs",
+      "class": "PlotEditorPanel",
+      "method": "OnLoadNode",
+      "line": 33,
+      "kind": "empty-body",
+      "resolution": "implemented-through-session-and-controls",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+      ],
+      "note": "原空事件处理由会话Create/Select及Store.ListRows的全量/范围读取承接，原布局按钮显式接线。",
+      "evidence": "PlotLegacyInteractionTests.OriginalNodeCreateRenameDeleteButtonsUseTheSharedStore / PlotAuthoringPanelTests"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/PlotEditorPanel.cs",
+      "class": "PlotEditorPanel",
+      "method": "OnLoadAllNode",
+      "line": 37,
+      "kind": "empty-body",
+      "resolution": "implemented-through-session-and-controls",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+      ],
+      "note": "原空事件处理由会话Create/Select及Store.ListRows的全量/范围读取承接，原布局按钮显式接线。",
+      "evidence": "PlotLegacyInteractionTests.OriginalNodeCreateRenameDeleteButtonsUseTheSharedStore / PlotAuthoringPanelTests"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/PlotEditorPanel.cs",
+      "class": "PlotEditorPanel",
+      "method": "OnLoadRangeNode",
+      "line": 41,
+      "kind": "empty-body",
+      "resolution": "implemented-through-session-and-controls",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+      ],
+      "note": "原空事件处理由会话Create/Select及Store.ListRows的全量/范围读取承接，原布局按钮显式接线。",
+      "evidence": "PlotLegacyInteractionTests.OriginalNodeCreateRenameDeleteButtonsUseTheSharedStore / PlotAuthoringPanelTests"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/PlotNodeView.cs",
+      "class": "PlotNodeView",
+      "method": "OnLoadNode",
+      "line": 93,
+      "kind": "empty-body",
+      "resolution": "implemented-selection-and-pool",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeView.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeButton.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs"
+      ],
+      "note": "OnLoadNode空钩子职责由按钮回调Select和选中状态刷新承接；节点可见区复用。",
+      "evidence": "PlotAuthoringPanelTests.NodeListReusesOnlyVisibleButtonsForLargeDataSets"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotComponent/Scripts/RowUnit.cs",
+      "class": "RowUnit",
+      "method": "OpenRowUnit",
+      "line": 69,
+      "kind": "empty-body",
+      "resolution": "unused-helper-replaced-by-real-open-control",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+        "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+        "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+      ],
+      "note": "原OpenRowUnit为空但OnOpenButtonClick已有实现；新宿主使用实际按钮开关参数面板，不声称原开关完全没做。",
+      "evidence": "PlotLegacyInteractionTests.OriginalNestedListControlsKeepDraftsSeparateAndPersistOnlyOnSave"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorDataClasses/PlotNodeDataBase.cs",
+      "class": "PlotNodeDataBase",
+      "method": "Init",
+      "line": 30,
+      "kind": "fallback-return",
+      "resolution": "implemented-compatible-base",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs"
+      ],
+      "note": "虚方法原为警告/空值回退，作为扩展点并非必须判原实现为缺陷；新兼容基类提供可运行初始化、成员、类型ID、列表/端口读写。",
+      "evidence": "PlotPresentationMigrationTests.LegacyNodeLifecycleMembersAndPortsNowHaveWorkingBehavior"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorDataClasses/PlotNodeDataBase.cs",
+      "class": "PlotNodeDataBase",
+      "method": "GetMember",
+      "line": 41,
+      "kind": "fallback-return",
+      "resolution": "implemented-compatible-base",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs"
+      ],
+      "note": "虚方法原为警告/空值回退，作为扩展点并非必须判原实现为缺陷；新兼容基类提供可运行初始化、成员、类型ID、列表/端口读写。",
+      "evidence": "PlotPresentationMigrationTests.LegacyNodeLifecycleMembersAndPortsNowHaveWorkingBehavior"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorDataClasses/PlotNodeDataBase.cs",
+      "class": "PlotNodeDataBase",
+      "method": "GetData",
+      "line": 51,
+      "kind": "fallback-return",
+      "resolution": "implemented-compatible-base",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs"
+      ],
+      "note": "虚方法原为警告/空值回退，作为扩展点并非必须判原实现为缺陷；新兼容基类提供可运行初始化、成员、类型ID、列表/端口读写。",
+      "evidence": "PlotPresentationMigrationTests.LegacyNodeLifecycleMembersAndPortsNowHaveWorkingBehavior"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorDataClasses/PlotNodeDataBase.cs",
+      "class": "PlotNodeDataBase",
+      "method": "GetTypeStarID",
+      "line": 60,
+      "kind": "fallback-return",
+      "resolution": "implemented-compatible-base",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs"
+      ],
+      "note": "虚方法原为警告/空值回退，作为扩展点并非必须判原实现为缺陷；新兼容基类提供可运行初始化、成员、类型ID、列表/端口读写。",
+      "evidence": "PlotPresentationMigrationTests.LegacyNodeLifecycleMembersAndPortsNowHaveWorkingBehavior"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorDataClasses/PlotNodeDataBase.cs",
+      "class": "PlotNodeDataBase",
+      "method": "SetData",
+      "line": 70,
+      "kind": "warning-only-fallback",
+      "resolution": "implemented-compatible-base",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs"
+      ],
+      "note": "虚方法原为警告/空值回退，作为扩展点并非必须判原实现为缺陷；新兼容基类提供可运行初始化、成员、类型ID、列表/端口读写。",
+      "evidence": "PlotPresentationMigrationTests.LegacyNodeLifecycleMembersAndPortsNowHaveWorkingBehavior"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorDataClasses/PlotNodeDataBase.cs",
+      "class": "PlotNodeDataBase",
+      "method": "GetCertain",
+      "line": 80,
+      "kind": "fallback-return",
+      "resolution": "implemented-compatible-base",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs"
+      ],
+      "note": "虚方法原为警告/空值回退，作为扩展点并非必须判原实现为缺陷；新兼容基类提供可运行初始化、成员、类型ID、列表/端口读写。",
+      "evidence": "PlotPresentationMigrationTests.LegacyNodeLifecycleMembersAndPortsNowHaveWorkingBehavior"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorDataClasses/PlotNodeDataBase.cs",
+      "class": "PlotNodeDataBase",
+      "method": "AddPortData",
+      "line": 90,
+      "kind": "warning-only-fallback",
+      "resolution": "implemented-compatible-base",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs"
+      ],
+      "note": "虚方法原为警告/空值回退，作为扩展点并非必须判原实现为缺陷；新兼容基类提供可运行初始化、成员、类型ID、列表/端口读写。",
+      "evidence": "PlotPresentationMigrationTests.LegacyNodeLifecycleMembersAndPortsNowHaveWorkingBehavior"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorDataClasses/PlotNodeDataBase.cs",
+      "class": "PlotNodeDataBase",
+      "method": "DeletePortData",
+      "line": 99,
+      "kind": "warning-only-fallback",
+      "resolution": "implemented-compatible-base",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs"
+      ],
+      "note": "虚方法原为警告/空值回退，作为扩展点并非必须判原实现为缺陷；新兼容基类提供可运行初始化、成员、类型ID、列表/端口读写。",
+      "evidence": "PlotPresentationMigrationTests.LegacyNodeLifecycleMembersAndPortsNowHaveWorkingBehavior"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorDataClasses/PlotNodeDataBase.cs",
+      "class": "PlotNodeDataBase",
+      "method": "CleanPortData",
+      "line": 108,
+      "kind": "warning-only-fallback",
+      "resolution": "implemented-compatible-base",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs"
+      ],
+      "note": "虚方法原为警告/空值回退，作为扩展点并非必须判原实现为缺陷；新兼容基类提供可运行初始化、成员、类型ID、列表/端口读写。",
+      "evidence": "PlotPresentationMigrationTests.LegacyNodeLifecycleMembersAndPortsNowHaveWorkingBehavior"
+    },
+    {
+      "source": "Assets/PlotEditor/PlotEditorTools/PlotDataStructureGenerator.cs",
+      "class": "PlotDataStructureGenerator",
+      "method": "GenerateSubInterfaceFiles",
+      "line": 555,
+      "kind": "empty-body",
+      "resolution": "implemented-recursive-contract-generation",
+      "targets": [
+        "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs",
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+        "Packages/com.plotweave.core/Runtime/DataContracts/PlotValueSources.cs",
+        "Packages/com.plotweave.core/Runtime/Authoring/PlotBeanLayout.cs"
+      ],
+      "note": "原GenerateSubInterfaceFiles留空，新生成器按Bean叶/嵌套定义生成子接口与Editor/Game适配器。",
+      "evidence": "PlotContractGenerationTests / PlotNestedBeanTests"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/UIComponent/UIItemClass/UIItemPlotRewards.cs",
+      "class": "UIItemPlotRewards",
+      "method": "UIItemPlotRewards",
+      "line": 16,
+      "kind": "empty-body",
+      "resolution": "replaced-by-working-reward-binder",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs"
+      ],
+      "note": "空构造/Get/Recycle职责合并到BindReward和虚拟列表生命周期；图标/品质/说明仍以可注入数据接入，原生产道具服务未接入；画面检查见Current的visuals实际记录。",
+      "evidence": "PlotCampaignTests / Doc/Records/Current/验收总览.json#visuals"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/UIComponent/UIItemClass/UIItemPlotRewards.cs",
+      "class": "UIItemPlotRewards",
+      "method": "Get",
+      "line": 37,
+      "kind": "empty-body",
+      "resolution": "replaced-by-working-reward-binder",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs"
+      ],
+      "note": "空构造/Get/Recycle职责合并到BindReward和虚拟列表生命周期；图标/品质/说明仍以可注入数据接入，原生产道具服务未接入；画面检查见Current的visuals实际记录。",
+      "evidence": "PlotCampaignTests / Doc/Records/Current/验收总览.json#visuals"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/UIComponent/UIItemClass/UIItemPlotRewards.cs",
+      "class": "UIItemPlotRewards",
+      "method": "Recycle",
+      "line": 42,
+      "kind": "empty-body",
+      "resolution": "replaced-by-working-reward-binder",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs"
+      ],
+      "note": "空构造/Get/Recycle职责合并到BindReward和虚拟列表生命周期；图标/品质/说明仍以可注入数据接入，原生产道具服务未接入；画面检查见Current的visuals实际记录。",
+      "evidence": "PlotCampaignTests / Doc/Records/Current/验收总览.json#visuals"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/Public/Public_NodeClass.cs",
+      "class": "SelectLevelMenuBase",
+      "method": "Get",
+      "line": 958,
+      "kind": "empty-body",
+      "resolution": "generic-base-hook-not-copied",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs"
+      ],
+      "note": "共享基类Get/Recycle为空；剧情派生项原来重写淡入/选中，现由虚拟项激活、绑定与状态刷新承接。其他素材关卡派生类不在迁移范围。",
+      "evidence": "Doc/Records/Current/验收总览.json#visuals"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/Public/Public_NodeClass.cs",
+      "class": "SelectLevelMenuBase",
+      "method": "Recycle",
+      "line": 963,
+      "kind": "empty-body",
+      "resolution": "generic-base-hook-not-copied",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs"
+      ],
+      "note": "共享基类Get/Recycle为空；剧情派生项原来重写淡入/选中，现由虚拟项激活、绑定与状态刷新承接。其他素材关卡派生类不在迁移范围。",
+      "evidence": "Doc/Records/Current/验收总览.json#visuals"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+      "class": "PlotPlayerDataProvider",
+      "method": "GetMainPlotData",
+      "line": 317,
+      "kind": "editor-branch-placeholder",
+      "resolution": "replaced-by-explicit-campaign-state",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs"
+      ],
+      "note": "仅原Editor分支返回null/0/false，游戏分支已有GameCtrl调用。新目录查询、Kind/SelectedChapter/SelectedEpisode和RequiresCompletionReport提供独立状态，不复制游戏单例。",
+      "evidence": "Doc/Records/Current/验收总览.json#visuals"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+      "class": "PlotPlayerDataProvider",
+      "method": "GetEverydayPlotData",
+      "line": 334,
+      "kind": "editor-branch-placeholder",
+      "resolution": "replaced-by-explicit-campaign-state",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs"
+      ],
+      "note": "仅原Editor分支返回null/0/false，游戏分支已有GameCtrl调用。新目录查询、Kind/SelectedChapter/SelectedEpisode和RequiresCompletionReport提供独立状态，不复制游戏单例。",
+      "evidence": "Doc/Records/Current/验收总览.json#visuals"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+      "class": "PlotPlayerDataProvider",
+      "method": "GetMainPlotChapterId",
+      "line": 351,
+      "kind": "editor-branch-placeholder",
+      "resolution": "replaced-by-explicit-campaign-state",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs"
+      ],
+      "note": "仅原Editor分支返回null/0/false，游戏分支已有GameCtrl调用。新目录查询、Kind/SelectedChapter/SelectedEpisode和RequiresCompletionReport提供独立状态，不复制游戏单例。",
+      "evidence": "Doc/Records/Current/验收总览.json#visuals"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+      "class": "PlotPlayerDataProvider",
+      "method": "GetEverydayPlotChapterId",
+      "line": 368,
+      "kind": "editor-branch-placeholder",
+      "resolution": "replaced-by-explicit-campaign-state",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs"
+      ],
+      "note": "仅原Editor分支返回null/0/false，游戏分支已有GameCtrl调用。新目录查询、Kind/SelectedChapter/SelectedEpisode和RequiresCompletionReport提供独立状态，不复制游戏单例。",
+      "evidence": "Doc/Records/Current/验收总览.json#visuals"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+      "class": "PlotPlayerDataProvider",
+      "method": "IsNewPlotChapter",
+      "line": 385,
+      "kind": "editor-branch-placeholder",
+      "resolution": "replaced-by-explicit-campaign-state",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs"
+      ],
+      "note": "仅原Editor分支返回null/0/false，游戏分支已有GameCtrl调用。新目录查询、Kind/SelectedChapter/SelectedEpisode和RequiresCompletionReport提供独立状态，不复制游戏单例。",
+      "evidence": "Doc/Records/Current/验收总览.json#visuals"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+      "class": "PlotPlayerObjectPool",
+      "method": "ClearEditorPool",
+      "line": 849,
+      "kind": "optional-cleanup-comment",
+      "resolution": "implemented-owned-pool-disposal",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerServices.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerHost.cs"
+      ],
+      "note": "原仅对外部池写日志，新池Dispose销毁自己创建的对象并清空容器；Host销毁/重新初始化调用Dispose。",
+      "evidence": "PlotPlayerCoreTests / static-disposal-inspection"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotSkipTop/PlotSkipTop.cs",
+      "class": "PlotSkipTop",
+      "method": "UpdateData",
+      "line": 49,
+      "kind": "data-wiring-placeholder",
+      "resolution": "implemented-skip-content-pipeline",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacySkipController.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterHostPlayer.cs"
+      ],
+      "note": "原ContentText固定为需接入数据的提示。现章节SkipKey→PlotChapterContent.SkipMessage→跳过控制器，空KEY提供可读确认提示；原缺失文本KEY仍须显式记录。",
+      "evidence": "Doc/Records/Current/验收总览.json#visuals"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotSkipWD.cs",
+      "class": "PlotSkipWD",
+      "method": "<empty-class>",
+      "line": 6,
+      "kind": "empty-ui-subclass",
+      "resolution": "merged-into-skip-controller",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacySkipController.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterHostPlayer.cs"
+      ],
+      "note": "没有独有字段或行为；合并到真实确认弹窗，不迁入一个无法展示功能的空UIBase壳。",
+      "evidence": "Doc/Records/Current/验收总览.json#visuals"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/UIComponent/UIItemClass/UIItemPlotRewards.cs",
+      "class": "UIItemPlotRewards",
+      "method": "Init",
+      "line": 25,
+      "kind": "base-only-initializer",
+      "resolution": "replaced-by-working-reward-binder",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignAsset.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+        "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs"
+      ],
+      "note": "原Init只有base.Init及this as T，未绑定奖励字段；由BindReward和虚拟列表负责数据与回收。",
+      "evidence": "Doc/Records/Current/验收总览.json#visuals"
+    },
+    {
+      "source": "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI.cs",
+      "class": "PlotPlayerUI",
+      "method": "ShowCurtain",
+      "line": 101,
+      "kind": "disabled-curtain-call",
+      "resolution": "implemented-chapter-content-titles",
+      "targets": [
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+        "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterHostPlayer.cs",
+        "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs"
+      ],
+      "note": "原ShowCurtain末段幕布调用被注释，实际直接LoadPlot。新章节内容携带上下标题，HostPlayer按是否有标题调用ShowCurtainAndLoadNode；实际运行画面检查以 Doc/Records/Current/验收总览.json 的visuals及其报告为准，历史证据不替代本轮验收。",
+      "evidence": "Doc/Records/Current/验收总览.json#visuals"
+    }
+  ]
+}

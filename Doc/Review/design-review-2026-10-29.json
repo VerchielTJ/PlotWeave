@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "1.0",
+  "reviewDate": "2026-10-29",
+  "status": "review-completed-open-findings",
+  "productCodeModified": false,
+  "historicalAcceptanceDate": "2026-10-28",
+  "historicalAcceptanceIsExhaustive": false,
+  "report": "Doc/Review/设计审查_2026-10-29.md",
+  "nativeEvidence": "Doc/Review/Records/design-review-655ccc40c16f4b9193a6e65a0ac1c07a.json",
+  "nativeMode": "memory-only-fallback",
+  "sourceUnchanged": true,
+  "diskStoreTestSkipped": true,
+  "followUp": {"guide": "Doc/阶段19_制作输入与内嵌试跑.md", "acceptance": "Doc/Records/Current/制作闭环验收.json", "note": "Initial review flags describe the original probe. Stage19 changed product code for the dedicated authoring workflow; the two P1 findings remain open."},
+  "findings": [
+    {"id": "DRAFT-001", "priority": 1, "status": "open", "module": "authoring", "types": ["PlotEditingSession", "PlotEditorManager"], "title": "恢复旧草稿可提交旧整表并覆盖较新文本", "verification": "real-session-with-memory-store-reproduced; disk-store-path-reviewed-only", "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs", "line": 223},
+    {"id": "REF-001", "priority": 1, "status": "open", "module": "authoring", "types": ["PlotEditorManager", "PlotPlaybackDocument", "PlotPlaybackCompiler"], "title": "跳转引用完整性未在工作区编译前检查", "verification": "real-document-validator-reproduced; disk-rename-and-compiler-chain-reviewed-only", "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlaybackData.cs", "line": 62},
+    {"id": "IO-001", "priority": 2, "status": "partially-addressed", "module": "authoring", "title": "编辑操作保存已限定范围；每次输入整表草稿写入仍开放", "verification": "scoped-store-save-source-reviewed-and-compiled; disk-save-isolation-not-tested; draft-performance-not-measured", "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs", "line": 78},
+    {"id": "UX-001", "priority": 2, "status": "open", "module": "authoring", "title": "校验范围、两层保存与工作区身份反馈需明确", "verification": "current-native-view-and-source-reviewed", "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs", "line": 73},
+    {"id": "READ-001", "priority": 2, "status": "open", "module": "integration", "title": "迁移宿主压行及字符串绑定降低可维护性", "verification": "source-reviewed", "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs", "line": 39},
+    {"id": "AI-001", "priority": 2, "status": "open", "module": "integration", "title": "CLI未固定UTF-8输出编码", "verification": "windows-subprocess-reproduced", "path": "Tools/Review/query.py", "line": 57},
+    {"id": "AI-002", "priority": 2, "status": "open", "module": "integration", "title": "verify未覆盖完整声明索引存在性", "verification": "isolated-fixture-reproduced", "path": "Tools/Review/query.py", "line": 35},
+    {"id": "AI-003", "priority": 3, "status": "open", "module": "integration", "title": "包验证与本机私有验收资料验证需分开", "verification": "scope-and-source-reviewed", "path": "Tools/Review/query.py", "line": 25}
+  ],
+  "keep": ["Core/View/data-provider separation", "chapter Backend/Navigation separation", "C2 optional adapter branch", "snapshot and late-callback isolation until measured alternatives are verified"]
+}

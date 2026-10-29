@@ -1,0 +1,96 @@
+{
+    "files": [
+        {
+            "path": "link.xml",
+            "sha256": "00032353d4bf2625d33502210a01f658bb21b368fa068c84dd39d7f6ea91d364"
+        },
+        {
+            "path": "PlotWeave.Luban.Nested.Sample.asmdef",
+            "sha256": "1e9c49a082b015818c89fa8507f24eb31b68e99cbe269285ce7f4ad1a4fd9de2"
+        },
+        {
+            "path": "Code/CameraCue.cs",
+            "sha256": "410aefa077267724f45439bb67db76bc9bb9b860d4d36fb19393298b7eb041f5"
+        },
+        {
+            "path": "Code/PlotAtomData.cs",
+            "sha256": "e090af1eb500a0d710247936637820fd9874da3c561bff1bc034fd9f6d866061"
+        },
+        {
+            "path": "Code/PlotBranch.cs",
+            "sha256": "cf8cc5d023e595de2a58d2a46069b96e48749e2c10bf27bd688d0e9270118be4"
+        },
+        {
+            "path": "Code/PlotConstantKey.cs",
+            "sha256": "2506356aaf472b5efa420bb1b766bcfc8deb3487ac19dce6178e67591f820caa"
+        },
+        {
+            "path": "Code/PlotDialogKey.cs",
+            "sha256": "4dbd8a263b3f1ce31e26d1018e88f62817b95d51360491cea4bb537612b9f46a"
+        },
+        {
+            "path": "Code/PlotRoleAction.cs",
+            "sha256": "9a6649e300a36efcb36ef5ce6d134deeae0931fa00e4e37f3279ccdaa3dcff14"
+        },
+        {
+            "path": "Code/PlotSetBackground.cs",
+            "sha256": "9a22dd4b1f3e1cb1f5dbf939e856acef4db0503680b838e9dba4ed1cd4004083"
+        },
+        {
+            "path": "Code/PlotThespianData.cs",
+            "sha256": "5c6dc705b199cadf2d258aa342e0b893b589211a063800e2bebf30830c2edfd7"
+        },
+        {
+            "path": "Code/RoleActionType.cs",
+            "sha256": "a88e5267b33a8f73096451c859eed0b1ff0ae81d1fa5ca3695d94cd3d08168cc"
+        },
+        {
+            "path": "Code/RoleEmote.cs",
+            "sha256": "a4db1fdf342beb997b5d241f7d8d854acced1bf1b297c1200f894837629e2235"
+        },
+        {
+            "path": "Code/SetBackType.cs",
+            "sha256": "270ef366225f3fac1490181443729a74b5cb02c9f62790ad7b645bf2966e4c8e"
+        },
+        {
+            "path": "Code/Tables.cs",
+            "sha256": "8cfbcbefb708ebd56f42c4a56aac8ca46f76546d8eec4dde911cebcf17a8076f"
+        },
+        {
+            "path": "Code/TbActor.cs",
+            "sha256": "babf31c14a88d1b2f301d07f089a8ba2d4c68ccd919369d057db2f9e0ba527ce"
+        },
+        {
+            "path": "Code/TbConstant.cs",
+            "sha256": "5aa9b1ecd31e40948373f639828962e7c85112ab761322629d46576026b02fe2"
+        },
+        {
+            "path": "Code/TbDialog.cs",
+            "sha256": "001a61cdb3e415f04197ecdf42e37294c4cccf2c07c888c640f7d6f2f2c10945"
+        },
+        {
+            "path": "Code/TbPlotAtom.cs",
+            "sha256": "cf2226e551182bc62986f49f609114c76b8ab68806ed21fd721aefdb1154d7d9"
+        },
+        {
+            "path": "Code/TransformCue.cs",
+            "sha256": "b680754914d119407e67ab0517de5c3f7370371000b2580f927e494b3451187f"
+        },
+        {
+            "path": "Data/tbactor.bytes",
+            "sha256": "7b75290760adbbb33061b37519db8fedb33909c00afc6da2480792d30030db9b"
+        },
+        {
+            "path": "Data/tbconstant.bytes",
+            "sha256": "e6f701dcbaff5b46097dcb724d2b1cda3835a7595972f6153d779871aa43b4f2"
+        },
+        {
+            "path": "Data/tbdialog.bytes",
+            "sha256": "dcf5db63c7f34efedd6148e81f72a1bc4ff73a351c4964f89cbf3138bebafb01"
+        },
+        {
+            "path": "Data/tbplotatom.bytes",
+            "sha256": "7b926928157b55be78aa9c7c02876c97830178ff6411f94aa9df4439f9d81752"
+        }
+    ]
+}

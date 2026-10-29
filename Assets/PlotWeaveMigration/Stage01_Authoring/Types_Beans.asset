@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd4b8ba187ec2d17e15869faae71e726, type: 3}
+  m_Name: Types_Beans
+  m_EditorClassIdentifier: 
+  parameterEnums: {fileID: 11400000, guid: 4033c86b43787fe4f846e80bc5bb322a, type: 2}
+  eventTypes:
+  - eventKey: ActorCue
+    displayName: "\u6F14\u5458\u63D0\u793A"
+    parameters:
+    - paramSign: param
+      paramKey: actorId
+      displayName: "\u6F14\u5458ID"
+      valueType: 0
+      enumType: 
+      enumValue: 
+    - paramSign: param
+      paramKey: mood
+      displayName: "\u5FC3\u60C5"
+      valueType: 5
+      enumType: Mood
+      enumValue: calm
+    - paramSign: param
+      paramKey: position
+      displayName: "\u4F4D\u7F6E"
+      valueType: 4
+      enumType: 
+      enumValue: 
+    defaultCallbackValue: 2
+    defaultCallbackList: 4,6
+  parameterPanelColor: {r: 1, g: 1, b: 1, a: 1}
+  eventPanelColor: {r: 1, g: 1, b: 1, a: 1}

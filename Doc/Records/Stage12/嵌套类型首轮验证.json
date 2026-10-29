@@ -1,0 +1,800 @@
+{
+  "stage": "12-nested-initial",
+  "passed": 194,
+  "failed": 0,
+  "testReport": "../Unity/2ff2f7f912b24e54b3444c08cb45f24a-tests.json",
+  "verifiedSources": [
+    {
+      "path": "Assets/PlotWeaveMigration/Stage02_Generated/Custom/DataContracts.g.cs",
+      "sha256": "a45c4ff509e5613f8e1d36d9bf518e7fdcc0566775ece83811cecd658a12f8e9"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage02_Generated/Custom/EditorAdapters.g.cs",
+      "sha256": "290725ddd7a174bd2baddbce7e8be7eb89ace0a66fe7b96066d349bddfb93cd4"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage02_Generated/Custom/GameAdapters.g.cs",
+      "sha256": "dfb2a574c200d00331b43f710b790558a3b8f761c28a94067df87cd2b91bbbb9"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage02_Generated/Default/DataContracts.g.cs",
+      "sha256": "f620eaeeedbe97ddfae1b1f4d19404954a7eb5cb8b4ea9778a4101b5296c4c5c"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage02_Generated/Default/EditorAdapters.g.cs",
+      "sha256": "d75d2791b5953b6e63738f3b6ee411205d6eca0dfb1bb3cef9c0c4b28d8eba2c"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage02_Generated/Default/GameAdapters.g.cs",
+      "sha256": "ac0b13629c6f3f5a4af4d5aff3d5fbd7c1f71fe9a0b85b7b893b814f0a2d2489"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage02_Generated/EdgeCases/DataContracts.g.cs",
+      "sha256": "5252c2e5f95c6b5fbba04630618bf28773012a5b6ccae6051efa52f25907f0a7"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage02_Generated/EdgeCases/EditorAdapters.g.cs",
+      "sha256": "38c14a37585a43f5c15519fa1da021b8bed505002beb8ecb3295ce3c9b0e3a4f"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage02_Generated/EdgeCases/GameAdapters.g.cs",
+      "sha256": "03ae0bd456d5ddb2d5522f2ee9867c13521773de7f71d7aa4e45579856b20863"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/PlotAtomData.cs",
+      "sha256": "36a987de32496970d60b249363e06c5c415715c3505811bc1916991690f7d39d"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/PlotBranch.cs",
+      "sha256": "938448d54309687676a4a2a46332acb353fcaab989f1827ef34cd86c7d545103"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/PlotConstantKey.cs",
+      "sha256": "3f660370024adff813d8718f56baab2c2ed364f3fdbb65ac033a3000196866cd"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/PlotDialogKey.cs",
+      "sha256": "1658fe8a6b9d5a603da127e18a0c5c87f2583e34ad4e1e66accbe035b320fb0b"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/PlotRoleAction.cs",
+      "sha256": "b510ba07f21d22bd6bc579fcf8a52af4d9a7578bdefe87b9df3a37eabdc95476"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/PlotSetBackground.cs",
+      "sha256": "854ca6277c88516aa920b4c3722094a4f9624157460cdd6da9ff5588a236573b"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/PlotThespianData.cs",
+      "sha256": "686b5c74d14845d205b34b099dc5c04d74d7b4db3d709ad9fe6d8539471f51ad"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/RoleActionType.cs",
+      "sha256": "8e9401f0a7e31a660ff1d1f5be82feb354abeb5526e3587b4f28bd22e4ab13c2"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/RoleEmote.cs",
+      "sha256": "7640c2cea604a026baed6714234c58046eb57b823bd30bc0288c26712fa62f1e"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/SetBackType.cs",
+      "sha256": "410e04900febdfa292640248f62c02b009078d6ab4cf04c16aaa8a14c32e9dde"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/Tables.cs",
+      "sha256": "69de2a3b7e87785a8313bd73a1f57f4e995616828b104053d5f619b59c025f97"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/TbActor.cs",
+      "sha256": "7062ed8e7eddd1de496788a0087a0f69afbd213cafbae3f4a327b022576ec20e"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/TbConstant.cs",
+      "sha256": "daf1bc0ff39659f836973a1ccfd174820c36276fcf75a5eed384bfd4a16d5961"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/TbDialog.cs",
+      "sha256": "116f4a3e9ae43f823d57fa4e84ae971112e6a8d31fe290317c013a4dd14ced26"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/Code/TbPlotAtom.cs",
+      "sha256": "2ebb1db15e3b8245b9a6f36e176c84144a9832c39ac2ceed6a007d7fd2aba62d"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Generated/PlotWeave.Luban.Generated.Sample.asmdef",
+      "sha256": "f65be30a837a18b36636840c4e8f29045fbadf037a1e678f0e2f38b0be9bf4c2"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/LubanRuntime/BeanBase.cs",
+      "sha256": "2b3fb576f2d2cb3b6c74c2ffd8c75c4f035ab42d857547b1a9c0d892d5c45201"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/LubanRuntime/ByteBuf.cs",
+      "sha256": "c784561036714b73a23834969a3c3426ce32f0aa15690e47ad3ac4c56fe0f017"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/LubanRuntime/ITypeId.cs",
+      "sha256": "effd56be2ec82d7650b23172ad396341cf7248f7ca34dfeda362f88a6c1bb477"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/LubanRuntime/PlotWeave.LubanRuntime.Sample.asmdef",
+      "sha256": "5992b3337e2503b4db0551b461d85e7db5ec1fd3784a7db46f6eb7acd1e57b4c"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/LubanRuntime/StringUtil.cs",
+      "sha256": "513ed1b536cac41cd1bbb0cff42466f4f289255422b2e6149be67097951a791d"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Playback/PlotLubanSamplePlayer.cs",
+      "sha256": "264b6cebdfc977f11b6ddde8f63492d2dd21eb738f731890dfac72eb77dc520b"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage09_Luban/Playback/PlotWeave.Luban.Playback.Sample.asmdef",
+      "sha256": "b04ff207a64221c13f29496fdbdb4b96b00f72459b71b8cc10e55bffaeca4944"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/Contracts/DataContracts.g.cs",
+      "sha256": "bc3d1895b5d98ace508f0933ad10d7b18022418f81502fcb438b90e4ea7a6095"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/Contracts/EditorAdapters.g.cs",
+      "sha256": "4966a470f42aed15389b256e085cdd93ae9666b77b8986d9a242781068c24222"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/Contracts/GameAdapters.g.cs",
+      "sha256": "6cd7b0cad7c4d848c76a2988c9ad24766aadc589e8a1348a42095e485ec288d2"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/CameraCue.cs",
+      "sha256": "410aefa077267724f45439bb67db76bc9bb9b860d4d36fb19393298b7eb041f5"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/PlotAtomData.cs",
+      "sha256": "e090af1eb500a0d710247936637820fd9874da3c561bff1bc034fd9f6d866061"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/PlotBranch.cs",
+      "sha256": "cf8cc5d023e595de2a58d2a46069b96e48749e2c10bf27bd688d0e9270118be4"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/PlotConstantKey.cs",
+      "sha256": "2506356aaf472b5efa420bb1b766bcfc8deb3487ac19dce6178e67591f820caa"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/PlotDialogKey.cs",
+      "sha256": "4dbd8a263b3f1ce31e26d1018e88f62817b95d51360491cea4bb537612b9f46a"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/PlotRoleAction.cs",
+      "sha256": "9a6649e300a36efcb36ef5ce6d134deeae0931fa00e4e37f3279ccdaa3dcff14"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/PlotSetBackground.cs",
+      "sha256": "9a22dd4b1f3e1cb1f5dbf939e856acef4db0503680b838e9dba4ed1cd4004083"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/PlotThespianData.cs",
+      "sha256": "5c6dc705b199cadf2d258aa342e0b893b589211a063800e2bebf30830c2edfd7"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/RoleActionType.cs",
+      "sha256": "a88e5267b33a8f73096451c859eed0b1ff0ae81d1fa5ca3695d94cd3d08168cc"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/RoleEmote.cs",
+      "sha256": "a4db1fdf342beb997b5d241f7d8d854acced1bf1b297c1200f894837629e2235"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/SetBackType.cs",
+      "sha256": "270ef366225f3fac1490181443729a74b5cb02c9f62790ad7b645bf2966e4c8e"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/Tables.cs",
+      "sha256": "8cfbcbefb708ebd56f42c4a56aac8ca46f76546d8eec4dde911cebcf17a8076f"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/TbActor.cs",
+      "sha256": "babf31c14a88d1b2f301d07f089a8ba2d4c68ccd919369d057db2f9e0ba527ce"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/TbConstant.cs",
+      "sha256": "5aa9b1ecd31e40948373f639828962e7c85112ab761322629d46576026b02fe2"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/TbDialog.cs",
+      "sha256": "001a61cdb3e415f04197ecdf42e37294c4cccf2c07c888c640f7d6f2f2c10945"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/TbPlotAtom.cs",
+      "sha256": "cf2226e551182bc62986f49f609114c76b8ab68806ed21fd721aefdb1154d7d9"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/Code/TransformCue.cs",
+      "sha256": "b680754914d119407e67ab0517de5c3f7370371000b2580f927e494b3451187f"
+    },
+    {
+      "path": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated/PlotWeave.Luban.Nested.Sample.asmdef",
+      "sha256": "1e9c49a082b015818c89fa8507f24eb31b68e99cbe269285ce7f4ad1a4fd9de2"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringBootstrap.cs",
+      "sha256": "aae2a56dba110f419fe139cc05f36da7a8589d8e57c2ddcc7c08860cf2a5db2a"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringInspectorControls.cs",
+      "sha256": "23d6ab00c1e9e5e59f0f01253e9209d27d357796343fabd9c26f12f1f4894132"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringPreviewVerification.cs",
+      "sha256": "f45ccd699a25851a422d98e57a0e2ddba13abf6c12390e61ef0926d16403b93b"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+      "sha256": "30c11ae6591b8669bdb6f439583f41c5ed38e84ed23b624a7184482471601515"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotSchemaDrawers.cs",
+      "sha256": "31d0be62ee4d8d1371ced8ac07689cf19d1665b6bf75718d39ba647cf1127d19"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringAssetEditor.cs",
+      "sha256": "4a6125331e24bac714569a50e2f1eb1b4784b30e13bbfb95bc79088b5cac2801"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Authoring/PlotAuthoringExample.cs",
+      "sha256": "cff9d15fee0b7352f8d704de4e999065323a62ad816b77ce393ff73fcbb805be"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Excel/PlotAuthoringExcel.cs",
+      "sha256": "27ac82f38d366b4750f138350c53b038bf173e15e94293beeff71145e71d816b"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelExchange.cs",
+      "sha256": "1ca92ee7c1b01655fb7811ac934a4d5ce0b01049f3ddd4b3f1df40165b45d876"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelSheet.cs",
+      "sha256": "162b5eb7d61f0b1decb41d99e60da1465b110d431d561b0d976d5dd02b900adb"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs",
+      "sha256": "f3c1dc561706c6b2496cdfc63583c9f72585821a669b08a95c2d110234f42705"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs",
+      "sha256": "661870fc7f7b4243e4a11f40763ea9ca044cc8b66a69bf878adb3274404d9547"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Generation/PlotGenerationExample.cs",
+      "sha256": "513f274213cee8c601c0270150746da2b4a45e98949e33aed9b5ef1eb39ef793"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Generation/PlotGenerationProfile.cs",
+      "sha256": "90202b005eb8547a616451f0aa141800f3ee5a42902812d3f353e3402902a33d"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Generation/PlotNestedBeanExample.cs",
+      "sha256": "6ad30351b6b40c51e38f86dc4f55430d658f1c7dda6e37899ca8afa6e1c94627"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Legacy/CustomEnumDrawers.cs",
+      "sha256": "93063a2876467ff93c357799344e3f4f513a598d7a4c9097f3f9f85f5176f058"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Legacy/EditorBaseExpansion.cs",
+      "sha256": "d48159a3da35479acfbd9604945f695638822dd28d9313308fa1f0e145cc787d"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Legacy/PlotEditorDataToExcel.cs",
+      "sha256": "f24b18d5c0f077238c2bee299215a247883e13bc3690d50797a03bf1b97e9493"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAssetImport.cs",
+      "sha256": "22a1bffdeaedd901600ce08b23b36b282a982304d176910492bd17c888dab705"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Luban/PlotLubanExample.cs",
+      "sha256": "4e445cda2e3c5113102d7f8cd50bf317b8b7d87d2bcdb3530f0b730d0628ab0e"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Luban/PlotLubanPipeline.cs",
+      "sha256": "581fa5ddd05c3d33811822f7669171270a2821080bd4c6edf38fdd854f285936"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Luban/PlotLubanProfile.cs",
+      "sha256": "c259bb70e8c22b03056d3bcccca636de563cc7dd55388f0eedead4038d1de3d7"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Luban/PlotLubanSchema.cs",
+      "sha256": "c823c0887b8273b5228492fd3d1dfd6257d365277aacb0e2f3c52415ab746331"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs",
+      "sha256": "ffb38254ea5cf9f45c440a4d4870a07b1c3f4150d359e4f1757e75aa4d56b314"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Playback/PlotAdvancedExample.cs",
+      "sha256": "e36ccdaa0d48f098d2549edf91c2f88dd42b85f0258de2f761f372e080187031"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Playback/PlotAdvancedPreviewVerification.cs",
+      "sha256": "b607f1f9fa248b49facebd7b9654109c4bdf8a39b6175d2be746a6e89fbc3f63"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Playback/PlotChapterExample.cs",
+      "sha256": "9560ea3d9e651c4fbf4c0f77d070b50d18c904a35c347421cc021fd7d38791a0"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Playback/PlotChapterPreviewVerification.cs",
+      "sha256": "245736834053b089768c69ac9e502d71e93c3a447134a7a9899228d8020576a9"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Playback/PlotEventTrackEditor.cs",
+      "sha256": "332e2de348aa8d469bfe5a534b2a9d411158c30c071f104e27ec5bf99689e3ba"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackBuildVerification.cs",
+      "sha256": "90b95e73e46f211103985076548fe65fb2fb58dea948aaca366c4fdbf888811f"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackCompiler.cs",
+      "sha256": "7e22ceadbab501c7e71a4a306a84d423a0d4e83f03b214c3bd6c5073ca32b255"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackExample.cs",
+      "sha256": "18d8c618544637d5fcac5ae6f5f8667d759c2339681384adc30663e5ad2d3847"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackPreviewVerification.cs",
+      "sha256": "cb7c776376a18bb1dddbf08749610de87b896d57653ff5bdd641aa673c281d2f"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/Playback/PlotPresentationMigration.cs",
+      "sha256": "2b01ee44ddffa34a9e6c1cb40e5b02954bf0b3d80f1169e69112ce94d2e3aabd"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/PlotBuildVerification.cs",
+      "sha256": "27d2636eb80e0f42532dec81b660f0139d0bc45ce8d59c8f8b8d36b4c4209f0b"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/PlotCodeGenerator.cs",
+      "sha256": "f3201817d6308fe598669fd8a58b0b634b87249aa5841600294183a8cb7cf4dd"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/PlotCommandDrawer.cs",
+      "sha256": "af93fa09ef61556738d21d1b5ba4676c191d1e43a65841a77be26139f5d18d49"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/PlotMenus.cs",
+      "sha256": "ba2fdbadfff2de23ad952209399cbeec0bb2c7e37eb0bb01fe1da7a84aca950d"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/PlotPreviewWindow.cs",
+      "sha256": "5d59624965146a75d17be8f9d0c6bef59ed6b10b41a37720ffd8dbc2d4df2598"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/PlotWeave.Editor.asmdef",
+      "sha256": "59de0cf130307756d6b357aa93f8147dcc1e4511d8ec2a9bda3b152499b243b5"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/PlotWeaveWindow.cs",
+      "sha256": "118d682d314bdf7ae7e86f7d4783f3d444ce3cda3aa6907e23c7f5a4918af715"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Editor/PlotWorkbook.cs",
+      "sha256": "6ef0fb465dfdcb303eec803393ce8cff52cac52780e8a25b314db55466abeb6f"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/DiaLogKeyEditor.cs",
+      "sha256": "e40f5df7d3984cbe1e65c658877e64bcddc81bacfcc8252acf46d2e379d1f296"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/ParameterEditor.cs",
+      "sha256": "8ae04e7061db35092392eac7c8a0292842d3882f133154b74d94be3b469ba44f"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/ParameterList.cs",
+      "sha256": "41379214d59d8e8af68b96420d1deed46886f9d4be388a06b4efba7a9a335342"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+      "sha256": "eb7204e1556bbe68b4f10261cb133377a91fd3931cf3c65a3121becfdb7c4752"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+      "sha256": "4086fee5ea540cf6b26892657129dcd92413da969d0516491ed9772d3b55a1b2"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeButton.cs",
+      "sha256": "2b23dcd7180a6b60216cf099c3d33f5fa9f942ba663d43e0e8585ade72a2464a"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeView.cs",
+      "sha256": "e5059b06f95a8abbf7830bb6decca04d4b711d4a984a5c74f93ec850e36e177e"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotUiFactory.cs",
+      "sha256": "55ecdff3eccaf026ddd650990f95d50096f3b41899d1ab470401f608c2ddc378"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs",
+      "sha256": "aafceb37d050edea164bfee368eae0776818ad6487303241148ea14b19bd9b62"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomRowData.cs",
+      "sha256": "f25393b2d558d49407d415708e141b757ba055499b546645c7f4367a343b1409"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAuthoringAsset.cs",
+      "sha256": "063a896940162e6d0a3ce8542e5dd9babf3fd0f545a6692052f61f1418aa2a37"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAuthoringProject.cs",
+      "sha256": "93dc27304a28ea6d78fa602c41ea7ca2d1fc82d0a68fe6e149f49898c7b7c461"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotBeanLayout.cs",
+      "sha256": "18b7096b0482da9dd1951483674fd3e5eeb1665fb94b57b58f1b266cf2d357c1"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotConstantKeyAsset.cs",
+      "sha256": "a3bf0df843bd6a97bfa198ec88e5bcd7fc8304b52feb6cc2cf884c839cdccf62"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotDialogKeyAsset.cs",
+      "sha256": "53a34d597a99191f70f7cc270186b153921791a2acc99e63d977c7bb22d47733"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEnumAsset.cs",
+      "sha256": "64f389952e0b07b0eafe1d5d37672eff33550412bd4c2cdcf518aba125f3fab7"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs",
+      "sha256": "2f14845668d7468ae665b4a9fe4d32bb456910dd03d96d6d976c06e9f85210eb"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotNodeEventTrackAsset.cs",
+      "sha256": "35b24792b4ff7b895d1ebad2ce130c6b977e6e8044faa037540df6770419cdc9"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotTableAsset.cs",
+      "sha256": "957de10695b408e61f2b84a91bed6eeb46b9920e1e35d61ccb61b9aaefc08fd6"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotTextKeyAsset.cs",
+      "sha256": "59c536f48ad0e56605148f8c80220578dfa335497d15d4a78f88f6177226d726"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterDemo.cs",
+      "sha256": "1daa2f8504a909a95cbb3759d4ba768350793e9bfd1e078e7cef2a2d020a7532"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterHostPlayer.cs",
+      "sha256": "5817cd04227b54ec8d395503252189851caf7e834e7c4e02bc45ccbe0c0e04de"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+      "sha256": "04b07748af97cfd192ae7e830becfdcd1a424af9440da418d471d34e613c1e3d"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotLocalChapterBackend.cs",
+      "sha256": "ffc7525488f8f1de7d091425994eebb7a8d8848564f192834176d38d4c4189ce"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/DataContracts/AuthoringPlotValueSource.cs",
+      "sha256": "6e1f268845e9f1d8f59d0947b509ebac22ed8f5c8073c378b27d2a1944859d40"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+      "sha256": "fc8f86cb082a42e3cdae7fa10103910587826fcb5d1348ccddf07d78edd796d6"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/DataContracts/PlotValueSources.cs",
+      "sha256": "6726e5bf1e5535093a3b24256cd7fd4e7860c5987e890430ef2a9a5000dfe33a"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Legacy/CustomEnumAttribute.cs",
+      "sha256": "0b396aa311ee7722421a2e95c5136a7499101d7a8805a0ae36527a2328593fa6"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Legacy/EnumMappingUtility.cs",
+      "sha256": "1f057608d69ed6c99d06991d0e6d2b3701d1909991d869566e645a422227df63"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotEventJsonData.cs",
+      "sha256": "6a095b96f765a81c46332219b919bdcf1bfbb3ea65e9bb7392e0c5dca6b670c6"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyNodeAsset.cs",
+      "sha256": "aeb888da05a4990fa227d74b0f66fd2fbe1f570cf7a165b21a52edabf78f2ace"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotNodeDataBase.cs",
+      "sha256": "051dd3eab9ec2ec7fb95e1576bdfb2ad1e9d26b29d7c8ef28be3378085d000c8"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotActorVisualState.cs",
+      "sha256": "c5899d7c94adecd9c036ea49604ac04fd807dbcf1d40c321c12adf29679cd610"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotEventScheduler.cs",
+      "sha256": "cdc795d56bb71930770377171242a46acaf5341cf60b8d4f81f1f9976412ddfa"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotLegacyPlaybackProjection.cs",
+      "sha256": "3dd7d0c965990b3a742f73ea0c18d7c2be792026eb6c1578ec0199609dae3e4d"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotLubanTableReader.cs",
+      "sha256": "2ed13e267b34367febc48649f602b453643b5d7733dc5dc9ff98baf57da4c90c"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotOperations.cs",
+      "sha256": "958ffbcdb299ba34fdd888af40292d535aadf13043315941a47cb7ef02d5ffc1"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlaybackAsset.cs",
+      "sha256": "e843ba88604eb1977f03f6c3f04836e1354fa341756009d64f5e4acfb2fc4a77"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlaybackData.cs",
+      "sha256": "915d7ff821199a39a044858e863791ad7cf20fb2ee2ccf2d42cdc185d127ed5f"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlaybackVisualCatalog.cs",
+      "sha256": "df0996a2352679f35d43e6f3189685d6d7988773e12aff8b615e87f7d3d25717"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerChoices.cs",
+      "sha256": "9481e5ead27aef868fdc372937961c8db4c4f92afba7134e2797850d4dc72ebb"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+      "sha256": "67029519a4ef24a68a5f11bf3572b78b1961d75639322e1b537735fdb536add1"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerHost.cs",
+      "sha256": "431c2e3ee6bc4dd25e390058094384504140e60995587657354bd57719a2c1ea"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerServices.cs",
+      "sha256": "6c4c15efab8d34f5b56d1889c8b8c2acac888fef7481a328c9cb18485f159861"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.Actions.cs",
+      "sha256": "7c96b28d5a00861a7f054b7a3fe409c02b50bb27a04fce4c9506a3c52472f659"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.cs",
+      "sha256": "aceeee8678c20107bbfc786b19bd42892166523ba05282de568d710e6ed54442"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerViewBindings.cs",
+      "sha256": "5d2fb076a58db8a9312e3fde72f46841c78fadb76096e61594dc13d26095ad92"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotResourceOperation.cs",
+      "sha256": "3121afbf2b7ac70992c12c123b24db5d1c7ca2b89fcae96f23a1983ca835059b"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/Playback/PlotTMPText.cs",
+      "sha256": "1777461043545a9aa042ee76f9fca255b5e4010d1aa7463bc69fd8a525ba42a0"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/PlotArgumentReader.cs",
+      "sha256": "105ba7684cb5a4874ca0f6ed923363633c3885d1a5259eeb37c266f73d92ab63"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/PlotAsset.cs",
+      "sha256": "824b47f291b4e2ad11176514f828e997ffaa3e6bf109251c9cfe80990d8972dc"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/PlotData.cs",
+      "sha256": "637058f08eea941fba834f3ffa3be7e43ab451b1a511701ee9aeb75395bac8e8"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/PlotDemoPlayer.cs",
+      "sha256": "0291c6e68dd5984791808466e44539e328da39c9e3198b56855964ba705ec6ab"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/PlotSample.cs",
+      "sha256": "c472f2e24f27c94fae4e635128d95649a11fe140f223d23b58291fe3b6009996"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/PlotSession.cs",
+      "sha256": "9592aafb7682e24f34284fb517401780d5822c5da8850c7901036784d76d1be5"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/PlotValidation.cs",
+      "sha256": "0f402c58af731e936020a7c87a0d105c3dc960e940e1ec70539bcc54f14cf977"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Runtime/PlotWeave.Runtime.asmdef",
+      "sha256": "f595b55654bcb9fd249635e053e787c61dd90dc5b571c51c2a36744d121e5102"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotAdvancedPlaybackTests.cs",
+      "sha256": "fa0a8aae20c5d9e7956ff3596b8283321caab14e8284324d0190a16c8299d478"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringPanelTests.cs",
+      "sha256": "6456698527f6f66ccba51fac8622e95910bff47f57ea8ca9d53be5828ba9da94"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringTests.cs",
+      "sha256": "cbc74ee2cc16851e8f2bc49fa4c6b48fcb4586f069277ac23fbfae78daeab9ec"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotChapterSessionTests.cs",
+      "sha256": "672835cf559c5f29b82a78f73e41f08848ca8dfb7520d7e6830589c31dac40ac"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotContractGenerationTests.cs",
+      "sha256": "2a1ec6b14176f568f3b828f314a1dccf92647d25206e9c8404881ab2e1e60485"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotEditingSessionTests.cs",
+      "sha256": "e827b6c7e777d7fea25619ddb07b5e6530afe04db59fb60d3e53b2732c960356"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotEventSchedulerTests.cs",
+      "sha256": "4b73f93becab9c55627791cedd5d49f16f4d59cfe464e47f11e6e0b8860d706a"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotExcelExchangeTests.cs",
+      "sha256": "ea34df81d031a8ed6637925a7f39c216260e0fd9d01638a629a5191d2fd34926"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotExcelLayoutTests.cs",
+      "sha256": "73bc7a7e3f10c3cec708ea3485b247605c55a6e1c88a9c1ebc174c88aa29f8e6"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotLegacyAssetImportTests.cs",
+      "sha256": "4a5f201833398f631273be91a72b43f149a2f4c528f2fa9b5b2c9c78a5d1ddb7"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotLegacyEventTests.cs",
+      "sha256": "bb6cc866b9284419353c4f3642774dc2134b58d93c9e276739fd2c0a4d3fc890"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotLocalChapterBackendTests.cs",
+      "sha256": "b173547eb9e3478ce20c0c88a6ba32af9655e0d8ba944c160ab85af4d55525a8"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotLubanIntegrationTests.cs",
+      "sha256": "553c9f7897a4e57d7680962de214590b7138d1982947f7f5284b8f619db99606"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotNestedBeanTests.cs",
+      "sha256": "cda0013185195302d08b844005f823bb9700350f03ef9826f86b08df345a1ba4"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotPlaybackIntegrationTests.cs",
+      "sha256": "3a3dfedb839b9941fc3b3d2893109f8086db9cd13492dc47a29a6b84b6f2d9ba"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotPlayerCoreTests.cs",
+      "sha256": "7575e6a191c0b4a6c132c5cfb8027de2d3e0ef8991e4e7c0ea09bc081cabf34c"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotPresentationMigrationTests.cs",
+      "sha256": "27e7965d4ea65fdff8a0dc674a8a78966bff10f653aa797358b5a30b463ba56b"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotVerificationBridge.cs",
+      "sha256": "f2595d5d890ba22a214fb052ac7669dd673488e6a03b3f5f8a85406630b544c8"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotWeave.Editor.Tests.asmdef",
+      "sha256": "f92a56d2b9374e9b72d2e97fda2d0c2dec6804b1e21189f399bff6c56856984b"
+    },
+    {
+      "path": "Packages/com.plotweave.core/Tests/Editor/PlotWeaveTests.cs",
+      "sha256": "982a3641abf7fa6f5c72959f12ccbfd9265119f64f47b09360e54495d3fb0781"
+    }
+  ],
+  "luban": {
+    "id": "91fede3d037d4794852ea86753362c51",
+    "status": "passed",
+    "error": "",
+    "runRoot": "Library/PlotWeaveLuban/91fede3d037d4794852ea86753362c51",
+    "publishedRoot": "Assets/PlotWeaveMigration/Stage12_Nested/LubanGenerated",
+    "compilerSha256": "10db90c41489af5e0173aabea73ee981a90baed4dca59735358383ec7f04ebd2",
+    "exitCode": 0,
+    "files": [
+      {
+        "path": "PlotWeave.Luban.Nested.Sample.asmdef",
+        "sha256": "1e9c49a082b015818c89fa8507f24eb31b68e99cbe269285ce7f4ad1a4fd9de2"
+      },
+      {
+        "path": "Code/CameraCue.cs",
+        "sha256": "410aefa077267724f45439bb67db76bc9bb9b860d4d36fb19393298b7eb041f5"
+      },
+      {
+        "path": "Code/PlotAtomData.cs",
+        "sha256": "e090af1eb500a0d710247936637820fd9874da3c561bff1bc034fd9f6d866061"
+      },
+      {
+        "path": "Code/PlotBranch.cs",
+        "sha256": "cf8cc5d023e595de2a58d2a46069b96e48749e2c10bf27bd688d0e9270118be4"
+      },
+      {
+        "path": "Code/PlotConstantKey.cs",
+        "sha256": "2506356aaf472b5efa420bb1b766bcfc8deb3487ac19dce6178e67591f820caa"
+      },
+      {
+        "path": "Code/PlotDialogKey.cs",
+        "sha256": "4dbd8a263b3f1ce31e26d1018e88f62817b95d51360491cea4bb537612b9f46a"
+      },
+      {
+        "path": "Code/PlotRoleAction.cs",
+        "sha256": "9a6649e300a36efcb36ef5ce6d134deeae0931fa00e4e37f3279ccdaa3dcff14"
+      },
+      {
+        "path": "Code/PlotSetBackground.cs",
+        "sha256": "9a22dd4b1f3e1cb1f5dbf939e856acef4db0503680b838e9dba4ed1cd4004083"
+      },
+      {
+        "path": "Code/PlotThespianData.cs",
+        "sha256": "5c6dc705b199cadf2d258aa342e0b893b589211a063800e2bebf30830c2edfd7"
+      },
+      {
+        "path": "Code/RoleActionType.cs",
+        "sha256": "a88e5267b33a8f73096451c859eed0b1ff0ae81d1fa5ca3695d94cd3d08168cc"
+      },
+      {
+        "path": "Code/RoleEmote.cs",
+        "sha256": "a4db1fdf342beb997b5d241f7d8d854acced1bf1b297c1200f894837629e2235"
+      },
+      {
+        "path": "Code/SetBackType.cs",
+        "sha256": "270ef366225f3fac1490181443729a74b5cb02c9f62790ad7b645bf2966e4c8e"
+      },
+      {
+        "path": "Code/Tables.cs",
+        "sha256": "8cfbcbefb708ebd56f42c4a56aac8ca46f76546d8eec4dde911cebcf17a8076f"
+      },
+      {
+        "path": "Code/TbActor.cs",
+        "sha256": "babf31c14a88d1b2f301d07f089a8ba2d4c68ccd919369d057db2f9e0ba527ce"
+      },
+      {
+        "path": "Code/TbConstant.cs",
+        "sha256": "5aa9b1ecd31e40948373f639828962e7c85112ab761322629d46576026b02fe2"
+      },
+      {
+        "path": "Code/TbDialog.cs",
+        "sha256": "001a61cdb3e415f04197ecdf42e37294c4cccf2c07c888c640f7d6f2f2c10945"
+      },
+      {
+        "path": "Code/TbPlotAtom.cs",
+        "sha256": "cf2226e551182bc62986f49f609114c76b8ab68806ed21fd721aefdb1154d7d9"
+      },
+      {
+        "path": "Code/TransformCue.cs",
+        "sha256": "b680754914d119407e67ab0517de5c3f7370371000b2580f927e494b3451187f"
+      },
+      {
+        "path": "Data/tbactor.bytes",
+        "sha256": "7b75290760adbbb33061b37519db8fedb33909c00afc6da2480792d30030db9b"
+      },
+      {
+        "path": "Data/tbconstant.bytes",
+        "sha256": "e6f701dcbaff5b46097dcb724d2b1cda3835a7595972f6153d779871aa43b4f2"
+      },
+      {
+        "path": "Data/tbdialog.bytes",
+        "sha256": "29a2393697c65355c051272707a0e6784b73d8ce1060b593cf0b927460bf57f7"
+      },
+      {
+        "path": "Data/tbplotatom.bytes",
+        "sha256": "752b0876f1ef263f62da24dd69714af2b7b0a80c73d6a92e0c51609ef24f936b"
+      }
+    ]
+  },
+  "scope": "有界嵌套Bean的类型绑定、叶展开、值源重建、Editor/Game生成接口和真实Excel/Luban往返",
+  "limits": [
+    "循环类型拒绝，最大嵌套64层。",
+    "这批不是原UI完整重建验收；后续继续原布局与外围模块。"
+  ]
+}

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 956fb524bd60d355f8bcfab76441ac30, type: 3}
+  m_Name: 1001
+  m_EditorClassIdentifier: 
+  headerDefinition: {fileID: 11400000, guid: d63ecfecaf2021c4e9072a3ce59f7bf3, type: 2}
+  rowId: e11c30e0-a9b3-4b7c-8b05-f50056cd2504
+  rowTitle: 1001
+  columns:
+  - columnName: ScenesID
+    rows:
+    - values:
+      - 1001
+  - columnName: PlotRoleID
+    rows:
+    - values:
+      - 101
+  - columnName: Dialog
+    rows:
+    - values:
+      - demo.start
+  - columnName: Next
+    rows:
+    - values:
+      - 1002
+  - columnName: '*RoleAction'
+    rows:
+    - values:
+      - 101
+      - Default
+      - Neutral
+      - 0
+    - values:
+      - 102
+      - Shake
+      - Happy
+      - 2
+  - columnName: '*PlotSetBack'
+    rows:
+    - values:
+      - Default
+      - demo.stage
+  - columnName: '*Branch'
+    rows:
+    - values:
+      - demo.choice.forward
+      - 1002
+    - values:
+      - demo.choice.wait
+      - 1003
+  - columnName: CameraCue
+    rows:
+    - values:
+      - 101
+      - 1.25
+      - true
+  - columnName: '*CameraCues'
+    rows:
+    - values:
+      - 102
+      - -.5
+      - false
+    - values:
+      - 103
+      - 0
+      - true

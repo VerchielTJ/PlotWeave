@@ -1,0 +1,24 @@
+# PlotWeave
+
+Unity 2022.3 narrative authoring and playback. Human and AI review navigation.
+
+Public source repository: https://github.com/VerchielTJ/PlotWeave
+License: MIT; third-party terms: THIRD_PARTY_NOTICES.md
+Public checkout verification: Doc/Records/PublicExport/verification.json
+Historical source-project tests are separate from public-checkout validation.
+
+- AI context: AI_CONTEXT.md
+- Open design findings: Doc/Review/design-review-2026-10-29.json
+- Human review: Doc/Review/index.html
+- Class diagram: Doc/Review/class-diagram.svg
+- Curated engineering index: Doc/Review/engineering-index.json
+- JSON schema: Doc/Review/engineering-index.schema.json
+- Complete lexical declarations: Doc/Review/source-inventory.json
+- Design lineage and current implementation: Doc/Review/provenance.json
+- Acceptance evidence and exact source hashes: Doc/Records/Current/验收总览.json
+- Dedicated authoring scene, live draft preview and workspace-bound exchange: Doc/阶段19_制作输入与内嵌试跑.md
+- Latest startup and viewport evidence (40 targeted tests; minimum 1024x600; not all six diagnostic sizes passed): Doc/阶段20_启动与多尺寸适配.md
+- Read-only JSON queries: python Tools/Review/query.py summary
+- Check freshness without running tests: python Tools/Review/query.py verify
+
+Design lineage is separate from current AI-assisted implementation. Counts are not completion or authorship percentages. C2 generation is optional. Production integrations, device runs and public release have explicit boundaries; read AI_CONTEXT.md.

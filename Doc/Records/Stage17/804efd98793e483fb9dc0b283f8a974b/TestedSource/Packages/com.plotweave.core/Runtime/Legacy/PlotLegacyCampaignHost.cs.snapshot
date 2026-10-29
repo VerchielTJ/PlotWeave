@@ -1,0 +1,111 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using PlotWeave.Chapters;
+using PlotWeave.Playback;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace PlotWeave.Legacy
+{
+    [Serializable] public sealed class PlotCampaignItemPresentation {public int id;public string name="",description="";public Sprite icon;public Color quality=Color.white;}
+    [RequireComponent(typeof(PlotPlayerHost))] public sealed class PlotLegacyCampaignHost:MonoBehaviour,IPlotChapterNavigation
+    {
+        public PlotCampaignAsset campaign;public PlotPlaybackAsset content;public PlotPlaybackVisualCatalog visuals;
+        public GameObject chapterPrefab,episodePrefab,chapterItemPrefab,episodeItemPrefab,rewardItemPrefab;
+        public bool persistProgress=true;public string saveFile="plotweave-original-campaign.json";public List<string> unlockedAreas=new List<string>();
+        public List<PlotCampaignItemPresentation> itemPresentations=new List<PlotCampaignItemPresentation>();
+        public PlotChapterSession Session {get;private set;}public IPlotCampaignProgress Progress {get;private set;}public PlotChapterKind Kind{get;private set;}public int SelectedChapter=>_chapter?.id??0;public int SelectedEpisode=>_episode?.id??0;
+        public string LastError {get;private set;}="";public int ReturnCount{get;private set;}
+        private GameObject _canvas,_main,_episodes,_detail,_reportFailure;private TMP_Text _status,_reportFailureText;private Button _retry,_cancelReport,_mainStory,_dailyStory;private PlotCampaignChapter _chapter;private PlotCampaignEpisode _episode;
+        private PlotLegacyVirtualList _chapterList,_episodeList,_rewardList;private PlotChapterHostPlayer _player;private PlotPlayerHost _host;private int _transition;private bool _destroyed;
+        private Dictionary<string,Sprite> _sprites;private Func<DateTime> _today;private Func<string,bool> _hasArea;private PlotChapterKind _returnKind;private bool _reportBlocked;
+        private sealed class TransitionState {public int token;public Image image;public Vector2 position;public Vector3 scale;public Coroutine routine;}
+        private TransitionState _activeTransition;
+        public bool IsCompletionBlocked=>_reportBlocked;
+        private static T Find<T>(Component root,string name)where T:Component=>PlotLegacyWidgets.Find<T>(root,name);
+        private void Start(){if(Session!=null)return;if(campaign==null||content==null)throw new InvalidOperationException("故事目录或播放内容未绑定");if(Path.GetFileName(saveFile)!=saveFile||string.IsNullOrWhiteSpace(saveFile))throw new ArgumentException("存档只接受文件名");var progress=new PlotCampaignProgressStore(persistProgress?Path.Combine(Application.persistentDataPath,saveFile):null);Initialize(new PlotCampaignLocalBackend(campaign.data,content.data,progress,()=>DateTime.Today,area=>unlockedAreas.Contains(area)),progress);}
+        public void Initialize(IPlotChapterBackend backend,IPlotCampaignProgress progress,Func<DateTime> today=null,Func<string,bool> hasArea=null)
+        {
+            if(Session!=null)throw new InvalidOperationException("章节宿主已初始化");campaign.data.Validate(content.data);Progress=progress??throw new ArgumentNullException(nameof(progress));_today=today??(()=>DateTime.Today);_hasArea=hasArea??(area=>unlockedAreas.Contains(area));_sprites=(visuals?.sprites??new List<PlotPlaybackSpriteBinding>()).ToDictionary(b=>b.key,b=>b.sprite,StringComparer.Ordinal);_host=GetComponent<PlotPlayerHost>();_host.playOnStart=false;
+            if(visuals!=null){_host.viewPrefab=visuals.viewPrefab;_host.sprites=visuals.sprites;_host.actorPrefabs=visuals.actorPrefabs;_host.audioBindings=visuals.audioBindings;_host.effects=visuals.effects;_host.emotions=visuals.emotions;_host.fontAsset=visuals.fontAsset;_host.inlineSprites=visuals.inlineSprites;if(visuals.playerConfig!=null)_host.config=JsonUtility.FromJson<PlotPlayerConfig>(JsonUtility.ToJson(visuals.playerConfig));}
+            _player=new PlotChapterHostPlayer(_host);Session=new PlotChapterSession(backend,_player,this);Build();OpenKind(PlotChapterKind.Main);
+        }
+        private void Build()
+        {
+            var root=PlotPlayerVisual.Rect("StoryBrowser",transform);_canvas=root.gameObject;var canvas=_canvas.AddComponent<Canvas>();canvas.renderMode=RenderMode.ScreenSpaceOverlay;canvas.sortingOrder=50;var scaler=_canvas.AddComponent<CanvasScaler>();scaler.uiScaleMode=CanvasScaler.ScaleMode.ScaleWithScreenSize;scaler.referenceResolution=new Vector2(1920,1080);scaler.screenMatchMode=CanvasScaler.ScreenMatchMode.Expand;_canvas.AddComponent<GraphicRaycaster>();
+            _main=Instantiate(chapterPrefab,root,false);_episodes=Instantiate(episodePrefab,root,false);PlotPlayerVisual.Fill((RectTransform)_main.transform);PlotPlayerVisual.Fill((RectTransform)_episodes.transform);_main.SetActive(true);_episodes.SetActive(true);
+            _chapterList=List(_main,"StoryScrollRect",chapterItemPrefab,true,650);_episodeList=List(_episodes,"StoryScrollRect",episodeItemPrefab,false,150);_rewardList=List(_episodes,"AwardScrollRect",rewardItemPrefab,true,130);
+            WireReturn(_main,()=>_main.SetActive(false));WireReturn(_episodes,()=>OpenKind(Kind));PlotLegacyWidgets.Click(Find<Button>(_episodes.transform,"SelectBtn"),()=>Run(BeginSelectedAsync));
+            var bar=PlotPlayerVisual.Rect("StoryNavigation",root);bar.anchorMin=new Vector2(0,1);bar.anchorMax=new Vector2(1,1);bar.pivot=new Vector2(.5f,1);bar.sizeDelta=new Vector2(0,44);var layout=bar.gameObject.AddComponent<HorizontalLayoutGroup>();layout.childForceExpandWidth=false;
+            _mainStory=Button(bar,"MainStory","主线故事",()=>OpenKind(PlotChapterKind.Main));_dailyStory=Button(bar,"DailyStory","日常故事",()=>OpenKind(PlotChapterKind.Daily));_status=Text(bar,"StoryStatus","",20);_status.rectTransform.sizeDelta=new Vector2(1000,40);
+            var failure=PlotPlayerVisual.Panel("CompletionFailure",root,new Color(.04f,.07f,.12f,.98f));failure.anchorMin=new Vector2(.2f,.3f);failure.anchorMax=new Vector2(.8f,.7f);failure.offsetMin=failure.offsetMax=Vector2.zero;_reportFailure=failure.gameObject;var failureLayout=failure.gameObject.AddComponent<VerticalLayoutGroup>();failureLayout.padding=new RectOffset(28,28,24,24);failureLayout.spacing=16;
+            _reportFailureText=Text(failure,"CompletionFailureMessage","",26);_retry=Button(failure,"RetryCompletion","重试结算",()=>Run(RetryCompletionAsync));_cancelReport=Button(failure,"CancelCompletion","取消并返回",CancelPendingCompletion);_reportFailure.SetActive(false);PlotPlayerVisual.EnsureInput();
+        }
+        private static PlotLegacyVirtualList List(GameObject panel,string name,GameObject prefab,bool horizontal,float size)
+        {var scroll=Find<ScrollRect>(panel.transform,name);if(scroll==null)throw new InvalidOperationException("章节界面缺少列表: "+name);var list=scroll.gameObject.AddComponent<PlotLegacyVirtualList>();list.Initialize(scroll,prefab,horizontal,size);return list;}
+        private static Button Button(Transform parent,string name,string text,Action action){var button=PlotPlayerVisual.Button(name,parent,text);var layout=button.gameObject.AddComponent<LayoutElement>();layout.preferredWidth=170;layout.preferredHeight=40;PlotLegacyWidgets.Click(button,action);return button;}
+        private static TMP_Text Text(Transform parent,string name,string text,float size){var rect=PlotPlayerVisual.Rect(name,parent);var label=rect.gameObject.AddComponent<TextMeshProUGUI>();label.font=PlotTMPText.DefaultFont;label.fontSize=size;label.text=text;label.raycastTarget=false;return label;}
+        private void WireReturn(GameObject panel,Action back){var root=Find<Transform>(panel.transform,"ReturnBtn");if(root==null)return;var backButton=Find<Button>(root,"BackBtn");if(backButton!=null)PlotLegacyWidgets.Click(backButton,back);var main=Find<Button>(root,"MainBtn");if(main!=null)PlotLegacyWidgets.Click(main,()=>OpenKind(Kind));var help=Find<Button>(root,"HelpBtn");if(help!=null)PlotLegacyWidgets.Click(help,()=>ShowDetail("故事阅读","选择已解锁章节与小节，首次完成可领取奖励；已读剧情可以重看。"));}
+        private string Localize(string key){var text=content.data.Constants.Find(t=>t.Key==key);return text!=null&&text.Languages.Count>0&&!string.IsNullOrEmpty(text.Languages[0])?text.Languages[0]:(key??"").StartsWith("Zero_",StringComparison.Ordinal)?"":key??"";}
+        private string ChapterTitle(PlotCampaignChapter chapter){var title=Localize(chapter.name);return string.IsNullOrWhiteSpace(title)?"第"+chapter.id+"章":title;}
+        private void Sprite(Image image,string key){if(image!=null){image.sprite=_sprites.TryGetValue(key??"",out var sprite)?sprite:null;image.color=image.sprite==null?new Color(.12f,.16f,.2f):Color.white;}}
+        private static void Active(Component parent,string name,bool active){var item=Find<Transform>(parent,name);if(item!=null)item.gameObject.SetActive(active);}
+        private void OpenAnimation(GameObject panel){panel.SetActive(true);foreach(var group in panel.GetComponentsInChildren<CanvasGroup>(false)){group.alpha=1;group.interactable=true;group.blocksRaycasts=true;}foreach(var animator in panel.GetComponentsInChildren<Animator>(false))if(animator.HasState(0,Animator.StringToHash("Open")))animator.Play("Open",0,0);}
+        public void OpenKind(PlotChapterKind kind)
+        {
+            if(_reportBlocked)throw new InvalidOperationException("请先重试结算或取消等待");CancelTransition();if(Session!=null&&(Session.State==PlotChapterState.Playing||Session.State==PlotChapterState.Reporting||Session.State==PlotChapterState.ReportFailed))Session.Cancel();Kind=kind;_chapter=null;_episode=null;_canvas.SetActive(true);_episodes.SetActive(false);OpenAnimation(_main);var chapters=campaign.data.chapters.Where(c=>c.kind==kind).ToList();
+            _chapterList.Set(chapters.Count,(item,index)=>BindChapter(item,chapters[index],index));var title=Find<Transform>(_main.transform,"ReturnBtn");PlotLegacyWidgets.Caption(Find<TMP_Text>(title,"Title"),kind==PlotChapterKind.Main?"主线故事":"日常故事");
+        }
+        private void BindChapter(GameObject item,PlotCampaignChapter chapter,int index)
+        {
+            var state=campaign.data.ChapterState(chapter,Progress,_today(),_hasArea);PlotLegacyWidgets.Caption(Find<TMP_Text>(item.transform,"PlotName"),ChapterTitle(chapter));PlotLegacyWidgets.Caption(Find<TMP_Text>(item.transform,"ProgressText"),campaign.data.Progress(chapter,Progress)+"%");Sprite(Find<Image>(item.transform,"Thumbnai"),chapter.thumbnail);Active(item.transform,"PlotLockBack",state==PlotCampaignItemState.Locked);PlotLegacyWidgets.Caption(Find<TMP_Text>(item.transform,"LockText"),campaign.data.LockReason(chapter,Progress,_today(),_hasArea));var button=item.GetComponentInChildren<Button>(true);if(button==null)throw new InvalidOperationException("章节项缺少按钮");button.interactable=state!=PlotCampaignItemState.Locked;PlotLegacyWidgets.Click(button,()=>SelectChapter(chapter.id));var body=Find<Transform>(item.transform,"Item");var pos=Find<Transform>(item.transform,index%2==0?"Pos0":"Pos1");if(body!=null&&pos!=null)body.localPosition=pos.localPosition;
+        }
+        public void SelectChapter(int id)
+        {if(_reportBlocked)throw new InvalidOperationException("请先处理待确认结算");var chapter=campaign.data.Chapter(Kind,id);if(campaign.data.ChapterState(chapter,Progress,_today(),_hasArea)==PlotCampaignItemState.Locked)throw new InvalidOperationException("章节未解锁");CancelTransition();_chapter=chapter;var background=Find<Image>(_main.transform,"LoadBackground");if(Application.isPlaying&&isActiveAndEnabled&&background!=null){var state=new TransitionState{token=_transition,image=background,position=background.rectTransform.anchoredPosition,scale=background.transform.localScale};_activeTransition=state;state.routine=StartCoroutine(Transition(state,chapter.background));}else OpenEpisodes();}
+        private static void ResetTransition(TransitionState state)
+        {if(state.image==null)return;state.image.gameObject.SetActive(false);state.image.rectTransform.anchoredPosition=state.position;state.image.transform.localScale=state.scale;}
+        private void CancelTransition()
+        {var previous=_activeTransition;_activeTransition=null;_transition++;if(previous==null)return;if(previous.routine!=null)StopCoroutine(previous.routine);ResetTransition(previous);}
+        private IEnumerator Transition(TransitionState state,string background)
+        {
+            Sprite(state.image,background);state.image.gameObject.SetActive(true);var completed=false;
+            try{for(var time=0f;time<.6f;time+=Time.unscaledDeltaTime){if(!ReferenceEquals(_activeTransition,state))yield break;var t=Mathf.SmoothStep(0,1,time/.6f);state.image.transform.localScale=Vector3.one*t;state.image.rectTransform.anchoredPosition=Vector2.Lerp(state.position,Vector2.zero,t);yield return null;}completed=state.token==_transition&&ReferenceEquals(_activeTransition,state);}
+            finally{if(ReferenceEquals(_activeTransition,state)){_activeTransition=null;ResetTransition(state);}}
+            if(completed&&!_destroyed&&state.token==_transition)OpenEpisodes();
+        }
+        private void OpenEpisodes()
+        {if(_chapter==null)return;_main.SetActive(false);OpenAnimation(_episodes);Sprite(Find<Image>(_episodes.transform,"Back"),_chapter.background);_episode=campaign.data.Episode(Kind,campaign.data.InitialEpisode(_chapter,Progress));RenderEpisodes();SelectEpisode(_episode.id);}
+        private void RenderEpisodes()
+        {var ids=_chapter.episodes;var selected=_episode?.id??0;_episodeList.Set(ids.Count,(item,index)=>{var id=ids[index];var episode=campaign.data.Episode(Kind,id);var state=campaign.data.EpisodeState(_chapter,id,Progress,_today(),_hasArea);PlotLegacyWidgets.Caption(Find<TMP_Text>(item.transform,"PlotName"),Localize(episode.name));Active(item.transform,"PlotLockBack",state==PlotCampaignItemState.Locked);Active(item.transform,"PlotNext",state==PlotCampaignItemState.Current);Active(item.transform,"PlotOver",state==PlotCampaignItemState.Read);Active(item.transform,"Select",selected==id);Active(item.transform,"SelectIcon",selected==id);var button=item.GetComponentInChildren<Button>(true);button.interactable=state!=PlotCampaignItemState.Locked;PlotLegacyWidgets.Click(button,()=>SelectEpisode(id));},Mathf.Max(0,ids.IndexOf(selected)));}
+        public void SelectEpisode(int id)
+        {
+            if(_chapter==null||campaign.data.EpisodeState(_chapter,id,Progress,_today(),_hasArea)==PlotCampaignItemState.Locked)throw new InvalidOperationException("小节未解锁");_episode=campaign.data.Episode(Kind,id);PlotLegacyWidgets.Caption(Find<TMP_Text>(_episodes.transform,"Flyleaf_Titile_txt"),ChapterTitle(_chapter)+" · "+Localize(_episode.name));PlotLegacyWidgets.Caption(Find<TMP_Text>(_episodes.transform,"Desc"),Localize(string.IsNullOrEmpty(_episode.desc)?_chapter.desc:_episode.desc));PlotLegacyWidgets.Caption(Find<TMP_Text>(_episodes.transform,"AwardTitle"),Progress.IsRead(Kind,id)?"首次奖励（已领取）":"首次奖励");var begin=Find<Button>(_episodes.transform,"SelectBtn");begin.interactable=true;PlotLegacyWidgets.Caption(Find<TMP_Text>(begin,"Title"),Progress.IsRead(Kind,id)?"重看":"开始");Active(begin,"Yse",true);Active(begin,"No",false);Active(begin,"False",false);
+            var rewards=campaign.data.Reward(_episode.awardID);_rewardList.Set(rewards.Count,(item,index)=>BindReward(item,rewards[index]));RenderEpisodes();foreach(var animator in _episodes.GetComponentsInChildren<Animator>(false))if(animator.layerCount>1&&animator.HasState(1,Animator.StringToHash("Switch")))animator.Play("Switch",1,0);
+        }
+        private void BindReward(GameObject item,PlotCampaignItem reward)
+        {var info=itemPresentations.Find(p=>p.id==reward.itemID);PlotLegacyWidgets.Caption(Find<TMP_Text>(item.transform,"Count"),reward.count.ToString(CultureInfo.InvariantCulture));var frame=Find<Image>(item.transform,"Back");if(frame!=null)frame.color=info?.quality??Color.white;var icon=Find<Image>(item.transform,"Icon");if(icon!=null){icon.sprite=info?.icon;icon.color=info?.icon!=null?Color.white:new Color(.4f,.5f,.6f);}Active(item.transform,"None",false);var button=item.GetComponentInChildren<Button>(true);if(button!=null)PlotLegacyWidgets.Click(button,()=>ShowDetail(string.IsNullOrWhiteSpace(info?.name)?"道具 "+reward.itemID:info.name,(info?.description??"")+"\n数量："+reward.count));}
+        public Task BeginSelectedAsync(){if(_reportBlocked||Session.State==PlotChapterState.Reporting||Session.State==PlotChapterState.ReportFailed)throw new InvalidOperationException("请先重试结算或取消等待");if(_episode==null)throw new InvalidOperationException("请先选择小节");_returnKind=Kind;return Session.StartAsync(new PlotChapterRequest(Kind,_episode.id.ToString(CultureInfo.InvariantCulture)));}
+        private async void Run(Func<Task> action){try{await action();}catch(Exception error){if(!_destroyed)ShowFailure(error.Message,false);}}
+        public void Enter(PlotChapterRequest request)
+        {_main.SetActive(false);_episodes.SetActive(false);_canvas.SetActive(false);}
+        public void Return(PlotChapterRequest request,PlotChapterExit reason,bool newlyCompleted)
+        {if(_destroyed)return;ReturnCount++;SetCompletionBlocked(false);LastError="";_canvas.SetActive(true);Kind=_returnKind;_main.SetActive(false);OpenEpisodes();_status.text=reason==PlotChapterExit.Completed?(newlyCompleted?"首次完成，奖励已结算":"剧情已结束"):"已返回";}
+        private void SetCompletionBlocked(bool blocked)
+        {_reportBlocked=blocked;if(_mainStory!=null)_mainStory.interactable=!blocked;if(_dailyStory!=null)_dailyStory.interactable=!blocked;if(_reportFailure!=null)_reportFailure.SetActive(blocked);if(_retry!=null)_retry.interactable=blocked;if(_cancelReport!=null)_cancelReport.interactable=blocked;}
+        public void ShowFailure(string message,bool canRetryReport)
+        {LastError=message;if(_destroyed)return;_canvas.SetActive(true);_status.text=message;if(!canRetryReport)return;CancelTransition();_host.Core?.Close();SetCompletionBlocked(true);_reportFailureText.text="结算未确认\n"+message;_reportFailure.transform.SetAsLastSibling();}
+        public async Task RetryCompletionAsync()
+        {if(!_reportBlocked||Session.State!=PlotChapterState.ReportFailed)return;_retry.interactable=false;try{await Session.RetryReportAsync();}finally{if(!_destroyed&&_reportBlocked)_retry.interactable=Session.State==PlotChapterState.ReportFailed;}}
+        public void CancelPendingCompletion()
+        {if(!_reportBlocked)return;SetCompletionBlocked(false);LastError="";Session.Cancel();if(!_destroyed)_status.text="已取消等待结算";}
+        private void ShowDetail(string title,string body)
+        {if(_detail!=null)Destroy(_detail);var root=PlotPlayerVisual.Panel("StoryDetail",_canvas.transform,new Color(.06f,.09f,.14f,.98f));root.anchorMin=new Vector2(.25f,.25f);root.anchorMax=new Vector2(.75f,.75f);root.offsetMin=root.offsetMax=Vector2.zero;_detail=root.gameObject;var layout=root.gameObject.AddComponent<VerticalLayoutGroup>();layout.padding=new RectOffset(24,24,24,24);Text(root,"Title",title,30);Text(root,"Body",body,24);Button(root,"CloseDetail","关闭",()=>_detail.SetActive(false));}
+        private void OnDestroy(){_destroyed=true;CancelTransition();Session?.Dispose();_player?.Dispose();}
+    }
+}

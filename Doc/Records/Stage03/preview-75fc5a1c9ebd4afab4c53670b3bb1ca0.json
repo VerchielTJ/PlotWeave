@@ -1,0 +1,21 @@
+{
+  "id": "75fc5a1c9ebd4afab4c53670b3bb1ca0",
+  "phase": "captured",
+  "previousStartScene": "",
+  "image": "本地原布局截图不随公开版本分发；历史验证摘要保留。",
+  "error": "",
+  "deadline": 35318.4533684,
+  "nodeCount": 3,
+  "nodePool": 3,
+  "previousRunInBackground": false,
+  "hasGameView": true,
+  "previousGameViewMaximized": false,
+  "nodeSummary": "RoleID=0; Dialog=; Next=0",
+  "editorNodeSummary": "RoleID=0; Dialog=; Next=0",
+  "assetNodeSummary": "RoleID=0; Dialog=; Next=0",
+  "endEditorNodeSummary": "RoleID=0; Dialog=; Next=0",
+  "publicExport": {
+    "originalSha256": "0230587b4378ce55269386868a8763e19e6544289a033ea25d8b2809454023b4",
+    "note": "公开整理副本：省略本地原布局截图及本机根路径；未重新执行历史验收。"
+  }
+}

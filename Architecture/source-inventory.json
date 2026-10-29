@@ -1,0 +1,334 @@
+{
+  "sourceRoot": "I:\\model",
+  "checkedDate": "2026-10-28",
+  "scope": "指定三个主目录的物理文件清单；不包含外部依赖，亦不代表逐行审计完成",
+  "fileCount": 65,
+  "physicalLines": 20398,
+  "files": [
+    {
+      "path": "Assets/Editor/PlotEditor/PlotEditorDataToExcel/PlotEditorDataToExcel.cs",
+      "lines": 15,
+      "sha256": "1efb5e866a5fc3f1d31ee36af2b6070100a68610eb622a33addfdb018c09776e"
+    },
+    {
+      "path": "Assets/Editor/PlotEditor/PlotEditorInterface/INodeDataControl.cs",
+      "lines": 6,
+      "sha256": "3154c71aeed574843d165ced27a02af35c4374c86d4db24303a2acdd7fecbb7b"
+    },
+    {
+      "path": "Assets/Editor/PlotEditor/PlotEditorInterface/INodeLifecycle.cs",
+      "lines": 12,
+      "sha256": "de270b30a348aa763dc90e87811f8484f01f5e2e59036c41e1579e8afd10d4b1"
+    },
+    {
+      "path": "Assets/Editor/PlotEditor/PlotEditorInterface/INodeMoveable.cs",
+      "lines": 9,
+      "sha256": "715cdcdb84d449822fa41d73e62dadad01747f4ce13709d0594be3e2679ba196"
+    },
+    {
+      "path": "Assets/Editor/PlotEditor/PlotEventTypeControl/EditorBaseExpansion.cs",
+      "lines": 53,
+      "sha256": "39c0cc3574260d56d411f32e90429684ee1d36a390ffb69f97dcc3de17615acb"
+    },
+    {
+      "path": "Assets/Editor/PlotEditor/PlotEventTypeControl/EnumMappingUtility.cs",
+      "lines": 257,
+      "sha256": "58c44e10e55e370b6d1d005cfdcc491e08e777abd8b0f61c7b7599e94212316f"
+    },
+    {
+      "path": "Assets/Editor/PlotEditor/PlotEventTypeControl/PlotEventMaping.cs",
+      "lines": 49,
+      "sha256": "142116be5dc1f0497d151f3ff8527f6219ef8f2e8697f491ccfa8c6132cee6b3"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Editor/EditorPlotAtomDataAdapter.cs",
+      "lines": 114,
+      "sha256": "593a6e1bb45a6677ecb2a60ba8806805760c95c526be9d50ca87587a7a9a7082"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Editor/EditorPlotConstantKeyAdapters.cs",
+      "lines": 72,
+      "sha256": "69273afbc23f071e60ba8a6163d2d59b4ec2368a028d62c5257be5a567e85e41"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Editor/EditorPlotDialogKeyAdapters.cs",
+      "lines": 72,
+      "sha256": "c4e348367f7ebc9a529618a0d6b752379452e53ed53dad0f67e652f5517ff6bc"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Editor/EditorPlotThespianDataAdapters.cs",
+      "lines": 62,
+      "sha256": "8456f18e9d7cf81039b6bc8d63cdc62dbb65b520532a60b40c6c5f9e0ba24096"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Game/GamePlotAtomDataAdapter.cs",
+      "lines": 83,
+      "sha256": "13ce81fbb6305e55a4b1c0c63fcaec1d464c7a0108b3bcc848fdc015576068a8"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Game/GamePlotConstantKeyAdapters.cs",
+      "lines": 76,
+      "sha256": "67dff3d40d268bfa230a83b463d0ab26c32d8b79032de56f3df7ea0ff223c98b"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Game/GamePlotDialogKeyAdapters.cs",
+      "lines": 76,
+      "sha256": "d66d2363796d62c3c6e7f84b3af0f7ac1bd8cae6bcade5af462c31c5d515ec19"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Game/GamePlotThespianDataAdapters.cs",
+      "lines": 66,
+      "sha256": "1bef80d963ee0258068d4024673ecd2c28ab6492820e612fe903da71bf819469"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Interfaces/IPlotAtomData.cs",
+      "lines": 72,
+      "sha256": "08b6233275301096cff272dc02e237f70049c43865274fc7b76c0f92a441bafd"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Interfaces/IPlotDataBase.cs",
+      "lines": 92,
+      "sha256": "b2987f7b5687229caa61a8e9060c9a71a0b9ad642228292574b561fecaeadb1f"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Interfaces/PlotConstantKeyInterfaces.cs",
+      "lines": 60,
+      "sha256": "32e51a25697951ae6c702ea9e01c8bdef7bbc59f6bf2fd0c2a60c82f13f90ce5"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Interfaces/PlotDialogKeyInterfaces.cs",
+      "lines": 60,
+      "sha256": "579d41d62a54bd46f0324ca1fb9e7270f427c083e0649e1036e0b63d76886111"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Interfaces/PlotThespianDataInterfaces.cs",
+      "lines": 32,
+      "sha256": "3feddf23421ca43849504987bdf37e7fd52108f630c0a871e1dce75891f294ec"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+      "lines": 1474,
+      "sha256": "a8c96963c4303a107e897278f757aada2e3955929a2acdda64fe63fb088ef0cf"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI.cs",
+      "lines": 253,
+      "sha256": "7e9895a424c688a416c6c90a5e19b666b77e72a222d729a6a1897bf76d605034"
+    },
+    {
+      "path": "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI_NodeClass.cs",
+      "lines": 1129,
+      "sha256": "ec62e24e75342954611487f04c1395a18286b4c866019723675d7935b65a9d80"
+    },
+    {
+      "path": "Assets/PlotEditor/Attributes/ChineseEnumAttribute.cs",
+      "lines": 17,
+      "sha256": "b3c2a54afd45f0e36dbfa9e67c6092aedb3fe05c980119c2e3580dee5583ef64"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/CurrentNodeEditor.cs",
+      "lines": 101,
+      "sha256": "6da95663b80170044c088c3225ce331f000e7964b0ad84d3d22eceb06bed4b42"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/DiaLogKeyEditor.cs",
+      "lines": 509,
+      "sha256": "4b4c7fd758b78278d9dc9b9fb79b3a2c1278d3a91c1e40d92ecb671780c1af6d"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/EditorPlotPlayerUI.cs",
+      "lines": 1184,
+      "sha256": "88734674136df06feb82e09fa04ae7f34d92dc1d0d521f517b4f71e08d614605"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/EvtListParameterEditor.cs",
+      "lines": 425,
+      "sha256": "b52ac6ee4e9a51dfdb6cec8d1f6994f42dd5dc5141f00e00980f971deed68cc8"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/NodeCreater.cs",
+      "lines": 39,
+      "sha256": "966f647ee5f003edf8c93133f3eb32627a2caf60fddb0aa57bb071547e02c7e0"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/NodeListLoader.cs",
+      "lines": 41,
+      "sha256": "a7b0009c0812c0fe8d9371b65757d72f295e20350894f7bf8e248e19a1141329"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/NodeRowDataEditor.cs",
+      "lines": 84,
+      "sha256": "f617742ac7a298046975ff91ae30a5d43cafcf3c026da2ad516d8c9a33a74af6"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/Parameter.cs",
+      "lines": 240,
+      "sha256": "4d9f00963d9be233de6c0cc81b289644290a2853664aa1721a0ed4be2550ca15"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/ParameterEditor.cs",
+      "lines": 519,
+      "sha256": "039748e19869bec472e62bef94d5caf73850727f563a58ed1968db60304bc38a"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/ParameterList.cs",
+      "lines": 662,
+      "sha256": "169558cb608ac7aeae837bc8c7af2a49e38f85377c643b4eba9f08371ccc4809"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/PlotEditorPanel.cs",
+      "lines": 46,
+      "sha256": "2b3d5464b63b17acdcd25bc284b10af3341c26489919d90b3657593d353a9689"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/PlotNodeButton.cs",
+      "lines": 100,
+      "sha256": "bf28a7f5dfd0a8cc48def9ecc8e0da689df5ca48705240e0e483f7d2662fd379"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/PlotNodeView.cs",
+      "lines": 195,
+      "sha256": "7f2578ba5cfcea8d179745c2801e7d4186bfbb3fe2e14395514ccd34f686c456"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/RowUnit.cs",
+      "lines": 74,
+      "sha256": "79b7eb1e31098aa64444d3633ef27b5a13b10d588ac98b7bedb2ea0c20fbbf77"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotComponent/Scripts/TestPlayerButton.cs",
+      "lines": 56,
+      "sha256": "1bcfdf8388ff8a1dcef85c5c35495476246d5015871f20ff8741ff21b348ab16"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotDataEnums/PlotEventEnums.cs",
+      "lines": 454,
+      "sha256": "811b6592f70bfeb37dbfd2481aecebf6a1701872363d2b9d184143d5f40636c4"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotEditor/PlotEditorEvent.cs",
+      "lines": 220,
+      "sha256": "c7fb67c4242fb931256ac4573a57bf1459b68d74ed0b2ecd49640d7410ef2b36"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotEditor/PlotEditorManager.cs",
+      "lines": 383,
+      "sha256": "f36d782837f20cbb6fc0cefdddbc8db2c8836344c126a654eb1e0c7a7905c2ad"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotEditorDataClasses/PlotEventJsonData.cs",
+      "lines": 281,
+      "sha256": "08788743efce9bb9b5be1c753f399522a3651ef7ec18c64e07fc2571a4fe4996"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotEditorDataClasses/PlotEventsJsonContainer.cs",
+      "lines": 70,
+      "sha256": "8b27a7a88217b2c7fbda978297d2a87ea86438303c6195968cd2ebc6e7a6f294"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotEditorDataClasses/PlotNodeDataBase.cs",
+      "lines": 114,
+      "sha256": "dad70d1689066533c0988ddb932a5074d6c4654c8aa59a58bcb27a394278c5c6"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotEditorTools/PlotDataStructureGenerator.cs",
+      "lines": 1786,
+      "sha256": "57e328f2e0d36cc2bb27238c8f6dc56d52fa9164d81d4d61eef9f7182f86992b"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotEditorTools/PlotDataStructureGeneratorExample.cs",
+      "lines": 100,
+      "sha256": "6e457d20d9bacb293a68c555f42ca120daed035b5ab43556e3433715b7bdd048"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotEditorTools/PlotEditorAssetDataManager.cs",
+      "lines": 257,
+      "sha256": "812ac9a990bc8e9f0343b2d9b7aa372ea841b9bbb8f341e486867d003af3165c"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotEditorTools/PlotEditorTools.cs",
+      "lines": 78,
+      "sha256": "b653743e481c899462456be44a259a94fec32e2509c0ddca68b45297c04c3401"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotEditorTools/PlotExcelTools.cs",
+      "lines": 2429,
+      "sha256": "f6b14d32b20bfa01398b71627a46cb51b0ba8fc9efaf1dd9147b4d472d215d51"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/CustomEnumAttribute.cs",
+      "lines": 227,
+      "sha256": "351576b3ff0a20c49d01a1b31cb7d3bd50048ada4a16c8f953ba9a3fe80db173"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomDataHeaderAsset.cs",
+      "lines": 549,
+      "sha256": "af670e36b92e3a9efd56e7ec06aa16f412e479b2df11678e34c67081a916ee56"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomDataHeaderAssetEditor.cs",
+      "lines": 619,
+      "sha256": "43395becc628687c5ff20ca5e75997cc593cadf017b32290542be0d4ecf76cbe"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomRowData.cs",
+      "lines": 137,
+      "sha256": "f6c25ec43a3a55d8d814397ac6c573d9cbb3523a3de567ef5b2e21d67887b1f6"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomRowDataEditor.cs",
+      "lines": 777,
+      "sha256": "41d8ffbb0a1791a8f87acaa75cc1838874a0bf9d580991b89626627494e8cc9e"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/PlotConstantKeyAsset.cs",
+      "lines": 291,
+      "sha256": "77032e4417c5a44c26959e2b97293ef1ac6f0a8f1974f129c39e19e8a9a19442"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/PlotConstantKeyAssetEditor.cs",
+      "lines": 396,
+      "sha256": "9d1e9df79364d44b2dfd294a58961c35121a48bf2f6dad4414a8b2cd263b9c49"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/PlotDialogKeyAsset.cs",
+      "lines": 291,
+      "sha256": "d3a4d8ae2eab193db074a164da67a66aebb6a473b003d5865b027b3578c7bddd"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/PlotDialogKeyAssetEditor.cs",
+      "lines": 404,
+      "sha256": "013cb28b83891200b40aaa729357ba6faa21d45092a55dad8d1e5b6bbcbab548"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/PlotEnumAsset.cs",
+      "lines": 212,
+      "sha256": "514aead4869ffb0746e48facfe1096adc671de780eaa95ae0703e7fd7d27e35b"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/PlotEnumAssetEditor.cs",
+      "lines": 235,
+      "sha256": "459eff192526d5a43f30c3e7486243097ee04961534da4ce46b9bc5d4a0ac4d6"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/PlotEventTypeAsset.cs",
+      "lines": 309,
+      "sha256": "07bf880bbba9b7e6690df49cdf53e9c884d71c45cc6f1a1c2584a40f254f6715"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/PlotEventTypeAssetEditor.cs",
+      "lines": 302,
+      "sha256": "7ec38544fbc17a41fb594f3898efcaa15a0988211d707a01effc1f33378c8b38"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/PlotTableAsset.cs",
+      "lines": 270,
+      "sha256": "d169e58517f494e544caaea8231d2abc9d54c31d5949a40d67f4f6b9f53a085d"
+    },
+    {
+      "path": "Assets/PlotEditor/PlotTypeAseetClasses/PlotTableAssetEditor.cs",
+      "lines": 721,
+      "sha256": "990b7971194198828e9f40f51846bfa757487373f9ed5f317ce121208e1d5c45"
+    }
+  ]
+}

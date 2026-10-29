@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acab9a7a4426602ab7ed276ba1514619, type: 3}
+  m_Name: LubanProfile
+  m_EditorClassIdentifier: 
+  project: {fileID: 11400000, guid: db80bc51cc7d6ed409b2404efc1f6ceb, type: 2}
+  dotnetPath: dotnet
+  compilerDll: Tools/ThirdParty/Luban-4.10.2/Luban/Luban.dll
+  generatedRoot: Assets/PlotWeaveMigration/Stage09_Luban/Generated
+  generatedNamespace: PlotWeaveLuban
+  runtimeAssembly: PlotWeave.LubanRuntime.Sample
+  assemblyName: PlotWeave.Luban.Generated.Sample
+  timeoutSeconds: 45

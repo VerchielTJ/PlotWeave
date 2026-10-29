@@ -1,0 +1,260 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using TMPro;
+
+namespace PlotWeave.Playback
+{
+    /// <summary>独立UGUI参考表现层。Core只依赖IPlotPlayerView，可替换为项目的TMP/动画界面。</summary>
+    public sealed partial class PlotPlayerView : MonoBehaviour, IPlotPlayerView, IPlotPlayerTextLayout, IPlotBranchView
+    {
+        private sealed class Ticket : IDisposable
+        {
+            public bool Cancelled, Called;
+            public int Pending;
+            public float Elapsed;
+            public Action Cancel;
+            public readonly List<IDisposable> Requests = new List<IDisposable>();
+            public void Dispose() { if (Cancelled) return; Cancelled = true; foreach (var request in Requests) request?.Dispose(); Requests.Clear(); Cancel?.Invoke(); }
+        }
+        private sealed class ActorSlot { public GameObject Object; public string Key; public long Version; public bool Loaded; public Sprite BaseSprite; }
+        private readonly Dictionary<int, ActorSlot> _actors = new Dictionary<int, ActorSlot>();
+        private IPlotPlayerDataProvider _data;
+        private IPlotResourceLoader _resources;
+        private IPlotObjectPool _pool;
+        private PlotPlayerConfig _config;
+        private GameObject _canvas;
+        private RectTransform _stage;
+        private Image _background;
+        private Text _nodeLabel;
+        private TMP_Text _speaker, _dialog, _curtainTop, _curtainBottom;
+        private TMP_FontAsset _fontAsset;
+        private TMP_SpriteAsset _inlineSprites;
+        private readonly Dictionary<string, GameObject> _prefabs = new Dictionary<string, GameObject>(StringComparer.Ordinal);
+        private CanvasGroup _curtainGroup;
+        private GameObject _dialogBox;
+        private Button _input, _auto, _pause, _close;
+        private Animator _uiAnimator;
+        private Ticket _nodeTicket, _curtainTicket;
+        private long _epoch;
+        private PlotPlayerCore _core;
+        private RectTransform _choicePanel;
+        public string FullText { get; private set; } = "";
+        public string VisibleText { get; private set; } = "";
+        public TMP_Text DialogText => _dialog;
+        public string BackgroundKey { get; private set; } = "";
+        public int ActorCount => _actors.Count;
+        public IEnumerable<GameObject> ActorObjects => _actors.Values.Select(a => a.Object);
+        public void ShowChoices(IReadOnlyList<PlotChoiceOption> choices, Action<int> choose)
+        {
+            ClearChoices();
+            if (_choicePanel == null) { _choicePanel = PlotPlayerVisual.Panel("PlotChoices", _canvas.transform, new Color(.04f, .08f, .13f, .98f)); _choicePanel.anchorMin = _choicePanel.anchorMax = new Vector2(.5f, .5f); }
+            _choicePanel.gameObject.SetActive(true); _choicePanel.SetAsLastSibling(); _choicePanel.sizeDelta = new Vector2(760, choices.Count * 60 + 24);
+            foreach (var choice in choices)
+            {
+                var rect = PlotPlayerVisual.Panel("Choice_" + choice.Index, _choicePanel, new Color(.18f, .3f, .45f)); rect.anchorMin = new Vector2(0, 1); rect.anchorMax = Vector2.one; rect.pivot = new Vector2(.5f, 1); rect.sizeDelta = new Vector2(-24, 50); rect.anchoredPosition = new Vector2(0, -12 - choice.Index * 60);
+                var button = rect.gameObject.AddComponent<Button>(); button.interactable = !_presentationPaused; var index = choice.Index; button.onClick.AddListener(() => choose(index)); var label = RichLabel("Text", rect, 24); label.text = choice.Text; PlotPlayerVisual.Fill(label.rectTransform);
+            }
+        }
+        public void ClearChoices()
+        {
+            if (_choicePanel == null) return; _choicePanel.gameObject.SetActive(false);
+            for (var i = _choicePanel.childCount - 1; i >= 0; i--) { var child = _choicePanel.GetChild(i).gameObject; child.SetActive(false); if (Application.isPlaying) Destroy(child); else DestroyImmediate(child); }
+        }
+        public event Action<PlotRoleAction, GameObject> ActorActionRequested;
+        public void ConfigureText(TMP_FontAsset font, TMP_SpriteAsset sprites)
+        {
+            _fontAsset = font; _inlineSprites = sprites;
+            if (_dialog == null) return;
+            foreach (var label in new[] { _speaker, _dialog, _curtainTop, _curtainBottom }) { label.font = font != null ? font : PlotTMPText.DefaultFont; label.spriteAsset = sprites; }
+        }
+        public int[] GetTypingOffsets(string text) => PlotTMPText.TypingOffsets(_dialog, text);
+        public void ConfigureActors(IEnumerable<PlotActorPrefabBinding> bindings)
+        {
+            var validated = new Dictionary<string, GameObject>(StringComparer.Ordinal);
+            if (bindings != null) foreach (var item in bindings)
+            {
+                if (item == null || string.IsNullOrWhiteSpace(item.key) || item.prefab == null || validated.ContainsKey(item.key) || !(item.prefab.transform is RectTransform) || item.prefab.GetComponentInChildren<Image>(true) == null) throw new ArgumentException("角色预制体需要唯一Key、RectTransform和Image");
+                validated.Add(item.key, item.prefab);
+            }
+            _prefabs.Clear(); foreach (var item in validated) _prefabs.Add(item.Key, item.Value);
+        }
+        public void Initialize(IPlotPlayerDataProvider data, IPlotResourceLoader resources, IPlotObjectPool pool, PlotPlayerConfig config)
+        {
+            Clear(); _data = data; _resources = resources; _pool = pool; _config = config;
+            if (_canvas == null)
+            {
+                var bindings = GetComponent<PlotPlayerViewBindings>(); if (bindings == null) Build(); else ReadBindings(bindings);
+            }
+            ConfigureText(_fontAsset, _inlineSprites); _canvas.SetActive(false);
+        }
+        public void BindCore(PlotPlayerCore core)
+        {
+            _core = core;
+            Bind(_input, () => core.OnPlayerInput()); Bind(_auto, () => { core.SetAutoPlay(!core.GetAutoPlay()); PlotWeave.Legacy.PlotLegacyWidgets.AutoState(_auto,core.GetAutoPlay()); });
+            Bind(_pause, () => { if (core.IsPaused) core.Resume(); else core.Pause(); PlotWeave.Legacy.PlotLegacyWidgets.Caption(_pause,core.IsPaused ? "继续" : "暂停"); });
+            Bind(_close, () => core.Close());
+        }
+        private static void Bind(Button button, Action action) { button.onClick.RemoveAllListeners(); button.onClick.AddListener(() => action()); }
+        public void Open()
+        { _canvas.SetActive(true);if(_uiAnimator!=null&&_uiAnimator.HasState(0,Animator.StringToHash("Open")))_uiAnimator.Play("Open",0,0); if (_core != null) { PlotWeave.Legacy.PlotLegacyWidgets.AutoState(_auto,_core.GetAutoPlay()); PlotWeave.Legacy.PlotLegacyWidgets.Caption(_pause,_core.IsPaused ? "继续" : "暂停"); } }
+        public void Close() { if (_canvas != null) _canvas.SetActive(false); }
+        public void Clear()
+        {
+            ClearChoices();
+            ClearOperations();
+            _epoch++; _nodeTicket?.Dispose(); _nodeTicket = null; _curtainTicket?.Dispose(); _curtainTicket = null;
+            foreach (var actor in _actors.Values) if (actor.Object != null) ReturnActor(actor.Object); _actors.Clear();
+            if (_background != null) { _background.sprite = null; _background.color = new Color(.08f, .12f, .18f); }
+            if (_dialog != null) _dialog.text = ""; if (_speaker != null) _speaker.text = "";
+            if (_curtainGroup != null) _curtainGroup.gameObject.SetActive(false);
+            FullText = VisibleText = BackgroundKey = "";
+        }
+        public void RenderDialog(string speaker, string fullText, int visibleCodeUnits)
+        {
+            FullText = fullText ?? ""; _speaker.text = speaker ?? ""; _speaker.gameObject.SetActive(!string.IsNullOrEmpty(speaker));
+            VisibleText = PlotTMPText.Reveal(_dialog, FullText, Mathf.Clamp(visibleCodeUnits, 0, FullText.Length)); _dialogBox.SetActive(FullText.Length > 0);
+        }
+        public IDisposable Present(PlotPlaybackNode node, Action<bool, string> completed)
+        {
+            _epoch++; var epoch = _epoch; _nodeTicket?.Dispose(); var ticket = new Ticket(); _nodeTicket = ticket;
+            _nodeLabel.text = "节点 " + node.ScenesID;
+            var ids = new HashSet<int>(node.RoleAction.Select(a => a.RoleID));
+            foreach (var id in _actors.Keys.Where(id => !ids.Contains(id)).ToArray()) { ReturnActor(_actors[id].Object); _actors.Remove(id); }
+            // 多个背景声明按原顺序发出，只允许最后一项更新可见背景，避免异步返回顺序改变最终结果。
+            ticket.Pending = node.PlotSetBack.Count + node.RoleAction.Count;
+            void Complete(bool ok, string error = "")
+            {
+                if (ticket.Cancelled || ticket.Called || epoch != _epoch) return;
+                if (!ok) { ticket.Called = true; completed(false, error); return; }
+                ticket.Pending--; if (ticket.Pending == 0) { ticket.Called = true; completed(true, ""); }
+            }
+            void Load(string key, Func<Sprite, IPlotOperation> apply)
+            {
+                var operation = new PlotResourceOperation<Sprite>(callback => _resources.LoadSprite(key, callback), sprite => ticket.Cancelled || epoch != _epoch ? null : apply(sprite));
+                Track(ticket, operation, Complete);
+            }
+            if (ticket.Pending == 0) { ticket.Called = true; completed(true, ""); return ticket; }
+            for (var i = 0; i < node.PlotSetBack.Count && !ticket.Cancelled && !ticket.Called; i++)
+            {
+                var item = node.PlotSetBack[i]; var last = i == node.PlotSetBack.Count - 1;
+                Load(item.BackName, sprite => last ? ChangeBackground(sprite, item.BackName, item.SetType, _config.BackgroundTransitionTime) : null);
+            }
+            foreach (var action in node.RoleAction)
+            {
+                if (ticket.Cancelled || ticket.Called) break;
+                if (!_data.TryGetActor(action.RoleID, out var actor)) { Complete(false, "缺少演员数据: " + action.RoleID); break; }
+                if (!_actors.TryGetValue(action.RoleID, out var slot) || slot.Key != actor.Thespian)
+                {
+                    if (slot != null) ReturnActor(slot.Object);
+                    var value = _pool.Rent(actor.Thespian, _stage, () => CreateActor(actor.Thespian)); slot = new ActorSlot { Object = value, Key = actor.Thespian, Loaded = _prefabs.ContainsKey(actor.Thespian) && ActorImage(value).sprite != null }; _actors[action.RoleID] = slot;
+                    if (!slot.Loaded) ActorImage(value).sprite = null; var label = value.GetComponentInChildren<Text>(); if (label != null) label.text = "";
+                    if (slot.Loaded) slot.BaseSprite = ActorImage(value).sprite;
+                }
+                slot.Version++; var version = slot.Version;
+                ActorActionRequested?.Invoke(action, slot.Object);
+                if (slot.Loaded) { Track(ticket, ActorAction(action, slot), Complete); continue; }
+                var active = slot;
+                Load(actor.Thespian, sprite => { if (active.Object == null || version != active.Version) return null; ActorImage(active.Object).sprite = active.BaseSprite = sprite; active.Loaded = true; return ActorAction(action, active); });
+            }
+            return ticket;
+        }
+        private static Image ActorImage(GameObject actor) => actor.GetComponentInChildren<Image>(true);
+        private GameObject CreateActor(string key)
+        {
+            if (_prefabs.TryGetValue(key, out var prefab)) return Instantiate(prefab, _stage, false);
+            var rect = PlotPlayerVisual.Rect("PlotActor", _stage); rect.sizeDelta = new Vector2(240, 420);
+            var image = rect.gameObject.AddComponent<Image>(); image.preserveAspect = true; image.raycastTarget = false;
+            var label = PlotPlayerVisual.Label("ActorLabel", rect, "", 18); PlotPlayerVisual.Fill(label.rectTransform); return rect.gameObject;
+        }
+        private void ReadBindings(PlotPlayerViewBindings bindings)
+        {
+            bindings.Validate(); _canvas = bindings.uiRoot; _dialogBox = bindings.dialogBox; _stage = bindings.stage; _background = bindings.background; _speaker = bindings.speaker; _dialog = bindings.dialog;
+            _nodeLabel = bindings.nodeLabel; _curtainGroup = bindings.curtain; _curtainTop = bindings.curtainTop; _curtainBottom = bindings.curtainBottom; _input = bindings.next; _auto = bindings.auto; _pause = bindings.pause; _close = bindings.close;
+            _uiAnimator=bindings.uiAnimator;if(_uiAnimator==null)_uiAnimator=_canvas.GetComponent<Animator>();
+            if(_nodeLabel.transform.parent.name=="MigrationPlayerControls")
+            {var toolbar=_nodeLabel.transform.parent.GetComponent<HorizontalLayoutGroup>();if(toolbar!=null){toolbar.childControlWidth=true;toolbar.childControlHeight=true;toolbar.childForceExpandWidth=false;toolbar.childForceExpandHeight=false;toolbar.spacing=8;}var size=_nodeLabel.GetComponent<LayoutElement>();if(size==null)size=_nodeLabel.gameObject.AddComponent<LayoutElement>();size.minWidth=size.preferredWidth=150;size.flexibleWidth=0;}
+            foreach (var label in _canvas.GetComponentsInChildren<Text>(true)) label.font = PlotPlayerVisual.DefaultFont;
+        }
+        public PlotPlayerViewBindings CaptureBindings()
+        {
+            if (_canvas == null) throw new InvalidOperationException("请先初始化播放界面");
+            var bindings = GetComponent<PlotPlayerViewBindings>() ?? gameObject.AddComponent<PlotPlayerViewBindings>();
+            bindings.uiRoot = _canvas; bindings.dialogBox = _dialogBox; bindings.stage = _stage; bindings.background = _background; bindings.speaker = _speaker; bindings.dialog = _dialog;
+            bindings.nodeLabel = _nodeLabel; bindings.curtain = _curtainGroup; bindings.curtainTop = _curtainTop; bindings.curtainBottom = _curtainBottom; bindings.next = _input; bindings.auto = _auto; bindings.pause = _pause; bindings.close = _close; return bindings;
+        }
+        public IDisposable Curtain(string top, string bottom, Action completed)
+        {
+            _curtainTicket?.Dispose(); var ticket = new Ticket(); _curtainTicket = ticket;
+            _curtainTop.text = top; _curtainBottom.text = bottom; _curtainGroup.alpha = 1; _curtainGroup.gameObject.SetActive(true);
+            ticket.Cancel = () => { if (_curtainTicket == ticket) _curtainGroup.gameObject.SetActive(false); };
+            _curtainCompleted = completed; return ticket;
+        }
+        private Action _curtainCompleted;
+        public void Tick(float deltaTime)
+        {
+            TickOperations(deltaTime);
+            var ticket = _curtainTicket; if (ticket == null || ticket.Cancelled || ticket.Called) return;
+            ticket.Elapsed += deltaTime;
+            _curtainGroup.alpha = _config.CurtainFadeTime == 0 ? 0 : Mathf.Clamp01(1 - ticket.Elapsed / _config.CurtainFadeTime);
+            if (ticket.Elapsed >= _config.CurtainFadeTime + _config.CurtainDisplayTime)
+            { ticket.Called = true; _curtainGroup.gameObject.SetActive(false); _curtainCompleted?.Invoke(); }
+        }
+        private void Build()
+        {
+            var canvas = PlotPlayerVisual.Rect("PlotPlaybackCanvas", transform); _canvas = canvas.gameObject;
+            var component = _canvas.AddComponent<Canvas>(); component.renderMode = RenderMode.ScreenSpaceOverlay; component.sortingOrder = 1000;
+            var scaler = _canvas.AddComponent<CanvasScaler>(); scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize; scaler.referenceResolution = new Vector2(1600, 900); scaler.matchWidthOrHeight = 0;
+            _canvas.AddComponent<GraphicRaycaster>();
+            var background = PlotPlayerVisual.Rect("StageBack", canvas); PlotPlayerVisual.Fill(background); _background = background.gameObject.AddComponent<Image>(); _background.raycastTarget = false;
+            _stage = PlotPlayerVisual.Rect("ThespianParent", canvas); PlotPlayerVisual.Fill(_stage); _stage.offsetMin = new Vector2(50, 210); _stage.offsetMax = new Vector2(-50, -90);
+            var box = PlotPlayerVisual.Panel("DialogBox", canvas, new Color(.05f, .07f, .11f, .94f)); _dialogBox = box.gameObject;
+            box.anchorMin = Vector2.zero; box.anchorMax = new Vector2(1, 0); box.offsetMin = new Vector2(65, 25); box.offsetMax = new Vector2(-65, 215);
+            _speaker = RichLabel("RoloName_txt", box, 24); PlotPlayerVisual.Fill(_speaker.rectTransform); _speaker.rectTransform.offsetMin = new Vector2(24, 135); _speaker.rectTransform.offsetMax = new Vector2(-24, -14); _speaker.alignment = TextAlignmentOptions.TopLeft;
+            _dialog = RichLabel("DialogBox_txt", box, 26); PlotPlayerVisual.Fill(_dialog.rectTransform); _dialog.rectTransform.offsetMin = new Vector2(24, 20); _dialog.rectTransform.offsetMax = new Vector2(-24, -55); _dialog.alignment = TextAlignmentOptions.TopLeft;
+            _nodeLabel = PlotPlayerVisual.Label("Node", canvas, "", 18); AnchorTop(_nodeLabel.rectTransform, new Vector2(120, -30), new Vector2(200, 40));
+            _input = PlotPlayerVisual.Button("Next", canvas, "点击补全 / 继续"); AnchorTop(_input.transform as RectTransform, new Vector2(-160, -30), new Vector2(250, 44), true);
+            _auto = PlotPlayerVisual.Button("Auto", canvas, "自动：关"); AnchorTop(_auto.transform as RectTransform, new Vector2(-365, -30), new Vector2(140, 44), true);
+            _pause = PlotPlayerVisual.Button("Pause", canvas, "暂停"); AnchorTop(_pause.transform as RectTransform, new Vector2(-505, -30), new Vector2(120, 44), true);
+            _close = PlotPlayerVisual.Button("Close", canvas, "关闭播放"); AnchorTop(_close.transform as RectTransform, new Vector2(-645, -30), new Vector2(140, 44), true);
+            var curtain = PlotPlayerVisual.Panel("Curtain", canvas, Color.black); PlotPlayerVisual.Fill(curtain); _curtainGroup = curtain.gameObject.AddComponent<CanvasGroup>();
+            _curtainTop = RichLabel("TopTitle", curtain, 42); AnchorTop(_curtainTop.rectTransform, new Vector2(800, -330), new Vector2(1300, 80));
+            _curtainBottom = RichLabel("BottomTitle", curtain, 28); AnchorTop(_curtainBottom.rectTransform, new Vector2(800, -430), new Vector2(1300, 80)); curtain.gameObject.SetActive(false);
+            PlotPlayerVisual.EnsureInput();
+        }
+        private TextMeshProUGUI RichLabel(string name, Transform parent, int size)
+        {
+            var rect = PlotPlayerVisual.Rect(name, parent); var label = rect.gameObject.AddComponent<TextMeshProUGUI>();
+            label.font = _fontAsset != null ? _fontAsset : PlotTMPText.DefaultFont; label.spriteAsset = _inlineSprites; label.fontSize = size; label.color = Color.white; label.richText = true; label.raycastTarget = false; label.alignment = TextAlignmentOptions.Center;
+            return label;
+        }
+        private static void AnchorTop(RectTransform rect, Vector2 position, Vector2 size, bool right = false)
+        { rect.anchorMin = rect.anchorMax = new Vector2(right ? 1 : 0, 1); rect.anchoredPosition = position; rect.sizeDelta = size; }
+    }
+
+    internal static class PlotPlayerVisual
+    {
+        private static Font _font;
+        private static Font Font => _font != null ? _font : (_font = UnityEngine.Font.CreateDynamicFontFromOSFont(new[] { "Microsoft YaHei", "Noto Sans CJK SC", "Arial" }, 20) ?? Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"));
+        public static Font DefaultFont => Font;
+        public static RectTransform Rect(string name, Transform parent)
+        { var go = new GameObject(name, typeof(RectTransform)); go.transform.SetParent(parent, false); return (RectTransform)go.transform; }
+        public static void Fill(RectTransform rect) { rect.anchorMin = Vector2.zero; rect.anchorMax = Vector2.one; rect.offsetMin = rect.offsetMax = Vector2.zero; }
+        public static RectTransform Panel(string name, Transform parent, Color color)
+        { var rect = Rect(name, parent); rect.gameObject.AddComponent<Image>().color = color; return rect; }
+        public static Text Label(string name, Transform parent, string text, int size)
+        { var rect = Rect(name, parent); var label = rect.gameObject.AddComponent<Text>(); label.font = Font; label.fontSize = size; label.text = text; label.color = Color.white; label.alignment = TextAnchor.MiddleCenter; label.raycastTarget = false; label.supportRichText = false; return label; }
+        public static Button Button(string name, Transform parent, string text)
+        { var rect = Panel(name, parent, new Color(.18f, .25f, .34f)); var button = rect.gameObject.AddComponent<Button>(); button.targetGraphic = rect.GetComponent<Image>(); var label = Label("Text", rect, text, 18); Fill(label.rectTransform); return button; }
+        public static void EnsureInput()
+        {
+            if (UnityEngine.Object.FindObjectOfType<EventSystem>() != null) return;
+            var go = new GameObject("PlotPlaybackInput", typeof(EventSystem));
+            var input = Type.GetType("UnityEngine.InputSystem.UI.InputSystemUIInputModule, Unity.InputSystem");
+            go.AddComponent(input ?? typeof(StandaloneInputModule));
+        }
+    }
+}

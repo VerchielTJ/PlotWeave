@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Threading;
+using System.Threading.Tasks;
+using PlotWeave.Playback;
+
+namespace PlotWeave.Chapters
+{
+    public sealed class PlotLegacyStoryProgress {public int mainNodeID,dailyNodeID;}
+    public sealed class PlotLegacyStoryResponse {public int type,nodeID;public bool newlyCompleted;public object rewards,inventory;}
+    public interface IPlotLegacyStoryTransport
+    {
+        /// <summary>只有服务端确实识别结算幂等ID时才能返回true；原BizMainStorylineReq只有Type字段。</summary>
+        bool SupportsIdempotentCompletion {get;}
+        Task<PlotLegacyStoryProgress> ReadProgressAsync(int command,CancellationToken cancellation);
+        /// <summary>wireType是原协议字段；episodeID/completionID是接入层上下文，不宣称原协议包含这些字段。</summary>
+        Task<PlotLegacyStoryResponse> CompleteAsync(int command,int wireType,int episodeID,string completionID,CancellationToken cancellation);
+    }
+    /// <summary>原1503/1504协议的独立接入边界。远端奖励由服务端回包处理，不在客户端按奖励预览表发放。</summary>
+    public sealed class PlotLegacyNetworkChapterBackend:IPlotChapterBackend
+    {
+        public const int InitializeCommand=1503,CompleteCommand=1504;
+        private sealed class Attempt {public string key;public Task<PlotChapterAcknowledgement> pending;public PlotChapterAcknowledgement acknowledgement;public bool uncertain;}
+        private readonly PlotCampaignCatalog _catalog;private readonly PlotPlaybackDocument _document;private readonly PlotCampaignProgressStore _mirror;private readonly IPlotLegacyStoryTransport _transport;private readonly Func<DateTime> _today;private readonly Func<string,bool> _area;
+        private readonly Dictionary<string,Attempt> _attempts=new Dictionary<string,Attempt>(StringComparer.Ordinal);
+        public event Action<PlotLegacyStoryResponse> ResponseApplied;
+        public PlotLegacyNetworkChapterBackend(PlotCampaignCatalog catalog,PlotPlaybackDocument document,PlotCampaignProgressStore mirror,IPlotLegacyStoryTransport transport,Func<DateTime> today=null,Func<string,bool> hasArea=null)
+        {_catalog=catalog??throw new ArgumentNullException(nameof(catalog));_document=(document??throw new ArgumentNullException(nameof(document))).Snapshot();catalog.Validate(_document);_mirror=mirror??throw new ArgumentNullException(nameof(mirror));_transport=transport??throw new ArgumentNullException(nameof(transport));_today=today??(()=>DateTime.Today);_area=hasArea;}
+        public static int WireType(PlotChapterKind kind)=>kind==PlotChapterKind.Main?0:kind==PlotChapterKind.Daily?1:throw new ArgumentOutOfRangeException(nameof(kind));
+        public async Task SynchronizeAsync(CancellationToken cancellation)
+        {var progress=await _transport.ReadProgressAsync(InitializeCommand,cancellation);cancellation.ThrowIfCancellationRequested();if(progress==null||progress.mainNodeID<0||progress.dailyNodeID<0)throw new FormatException("原剧情进度回包无效");_mirror.ImportLegacyProgress(_catalog,PlotChapterKind.Main,progress.mainNodeID);_mirror.ImportLegacyProgress(_catalog,PlotChapterKind.Daily,progress.dailyNodeID);}
+        private PlotCampaignEpisode Episode(PlotChapterRequest request)=>_catalog.Episode(request.Kind,int.Parse(request.ChapterID,CultureInfo.InvariantCulture));
+        public async Task<PlotChapterContent> LoadAsync(PlotChapterRequest request,CancellationToken cancellation)
+        {await SynchronizeAsync(cancellation);var episode=Episode(request);var owner=_catalog.Owner(request.Kind,episode.id);if(_catalog.EpisodeState(owner,episode.id,_mirror,_today(),_area)==PlotCampaignItemState.Locked)throw new InvalidOperationException("小节尚未解锁");return _catalog.Content(_document,episode,!_mirror.IsRead(request.Kind,episode.id));}
+        public Task<PlotChapterAcknowledgement> CompleteAsync(PlotChapterCompletion completion,CancellationToken cancellation)
+        {
+            var key=completion.Request.Kind+":"+completion.Request.ChapterID;if(_attempts.TryGetValue(completion.CompletionID,out var attempt)){if(attempt.key!=key)throw new InvalidOperationException("结算ID不能复用于另一小节");if(attempt.acknowledgement!=null)return Task.FromResult(attempt.acknowledgement);if(attempt.pending!=null&&!attempt.pending.IsCompleted)return attempt.pending;}
+            else{attempt=new Attempt{key=key};_attempts.Add(completion.CompletionID,attempt);}attempt.pending=Report(completion,attempt,cancellation);return attempt.pending;
+        }
+        private void ValidateCompletedPrefix(PlotChapterKind kind,int episodeID,int lastReadID)
+        {
+            if(lastReadID<=0)throw new FormatException("结算回包没有已读进度");
+            // 先在独立的无文件进度库解释回包，复用精确ID/目录顺序/超出最大ID的规则。
+            // 不能检查旧mirror中的已读状态，也不能在确认本次回包覆盖请求前发布它。
+            var reported=new PlotCampaignProgressStore();reported.ImportLegacyProgress(_catalog,kind,lastReadID);
+            if(!reported.IsRead(kind,episodeID))throw new FormatException("结算回包进度未覆盖当前小节");
+        }
+        private async Task<PlotChapterAcknowledgement> Report(PlotChapterCompletion completion,Attempt attempt,CancellationToken cancellation)
+        {
+            cancellation.ThrowIfCancellationRequested();var episode=Episode(completion.Request);var type=WireType(completion.Request.Kind);
+            if(attempt.uncertain)
+            {await SynchronizeAsync(cancellation);if(_mirror.IsRead(completion.Request.Kind,episode.id))return attempt.acknowledgement=new PlotChapterAcknowledgement(false);if(!_transport.SupportsIdempotentCompletion)throw new InvalidOperationException("结算结果尚未确认；原协议不支持幂等重发，请同步服务端进度后重试");}
+            attempt.uncertain=true;var response=await _transport.CompleteAsync(CompleteCommand,type,episode.id,completion.CompletionID,cancellation);cancellation.ThrowIfCancellationRequested();
+            if(response==null||response.type!=type)throw new FormatException("结算回包类型与当前小节不符");ValidateCompletedPrefix(completion.Request.Kind,episode.id,response.nodeID);_mirror.ImportLegacyProgress(_catalog,completion.Request.Kind,response.nodeID);ResponseApplied?.Invoke(response);attempt.uncertain=false;return attempt.acknowledgement=new PlotChapterAcknowledgement(response.newlyCompleted);
+        }
+    }
+}

@@ -1,0 +1,393 @@
+{
+    "id": "2a050645d53240ae9d9055211cd8ae17",
+    "status": "layout-and-resources-rebuilt-behaviours-pending",
+    "root": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5",
+    "error": "",
+    "layouts": [
+        {
+            "source": "Assets/Scenes/PlotEditorScene.unity",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/PlotEditorScene_0a30ae04.prefab",
+            "nodes": 3904,
+            "components": 8662,
+            "proxies": 244
+        },
+        {
+            "source": "Assets/Prefabs/UI/PlotPlayerUI/PlotButton.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/PlotButton_5a0fb01b.prefab",
+            "nodes": 3,
+            "components": 10,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/Prefabs/UI/PlotPlayerUI/PlotPlayerUI.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/PlotPlayerUI_b9e0b9b3.prefab",
+            "nodes": 98,
+            "components": 206,
+            "proxies": 1
+        },
+        {
+            "source": "Assets/Prefabs/UI/PlotPlayerUI/WindowMask.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/WindowMask_632598ab.prefab",
+            "nodes": 97,
+            "components": 197,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/Prefabs/UI/PlotMianUI/PlotMianUI.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/PlotMianUI_bb489b7f.prefab",
+            "nodes": 21,
+            "components": 48,
+            "proxies": 3
+        },
+        {
+            "source": "Assets/Prefabs/UI/PlotChapterUI/PlotChapterUI.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/PlotChapterUI_988f8a5f.prefab",
+            "nodes": 34,
+            "components": 76,
+            "proxies": 5
+        },
+        {
+            "source": "Assets/Prefabs/UI/PlotSkipTop/PlotSkipTop.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/PlotSkipTop_71cb680f.prefab",
+            "nodes": 16,
+            "components": 45,
+            "proxies": 1
+        },
+        {
+            "source": "Assets/Prefabs/PrefabDynamicLoad/UI/ScrollItem/PlotItemNode.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/PlotItemNode_b6012990.prefab",
+            "nodes": 11,
+            "components": 22,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/Prefabs/PrefabDynamicLoad/UI/ScrollItem/PlotItemSelect.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/PlotItemSelect_bf3175ab.prefab",
+            "nodes": 9,
+            "components": 21,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1001.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1001_d41f1d75.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1002.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1002_fcf98b8d.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1003.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1003_bcf4bfc5.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1004.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1004_cf9af94d.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1005.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1005_0d88ca9b.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1006.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1006_57010bbc.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1007.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1007_a39eb253.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1008.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1008_28a1f931.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1009.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1009_5d7bc6d9.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1010.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1010_f2807f02.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1011.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1011_3523322a.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1012.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1012_50a8ccbe.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1013.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1013_8f8c8ae3.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1014.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1014_c605fb4b.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1015.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1015_52ad18d6.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1016.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1016_2894a42c.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1017.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1017_fa98e019.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1018.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1018_71dbe884.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1019.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1019_ed06a45d.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1020.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1020_ef8390f4.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1021.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1021_f1b6b99c.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1022.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1022_2b780b9c.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian1023.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian1023_f2e42483.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2001.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian2001_9fe3ac30.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2002.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian2002_ebf8fbe6.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2003.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian2003_b5282847.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2004.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian2004_085503d8.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2005.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian2005_8595636f.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2006.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian2006_f6216be0.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2007.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian2007_3a78d27d.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2008.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian2008_21512079.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2009.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian2009_e36dab45.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        },
+        {
+            "source": "Assets/PlotEditor/PlotResources/PThespian/Thespian2010.prefab",
+            "asset": "Assets/PlotWeaveLocal/OriginalUI/Import_5c515aeef5/Prefabs/Thespian2010_74530668.prefab",
+            "nodes": 2,
+            "components": 4,
+            "proxies": 0
+        }
+    ],
+    "issues": [
+        {
+            "source": "Assets/TextMesh Pro/Fonts/New Folder/MiSans-Demibold SDF MaterialD10.mat",
+            "kind": "font-material-rebound",
+            "detail": "原字体材质改绑新工程字体；运行时使用随包Noto字体"
+        },
+        {
+            "source": "Assets/TextMesh Pro/Fonts/New Folder/MiSans-Semibold SDF MaterialUy.mat",
+            "kind": "font-material-rebound",
+            "detail": "原字体材质改绑新工程字体；运行时使用随包Noto字体"
+        }
+    ],
+    "resources": [
+        "345c2f6b6a8d3664eb0f8dfa458f4810:9100000",
+        "1207f38ce6c0cde4b834f4df4acd101b:7400000",
+        "550e4a25f4bbda0438befd5c596df541:9100000",
+        "4920f1bbd883cd24894de2854c6eb641:21300000",
+        "980a6e981bd951242879f982f00a1d0a:21300000",
+        "85556eb0960d4e14a9393efb9a19988d:21300000",
+        "bed52db75d16d0d4e88c2f282b166a69:21300000",
+        "1c0e8abb2269543469d564286951572a:21300000",
+        "ba830af97f66b8a4794dd72d646bfa0a:7400000",
+        "ddc135d8790a5134aa6e5a49272f1a17:7400000",
+        "696e7ace5a5792e46963ae3d7760ce2c:9100000",
+        "65d46fcecdb77364e966894288dcc650:21300000",
+        "cf2a49436d64d6249aa308bc3201f32d:21300000",
+        "1a43c1dd77a52d44a8f46135c2306f6e:21300000",
+        "4231f4e9c5ac2a44085dcc43c2fa136b:21300000",
+        "c488ddabd385bea4ba58118eba29df77:21300000",
+        "baeaed422b770644f8c529b0a8871379:21300000",
+        "3e54e36c7e20d874c962db4de4ded0ea:21300000",
+        "3e735ec2d5b830247a40407bc84eb098:21300000",
+        "76c7796db65d0d043a02ef190fde8710:21300000",
+        "c7b04db687487d741a3db66a07ef579f:21300000",
+        "d2c6eba2a83bd7a45a354ecd9853ae27:21300000",
+        "5b9daece0685d7a4c810ce146fc1a057:7400000",
+        "c2e130e0c6f45b54bbe1aaa7b3c14aa0:7400000",
+        "654cb5e01fb17104d9f1dce5cb4d7fba:7400000",
+        "3e26db68d1f360d428c4a9956a42240c:9100000",
+        "2c460630f840a734d95b490e9ff7066c:21300000",
+        "8d618466a68962c46aac4754ab5505f9:21300000",
+        "6e59e1fdae633894a973e623c7b94038:9100000",
+        "553a7706d6b416c4fb44210fb17f026e:21300000",
+        "43c61f07b4158ff45a0bc5da54fcd54c:21300000",
+        "32db5ba4e6ee66e419732ee27c55e704:2100000",
+        "7b4b83613d7d5a347a8a16c23f3c11b1:21300000",
+        "2fedef0128c337143832d6824114ba22:21300000",
+        "ef159262b2a085349a7b2d360a4f6184:21300000",
+        "a77a16f7788bcd849a5b772a6ada6319:21300000",
+        "4d8df25b9a69ddf43ba6464eeb05097c:21300000",
+        "25fab2b1c9bdc604da3e58f846caed49:21300000",
+        "25d05fe4f6753b0499661d8743723b0c:21300000",
+        "045c4cfee1f156941acc10cd51ff07be:21300000",
+        "77ca58ecc899a2042a0b81ffcd073e56:21300000",
+        "b3d07e82cb8fae24082342e45966aad6:21300000",
+        "49a8d90bd196f1043ac7f9109c027155:21300000",
+        "d6c279940d5edb6428396f9026a6d7a2:21300000",
+        "2de7a13bf1f696042830eee5f718fe94:21300000",
+        "886d93168d391be40a829fcdb5ce89ef:21300000",
+        "0ea0681d5e04d384fad7122c19af309c:2100000",
+        "834db091e6f59e14faf816b2dd071e81:21300000",
+        "ea0017ac5a18b294c8f824623929fc31:21300000",
+        "098ce158a485bc644bda261c006b4d71:7400000",
+        "16df4c9ef40e9804b8005b91b14ccad5:7400000",
+        "7163d8b818a678246abaff88b6c05577:7400000",
+        "58e4af8c0dff58f4ca50c40493b0e8ac:9100000",
+        "c1fd02967a640bb41ac8f120f425a90b:21300000",
+        "b82b51d7394649c47a888f7d23233eda:21300000",
+        "9a9f9beaed8e0b840ad5fbe3656b0c03:21300000",
+        "904aef9d9a4442243af624b5a7e644de:21300000",
+        "eab15a49532260a4cbb3bc706b0729e3:21300000",
+        "4e257f163447c62429c328d1e896073a:21300000",
+        "1163ea51f28128049bd3c45b90e9cd6e:21300000",
+        "b79eaa60fa0f0ef48b17dc67f799ec1c:21300000",
+        "a21b52de2a64f1f46b805f7fbefb9133:21300000",
+        "12159e9aadab22449bd6f442b8956e3c:21300000",
+        "bb0467de1385f0946bf011e6ecaef153:21300000",
+        "aaa8312c185ab184e8910ae96e1958c4:21300000",
+        "d7a61d0cfa6e68f49966633315b30534:21300000",
+        "2067051ef785cf74da24866e1188c761:21300000",
+        "cf356b27be5e46e4a850d76c1e1b8a5a:21300000",
+        "2ec53169c2ffcf34dba26ebda09f6995:21300000",
+        "580526f663895884b8a5821a46ec7081:21300000",
+        "569f9cbf0cf4aa04097edfd0da7bfa71:21300000",
+        "76bd5a88f8709294d8f355b53ddacf00:21300000",
+        "437145962ed619d408e461a67e7943ba:21300000",
+        "ade52012e04f89545be26142ac845cd1:21300000",
+        "3f08fedce5ed9b14bb05d0f5f6674a52:21300000",
+        "12440d5eb9657414d9c2255d3eb9d732:21300000",
+        "6e74898632c15784db2050c2b2ff2390:21300000"
+    ]
+}

@@ -1,0 +1,164 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text.RegularExpressions;
+using PlotWeave.Data;
+using TMPro;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+namespace PlotWeave.Legacy.Editor
+{
+    public static class PlotLegacyUiRebuilder
+    {
+        private static readonly Dictionary<string, Type> Types = new Dictionary<string, Type>(StringComparer.Ordinal)
+        {
+            {"Canvas",typeof(Canvas)},{"CanvasRenderer",typeof(CanvasRenderer)},{"CanvasGroup",typeof(CanvasGroup)},{"CanvasScaler",typeof(CanvasScaler)},{"GraphicRaycaster",typeof(GraphicRaycaster)},
+            {"Image",typeof(Image)},{"RawImage",typeof(RawImage)},{"Text",typeof(Text)},{"TMP_Text",typeof(TextMeshProUGUI)},{"Button",typeof(Button)},{"Toggle",typeof(Toggle)},{"Scrollbar",typeof(Scrollbar)},{"Slider",typeof(Slider)},
+            {"TMP_InputField",typeof(TMP_InputField)},{"InputField",typeof(InputField)},{"TMP_Dropdown",typeof(TMP_Dropdown)},{"Dropdown",typeof(Dropdown)},{"ScrollRect",typeof(ScrollRect)},
+            {"Mask",typeof(Mask)},{"RectMask2D",typeof(RectMask2D)},{"HorizontalLayoutGroup",typeof(HorizontalLayoutGroup)},{"VerticalLayoutGroup",typeof(VerticalLayoutGroup)},{"GridLayoutGroup",typeof(GridLayoutGroup)},{"ContentSizeFitter",typeof(ContentSizeFitter)},{"LayoutElement",typeof(LayoutElement)},{"AspectRatioFitter",typeof(AspectRatioFitter)},
+            {"Animator",typeof(Animator)},{"Camera",typeof(Camera)},{"AudioListener",typeof(AudioListener)},{"EventSystem",typeof(EventSystem)},{"StandaloneInputModule",typeof(StandaloneInputModule)}
+        };
+        public static Type ComponentType(string kind) => Types.TryGetValue(kind, out var type) ? type : null;
+        public static Type ComponentType(PlotLegacyUiComponent descriptor)=>ComponentType(descriptor.kind)??((descriptor.sourceScript??"").StartsWith("UnityPackage/",StringComparison.Ordinal)?ComponentType(System.IO.Path.GetFileNameWithoutExtension(descriptor.sourceScript)):null);
+        public static GameObject Build(PlotLegacyUiLayout layout, Func<string, UnityEngine.Object> resource, List<PlotLegacyUiIssue> issues)
+        {
+            if (layout == null || layout.nodes == null || layout.components == null) throw new ArgumentException("UI层级描述无效");
+            var root = new GameObject(layout.name, typeof(RectTransform)); root.SetActive(false); var bindings = root.AddComponent<PlotLegacyTemplateBindings>(); bindings.sourceLayout = layout.source;
+            var ids = new Dictionary<string, UnityEngine.Object>(StringComparer.Ordinal); var nodes = new Dictionary<string, GameObject>(StringComparer.Ordinal); var components = new List<KeyValuePair<PlotLegacyUiComponent, Component>>();
+            try
+            {
+                foreach (var node in layout.nodes)
+                {
+                    if (ids.ContainsKey(node.id) || string.IsNullOrEmpty(node.transformId)) throw new FormatException("UI对象标识重复或缺少Transform: " + node.id);
+                    var go = node.rect ? new GameObject(node.name, typeof(RectTransform)) : new GameObject(node.name); go.SetActive(false); go.layer = Mathf.Clamp(node.layer, 0, 31); go.transform.SetParent(root.transform, false); nodes.Add(node.id, go); ids.Add(node.id, go); ids.Add(node.transformId, go.transform);
+                }
+                foreach (var node in layout.nodes)
+                {
+                    var transform = nodes[node.id].transform;
+                    if (node.parentId != "0")
+                    { if (!ids.TryGetValue(node.parentId, out var parent) || !(parent is Transform parentTransform)) throw new FormatException("UI父节点引用不存在: " + node.parentId); transform.SetParent(parentTransform, false); }
+                    transform.SetSiblingIndex(node.order); if (!string.IsNullOrEmpty(node.transformJson)) ApplyTransform(transform, PlotJson.Object(node.transformJson));
+                }
+                foreach (var group in layout.nodes.GroupBy(n => n.parentId)) { var index = 0; foreach (var node in group.OrderBy(n => n.order)) nodes[node.id].transform.SetSiblingIndex(index++); }
+                foreach (var descriptor in layout.components)
+                {
+                    descriptor.sourceScript = descriptor.sourceScript ?? "";
+                    if (!nodes.TryGetValue(descriptor.ownerId, out var owner)) throw new FormatException("UI组件缺少所属对象: " + descriptor.id);
+                    var type = ComponentType(descriptor);
+                    if (type == null && descriptor.sourceScript.EndsWith("/UniversalAdditionalCameraData.cs", StringComparison.Ordinal)) type = AppDomain.CurrentDomain.GetAssemblies().Select(a => a.GetType("UnityEngine.Rendering.Universal.UniversalAdditionalCameraData")).FirstOrDefault(t => t != null);
+                    Component component;
+                    if (type == null)
+                    { var proxy = owner.AddComponent<PlotLegacyBehaviourProxy>(); proxy.sourceScript = descriptor.sourceScript; proxy.valuesJson = descriptor.json; bindings.behaviours.Add(proxy); component = proxy; }
+                    else
+                    {
+                        component = owner.GetComponent(type); if (component == null) component = owner.AddComponent(type);
+                        if (descriptor.sourceScript.Contains("/Loop") && type == typeof(ScrollRect)) { var extra = owner.AddComponent<PlotLegacyBehaviourProxy>(); extra.sourceScript = descriptor.sourceScript; extra.valuesJson = descriptor.json; bindings.behaviours.Add(extra); }
+                    }
+                    if (component == null) throw new InvalidOperationException("组件无法创建，可能存在互斥组件: " + layout.source + "/" + descriptor.id + " (" + descriptor.kind + ")");
+                    ids.Add(descriptor.id, component); components.Add(new KeyValuePair<PlotLegacyUiComponent, Component>(descriptor, component));
+                }
+                foreach (var pair in components)
+                {
+                    var descriptor = pair.Key; var component = pair.Value; var proxy = component as PlotLegacyBehaviourProxy; var data = PlotJson.Object(descriptor.json); var references = new List<PlotLegacyObjectReference>();
+                    object Remap(object value, string path)
+                    {
+                        if (value is Dictionary<string, object> map)
+                        {
+                            if (map.TryGetValue("fileID", out var rawId))
+                            {
+                                var fileID = Convert.ToString(rawId, CultureInfo.InvariantCulture); UnityEngine.Object target = null;
+                                if (fileID != "0")
+                                {
+                                    if (map.TryGetValue("guid", out var rawGuid) && !string.IsNullOrEmpty(Convert.ToString(rawGuid, CultureInfo.InvariantCulture))) target = resource?.Invoke(Convert.ToString(rawGuid, CultureInfo.InvariantCulture) + ":" + fileID);
+                                    else if (!ids.TryGetValue(fileID, out target)) issues.Add(new PlotLegacyUiIssue { source = layout.source, kind = "unresolved-local-reference", detail = descriptor.id + ":" + path + "->" + fileID });
+                                }
+                                references.Add(new PlotLegacyObjectReference { path = path, value = target });
+                                return new Dictionary<string, object> { { "instanceID", target != null ? target.GetInstanceID() : 0 } };
+                            }
+                            var result = new Dictionary<string, object>(StringComparer.Ordinal);
+                            foreach (var field in map)
+                            {
+                                // 持久事件必须由已迁移行为显式接线，不能调用已移除程序集的方法。
+                                if (field.Key == "m_PersistentCalls") { result[field.Key] = new Dictionary<string, object> { { "m_Calls", new List<object>() } }; continue; }
+                                result[field.Key] = Remap(field.Value, path == "" ? field.Key : path + "." + field.Key);
+                            }
+                            return result;
+                        }
+                        if (value is List<object> list) return list.Select((item, index) => Remap(item, path + "[" + index + "]")).ToList();
+                        return value;
+                    }
+                    var remapped = Remap(data, "");
+                    if (proxy != null) proxy.references = references;
+                    if (proxy == null)
+                    {
+                        var serialized = new SerializedObject(component);
+                        // 原生Transform等不支持EditorJsonUtility.FromJsonOverwrite；所有组件统一走公开序列化属性。
+                        foreach (var field in (Dictionary<string, object>)remapped)
+                        {
+                            var property = serialized.FindProperty(field.Key);
+                            if (property != null) ApplyProperty(property, field.Value);
+                        }
+                        foreach (var reference in references)
+                        {
+                            var property = serialized.FindProperty(Regex.Replace(reference.path, @"\[(\d+)\]", ".Array.data[$1]"));
+                            if (property != null && property.propertyType == SerializedPropertyType.ObjectReference) property.objectReferenceValue = reference.value;
+                        }
+                        serialized.ApplyModifiedPropertiesWithoutUndo();
+                        foreach (var extra in component.GetComponents<PlotLegacyBehaviourProxy>().Where(p => p.sourceScript == descriptor.sourceScript)) extra.references = references;
+                        if (component is TMP_Text label) { label.font = TMP_Settings.defaultFontAsset; label.fontSharedMaterial = TMP_Settings.defaultFontAsset.material; }
+                        if (component is TMP_InputField input) { if (input.textComponent == null) throw new InvalidOperationException("输入框文本组件未绑定: " + layout.source + "/" + descriptor.id); input.fontAsset = TMP_Settings.defaultFontAsset; }
+                        if (component is Text oldText) oldText.font = Resources.Load<Font>("PlotWeaveFonts/NotoSansCJKsc-Regular");
+                        if (component is Camera camera) camera.tag = "MainCamera";
+                    }
+                }
+                foreach (var item in ids) bindings.objects.Add(new PlotLegacyObjectId { sourceId = item.Key, value = item.Value });
+                foreach (var node in layout.nodes) nodes[node.id].SetActive(node.active);
+                // 父容器保持未激活，调用者接完数据和事件后再启用。
+                return root;
+            }
+            catch { UnityEngine.Object.DestroyImmediate(root); throw; }
+        }
+        private static float Number(Dictionary<string, object> map, string key, float fallback = 0) => map.TryGetValue(key, out var value) ? Convert.ToSingle(value, CultureInfo.InvariantCulture) : fallback;
+        private static Vector2 V2(object value) { var m = (Dictionary<string, object>)value; return new Vector2(Number(m,"x"),Number(m,"y")); }
+        private static Vector3 V3(object value) { var m = (Dictionary<string, object>)value; return new Vector3(Number(m,"x"),Number(m,"y"),Number(m,"z")); }
+        private static void ApplyTransform(Transform transform, Dictionary<string, object> data)
+        {
+            if(data.TryGetValue("m_LocalPosition",out var p)) transform.localPosition=V3(p);
+            if(data.TryGetValue("m_LocalRotation",out var r)) {var m=(Dictionary<string,object>)r;transform.localRotation=new Quaternion(Number(m,"x"),Number(m,"y"),Number(m,"z"),Number(m,"w",1));}
+            if(data.TryGetValue("m_LocalScale",out var s)) transform.localScale=V3(s);
+            if(transform is RectTransform rect)
+            {
+                if(data.TryGetValue("m_AnchorMin",out var min))rect.anchorMin=V2(min);
+                if(data.TryGetValue("m_AnchorMax",out var max))rect.anchorMax=V2(max);
+                if(data.TryGetValue("m_Pivot",out var pivot))rect.pivot=V2(pivot);
+                if(data.TryGetValue("m_SizeDelta",out var size))rect.sizeDelta=V2(size);
+                if(data.TryGetValue("m_AnchoredPosition",out var pos))rect.anchoredPosition=V2(pos);
+            }
+        }
+        private static void ApplyProperty(SerializedProperty property, object value)
+        {
+            if(property.propertyType==SerializedPropertyType.ObjectReference || value==null)return;
+            if(property.isArray && property.propertyType!=SerializedPropertyType.String && value is List<object> list)
+            {property.arraySize=list.Count;for(var i=0;i<list.Count;i++)ApplyProperty(property.GetArrayElementAtIndex(i),list[i]);return;}
+            switch(property.propertyType)
+            {
+                case SerializedPropertyType.Boolean: property.boolValue=value is bool b ? b : Convert.ToInt64(value,CultureInfo.InvariantCulture)!=0;return;
+                case SerializedPropertyType.Integer: property.longValue=Convert.ToInt64(value,CultureInfo.InvariantCulture);return;
+                case SerializedPropertyType.Enum: property.intValue=Convert.ToInt32(value,CultureInfo.InvariantCulture);return;
+                case SerializedPropertyType.Float: property.doubleValue=Convert.ToDouble(value,CultureInfo.InvariantCulture);return;
+                case SerializedPropertyType.String: property.stringValue=Convert.ToString(value,CultureInfo.InvariantCulture)??"";return;
+                case SerializedPropertyType.Vector2: property.vector2Value=V2(value);return;
+                case SerializedPropertyType.Vector3: property.vector3Value=V3(value);return;
+                case SerializedPropertyType.Color: {var m=(Dictionary<string,object>)value;if(m.TryGetValue("rgba",out var packed)){var rgba=Convert.ToUInt32(packed,CultureInfo.InvariantCulture);property.colorValue=new Color32((byte)rgba,(byte)(rgba>>8),(byte)(rgba>>16),(byte)(rgba>>24));}else property.colorValue=new Color(Number(m,"r"),Number(m,"g"),Number(m,"b"),Number(m,"a",1));return;}
+                case SerializedPropertyType.Quaternion: {var m=(Dictionary<string,object>)value;property.quaternionValue=new Quaternion(Number(m,"x"),Number(m,"y"),Number(m,"z"),Number(m,"w",1));return;}
+                case SerializedPropertyType.Rect: {var m=(Dictionary<string,object>)value;property.rectValue=new Rect(Number(m,"x"),Number(m,"y"),Number(m,"width"),Number(m,"height"));return;}
+            }
+            if(value is Dictionary<string,object> fields)foreach(var field in fields){var child=property.FindPropertyRelative(field.Key);if(child!=null)ApplyProperty(child,field.Value);}
+        }
+    }
+}

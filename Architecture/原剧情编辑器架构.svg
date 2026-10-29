@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1930" viewBox="0 0 1600 1930"><title>原剧情编辑器架构：类型定义、编辑工具链与共用播放核心</title>
+<rect width="1600" height="1930" fill="#f8fafc"/>
+<text x="30" y="63" font-family="Microsoft YaHei, sans-serif" font-size="36" font-weight="600" fill="#172536">原剧情编辑器 · 源码架构图</text>
+<text x="30" y="101" font-family="Microsoft YaHei, sans-serif" font-size="22" font-weight="400" fill="#526174">I:/model  ·  2026-10-28 核对  ·  箭头为配置、生成、转换或消费关系</text>
+<polyline points="510,230 560,230" fill="none" stroke="#9caaba" stroke-width="3"/>
+<polygon points="560,230 549.1946347717678,235.21958640933477 549.1946347717678,224.78041359066523" fill="#9caaba"/>
+<polyline points="1040,230 1090,230" fill="none" stroke="#9caaba" stroke-width="3"/>
+<polygon points="1090,230 1079.1946347717678,235.21958640933477 1079.1946347717678,224.78041359066523" fill="#9caaba"/>
+<polyline points="1330,320 1330,372 800,372 800,420" fill="none" stroke="#9caaba" stroke-width="3"/>
+<polygon points="800,420 794.7804135906653,409.1946347717679 805.2195864093347,409.1946347717679" fill="#9caaba"/>
+<rect x="996" y="343" width="149.0" height="27" fill="#f8fafc"/>
+<text x="1000" y="366" font-family="Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#526174">类型 / 表头驱动</text>
+<polyline points="510,500 560,500" fill="none" stroke="#9caaba" stroke-width="3"/>
+<polygon points="560,500 549.1946347717678,505.21958640933474 549.1946347717678,494.78041359066526" fill="#9caaba"/>
+<polygon points="510,500 520.8053652282322,494.78041359066526 520.8053652282322,505.21958640933474" fill="#9caaba"/>
+<polyline points="800,620 800,655 270,655 270,730" fill="none" stroke="#9caaba" stroke-width="3"/>
+<polygon points="270,730 264.78041359066526,719.1946347717678 275.21958640933474,719.1946347717678" fill="#9caaba"/>
+<rect x="326" y="627" width="383.0" height="27" fill="#f8fafc"/>
+<text x="330" y="650" font-family="Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#526174">Asset 与 Excel 双向交换（含类型和文本）</text>
+<polyline points="1090,560 1062,560 1062,680 270,680 270,730" fill="none" stroke="#9caaba" stroke-width="3"/>
+<polygon points="270,730 264.78041359066526,719.1946347717678 275.21958640933474,719.1946347717678" fill="#9caaba"/>
+<polyline points="1090,275 1050,275 1050,700 800,700 800,730" fill="none" stroke="#9caaba" stroke-width="3"/>
+<polygon points="800,730 794.7804135906653,719.1946347717678 805.2195864093347,719.1946347717678" fill="#9caaba"/>
+<rect x="1056" y="639" width="248.0" height="27" fill="#f8fafc"/>
+<text x="1060" y="662" font-family="Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#526174">生成规则来自表头与表结构</text>
+<polyline points="560,570 535,570 535,950 270,950 270,990" fill="none" stroke="#9caaba" stroke-width="3"/>
+<polygon points="270,990 264.78041359066526,979.1946347717678 275.21958640933474,979.1946347717678" fill="#9caaba"/>
+<rect x="28" y="914" width="268.0" height="27" fill="#f8fafc"/>
+<text x="32" y="937" font-family="Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#526174">读资产、类型转换、字典适配</text>
+<polyline points="270,870 270,906 1330,906 1330,870" fill="none" stroke="#9caaba" stroke-width="3"/>
+<polygon points="1330,870 1335.2195864093349,880.8053652282322 1324.7804135906651,880.8053652282322" fill="#9caaba"/>
+<rect x="596" y="881" width="290.0" height="27" fill="#f8fafc"/>
+<text x="600" y="904" font-family="Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#526174">导出工作簿 → 外部 Luban 编表</text>
+<polyline points="800,870 800,990" fill="none" stroke="#235b88" stroke-width="3"/>
+<polygon points="800,990 794.7804135906653,979.1946347717678 805.2195864093347,979.1946347717678" fill="#235b88"/>
+<rect x="806" y="929" width="248.0" height="27" fill="#f8fafc"/>
+<text x="810" y="952" font-family="Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#526174">生成共同契约及两类适配器</text>
+<polyline points="1330,870 1330,990" fill="none" stroke="#9caaba" stroke-width="3"/>
+<polygon points="1330,990 1324.7804135906651,979.1946347717678 1335.2195864093349,979.1946347717678" fill="#9caaba"/>
+<polyline points="510,1070 560,1070" fill="none" stroke="#235b88" stroke-width="3"/>
+<polygon points="560,1070 549.1946347717678,1075.2195864093349 549.1946347717678,1064.7804135906651" fill="#235b88"/>
+<polyline points="1090,1070 1040,1070" fill="none" stroke="#235b88" stroke-width="3"/>
+<polygon points="1040,1070 1050.8053652282322,1064.7804135906651 1050.8053652282322,1075.2195864093349" fill="#235b88"/>
+<polyline points="270,1160 270,1290" fill="none" stroke="#9caaba" stroke-width="3"/>
+<polygon points="270,1290 264.78041359066526,1279.1946347717678 275.21958640933474,1279.1946347717678" fill="#9caaba"/>
+<polyline points="800,1160 800,1290" fill="none" stroke="#235b88" stroke-width="3"/>
+<polygon points="800,1290 794.7804135906653,1279.1946347717678 805.2195864093347,1279.1946347717678" fill="#235b88"/>
+<rect x="811" y="1205" width="128.0" height="27" fill="#f8fafc"/>
+<text x="815" y="1228" font-family="Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#526174">核心消费契约</text>
+<polyline points="1330,1160 1330,1290" fill="none" stroke="#9caaba" stroke-width="3"/>
+<polygon points="1330,1290 1324.7804135906651,1279.1946347717678 1335.2195864093349,1279.1946347717678" fill="#9caaba"/>
+<polyline points="510,1370 560,1370" fill="none" stroke="#235b88" stroke-width="3"/>
+<polygon points="560,1370 549.1946347717678,1375.2195864093349 549.1946347717678,1364.7804135906651" fill="#235b88"/>
+<polyline points="1090,1370 1040,1370" fill="none" stroke="#235b88" stroke-width="3"/>
+<polygon points="1040,1370 1050.8053652282322,1364.7804135906651 1050.8053652282322,1375.2195864093349" fill="#235b88"/>
+<polyline points="800,1460 800,1517 400,1517 400,1570" fill="none" stroke="#9caaba" stroke-width="3"/>
+<polygon points="400,1570 394.78041359066526,1559.1946347717678 405.21958640933474,1559.1946347717678" fill="#9caaba"/>
+<polyline points="1200,1570 1200,1540 850,1540 850,1460" fill="none" stroke="#9caaba" stroke-width="3"/>
+<polygon points="850,1460 855.2195864093347,1470.8053652282322 844.7804135906653,1470.8053652282322" fill="#9caaba"/>
+<rect x="32" y="1529" width="188.0" height="27" fill="#f8fafc"/>
+<text x="36" y="1552" font-family="Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#526174">核心协调表现控制器</text>
+<rect x="1046" y="1510" width="212.0" height="27" fill="#f8fafc"/>
+<text x="1050" y="1533" font-family="Microsoft YaHei, sans-serif" font-size="20" font-weight="400" fill="#526174">构造函数注入 6 项依赖</text>
+<text x="30" y="145" font-family="Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#526174">01  类型与数据结构定义</text>
+<rect x="30" y="150" width="480" height="170" rx="9" fill="#ffffff" stroke="#bcc7d2" stroke-width="2"/>
+<text x="48" y="192" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#172536">PlotEnumAsset</text>
+<text x="48" y="232" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">动态枚举名 / 中文显示名</text>
+<text x="48" y="261" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">枚举值 key / label</text>
+<text x="48" y="290" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">定制 Inspector 与合法性检查</text>
+<rect x="560" y="150" width="480" height="170" rx="9" fill="#ffffff" stroke="#bcc7d2" stroke-width="2"/>
+<text x="578" y="192" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#172536">PlotEventTypeAsset</text>
+<text x="578" y="232" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">Bean 名称 / 参数列表 / 参数类型</text>
+<text x="578" y="261" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">CustomEnum 引用 / 回调默认字段</text>
+<text x="578" y="290" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">Int · Float · String · Bool · Vector3</text>
+<rect x="1090" y="150" width="480" height="170" rx="9" fill="#ffffff" stroke="#bcc7d2" stroke-width="2"/>
+<text x="1108" y="192" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#172536">PlotAtomDataHeaderAsset</text>
+<text x="1108" y="232" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">columnName / valueType / typeKey</text>
+<text x="1108" y="261" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">IsList / columnIndex / members</text>
+<text x="1108" y="290" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">引用 Enum 与 Bean；成员数同步</text>
+<text x="30" y="415" font-family="Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#526174">02  编辑工作流与资产容器</text>
+<rect x="30" y="420" width="480" height="200" rx="9" fill="#ffffff" stroke="#bcc7d2" stroke-width="2"/>
+<text x="48" y="462" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#172536">PlotEditorScene · UGUI</text>
+<text x="48" y="502" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">节点管理 / 全量及范围读取</text>
+<text x="48" y="531" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">RowUnit → ParameterEditor</text>
+<text x="48" y="560" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">ParameterList → 列表 Bean 编辑</text>
+<text x="48" y="589" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">PlotEditorEvent 协调各面板</text>
+<rect x="560" y="420" width="480" height="200" rx="9" fill="#edf4f9" stroke="#235b88" stroke-width="2"/>
+<text x="578" y="462" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#235b88">PlotAtomRowData</text>
+<text x="578" y="502" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">表头引用 / rowId / rowTitle</text>
+<text x="578" y="531" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">columns → rows → values</text>
+<text x="578" y="560" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">单值 / 简单列表 / Bean / Bean列表</text>
+<text x="578" y="589" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">按列名保存，不固定为对白字段</text>
+<rect x="1090" y="420" width="480" height="200" rx="9" fill="#ffffff" stroke="#bcc7d2" stroke-width="2"/>
+<text x="1108" y="462" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#172536">多语言与通用表</text>
+<text x="1108" y="502" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">DialogKey / ConstantKey 两类表</text>
+<text x="1108" y="531" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">KEY → 多语言 value 列表</text>
+<text x="1108" y="560" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">PlotTableAsset：动态列与行</text>
+<text x="1108" y="589" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">演员表 / 自定义接口和配表类型名</text>
+<text x="30" y="725" font-family="Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#526174">03  表格交换与代码生成</text>
+<rect x="30" y="730" width="480" height="150" rx="9" fill="#ffffff" stroke="#bcc7d2" stroke-width="2"/>
+<text x="48" y="772" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#172536">PlotExcelTools · NPOI</text>
+<text x="48" y="812" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">枚举 / Bean / 表头 / 节点数据</text>
+<text x="48" y="841" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">对话 / 常量 / 通用表双向交换</text>
+<text x="48" y="870" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">保留列索引、成员数及列表展开</text>
+<rect x="560" y="730" width="480" height="150" rx="9" fill="#ffffff" stroke="#bcc7d2" stroke-width="2"/>
+<text x="578" y="772" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#172536">PlotDataStructureGenerator</text>
+<text x="578" y="812" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">节点契约 / Item与Table接口</text>
+<text x="578" y="841" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">Editor / Game 两端适配器</text>
+<text x="578" y="870" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">通用生成与节点专用生成并存</text>
+<rect x="1090" y="730" width="480" height="150" rx="9" fill="#ffffff" stroke="#bcc7d2" stroke-width="2"/>
+<text x="1108" y="772" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#172536">Luban 与 cfg.*</text>
+<text x="1108" y="812" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">Excel 导出到 MistChaos/Datas</text>
+<text x="1108" y="841" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">外部编表生成配置与 Bean 类型</text>
+<text x="1108" y="870" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">复制文件与编表执行需分别验收</text>
+<text x="30" y="985" font-family="Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#526174">04  编辑数据与游戏数据汇入共同契约</text>
+<rect x="30" y="990" width="480" height="170" rx="9" fill="#ffffff" stroke="#bcc7d2" stroke-width="2"/>
+<text x="48" y="1032" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#172536">Editor adapters</text>
+<text x="48" y="1072" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">Row / 文本 / 通用表资产转换</text>
+<text x="48" y="1101" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">按表头解析值与 Bean 列表</text>
+<text x="48" y="1130" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">注入 DataProvider 编辑缓存</text>
+<rect x="560" y="990" width="480" height="170" rx="9" fill="#edf4f9" stroke="#235b88" stroke-width="2"/>
+<text x="578" y="1032" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#235b88">共同数据契约</text>
+<text x="578" y="1072" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">IPlotDataBase / IPlotAtomData</text>
+<text x="578" y="1101" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">Thespian / Dialog / Constant 接口</text>
+<text x="578" y="1130" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">Item / Table 查询；仍有 cfg 绑定</text>
+<rect x="1090" y="990" width="480" height="170" rx="9" fill="#ffffff" stroke="#bcc7d2" stroke-width="2"/>
+<text x="1108" y="1032" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#172536">Game adapters</text>
+<text x="1108" y="1072" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">包装 cfg.* 数据对象</text>
+<text x="1108" y="1101" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">节点、角色和文本表适配器</text>
+<text x="1108" y="1130" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">DataProvider 游戏分支取数</text>
+<text x="30" y="1285" font-family="Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#526174">05  两种宿主，装配同一播放核心</text>
+<rect x="30" y="1290" width="480" height="170" rx="9" fill="#ffffff" stroke="#bcc7d2" stroke-width="2"/>
+<text x="48" y="1332" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#172536">EditorPlotPlayerUI</text>
+<text x="48" y="1372" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">编辑模式 / 读 Asset / 刷新缓存</text>
+<text x="48" y="1401" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">选择节点开始播放</text>
+<text x="48" y="1430" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">通过 Factory 创建播放依赖</text>
+<rect x="560" y="1290" width="480" height="170" rx="9" fill="#edf4f9" stroke="#235b88" stroke-width="2"/>
+<text x="578" y="1332" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#235b88">PlotPlayerCore : IPlotPlayer</text>
+<text x="578" y="1372" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">Init / Open / Close / Load / Jump</text>
+<text x="578" y="1401" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">输入 / 自动播放 / 暂停恢复</text>
+<text x="578" y="1430" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">幕布加载 / 错误与完成事件</text>
+<rect x="1090" y="1290" width="480" height="170" rx="9" fill="#ffffff" stroke="#bcc7d2" stroke-width="2"/>
+<text x="1108" y="1332" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#172536">PlotPlayerUI</text>
+<text x="1108" y="1372" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">游戏 UIBase 入口与章节流程</text>
+<text x="1108" y="1401" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">结束回调 / 跳过 / 游戏业务</text>
+<text x="1108" y="1430" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">通过 Factory 创建播放依赖</text>
+<text x="30" y="1515" font-family="Microsoft YaHei, sans-serif" font-size="23" font-weight="600" fill="#526174">06  表现组件与运行环境依赖</text>
+<rect x="30" y="1570" width="740" height="160" rx="9" fill="#ffffff" stroke="#bcc7d2" stroke-width="2"/>
+<text x="48" y="1612" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#172536">表现控制器</text>
+<text x="48" y="1652" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">DialogBox：角色名 / 打字 / 全文显示</text>
+<text x="48" y="1681" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">Curtain：幕布标题与回调；Pos：舞台位置</text>
+<text x="48" y="1710" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">Background / RoleTheatre：背景、演员上下场与定位</text>
+<rect x="820" y="1570" width="750" height="160" rx="9" fill="#ffffff" stroke="#bcc7d2" stroke-width="2"/>
+<text x="838" y="1612" font-family="Microsoft YaHei, sans-serif" font-size="25" font-weight="600" fill="#172536">Factory 创建的 6 项功能依赖</text>
+<text x="838" y="1652" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">DataProvider / ResourceLoader / ObjectPool</text>
+<text x="838" y="1681" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">TextProcessor / RuntimeEnvironment / Config</text>
+<text x="838" y="1710" font-family="Microsoft YaHei, sans-serif" font-size="21" font-weight="400" fill="#526174">内部按 Editor / GameRuntime 分支，尚非完全接口化</text>
+<text x="30" y="1784" font-family="Microsoft YaHei, sans-serif" font-size="24" font-weight="600" fill="#172536">迁移边界</text>
+<text x="30" y="1822" font-family="Microsoft YaHei, sans-serif" font-size="22" font-weight="400" fill="#526174">需替换项目绑定：GameCtrl / cfg / XUI / UI节点查找 / 对象池 / 协程扩展 / 协议 / 硬编码路径。</text>
+<text x="30" y="1859" font-family="Microsoft YaHei, sans-serif" font-size="22" font-weight="400" fill="#526174">单独核实：旧事件 JSON / callbackList / 静态事件映射；Branch 数据已接通，所读 Core 未消费。</text>
+<text x="30" y="1896" font-family="Microsoft YaHei, sans-serif" font-size="22" font-weight="400" fill="#526174">角色动作、表情有数据定义；所读剧场实现保留行为空位。当前 PlotWeave 原型不能代表完整迁移。</text>
+</svg>

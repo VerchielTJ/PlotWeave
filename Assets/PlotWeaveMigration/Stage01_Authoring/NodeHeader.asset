@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f6b93fc82e244a1a840dc0654c4ef11, type: 3}
+  m_Name: NodeHeader
+  m_EditorClassIdentifier: 
+  sheets:
+  - columnName: ScenesID
+    description: "\u8282\u70B9ID"
+    IsList: 0
+    valueType: 0
+    typeKey: 
+    columnIndex: 1
+    members: 1
+  - columnName: Dialog
+    description: "\u5BF9\u8BDDKEY"
+    IsList: 0
+    valueType: 2
+    typeKey: 
+    columnIndex: 2
+    members: 1
+  - columnName: '*ActorCues'
+    description: "\u6F14\u5458\u63D0\u793A\u5217\u8868"
+    IsList: 1
+    valueType: 6
+    typeKey: ActorCue
+    columnIndex: 3
+    members: 3
+  - columnName: '*MoodHistory'
+    description: "\u5FC3\u60C5\u5217\u8868"
+    IsList: 1
+    valueType: 5
+    typeKey: Mood
+    columnIndex: 6
+    members: 1
+  - columnName: Speed
+    description: "\u901F\u5EA6"
+    IsList: 0
+    valueType: 1
+    typeKey: 
+    columnIndex: 7
+    members: 1
+  - columnName: Enabled
+    description: "\u542F\u7528"
+    IsList: 0
+    valueType: 3
+    typeKey: 
+    columnIndex: 8
+    members: 1
+  headerColor: {r: 1, g: 1, b: 1, a: 1}
+  contentColor: {r: 1, g: 1, b: 1, a: 1}
+  parameterEnums: {fileID: 11400000, guid: 4033c86b43787fe4f846e80bc5bb322a, type: 2}
+  parameterBean: {fileID: 11400000, guid: cdf7ec003a7eecc4391f31e4fdddce8c, type: 2}

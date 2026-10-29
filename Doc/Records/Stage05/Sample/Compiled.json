@@ -1,0 +1,95 @@
+{
+    "FormatVersion": 1,
+    "Nodes": [
+        {
+            "ScenesID": 1001,
+            "PlotRoleID": 101,
+            "Dialog": "demo.start",
+            "Next": 1002,
+            "RoleAction": [
+                {
+                    "RoleID": 101,
+                    "ActionType": "Default",
+                    "Emote": "Neutral",
+                    "RolePos": 0
+                },
+                {
+                    "RoleID": 102,
+                    "ActionType": "Shake",
+                    "Emote": "Happy",
+                    "RolePos": 2
+                }
+            ],
+            "PlotSetBack": [
+                {
+                    "SetType": "Default",
+                    "BackName": "demo.stage"
+                }
+            ],
+            "Branch": [
+                {
+                    "Key": "demo.choice.forward",
+                    "Target": 1002
+                },
+                {
+                    "Key": "demo.choice.wait",
+                    "Target": 1003
+                }
+            ]
+        },
+        {
+            "ScenesID": 1002,
+            "PlotRoleID": 0,
+            "Dialog": "",
+            "Next": 0,
+            "RoleAction": [],
+            "PlotSetBack": [],
+            "Branch": []
+        },
+        {
+            "ScenesID": 1003,
+            "PlotRoleID": 0,
+            "Dialog": "",
+            "Next": 0,
+            "RoleAction": [],
+            "PlotSetBack": [],
+            "Branch": []
+        }
+    ],
+    "Actors": [
+        {
+            "ID": 101,
+            "Name": "引导员",
+            "Thespian": "demo.guide"
+        },
+        {
+            "ID": 102,
+            "Name": "旅人",
+            "Thespian": "demo.traveler"
+        }
+    ],
+    "Dialogs": [
+        {
+            "Key": "demo.start",
+            "Languages": [
+                "欢迎使用类型与数据迁移样例。",
+                "",
+                "Welcome to the authoring data example.",
+                "",
+                ""
+            ]
+        }
+    ],
+    "Constants": [
+        {
+            "Key": "demo.title",
+            "Languages": [
+                "织幕演示",
+                "",
+                "",
+                "",
+                ""
+            ]
+        }
+    ]
+}

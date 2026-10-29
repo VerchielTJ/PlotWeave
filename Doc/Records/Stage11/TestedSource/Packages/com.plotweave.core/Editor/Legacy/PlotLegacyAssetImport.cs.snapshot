@@ -1,0 +1,118 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Security.Cryptography;
+using PlotWeave.Authoring;
+using PlotWeave.Authoring.UI;
+using PlotWeave.Authoring.Playback;
+using PlotWeave.Playback;
+using UnityEditor;
+using UnityEngine;
+
+namespace PlotWeave.Legacy.Editor
+{
+    [Serializable] public sealed class PlotLegacyAssetPayload { public string kind, json; }
+    [Serializable] public sealed class PlotLegacyNodePayload { public string source, folder, headerGuid, json; }
+    [Serializable] public sealed class PlotLegacySourceHash { public string path, sha256; }
+    [Serializable] public sealed class PlotLegacyTableRow { public List<string> values = new List<string>(); }
+    [Serializable] public sealed class PlotLegacyTable { public string source; public List<PlotLegacyTableRow> rows = new List<PlotLegacyTableRow>(); }
+    [Serializable] public sealed class PlotLegacyBundle
+    { public int formatVersion; public string headerSourceGuid; public List<PlotLegacyAssetPayload> assets = new List<PlotLegacyAssetPayload>(); public List<PlotLegacyNodePayload> nodes = new List<PlotLegacyNodePayload>(); public List<PlotLegacyTable> tables = new List<PlotLegacyTable>(); public List<PlotLegacySourceHash> sources = new List<PlotLegacySourceHash>(); }
+    [Serializable] public sealed class PlotLegacyNormalization { public string source, column, rule; public int row; }
+    [Serializable] public sealed class PlotLegacyImportedNode { public string source, asset, rowId, normalizedSha256; public int id; }
+    [Serializable] public sealed class PlotLegacyImportReport
+    {
+        public string id, status, root, projectPath, bundleSha256, error;
+        public int nodes, dialogs, constants, actors;
+        public List<PlotLegacyNormalization> normalizations = new List<PlotLegacyNormalization>();
+        public List<PlotLegacyImportedNode> imported = new List<PlotLegacyImportedNode>();
+        public List<string> warnings = new List<string>();
+    }
+    public static class PlotLegacyAssetImport
+    {
+        [Serializable] private sealed class RowSemantics { public string rowId, rowTitle; public List<PlotAtomRowData.SerializedColumnData> columns; }
+        public static string RowHash(PlotAtomRowData row) => Hash(JsonUtility.ToJson(new RowSemantics { rowId = row.rowId, rowTitle = row.rowTitle, columns = row.columns }));
+        public const string LocalRoot = "Assets/PlotWeaveLocal/ImportedOriginal";
+        public const string InputPath = "Tools/PlotWeaveMigration/Inputs/original-semantic.json";
+        public const string LatestPath = "Tools/PlotWeaveMigration/imported-original.json";
+        public static string Hash(string text) { using (var sha = SHA256.Create()) return BitConverter.ToString(sha.ComputeHash(System.Text.Encoding.UTF8.GetBytes(text))).Replace("-", "").ToLowerInvariant(); }
+        private static T Data<T>(PlotLegacyBundle bundle, string kind) where T : PlotAuthoringAsset
+        { var payload = bundle.assets.Single(a => a.kind == kind); var asset = ScriptableObject.CreateInstance<T>(); JsonUtility.FromJsonOverwrite(payload.json, asset); return asset; }
+        public static PlotAtomRowData Normalize(PlotLegacyNodePayload payload, PlotAtomDataHeaderAsset header, List<PlotLegacyNormalization> changes)
+        {
+            var row = ScriptableObject.CreateInstance<PlotAtomRowData>();
+            try
+            {
+                JsonUtility.FromJsonOverwrite(payload.json, row); row.headerDefinition = header;
+                foreach (var column in row.columns)
+                {
+                    var definition = header.GetColumnByName(column.columnName) ?? throw new FormatException("原节点存在未知列: " + column.columnName); var defaults = PlotEditingSession.DefaultValues(definition, header);
+                    for (var r = 0; r < column.rows.Count; r++)
+                    {
+                        var values = column.rows[r].values;
+                        if (values.Count > definition.members)
+                        { if (values.Skip(definition.members).Any(v => !string.IsNullOrEmpty(v))) throw new FormatException("不截断非空的旧成员: " + payload.source + " " + column.columnName); values.RemoveRange(definition.members, values.Count - definition.members); changes.Add(new PlotLegacyNormalization { source = payload.source, column = column.columnName, row = r, rule = "trim-empty-trailing-members" }); }
+                        while (values.Count < definition.members) { values.Add(defaults[values.Count]); changes.Add(new PlotLegacyNormalization { source = payload.source, column = column.columnName, row = r, rule = "fill-missing-member-with-schema-default" }); }
+                        if (definition.valueType == PlotEventTypeAsset.ValueType.CustomBean)
+                        { var parameters = header.parameterBean.GetEventTypeByKey(definition.typeKey).parameters; for (var i = 0; i < parameters.Count; i++) if (parameters[i].valueType == PlotEventTypeAsset.ValueType.CustomEnum && string.IsNullOrEmpty(values[i])) { values[i] = defaults[i]; changes.Add(new PlotLegacyNormalization { source = payload.source, column = column.columnName, row = r, rule = "bind-empty-enum-to-schema-default:" + parameters[i].paramKey }); } }
+                    }
+                }
+                foreach (var definition in header.sheets.Where(c => !c.IsList)) if (!row.HasColumn(definition.columnName))
+                { row.SetColumnRowValues(definition.columnName, PlotEditingSession.DefaultValues(definition, header)); changes.Add(new PlotLegacyNormalization { source = payload.source, column = definition.columnName, rule = "fill-missing-scalar-with-schema-default" }); }
+                row.Validate().ThrowIfInvalid(); return row;
+            }
+            catch { UnityEngine.Object.DestroyImmediate(row); throw; }
+        }
+        private static void Save(UnityEngine.Object value, string path) { Directory.CreateDirectory(Path.GetDirectoryName(path)); AssetDatabase.CreateAsset(value, path); AssetDatabase.SaveAssetIfDirty(value); }
+        public static PlotLegacyImportReport Import(PlotLegacyBundle bundle, string inputJson, string output)
+        {
+            if (bundle == null || bundle.formatVersion != 1 || bundle.nodes == null || bundle.nodes.Count == 0) throw new FormatException("旧资产语义包无效或没有节点");
+            var root = output.Replace('\\', '/').TrimEnd('/'); if (!root.StartsWith(LocalRoot + "/", StringComparison.Ordinal) || root.Split('/').Any(p => p == ".." || p == "." || p == "")) throw new ArgumentException("真实内容只导入独立的本地迁移目录");
+            if (Directory.Exists(root)) throw new IOException("目标目录已存在，不覆盖已有工作区");
+            var report = new PlotLegacyImportReport { id = Guid.NewGuid().ToString("N"), status = "validating", root = root, projectPath = root + "/Workspace.asset", bundleSha256 = Hash(inputJson) }; var objects = new List<UnityEngine.Object>();
+            try
+            {
+                var enums = Data<PlotEnumAsset>(bundle, "enums"); objects.Add(enums); var beans = Data<PlotEventTypeAsset>(bundle, "beans"); objects.Add(beans); beans.parameterEnums = enums;
+                var header = Data<PlotAtomDataHeaderAsset>(bundle, "header"); objects.Add(header); header.parameterEnums = enums; header.parameterBean = beans;
+                var dialogs = Data<PlotDialogKeyAsset>(bundle, "dialogs"); objects.Add(dialogs); var constants = Data<PlotConstantKeyAsset>(bundle, "constants"); objects.Add(constants); var actors = Data<PlotTableAsset>(bundle, "actors"); objects.Add(actors);
+                foreach (var asset in objects.Cast<PlotAuthoringAsset>()) asset.Validate().ThrowIfInvalid();
+                var rows = new List<PlotAtomRowData>(); var ids = new HashSet<int>(); var identities = new HashSet<string>();
+                foreach (var payload in bundle.nodes)
+                {
+                    if (!string.IsNullOrEmpty(bundle.headerSourceGuid) && payload.headerGuid != bundle.headerSourceGuid) throw new FormatException("旧节点指向不同表头，拒绝猜测绑定: " + payload.source);
+                    if (string.IsNullOrWhiteSpace(payload.folder) || payload.folder.IndexOfAny(Path.GetInvalidFileNameChars()) >= 0 || payload.folder == "." || payload.folder == "..") throw new FormatException("旧节点分组目录无效");
+                    var row = Normalize(payload, header, report.normalizations); objects.Add(row); rows.Add(row); var id = int.Parse(row.GetColumnSingleValue("ScenesID"), CultureInfo.InvariantCulture);
+                    if (id <= 0 || !ids.Add(id) || !identities.Add(row.rowId)) throw new FormatException("旧节点ID或rowId无效/重复");
+                    report.imported.Add(new PlotLegacyImportedNode { source = payload.source, asset = root + "/Nodes/" + payload.folder + "/" + id + ".asset", id = id, rowId = row.rowId, normalizedSha256 = RowHash(row) });
+                }
+                foreach (var row in rows)
+                { var next = int.Parse(row.GetColumnSingleValue("Next"), CultureInfo.InvariantCulture); if (next > 0 && !ids.Contains(next)) report.warnings.Add("missing-next:" + row.GetColumnSingleValue("ScenesID") + "->" + next); }
+                var workspace = ScriptableObject.CreateInstance<PlotAuthoringProject>(); objects.Add(workspace); workspace.header = header; workspace.dialogs = dialogs; workspace.constants = constants; workspace.actors = actors; workspace.nodeFolder = root + "/Nodes"; workspace.legacyEmptyActorSlots = true;
+                Directory.CreateDirectory(root); AssetDatabase.Refresh(); AssetDatabase.StartAssetEditing();
+                try
+                {
+                    Save(enums, root + "/Enums.asset"); Save(beans, root + "/Beans.asset"); Save(header, root + "/Header.asset"); Save(dialogs, root + "/Dialogs.asset"); Save(constants, root + "/Constants.asset"); Save(actors, root + "/Actors.asset");
+                    for (var i = 0; i < rows.Count; i++) Save(rows[i], report.imported[i].asset);
+                    Save(workspace, report.projectPath);
+                }
+                finally { AssetDatabase.StopAssetEditing(); }
+                AssetDatabase.Refresh(ImportAssetOptions.ForceSynchronousImport);
+                var canonical = AssetDatabase.LoadAssetAtPath<PlotAuthoringProject>(report.projectPath); var loaded = new PlotEditorManager(canonical).ListRows(); if (loaded.Count != rows.Count) throw new IOException("全量节点回读数量不一致");
+                foreach (var item in report.imported)
+                { var row = AssetDatabase.LoadAssetAtPath<PlotAtomRowData>(item.asset); if (row.rowId != item.rowId || RowHash(row) != item.normalizedSha256) throw new IOException("节点语义回读不一致: " + item.id); }
+                report.nodes = loaded.Count; report.dialogs = canonical.dialogs.dialogKeyDataList.Count; report.constants = canonical.constants.constantKeyDataList.Count; report.actors = canonical.actors.rows.Count; report.status = "passed";
+                Directory.CreateDirectory(Path.GetDirectoryName(LatestPath)); File.WriteAllText(LatestPath, JsonUtility.ToJson(report, true)); return report;
+            }
+            catch (Exception error) { report.status = "failed"; report.error = error.ToString(); throw; }
+            finally
+            { foreach (var obj in objects) if (obj != null && !EditorUtility.IsPersistent(obj)) UnityEngine.Object.DestroyImmediate(obj); Directory.CreateDirectory("Doc/Records/Stage11"); File.WriteAllText("Doc/Records/Stage11/import-" + report.id + ".json", JsonUtility.ToJson(report, true)); }
+        }
+        [MenuItem("Tools/PlotWeave/迁移工具/导入旧工程语义包")]
+        public static void ImportFromPanel()
+        { var path = EditorUtility.OpenFilePanel("选择只读转换生成的语义JSON", "", "json"); if (path == "") return; var json = File.ReadAllText(path); var report = Import(JsonUtility.FromJson<PlotLegacyBundle>(json), json, LocalRoot + "/Import_" + DateTime.UtcNow.ToString("yyyyMMdd_HHmmss")); Selection.activeObject = AssetDatabase.LoadAssetAtPath<PlotAuthoringProject>(report.projectPath); }
+        public static void PrepareVerification()
+        { var json = File.ReadAllText(InputPath); var report = Import(JsonUtility.FromJson<PlotLegacyBundle>(json), json, LocalRoot + "/Import_" + Guid.NewGuid().ToString("N").Substring(0, 10)); Debug.Log("PLOTWEAVE_STAGE11_IMPORTED " + report.nodes + " " + report.projectPath); }
+    }
+}

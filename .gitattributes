@@ -1,0 +1,10 @@
+# Preserve exact source bytes so historical SHA-256 evidence is portable.
+* -text
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.otf binary
+*.ttf binary
+*.bytes binary
+*.xlsx binary
+*.pdf binary

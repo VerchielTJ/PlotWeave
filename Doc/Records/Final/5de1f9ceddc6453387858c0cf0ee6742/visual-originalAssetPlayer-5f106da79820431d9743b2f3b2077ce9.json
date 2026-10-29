@@ -1,0 +1,18 @@
+{
+    "id": "5f106da79820431d9743b2f3b2077ce9",
+    "mode": "player",
+    "phase": "passed",
+    "scene": "Assets/PlotWeaveLocal/OriginalUI/Import_bd3086775b/Interactive_392c3521/OriginalPlayback.unity",
+    "image": "Tools/PlotWeaveMigration/Inputs/Images/legacy-player-5f106da79820431d9743b2f3b2077ce9.png",
+    "error": "",
+    "previousScene": "",
+    "background": false,
+    "maximized": false,
+    "hadView": true,
+    "skipChecked": true,
+    "frames": 0,
+    "nodes": 51,
+    "deadline": 74106.03376189999,
+    "next": 73932.82469869999,
+    "started": 73926.033763
+}

@@ -1,0 +1,3380 @@
+{
+  "schemaVersion": "1.0",
+  "documentDateAsiaHongKong": "2026-10-30",
+  "acceptanceDateAsiaHongKong": "2026-10-28",
+  "scope": "PlotWeave public distribution: design provenance and historical local implementation evidence",
+  "attributionPolicy": {
+    "separateAxes": true,
+    "noPerClassPercentage": true,
+    "userStatement": {
+      "scope": "原剧情编辑器整体",
+      "summary": "用户自述原编辑器约一个月完成，自己设计/编码为主，约80%本人、约20%AI输出。",
+      "evidenceType": "conversation-self-report",
+      "verifiedPerLine": false
+    },
+    "currentMigration": "本次独立迁移、重写、功能补齐、测试和工程化由用户与AI协作推进；本说明不把当前源码全部追溯成原个人实现，也不抹去原设计思想。",
+    "sourcePresenceIsNotAuthorshipProof": true,
+    "originalEmptyBodyIsNotMissingDesign": true,
+    "originUnknownIsNotImplementationIncomplete": true,
+    "noCompletionPercentageFromCounts": true
+  },
+  "classificationLegend": {
+    "original-user-concept": "原设计主线：用户整体作者自述与原结构证据相符，不代表逐行作者已核验",
+    "migration-ai-assisted": "本次AI协作重新实现/迁移/解耦，保留原职责或方案",
+    "new-ai-assisted-extension": "本次AI协作新增或补齐，不能追溯为原已实现功能",
+    "external-host-contract": "宿主或发布决策边界，当前只提供可注入契约",
+    "unknown-needs-confirmation": "原结构存在，但个人作者归属仍待本人确认"
+  },
+  "statusLegend": {
+    "implemented-verified": "当前实现已有约定范围的测试/运行证据",
+    "implemented-device-validation-pending": "已有构建/部分验证，仍待目标真机",
+    "external-injection": "独立接口与受控示例已提供，生产宿主尚未注入",
+    "not-published": "公开提交状态待核对；以GitHub提交记录为准",
+    "origin-unconfirmed": "只表示来源归属待确认，不是功能缺失状态",
+    "implemented-validation-pending": "实现已落盘，当前源码待本轮范围验收；历史证据单独保留",
+    "implemented-verified-targeted-scope": "当前明列制作范围通过，支持视口策略与非支持小尺寸诊断分别记录；不表示全量验收",
+    "implemented-partially-revalidated": "部分当前工作流重验通过，历史其他范围未重跑",
+    "implemented-with-historical-and-targeted-evidence": "模块同时保留历史全量与本轮定向证据，范围分别记录",
+    "public-candidate": "GitHub仓库已创建，自有代码采用MIT；本副本为公开提交候选"
+  },
+  "evidence": {
+    "currentAcceptance": "Doc/Records/Current/验收总览.json",
+    "sourceMapping": "Doc/Records/Current/源码对应索引.json",
+    "originalPlaceholderAudit": "Doc/Records/Current/原空方法逐项结果.json",
+    "originalArchitecture": "Doc/Architecture/原编辑器架构.md",
+    "testRunId": "5de1f9ceddc6453387858c0cf0ee6742",
+    "passed": 277,
+    "failed": 0,
+    "builds": {
+      "windows": {
+        "status": "passed",
+        "settingsRestored": true,
+        "targetRestored": true
+      },
+      "android": {
+        "status": "passed",
+        "settingsRestored": true,
+        "targetRestored": true
+      }
+    },
+    "limitations": [
+      "2026-10-28验收是历史事实；本文生成于2026-10-29，不擅自提升为新一轮原生测试。",
+      "源码索引是人工职责映射和只读SHA范围，不是逐行作者审计。",
+      "原数据/美术/场景仅本地验证；本文件不复制原剧情文本、图片或Unity资产。",
+      "阶段19定向验收已归档；历史277通过数字及SHA仍独立保留。本轮表格验证仅入口同工作区回调替身，不含导入/导出内容往返。",
+      "277项及40项分别为原本地工程的历史全量/定向记录。公开副本未重跑这些历史流程；私有剧情、美术、原布局及UPM缓存不随包分发。"
+    ],
+    "stage19": {
+      "status": "verified-targeted-scope",
+      "record": "Doc/Records/Current/制作闭环验收.json",
+      "testRunId": "89249f7ecbc94392a2b07bedb4d3ac5e",
+      "workflowRunId": "8d52e2003ea246bdbc728e657192a242",
+      "passed": 23,
+      "failed": 0,
+      "fullSuiteRerun": false,
+      "scope": "当前工作副本输入、内嵌试跑、刷新、停靠和等比适配；表格仅同工作区入口回调替身",
+      "reports": {
+        "tests": "Doc/Records/Stage19/89249f7ecbc94392a2b07bedb4d3ac5e/native-tests.json",
+        "interaction": "Doc/Records/Stage19/89249f7ecbc94392a2b07bedb4d3ac5e/workflow.json",
+        "guide": "Doc/阶段19_制作输入与内嵌试跑.md"
+      },
+      "images": [],
+      "publicImageNote": "本地原布局截图不随公开版本分发；仅保留历史验证摘要。",
+      "sourceRows": 485,
+      "saveCalls": 0,
+      "sourceDiskAndMemoryUnchanged": true,
+      "evidenceOrigin": "historical-local-source-project",
+      "publicCloneHistoricalTestsRerun": false
+    },
+    "stage20": {
+      "status": "verified-targeted-scope",
+      "scope": "startup-and-authoring-layout-minimum1024x600",
+      "record": "Doc/Records/Current/制作闭环验收.json",
+      "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+      "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+      "passed": 40,
+      "failed": 0,
+      "minimumViewport": {
+        "width": 1024,
+        "height": 600,
+        "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+      },
+      "supportedSizeCount": 4,
+      "unsupportedSizeCount": 2,
+      "supportedChecksPassed": 152,
+      "totalMatrixChecks": 228,
+      "allSizesPassed": false,
+      "fullSuiteRerun": false,
+      "sourceCheck": {
+        "recordedSourcesMatch": true,
+        "recordedSourceCount": 256,
+        "packageSources": 173,
+        "unrecordedPackageSources": 0
+      },
+      "reports": {
+        "tests": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/native-tests.json",
+        "layout": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/layout.json",
+        "staticLayout": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/static-layout.json",
+        "guide": "Doc/阶段20_启动与多尺寸适配.md",
+        "layoutRecovery": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/layout-recovery.json",
+        "startupRequest": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/startup-request.json"
+      },
+      "images": [],
+      "publicImageNote": "本地原布局截图不随公开版本分发；仅保留历史验证摘要。",
+      "sourceRows": 485,
+      "probeDiskFiles": 1423,
+      "probeMemoryObjects": 493,
+      "saveCalls": 0,
+      "sourceDiskAndMemoryUnchanged": true,
+      "gameRestored": true,
+      "restoredGameTarget": {
+        "width": 1092,
+        "height": 905
+      },
+      "originalGameSizeItems": 11,
+      "restoredGameSizeItems": 11,
+      "testComposition": {
+        "priorAuthoring": 23,
+        "startupDecisions": 5,
+        "initializationFailure": 4,
+        "popup": 6,
+        "realListRows": 2
+      },
+      "results": [
+        {
+          "width": 1920,
+          "height": 1080,
+          "actualWidth": 1920,
+          "actualHeight": 1080,
+          "completed": true,
+          "resolutionMatched": true,
+          "supported": true,
+          "outcome": "passed",
+          "rawPassed": true,
+          "rawFailureCount": 0,
+          "densityFailureCount": 0,
+          "geometryOrInteractionFailureCount": 0,
+          "viewportTooSmall": false,
+          "unsupportedNoticeVisible": false,
+          "noticeText": "",
+          "images": [],
+          "publicImageNote": "本地原布局截图不随公开版本分发；历史验证摘要保留。"
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "actualWidth": 1280,
+          "actualHeight": 720,
+          "completed": true,
+          "resolutionMatched": true,
+          "supported": true,
+          "outcome": "passed",
+          "rawPassed": true,
+          "rawFailureCount": 0,
+          "densityFailureCount": 0,
+          "geometryOrInteractionFailureCount": 0,
+          "viewportTooSmall": false,
+          "unsupportedNoticeVisible": false,
+          "noticeText": "",
+          "images": []
+        },
+        {
+          "width": 1092,
+          "height": 905,
+          "actualWidth": 1092,
+          "actualHeight": 905,
+          "completed": true,
+          "resolutionMatched": true,
+          "supported": true,
+          "outcome": "passed",
+          "rawPassed": true,
+          "rawFailureCount": 0,
+          "densityFailureCount": 0,
+          "geometryOrInteractionFailureCount": 0,
+          "viewportTooSmall": false,
+          "unsupportedNoticeVisible": false,
+          "noticeText": "",
+          "images": [],
+          "publicImageNote": "本地原布局截图不随公开版本分发；历史验证摘要保留。"
+        },
+        {
+          "width": 1024,
+          "height": 768,
+          "actualWidth": 1024,
+          "actualHeight": 768,
+          "completed": true,
+          "resolutionMatched": true,
+          "supported": true,
+          "outcome": "passed",
+          "rawPassed": true,
+          "rawFailureCount": 0,
+          "densityFailureCount": 0,
+          "geometryOrInteractionFailureCount": 0,
+          "viewportTooSmall": false,
+          "unsupportedNoticeVisible": false,
+          "noticeText": "",
+          "images": [],
+          "publicImageNote": "本地原布局截图不随公开版本分发；历史验证摘要保留。"
+        },
+        {
+          "width": 900,
+          "height": 600,
+          "actualWidth": 900,
+          "actualHeight": 600,
+          "completed": true,
+          "resolutionMatched": true,
+          "supported": false,
+          "outcome": "unsupported-low-density",
+          "rawPassed": false,
+          "rawFailureCount": 1,
+          "densityFailureCount": 1,
+          "geometryOrInteractionFailureCount": 0,
+          "viewportTooSmall": true,
+          "unsupportedNoticeVisible": true,
+          "noticeText": "当前窗口 900×600；制作工作区建议至少1024×600，请扩大或最大化Game视图。",
+          "images": []
+        },
+        {
+          "width": 720,
+          "height": 900,
+          "actualWidth": 720,
+          "actualHeight": 900,
+          "completed": true,
+          "resolutionMatched": true,
+          "supported": false,
+          "outcome": "unsupported-low-density",
+          "rawPassed": false,
+          "rawFailureCount": 2,
+          "densityFailureCount": 2,
+          "geometryOrInteractionFailureCount": 0,
+          "viewportTooSmall": true,
+          "unsupportedNoticeVisible": true,
+          "noticeText": "当前窗口 720×900；制作工作区建议至少1024×600，请扩大或最大化Game视图。",
+          "images": [],
+          "publicImageNote": "本地原布局截图不随公开版本分发；历史验证摘要保留。"
+        }
+      ],
+      "staticSceneRepair": {
+        "report": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/static-layout.json",
+        "scope": "独立显式备份修补，先于矩阵基线采样；不计为探针零保存或源不变"
+      },
+      "startupRequestEvidence": {
+        "report": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/startup-request.json",
+        "scope": "request-only",
+        "readinessVerified": false
+      },
+      "priorRecoveryDiagnostic": {
+        "report": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/layout-recovery.json",
+        "phase": "failed",
+        "usedAsFinalPassEvidence": false
+      },
+      "evidenceOrigin": "historical-local-source-project",
+      "publicCloneHistoricalTestsRerun": false
+    },
+    "evidenceOrigin": "historical-local-source-project",
+    "publicCloneHistoricalTestsRerun": false
+  },
+  "modules": [
+    {
+      "id": "definitions",
+      "title": "类型与作者数据",
+      "designOrigin": "original-user-concept",
+      "implementationOrigin": "migration-ai-assisted",
+      "originalConcept": {
+        "classification": "original-user-concept",
+        "summary": "原编辑器已有枚举key/label、Bean参数、表头列类型/typeKey/IsList/members，属于本次重构保留的原设计主线。；原类型模型存在CustomBean表达；现有档案明确原先没有递归Bean类型绑定，不能把当前完整嵌套链都记为原已实现功能。",
+        "attributionIsClaimBased": true,
+        "sourceMappings": [
+          "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomDataHeaderAsset.cs",
+          "Assets/PlotEditor/PlotTypeAseetClasses/PlotEnumAsset.cs",
+          "Assets/PlotEditor/PlotTypeAseetClasses/PlotEventTypeAsset.cs",
+          "Assets/PlotEditor/PlotEditorTools/PlotDataStructureGenerator.cs",
+          "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomRowData.cs",
+          "Assets/PlotEditor/PlotTypeAseetClasses/PlotConstantKeyAsset.cs",
+          "Assets/PlotEditor/PlotTypeAseetClasses/PlotDialogKeyAsset.cs",
+          "Assets/PlotEditor/PlotTypeAseetClasses/PlotTableAsset.cs"
+        ]
+      },
+      "currentImplementation": {
+        "classification": "migration-ai-assisted",
+        "basedOn": "based-on-current-tested-source",
+        "status": "implemented-verified",
+        "acceptanceDate": "2026-10-28",
+        "acceptanceReport": "Doc/Records/Current/验收总览.json",
+        "featureIds": [
+          "schema-types",
+          "nested-beans",
+          "node-assets"
+        ],
+        "summary": "当前独立类型资产、Inspector及严格校验为本次AI协作重新实现，不等同于原文件直接复制。；本次补入beanType、统一叶成员布局、循环/缺失类型拒绝及制作/Excel/C2/Luban贯通。"
+      },
+      "needsAuthorConfirmation": false,
+      "features": [
+        {
+          "id": "schema-types",
+          "title": "动态枚举、Bean与表头",
+          "designOrigin": "original-user-concept",
+          "implementationOrigin": "migration-ai-assisted",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原编辑器已有枚举key/label、Bean参数、表头列类型/typeKey/IsList/members，属于本次重构保留的原设计主线。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomDataHeaderAsset.cs",
+                "sourceSha256": "af670e36b92e3a9efd56e7ec06aa16f412e479b2df11678e34c67081a916ee56",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 阶段12增加显式beanType、有界嵌套叶成员布局、循环/缺失引用校验及生成/Excel/Luban链路。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotEnumAsset.cs",
+                "sourceSha256": "514aead4869ffb0746e48facfe1096adc671de780eaa95ae0703e7fd7d27e35b",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": ""
+              },
+              {
+                "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotEventTypeAsset.cs",
+                "sourceSha256": "07bf880bbba9b7e6690df49cdf53e9c884d71c45cc6f1a1c2584a40f254f6715",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 阶段12增加显式beanType、有界嵌套叶成员布局、循环/缺失引用校验及生成/Excel/Luban链路。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "migration-ai-assisted",
+            "status": "implemented-verified",
+            "summary": "当前独立类型资产、Inspector及严格校验为本次AI协作重新实现，不等同于原文件直接复制。",
+            "basedOn": "based-on-current-tested-source",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/Authoring/PlotEnumAsset.cs",
+              "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs",
+              "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEnumAsset.cs",
+                "testedSha256": "64f389952e0b07b0eafe1d5d37672eff33550412bd4c2cdcf518aba125f3fab7",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotEventTypeAsset.cs",
+                "testedSha256": "2f14845668d7468ae665b4a9fe4d32bb456910dd03d96d6d976c06e9f85210eb",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomDataHeaderAsset.cs",
+                "testedSha256": "aafceb37d050edea164bfee368eae0776818ad6487303241148ea14b19bd9b62",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "definitions",
+          "types": [
+            "PlotEnumAsset",
+            "PlotEventTypeAsset",
+            "PlotAtomDataHeaderAsset"
+          ],
+          "classIds": [
+            "PlotEnumAsset",
+            "PlotEventTypeAsset",
+            "PlotAtomDataHeaderAsset"
+          ]
+        },
+        {
+          "id": "nested-beans",
+          "title": "有界嵌套Bean扩展",
+          "designOrigin": "new-ai-assisted-extension",
+          "implementationOrigin": "new-ai-assisted-extension",
+          "originalConcept": {
+            "classification": "new-ai-assisted-extension",
+            "summary": "原类型模型存在CustomBean表达；现有档案明确原先没有递归Bean类型绑定，不能把当前完整嵌套链都记为原已实现功能。",
+            "attributionBasis": "explicit-host-contract-or-new-work",
+            "sourceMappings": [
+              {
+                "source": "Assets/PlotEditor/PlotEditorTools/PlotDataStructureGenerator.cs",
+                "sourceSha256": "57e328f2e0d36cc2bb27238c8f6dc56d52fa9164d81d4d61eef9f7182f86992b",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 阶段12增加显式beanType、有界嵌套叶成员布局、循环/缺失引用校验及生成/Excel/Luban链路。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomDataHeaderAsset.cs",
+                "sourceSha256": "af670e36b92e3a9efd56e7ec06aa16f412e479b2df11678e34c67081a916ee56",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 阶段12增加显式beanType、有界嵌套叶成员布局、循环/缺失引用校验及生成/Excel/Luban链路。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomRowData.cs",
+                "sourceSha256": "f6c25ec43a3a55d8d814397ac6c573d9cbb3523a3de567ef5b2e21d67887b1f6",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 阶段12增加显式beanType、有界嵌套叶成员布局、循环/缺失引用校验及生成/Excel/Luban链路。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotEventTypeAsset.cs",
+                "sourceSha256": "07bf880bbba9b7e6690df49cdf53e9c884d71c45cc6f1a1c2584a40f254f6715",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 阶段12增加显式beanType、有界嵌套叶成员布局、循环/缺失引用校验及生成/Excel/Luban链路。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "new-ai-assisted-extension",
+            "status": "implemented-verified",
+            "summary": "本次补入beanType、统一叶成员布局、循环/缺失类型拒绝及制作/Excel/C2/Luban贯通。",
+            "basedOn": "based-on-current-tested-source",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/Authoring/PlotBeanLayout.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotBeanLayout.cs",
+                "testedSha256": "18b7096b0482da9dd1951483674fd3e5eeb1665fb94b57b58f1b266cf2d357c1",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [
+              "支持有界可展开结构，不支持无限递归存储。"
+            ],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "definitions",
+          "types": [
+            "PlotBeanLayout"
+          ],
+          "classIds": [
+            "PlotBeanLayout"
+          ]
+        },
+        {
+          "id": "node-assets",
+          "title": "多行节点资产与文本/演员表",
+          "designOrigin": "original-user-concept",
+          "implementationOrigin": "migration-ai-assisted",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原PlotAtomRowData按列→多行→成员值保存，关联表头；对白/常量五语言KEY与演员通用表已在原设计存在。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomRowData.cs",
+                "sourceSha256": "f6c25ec43a3a55d8d814397ac6c573d9cbb3523a3de567ef5b2e21d67887b1f6",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 阶段12增加显式beanType、有界嵌套叶成员布局、循环/缺失引用校验及生成/Excel/Luban链路。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotConstantKeyAsset.cs",
+                "sourceSha256": "77032e4417c5a44c26959e2b97293ef1ac6f0a8f1974f129c39e19e8a9a19442",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": ""
+              },
+              {
+                "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotDialogKeyAsset.cs",
+                "sourceSha256": "d3a4d8ae2eab193db074a164da67a66aebb6a473b003d5865b027b3578c7bddd",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": ""
+              },
+              {
+                "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotTableAsset.cs",
+                "sourceSha256": "d169e58517f494e544caaea8231d2abc9d54c31d5949a40d67f4f6b9f53a085d",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": ""
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "migration-ai-assisted",
+            "status": "implemented-verified",
+            "summary": "本次重建独立数据资产、读取/默认值/校验和稳定rowId处理；485节点与六表往返保留身份和语义。",
+            "basedOn": "based-on-current-tested-source",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomRowData.cs",
+              "Packages/com.plotweave.core/Runtime/Authoring/PlotDialogKeyAsset.cs",
+              "Packages/com.plotweave.core/Runtime/Authoring/PlotConstantKeyAsset.cs",
+              "Packages/com.plotweave.core/Runtime/Authoring/PlotTableAsset.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotAtomRowData.cs",
+                "testedSha256": "f25393b2d558d49407d415708e141b757ba055499b546645c7f4367a343b1409",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotDialogKeyAsset.cs",
+                "testedSha256": "53a34d597a99191f70f7cc270186b153921791a2acc99e63d977c7bb22d47733",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotConstantKeyAsset.cs",
+                "testedSha256": "a3bf0df843bd6a97bfa198ec88e5bcd7fc8304b52feb6cc2cf884c839cdccf62",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotTableAsset.cs",
+                "testedSha256": "957de10695b408e61f2b84a91bed6eeb46b9920e1e35d61ccb61b9aaefc08fd6",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "definitions",
+          "types": [
+            "PlotAtomRowData",
+            "PlotDialogKeyAsset",
+            "PlotConstantKeyAsset",
+            "PlotTableAsset"
+          ],
+          "classIds": [
+            "PlotAtomRowData",
+            "PlotDialogKeyAsset",
+            "PlotConstantKeyAsset",
+            "PlotTableAsset"
+          ]
+        }
+      ],
+      "types": [
+        "PlotEnumAsset",
+        "PlotEventTypeAsset",
+        "PlotAtomDataHeaderAsset",
+        "PlotBeanLayout",
+        "PlotAtomRowData",
+        "PlotDialogKeyAsset",
+        "PlotConstantKeyAsset",
+        "PlotTableAsset"
+      ],
+      "classIds": [
+        "PlotEnumAsset",
+        "PlotEventTypeAsset",
+        "PlotAtomDataHeaderAsset",
+        "PlotBeanLayout",
+        "PlotAtomRowData",
+        "PlotDialogKeyAsset",
+        "PlotConstantKeyAsset",
+        "PlotTableAsset"
+      ]
+    },
+    {
+      "id": "authoring",
+      "title": "制作与编辑",
+      "designOrigin": "original-user-concept",
+      "implementationOrigin": "migration-ai-assisted",
+      "originalConcept": {
+        "classification": "original-user-concept",
+        "summary": "原制作场景已具备NodeCreater、CurrentNodeEditor、RowUnit、ParameterList、KEY/语言编辑和从节点预览的组织。",
+        "attributionIsClaimBased": true,
+        "sourceMappings": [
+          "Assets/PlotEditor/PlotComponent/Scripts/CurrentNodeEditor.cs",
+          "Assets/PlotEditor/PlotComponent/Scripts/DiaLogKeyEditor.cs",
+          "Assets/PlotEditor/PlotComponent/Scripts/EditorPlotPlayerUI.cs",
+          "Assets/PlotEditor/PlotComponent/Scripts/NodeCreater.cs",
+          "Assets/PlotEditor/PlotComponent/Scripts/NodeListLoader.cs",
+          "Assets/PlotEditor/PlotComponent/Scripts/NodeRowDataEditor.cs",
+          "Assets/PlotEditor/PlotComponent/Scripts/ParameterList.cs"
+        ]
+      },
+      "currentImplementation": {
+        "classification": "migration-ai-assisted",
+        "basedOn": "historical-full-plus-current-scoped-evidence",
+        "status": "implemented-with-historical-and-targeted-evidence",
+        "acceptanceDate": "2026-10-28",
+        "acceptanceReport": "Doc/Records/Current/验收总览.json",
+        "featureIds": [
+          "authoring-ui",
+          "authoring-input-loop",
+          "authoring-startup-ux",
+          "authoring-init-lifecycle",
+          "authoring-popup-fit",
+          "authoring-viewport-density",
+          "authoring-list-row-measurement"
+        ],
+        "summary": "本次按原布局语义重建新预制体、资源和宿主接线；编辑事务、草稿恢复、保存、Undo及可见区复用为当前独立实现。 阶段19恢复主入口与同场景内嵌试跑，当前源码已变更，本轮23项定向测试与原UI内存副本交互通过；完整历史回归未重跑。 对白输入停靠预览下方，站位参考默认隐藏；预览保留原设计坐标并等比适配。",
+        "targetedVerification": {
+          "status": "verified-targeted-scope",
+          "record": "Doc/Records/Current/制作闭环验收.json",
+          "testRunId": "89249f7ecbc94392a2b07bedb4d3ac5e",
+          "workflowRunId": "8d52e2003ea246bdbc728e657192a242",
+          "passed": 23,
+          "failed": 0,
+          "fullSuiteRerun": false,
+          "scope": "当前工作副本输入、内嵌试跑、刷新、停靠和等比适配；表格仅同工作区入口回调替身"
+        },
+        "stage20": {
+          "status": "verified-targeted-scope",
+          "scope": "startup-and-authoring-layout-minimum1024x600",
+          "record": "Doc/Records/Current/制作闭环验收.json",
+          "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+          "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+          "passed": 40,
+          "failed": 0,
+          "minimumViewport": {
+            "width": 1024,
+            "height": 600,
+            "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+          },
+          "supportedSizeCount": 4,
+          "unsupportedSizeCount": 2,
+          "supportedChecksPassed": 152,
+          "totalMatrixChecks": 228,
+          "allSizesPassed": false,
+          "fullSuiteRerun": false,
+          "sourceCheck": {
+            "recordedSourcesMatch": true,
+            "recordedSourceCount": 256,
+            "packageSources": 173,
+            "unrecordedPackageSources": 0
+          }
+        }
+      },
+      "needsAuthorConfirmation": false,
+      "features": [
+        {
+          "id": "authoring-ui",
+          "title": "原UGUI制作面板与节点/列表编辑",
+          "designOrigin": "original-user-concept",
+          "implementationOrigin": "migration-ai-assisted",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原制作场景已具备NodeCreater、CurrentNodeEditor、RowUnit、ParameterList、KEY/语言编辑和从节点预览的组织。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/PlotEditor/PlotComponent/Scripts/CurrentNodeEditor.cs",
+                "sourceSha256": "6da95663b80170044c088c3225ce331f000e7964b0ad84d3d22eceb06bed4b42",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotComponent/Scripts/DiaLogKeyEditor.cs",
+                "sourceSha256": "4b4c7fd758b78278d9dc9b9fb79b3a2c1278d3a91c1e40d92ecb671780c1af6d",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotComponent/Scripts/EditorPlotPlayerUI.cs",
+                "sourceSha256": "88734674136df06feb82e09fa04ae7f34d92dc1d0d521f517b4f71e08d614605",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "制作面板按钮通过同一Host/Core播放。 原布局/资源重建已加入；当前运行画面检查及范围见 Doc/Records/Current/验收总览.json 的visuals及其报告。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotComponent/Scripts/NodeCreater.cs",
+                "sourceSha256": "966f647ee5f003edf8c93133f3eb32627a2caf60fddb0aa57bb071547e02c7e0",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotComponent/Scripts/NodeListLoader.cs",
+                "sourceSha256": "a7b0009c0812c0fe8d9371b65757d72f295e20350894f7bf8e248e19a1141329",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotComponent/Scripts/NodeRowDataEditor.cs",
+                "sourceSha256": "f617742ac7a298046975ff91ae30a5d43cafcf3c026da2ad516d8c9a33a74af6",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotComponent/Scripts/ParameterList.cs",
+                "sourceSha256": "169558cb608ac7aeae837bc8c7af2a49e38f85377c643b4eba9f08371ccc4809",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "多行Bean参数面板与可见区复用。 原布局控件接线承接于PlotLegacyAuthoringHost；221项历史测试含原布局创建/改名/删除、对白语言与保存、列表增删。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "migration-ai-assisted",
+            "status": "implemented-validation-pending",
+            "summary": "本次按原布局语义重建新预制体、资源和宿主接线；编辑事务、草稿恢复、保存、Undo及可见区复用为当前独立实现。",
+            "basedOn": "current-source-with-historical-evidence-stage20-pending",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+              "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+              "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+                "testedSha256": "a02201bceaff9334f1e18663302bf579f89e47d24eae897d6ed2e4a3607b99f4",
+                "matchesCurrentFile": false,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotEditingSession.cs",
+                "testedSha256": "4086fee5ea540cf6b26892657129dcd92413da969d0516491ed9772d3b55a1b2",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs",
+                "testedSha256": "30c11ae6591b8669bdb6f439583f41c5ed38e84ed23b624a7184482471601515",
+                "matchesCurrentFile": false,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [
+              "原场景未具有的对白保存按钮和恢复草稿入口为本次新增，不能计入原版现成功能。",
+              "阶段19已通过输入/内嵌预览定向验收；没有重跑完整编辑事务或六表导入/导出提交。",
+              "阶段20改变部分相关源码；40项定向集合与最小视口策略已通过，支持与非支持尺寸分别记录。原记录按其源摘要保留，不替代相关功能的完整回归。"
+            ],
+            "historicalStatus": "implemented-verified",
+            "changedSinceHistoricalAcceptance": [
+              "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+              "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+            ],
+            "targetedVerification": {
+              "status": "verified-targeted-scope",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "89249f7ecbc94392a2b07bedb4d3ac5e",
+              "workflowRunId": "8d52e2003ea246bdbc728e657192a242",
+              "passed": 23,
+              "failed": 0,
+              "fullSuiteRerun": false,
+              "scope": "当前工作副本输入、内嵌试跑、刷新、停靠和等比适配；表格仅同工作区入口回调替身"
+            },
+            "changedSinceLatestEvidence": [
+              "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+              "Packages/com.plotweave.core/Editor/AuthoringUI/PlotEditorManager.cs"
+            ],
+            "latestScopedVerification": {
+              "status": "verified-targeted-scope",
+              "scope": "startup-and-authoring-layout-minimum1024x600",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+              "passed": 40,
+              "failed": 0,
+              "minimumViewport": {
+                "width": 1024,
+                "height": 600,
+                "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+              },
+              "supportedSizeCount": 4,
+              "unsupportedSizeCount": 2,
+              "supportedChecksPassed": 152,
+              "totalMatrixChecks": 228,
+              "allSizesPassed": false,
+              "fullSuiteRerun": false,
+              "sourceCheck": {
+                "recordedSourcesMatch": true,
+                "recordedSourceCount": 256,
+                "packageSources": 173,
+                "unrecordedPackageSources": 0
+              },
+              "featureCoveredTypes": [
+                "PlotWeave.Legacy.Editor.PlotLegacyAuthoringHost"
+              ]
+            },
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "authoring",
+          "types": [
+            "PlotLegacyAuthoringHost",
+            "PlotEditingSession",
+            "PlotEditorManager"
+          ],
+          "classIds": [
+            "PlotLegacyAuthoringHost",
+            "PlotEditingSession",
+            "PlotEditorManager"
+          ]
+        },
+        {
+          "id": "authoring-input-loop",
+          "title": "原制作场景输入与WindowMask内嵌试跑",
+          "module": "authoring",
+          "designOrigin": "original-user-concept",
+          "implementationOrigin": "migration-ai-assisted",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原PlotEditorScene具有独立输入UI与WindowMask内嵌播放器，TestPlayerButton提供起点播放与刷新，EditorPlotPlayerUI接收刷新并重新构造数据缓存；同场景输入和试跑属于原设计。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/Scenes/PlotEditorScene.unity",
+                "note": "WindowMask布局与输入区结构只读追踪。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotComponent/Scripts/TestPlayerButton.cs",
+                "note": "起点播放与刷新操作的原入口。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotComponent/Scripts/EditorPlotPlayerUI.cs",
+                "note": "原播放/刷新接线及数据缓存初始化语义。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "migration-ai-assisted",
+            "status": "implemented-validation-pending",
+            "summary": "本轮主入口优先原制作场景，恢复原WindowMask内嵌播放器与真实刷新；快照委托和活动刷新状态保持为当前新实现，不直接复制原文件。",
+            "basedOn": "current-source-with-historical-evidence-stage20-pending",
+            "sources": [
+              "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringBootstrap.cs",
+              "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+              "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+              "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+              "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs"
+            ],
+            "sourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringBootstrap.cs",
+                "currentSha256": "5280dfdd11319980299dfc330f2f6f35d37e116ad328e436b3d4d77944dd6bc2",
+                "evidenceType": "saved-source-only"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+                "currentSha256": "e2c6ad67e0271a9074fd80ee96b25b4b9ced722e36a03b716a0dbfbefeacef42",
+                "evidenceType": "saved-source-only"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+                "currentSha256": "619ea19c456cd11609c9b4ba66fc295c0442814957209ba84c0eed0965fccbcb",
+                "evidenceType": "saved-source-only"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+                "currentSha256": "941fe48942287f51d42bef30b519a9e9c043d285c408bc24332d7f98ed5637fe",
+                "evidenceType": "saved-source-only"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs",
+                "currentSha256": "c04f035a3bb95d1dd038f03c6e2c054e9667fb161a2ac0d1e47ad9e16e49162f",
+                "evidenceType": "saved-source-only"
+              }
+            ],
+            "validationRecord": "Doc/阶段19_制作输入与内嵌试跑.md",
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringBootstrap.cs",
+                "testedSha256": "cabbfd23451651d1e69a7e80ae2e719e9024b706b9311be1208b2ed7dd48c45c",
+                "matchesCurrentFile": false,
+                "evidenceScope": "2026-10-29阶段19定向工作流；非全量回归",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+                "testedSha256": "1dabbc6132bdea851eaebbea34df18f899d4d454f91a404a9f3a3ba615a1c85f",
+                "matchesCurrentFile": false,
+                "evidenceScope": "2026-10-29阶段19定向工作流；非全量回归",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+                "testedSha256": "bf1328e4d09cae835a3758aae6ad6c96f30d04df5071d1a46fae5a1c088aa705",
+                "matchesCurrentFile": false,
+                "evidenceScope": "2026-10-29阶段19定向工作流；非全量回归",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPanel.cs",
+                "testedSha256": "941fe48942287f51d42bef30b519a9e9c043d285c408bc24332d7f98ed5637fe",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-29阶段19定向工作流；非全量回归",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/Playback/EditorPlotPlayerUI.cs",
+                "testedSha256": "c04f035a3bb95d1dd038f03c6e2c054e9667fb161a2ac0d1e47ad9e16e49162f",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-29阶段19定向工作流；非全量回归",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json"
+              }
+            ],
+            "limits": [
+              "历史277项及Windows/Android构建没有重跑；本轮证据仅覆盖阶段19范围。",
+              "表格仅测试原UI入口的同工作区回调替身；未提交导入/导出或验证工作簿内容往返。",
+              "草稿冲突与跳转引用完整性问题仍开放。",
+              "阶段20改变部分相关源码；40项定向集合与最小视口策略已通过，支持与非支持尺寸分别记录。原记录按其源摘要保留，不替代相关功能的完整回归。"
+            ],
+            "acceptanceDate": "2026-10-29",
+            "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+            "targetedVerification": {
+              "status": "verified-targeted-scope",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "89249f7ecbc94392a2b07bedb4d3ac5e",
+              "workflowRunId": "8d52e2003ea246bdbc728e657192a242",
+              "passed": 23,
+              "failed": 0,
+              "fullSuiteRerun": false,
+              "scope": "当前工作副本输入、内嵌试跑、刷新、停靠和等比适配；表格仅同工作区入口回调替身"
+            },
+            "historicalStatus": "implemented-verified-targeted-scope",
+            "changedSinceLatestEvidence": [
+              "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringBootstrap.cs",
+              "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+              "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs"
+            ],
+            "latestScopedVerification": {
+              "status": "verified-targeted-scope",
+              "scope": "startup-and-authoring-layout-minimum1024x600",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+              "passed": 40,
+              "failed": 0,
+              "minimumViewport": {
+                "width": 1024,
+                "height": 600,
+                "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+              },
+              "supportedSizeCount": 4,
+              "unsupportedSizeCount": 2,
+              "supportedChecksPassed": 152,
+              "totalMatrixChecks": 228,
+              "allSizesPassed": false,
+              "fullSuiteRerun": false,
+              "sourceCheck": {
+                "recordedSourcesMatch": true,
+                "recordedSourceCount": 256,
+                "packageSources": 173,
+                "unrecordedPackageSources": 0
+              },
+              "featureCoveredTypes": [
+                "PlotWeave.Legacy.Editor.PlotLegacyAuthoringHost",
+                "PlotWeave.Authoring.Playback.EditorPlotPlayerUI"
+              ]
+            },
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "原整体作者自述和结构证据支持设计脉络；当前AI协作实现另记，不认定逐类百分比。",
+          "types": [
+            "PlotAuthoringBootstrap",
+            "PlotLegacyAuthoringBootstrap",
+            "PlotLegacyAuthoringHost",
+            "PlotAuthoringPanel",
+            "EditorPlotPlayerUI"
+          ],
+          "classIds": [
+            "PlotAuthoringBootstrap",
+            "PlotLegacyAuthoringBootstrap",
+            "PlotLegacyAuthoringHost",
+            "PlotAuthoringPanel",
+            "EditorPlotPlayerUI"
+          ]
+        },
+        {
+          "id": "authoring-startup-ux",
+          "title": "制作状态启动与静态场景入口",
+          "module": "authoring",
+          "designOrigin": "new-ai-assisted-extension",
+          "implementationOrigin": "new-ai-assisted-extension",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原工具通过独立制作场景录入并在场景内试跑，保留该场景式制作思路。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/Scenes/PlotEditorScene.unity",
+                "note": "原独立制作场景与节点/参数/文本控件职责；不证明当前启动/自适应策略原已存在。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "new-ai-assisted-extension",
+            "status": "implemented-verified-targeted-scope",
+            "summary": "自动进入Play/聚焦Game、取消与无关Play分支、临时起始场景恢复、显式静态启动窗口为本轮新增；公开样例仅缺少场景时生成，工作区新建保存仅涉及自有资产。",
+            "basedOn": "current-source-and-scoped-native-evidence",
+            "sources": [
+              "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringStartup.cs",
+              "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringBootstrap.cs",
+              "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyWorkspaceMenus.cs",
+              "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringStartupTests.cs"
+            ],
+            "sourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringStartup.cs",
+                "currentSha256": "0a6de7a39c48a43acb3883545499c8483a1ea49810f1a817a3a056b4946c0317",
+                "evidenceType": "saved-source"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringBootstrap.cs",
+                "currentSha256": "5280dfdd11319980299dfc330f2f6f35d37e116ad328e436b3d4d77944dd6bc2",
+                "evidenceType": "saved-source"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyWorkspaceMenus.cs",
+                "currentSha256": "80e161c5d431215b429ad5dfb9c71c4a2fa9023065d50c533fec9680f4418c85",
+                "evidenceType": "saved-source"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringStartupTests.cs",
+                "currentSha256": "b8cdbaf1405f274234e246595d72d727b7e229c6ec5dd8ffc8d8245cb18d9747",
+                "evidenceType": "saved-source"
+              }
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringStartup.cs",
+                "testedSha256": "0a6de7a39c48a43acb3883545499c8483a1ea49810f1a817a3a056b4946c0317",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/AuthoringUI/PlotAuthoringBootstrap.cs",
+                "testedSha256": "5280dfdd11319980299dfc330f2f6f35d37e116ad328e436b3d4d77944dd6bc2",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyWorkspaceMenus.cs",
+                "testedSha256": "80e161c5d431215b429ad5dfb9c71c4a2fa9023065d50c533fec9680f4418c85",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringStartupTests.cs",
+                "testedSha256": "b8cdbaf1405f274234e246595d72d727b7e229c6ec5dd8ffc8d8245cb18d9747",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              }
+            ],
+            "supportingApis": [],
+            "validationRecord": "Doc/阶段20_启动与多尺寸适配.md",
+            "limits": [
+              "40项定向测试与明列最小视口策略通过，未重跑历史277项或Windows/Android构建。",
+              "4支持尺寸通过；900×600/720×900仅诊断且密度不达标，allSizesPassed=false。",
+              "菜单请求结果不单独证明真实工作区Ready；表格内容往返不在本轮范围。",
+              "原设计沿革与当前协作新增分别记录，不分摊逐类作者百分比。"
+            ],
+            "nativeTests": {
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "passed": 40,
+              "failed": 0,
+              "report": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/native-tests.json",
+              "scope": "定向集合及对应源码快照，不表示每个方法均覆盖",
+              "archiveStatus": "archived"
+            },
+            "latestScopedVerification": {
+              "status": "verified-targeted-scope",
+              "scope": "startup-and-authoring-layout-minimum1024x600",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+              "passed": 40,
+              "failed": 0,
+              "minimumViewport": {
+                "width": 1024,
+                "height": 600,
+                "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+              },
+              "supportedSizeCount": 4,
+              "unsupportedSizeCount": 2,
+              "supportedChecksPassed": 152,
+              "totalMatrixChecks": 228,
+              "allSizesPassed": false,
+              "fullSuiteRerun": false,
+              "sourceCheck": {
+                "recordedSourcesMatch": true,
+                "recordedSourceCount": 256,
+                "packageSources": 173,
+                "unrecordedPackageSources": 0
+              },
+              "featureCoveredTypes": [
+                "PlotWeave.Authoring.PlotAuthoringStartup"
+              ]
+            },
+            "acceptanceDate": "2026-10-29",
+            "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+            "targetedVerification": {
+              "status": "verified-targeted-scope",
+              "scope": "startup-and-authoring-layout-minimum1024x600",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+              "passed": 40,
+              "failed": 0,
+              "minimumViewport": {
+                "width": 1024,
+                "height": 600,
+                "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+              },
+              "supportedSizeCount": 4,
+              "unsupportedSizeCount": 2,
+              "supportedChecksPassed": 152,
+              "totalMatrixChecks": 228,
+              "allSizesPassed": false,
+              "fullSuiteRerun": false,
+              "sourceCheck": {
+                "recordedSourcesMatch": true,
+                "recordedSourceCount": 256,
+                "packageSources": 173,
+                "unrecordedPackageSources": 0
+              },
+              "featureCoveredTypes": [
+                "PlotWeave.Authoring.PlotAuthoringStartup"
+              ]
+            },
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "原制作工具的整体思路依据用户陈述及原场景结构；本轮启动与适配策略单独标为协作新增，不认定逐行作者。",
+          "types": [
+            "PlotAuthoringStartup",
+            "PlotAuthoringBootstrap"
+          ],
+          "classIds": [
+            "PlotAuthoringStartup",
+            "PlotAuthoringBootstrap"
+          ]
+        },
+        {
+          "id": "authoring-init-lifecycle",
+          "title": "完整Ready状态与失败清理",
+          "module": "authoring",
+          "designOrigin": "new-ai-assisted-extension",
+          "implementationOrigin": "new-ai-assisted-extension",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原输入宿主和预览之间已有接口化接线的思路。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/Scenes/PlotEditorScene.unity",
+                "note": "原独立制作场景与节点/参数/文本控件职责；不证明当前启动/自适应策略原已存在。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "new-ai-assisted-extension",
+            "status": "implemented-verified-targeted-scope",
+            "summary": "CompleteInitialization验证全部入口已接线；异常释放会话、清除回调和预览、显示只读失败提示，记录错误并停止同实例自动重试，不删除用户草稿。",
+            "basedOn": "current-source-and-scoped-native-evidence",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+              "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+              "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringInitializationTests.cs"
+            ],
+            "sourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+                "currentSha256": "619ea19c456cd11609c9b4ba66fc295c0442814957209ba84c0eed0965fccbcb",
+                "evidenceType": "saved-source"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+                "currentSha256": "e2c6ad67e0271a9074fd80ee96b25b4b9ced722e36a03b716a0dbfbefeacef42",
+                "evidenceType": "saved-source"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringInitializationTests.cs",
+                "currentSha256": "73b0a8995666b8cf37aee11e74062ce3f954556523eff052335a06110e3dca6f",
+                "evidenceType": "saved-source"
+              }
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+                "testedSha256": "619ea19c456cd11609c9b4ba66fc295c0442814957209ba84c0eed0965fccbcb",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyAuthoringHost.cs",
+                "testedSha256": "e2c6ad67e0271a9074fd80ee96b25b4b9ced722e36a03b716a0dbfbefeacef42",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringInitializationTests.cs",
+                "testedSha256": "73b0a8995666b8cf37aee11e74062ce3f954556523eff052335a06110e3dca6f",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              }
+            ],
+            "supportingApis": [],
+            "validationRecord": "Doc/阶段20_启动与多尺寸适配.md",
+            "limits": [
+              "40项定向测试与明列最小视口策略通过，未重跑历史277项或Windows/Android构建。",
+              "4支持尺寸通过；900×600/720×900仅诊断且密度不达标，allSizesPassed=false。",
+              "菜单请求结果不单独证明真实工作区Ready；表格内容往返不在本轮范围。",
+              "原设计沿革与当前协作新增分别记录，不分摊逐类作者百分比。"
+            ],
+            "nativeTests": {
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "passed": 40,
+              "failed": 0,
+              "report": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/native-tests.json",
+              "scope": "定向集合及对应源码快照，不表示每个方法均覆盖",
+              "archiveStatus": "archived"
+            },
+            "latestScopedVerification": {
+              "status": "verified-targeted-scope",
+              "scope": "startup-and-authoring-layout-minimum1024x600",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+              "passed": 40,
+              "failed": 0,
+              "minimumViewport": {
+                "width": 1024,
+                "height": 600,
+                "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+              },
+              "supportedSizeCount": 4,
+              "unsupportedSizeCount": 2,
+              "supportedChecksPassed": 152,
+              "totalMatrixChecks": 228,
+              "allSizesPassed": false,
+              "fullSuiteRerun": false,
+              "sourceCheck": {
+                "recordedSourcesMatch": true,
+                "recordedSourceCount": 256,
+                "packageSources": 173,
+                "unrecordedPackageSources": 0
+              },
+              "featureCoveredTypes": [
+                "PlotWeave.Legacy.Editor.PlotLegacyAuthoringHost"
+              ]
+            },
+            "acceptanceDate": "2026-10-29",
+            "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+            "targetedVerification": {
+              "status": "verified-targeted-scope",
+              "scope": "startup-and-authoring-layout-minimum1024x600",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+              "passed": 40,
+              "failed": 0,
+              "minimumViewport": {
+                "width": 1024,
+                "height": 600,
+                "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+              },
+              "supportedSizeCount": 4,
+              "unsupportedSizeCount": 2,
+              "supportedChecksPassed": 152,
+              "totalMatrixChecks": 228,
+              "allSizesPassed": false,
+              "fullSuiteRerun": false,
+              "sourceCheck": {
+                "recordedSourcesMatch": true,
+                "recordedSourceCount": 256,
+                "packageSources": 173,
+                "unrecordedPackageSources": 0
+              },
+              "featureCoveredTypes": [
+                "PlotWeave.Legacy.Editor.PlotLegacyAuthoringHost"
+              ]
+            },
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "原制作工具的整体思路依据用户陈述及原场景结构；本轮启动与适配策略单独标为协作新增，不认定逐行作者。",
+          "types": [
+            "PlotLegacyAuthoringHost",
+            "PlotLegacyAuthoringBootstrap"
+          ],
+          "classIds": [
+            "PlotLegacyAuthoringHost",
+            "PlotLegacyAuthoringBootstrap"
+          ]
+        },
+        {
+          "id": "authoring-popup-fit",
+          "title": "原参数/列表弹层的可见边界与关闭入口",
+          "module": "authoring",
+          "designOrigin": "new-ai-assisted-extension",
+          "implementationOrigin": "new-ai-assisted-extension",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原UI已有参数与列表编辑弹层，当前沿用其输入职责与层级。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/Scenes/PlotEditorScene.unity",
+                "note": "原独立制作场景与节点/参数/文本控件职责；不证明当前启动/自适应策略原已存在。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "new-ai-assisted-extension",
+            "status": "implemented-verified-targeted-scope",
+            "summary": "本轮新增独立弹层布局：原层级内单弹层提升，按画布/面板/祖先Mask及工具栏计算可见区域，关闭按钮物理像素下限、动态缩放/夹取、关闭恢复位置和比例。",
+            "basedOn": "current-source-and-scoped-native-evidence",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPopupLayout.cs",
+              "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+              "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringPopupLayoutTests.cs"
+            ],
+            "sourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPopupLayout.cs",
+                "currentSha256": "df2325f6d7352e6f7c2882142be30033d97d472989f8993b68fb2f7a752c92bf",
+                "evidenceType": "saved-source"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+                "currentSha256": "619ea19c456cd11609c9b4ba66fc295c0442814957209ba84c0eed0965fccbcb",
+                "evidenceType": "saved-source"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringPopupLayoutTests.cs",
+                "currentSha256": "713ef57b3df969fadfe17e53ff419b4080ca5b653acdefcd0b31132478acc0b9",
+                "evidenceType": "saved-source"
+              }
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringPopupLayout.cs",
+                "testedSha256": "df2325f6d7352e6f7c2882142be30033d97d472989f8993b68fb2f7a752c92bf",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+                "testedSha256": "619ea19c456cd11609c9b4ba66fc295c0442814957209ba84c0eed0965fccbcb",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringPopupLayoutTests.cs",
+                "testedSha256": "713ef57b3df969fadfe17e53ff419b4080ca5b653acdefcd0b31132478acc0b9",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              }
+            ],
+            "supportingApis": [],
+            "validationRecord": "Doc/阶段20_启动与多尺寸适配.md",
+            "limits": [
+              "40项定向测试与明列最小视口策略通过，未重跑历史277项或Windows/Android构建。",
+              "4支持尺寸通过；900×600/720×900仅诊断且密度不达标，allSizesPassed=false。",
+              "菜单请求结果不单独证明真实工作区Ready；表格内容往返不在本轮范围。",
+              "原设计沿革与当前协作新增分别记录，不分摊逐类作者百分比。"
+            ],
+            "nativeTests": {
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "passed": 40,
+              "failed": 0,
+              "report": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/native-tests.json",
+              "scope": "定向集合及对应源码快照，不表示每个方法均覆盖",
+              "archiveStatus": "archived"
+            },
+            "latestScopedVerification": {
+              "status": "verified-targeted-scope",
+              "scope": "startup-and-authoring-layout-minimum1024x600",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+              "passed": 40,
+              "failed": 0,
+              "minimumViewport": {
+                "width": 1024,
+                "height": 600,
+                "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+              },
+              "supportedSizeCount": 4,
+              "unsupportedSizeCount": 2,
+              "supportedChecksPassed": 152,
+              "totalMatrixChecks": 228,
+              "allSizesPassed": false,
+              "fullSuiteRerun": false,
+              "sourceCheck": {
+                "recordedSourcesMatch": true,
+                "recordedSourceCount": 256,
+                "packageSources": 173,
+                "unrecordedPackageSources": 0
+              },
+              "featureCoveredTypes": [
+                "PlotWeave.Legacy.Editor.PlotAuthoringPopupLayout",
+                "PlotWeave.Legacy.Editor.PlotLegacyAuthoringHost"
+              ]
+            },
+            "acceptanceDate": "2026-10-29",
+            "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+            "targetedVerification": {
+              "status": "verified-targeted-scope",
+              "scope": "startup-and-authoring-layout-minimum1024x600",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+              "passed": 40,
+              "failed": 0,
+              "minimumViewport": {
+                "width": 1024,
+                "height": 600,
+                "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+              },
+              "supportedSizeCount": 4,
+              "unsupportedSizeCount": 2,
+              "supportedChecksPassed": 152,
+              "totalMatrixChecks": 228,
+              "allSizesPassed": false,
+              "fullSuiteRerun": false,
+              "sourceCheck": {
+                "recordedSourcesMatch": true,
+                "recordedSourceCount": 256,
+                "packageSources": 173,
+                "unrecordedPackageSources": 0
+              },
+              "featureCoveredTypes": [
+                "PlotWeave.Legacy.Editor.PlotAuthoringPopupLayout",
+                "PlotWeave.Legacy.Editor.PlotLegacyAuthoringHost"
+              ]
+            },
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "原制作工具的整体思路依据用户陈述及原场景结构；本轮启动与适配策略单独标为协作新增，不认定逐行作者。",
+          "types": [
+            "PlotAuthoringPopupLayout",
+            "PlotLegacyAuthoringHost"
+          ],
+          "classIds": [
+            "PlotAuthoringPopupLayout",
+            "PlotLegacyAuthoringHost"
+          ]
+        },
+        {
+          "id": "authoring-viewport-density",
+          "title": "制作视口密度与节点虚拟化适配",
+          "module": "authoring",
+          "designOrigin": "new-ai-assisted-extension",
+          "implementationOrigin": "new-ai-assisted-extension",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原节点选择、参数输入和预览区职责属于原制作思路；节点池化/可见区复用是现迁移实现，不能由此倒推原版已具有相同算法。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/Scenes/PlotEditorScene.unity",
+                "note": "原独立制作场景与节点/参数/文本控件职责；不证明当前启动/自适应策略原已存在。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "new-ai-assisted-extension",
+            "status": "implemented-verified-targeted-scope",
+            "summary": "本轮新增工具栏/节点物理密度调整、1024×600建议提示、面板变化时刷新输入停靠。ConfigureDisplay变更逻辑行高/最小字号，保存原逻辑滚动首行并保持可见按钮池复用，不为所有节点创建对象。 额外按原参考坐标转换中心锚点，修复底栏/右栏随窗口错位；调节起点与KEY控件密度，提供中性预览提示。",
+            "basedOn": "current-source-and-scoped-native-evidence",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringViewportLayout.cs",
+              "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeView.cs",
+              "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs"
+            ],
+            "sourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringViewportLayout.cs",
+                "currentSha256": "4fff95029c5d60a5b0b571384856b3b24763ce09b1f96a5b8c9ae23df40af4a9",
+                "evidenceType": "saved-source"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeView.cs",
+                "currentSha256": "c8c8f75b2419947fbdeaeafcf64bffc13daa4f21f76e2d935af6f9d06c39b410",
+                "evidenceType": "saved-source"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+                "currentSha256": "619ea19c456cd11609c9b4ba66fc295c0442814957209ba84c0eed0965fccbcb",
+                "evidenceType": "saved-source"
+              }
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotAuthoringViewportLayout.cs",
+                "testedSha256": "4fff95029c5d60a5b0b571384856b3b24763ce09b1f96a5b8c9ae23df40af4a9",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeView.cs",
+                "testedSha256": "c8c8f75b2419947fbdeaeafcf64bffc13daa4f21f76e2d935af6f9d06c39b410",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+                "testedSha256": "619ea19c456cd11609c9b4ba66fc295c0442814957209ba84c0eed0965fccbcb",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              }
+            ],
+            "supportingApis": [
+              {
+                "name": "ConfigureDisplay",
+                "signature": "public void ConfigureDisplay(float rowHeight, float minimumFont)",
+                "line": 37,
+                "kind": "method",
+                "owner": "PlotWeave.Authoring.UI.PlotNodeView",
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotNodeView.cs"
+              }
+            ],
+            "validationRecord": "Doc/阶段20_启动与多尺寸适配.md",
+            "limits": [
+              "40项定向测试与明列最小视口策略通过，未重跑历史277项或Windows/Android构建。",
+              "4支持尺寸通过；900×600/720×900仅诊断且密度不达标，allSizesPassed=false。",
+              "菜单请求结果不单独证明真实工作区Ready；表格内容往返不在本轮范围。",
+              "原设计沿革与当前协作新增分别记录，不分摊逐类作者百分比。"
+            ],
+            "nativeTests": {
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "passed": 40,
+              "failed": 0,
+              "report": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/native-tests.json",
+              "scope": "定向集合及对应源码快照，不表示每个方法均覆盖",
+              "archiveStatus": "archived"
+            },
+            "latestScopedVerification": {
+              "status": "verified-targeted-scope",
+              "scope": "startup-and-authoring-layout-minimum1024x600",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+              "passed": 40,
+              "failed": 0,
+              "minimumViewport": {
+                "width": 1024,
+                "height": 600,
+                "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+              },
+              "supportedSizeCount": 4,
+              "unsupportedSizeCount": 2,
+              "supportedChecksPassed": 152,
+              "totalMatrixChecks": 228,
+              "allSizesPassed": false,
+              "fullSuiteRerun": false,
+              "sourceCheck": {
+                "recordedSourcesMatch": true,
+                "recordedSourceCount": 256,
+                "packageSources": 173,
+                "unrecordedPackageSources": 0
+              },
+              "featureCoveredTypes": [
+                "PlotWeave.Legacy.Editor.PlotAuthoringViewportLayout",
+                "PlotWeave.Authoring.UI.PlotNodeView",
+                "PlotWeave.Legacy.Editor.PlotLegacyAuthoringHost"
+              ]
+            },
+            "acceptanceDate": "2026-10-29",
+            "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+            "targetedVerification": {
+              "status": "verified-targeted-scope",
+              "scope": "startup-and-authoring-layout-minimum1024x600",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+              "passed": 40,
+              "failed": 0,
+              "minimumViewport": {
+                "width": 1024,
+                "height": 600,
+                "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+              },
+              "supportedSizeCount": 4,
+              "unsupportedSizeCount": 2,
+              "supportedChecksPassed": 152,
+              "totalMatrixChecks": 228,
+              "allSizesPassed": false,
+              "fullSuiteRerun": false,
+              "sourceCheck": {
+                "recordedSourcesMatch": true,
+                "recordedSourceCount": 256,
+                "packageSources": 173,
+                "unrecordedPackageSources": 0
+              },
+              "featureCoveredTypes": [
+                "PlotWeave.Legacy.Editor.PlotAuthoringViewportLayout",
+                "PlotWeave.Authoring.UI.PlotNodeView",
+                "PlotWeave.Legacy.Editor.PlotLegacyAuthoringHost"
+              ]
+            },
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "原制作工具的整体思路依据用户陈述及原场景结构；本轮启动与适配策略单独标为协作新增，不认定逐行作者。",
+          "types": [
+            "PlotAuthoringViewportLayout",
+            "PlotNodeView",
+            "PlotLegacyAuthoringHost"
+          ],
+          "classIds": [
+            "PlotAuthoringViewportLayout",
+            "PlotNodeView",
+            "PlotLegacyAuthoringHost"
+          ]
+        },
+        {
+          "id": "authoring-list-row-measurement",
+          "title": "真实列表stretch宽度与复杂Bean行高",
+          "module": "authoring",
+          "designOrigin": "new-ai-assisted-extension",
+          "implementationOrigin": "new-ai-assisted-extension",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原制作场景具有参数列表和Grid布局；列表与多成员Bean编辑的职责沿用。当前迁移实现的stretch与测量修正另记，不由此推断原版具有相同缺陷或算法。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/Scenes/PlotEditorScene.unity",
+                "note": "原参数/列表布局职责。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "new-ai-assisted-extension",
+            "status": "implemented-verified-targeted-scope",
+            "summary": "本轮PrepareListRow在横向stretch时将sizeDelta.x设零，避免额外700宽把第二列挤到Mask外；先绑定真实Bean成员再测Grid preferredHeight，避免超过原176高度的成员行互相覆盖。新增2个真实布局回归用例，4个支持尺寸的矩阵检查已通过；2个小尺寸保留独立密度诊断。",
+            "basedOn": "current-source-and-scoped-native-evidence",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+              "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringPopupLayoutTests.cs"
+            ],
+            "sourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+                "currentSha256": "619ea19c456cd11609c9b4ba66fc295c0442814957209ba84c0eed0965fccbcb",
+                "evidenceType": "saved-source"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringPopupLayoutTests.cs",
+                "currentSha256": "713ef57b3df969fadfe17e53ff419b4080ca5b653acdefcd0b31132478acc0b9",
+                "evidenceType": "saved-source"
+              }
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/AuthoringUI/PlotLegacyAuthoringHost.cs",
+                "testedSha256": "619ea19c456cd11609c9b4ba66fc295c0442814957209ba84c0eed0965fccbcb",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Tests/Editor/PlotAuthoringPopupLayoutTests.cs",
+                "testedSha256": "713ef57b3df969fadfe17e53ff419b4080ca5b653acdefcd0b31132478acc0b9",
+                "matchesCurrentFile": true,
+                "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+                "evidenceScope": "本轮明列制作范围；源码快照存在不等于逐类全功能覆盖"
+              }
+            ],
+            "limits": [
+              "40项定向测试与明列最小视口策略通过，未重跑历史277项或Windows/Android构建。",
+              "4支持尺寸通过；900×600/720×900仅诊断且密度不达标，allSizesPassed=false。",
+              "菜单请求结果不单独证明真实工作区Ready；表格内容往返不在本轮范围。",
+              "原设计沿革与当前协作新增分别记录，不分摊逐类作者百分比。"
+            ],
+            "validationRecord": "Doc/阶段20_启动与多尺寸适配.md",
+            "nativeTests": {
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "passed": 40,
+              "failed": 0,
+              "report": "Doc/Records/Stage20/2c628143a7474bc4b85a42a616ae2d3d/native-tests.json",
+              "scope": "定向集合及对应源码快照，不表示每个方法均覆盖",
+              "archiveStatus": "archived"
+            },
+            "latestScopedVerification": {
+              "status": "verified-targeted-scope",
+              "scope": "startup-and-authoring-layout-minimum1024x600",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+              "passed": 40,
+              "failed": 0,
+              "minimumViewport": {
+                "width": 1024,
+                "height": 600,
+                "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+              },
+              "supportedSizeCount": 4,
+              "unsupportedSizeCount": 2,
+              "supportedChecksPassed": 152,
+              "totalMatrixChecks": 228,
+              "allSizesPassed": false,
+              "fullSuiteRerun": false,
+              "sourceCheck": {
+                "recordedSourcesMatch": true,
+                "recordedSourceCount": 256,
+                "packageSources": 173,
+                "unrecordedPackageSources": 0
+              },
+              "featureCoveredTypes": [
+                "PlotWeave.Legacy.Editor.PlotLegacyAuthoringHost"
+              ]
+            },
+            "acceptanceDate": "2026-10-29",
+            "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+            "targetedVerification": {
+              "status": "verified-targeted-scope",
+              "scope": "startup-and-authoring-layout-minimum1024x600",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+              "passed": 40,
+              "failed": 0,
+              "minimumViewport": {
+                "width": 1024,
+                "height": 600,
+                "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+              },
+              "supportedSizeCount": 4,
+              "unsupportedSizeCount": 2,
+              "supportedChecksPassed": 152,
+              "totalMatrixChecks": 228,
+              "allSizesPassed": false,
+              "fullSuiteRerun": false,
+              "sourceCheck": {
+                "recordedSourcesMatch": true,
+                "recordedSourceCount": 256,
+                "packageSources": 173,
+                "unrecordedPackageSources": 0
+              },
+              "featureCoveredTypes": [
+                "PlotWeave.Legacy.Editor.PlotLegacyAuthoringHost"
+              ]
+            },
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "原输入与列表职责和本轮测量修正分别记录，不推定逐类作者百分比。",
+          "types": [
+            "PlotLegacyAuthoringHost"
+          ],
+          "classIds": [
+            "PlotLegacyAuthoringHost"
+          ]
+        }
+      ],
+      "types": [
+        "PlotLegacyAuthoringHost",
+        "PlotEditingSession",
+        "PlotEditorManager",
+        "PlotAuthoringBootstrap",
+        "PlotLegacyAuthoringBootstrap",
+        "PlotAuthoringPanel",
+        "EditorPlotPlayerUI",
+        "PlotAuthoringStartup",
+        "PlotAuthoringPopupLayout",
+        "PlotAuthoringViewportLayout",
+        "PlotNodeView"
+      ],
+      "classIds": [
+        "PlotLegacyAuthoringHost",
+        "PlotEditingSession",
+        "PlotEditorManager",
+        "PlotAuthoringBootstrap",
+        "PlotLegacyAuthoringBootstrap",
+        "PlotAuthoringPanel",
+        "EditorPlotPlayerUI",
+        "PlotAuthoringStartup",
+        "PlotAuthoringPopupLayout",
+        "PlotAuthoringViewportLayout",
+        "PlotNodeView"
+      ]
+    },
+    {
+      "id": "generation",
+      "title": "共同契约与双端生成",
+      "designOrigin": "original-user-concept",
+      "implementationOrigin": "migration-ai-assisted",
+      "originalConcept": {
+        "classification": "original-user-concept",
+        "summary": "原生成器、Generated/Interfaces与两端Adapters已证明“同一数据契约适配编辑资产和游戏cfg”的原设计，不能把整个接口式架构记为AI新发明。",
+        "attributionIsClaimBased": true,
+        "sourceMappings": [
+          "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Editor/EditorPlotAtomDataAdapter.cs",
+          "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Game/GamePlotAtomDataAdapter.cs",
+          "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Interfaces/IPlotAtomData.cs",
+          "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Interfaces/IPlotDataBase.cs",
+          "Assets/PlotEditor/PlotEditorTools/PlotDataStructureGenerator.cs"
+        ]
+      },
+      "currentImplementation": {
+        "classification": "migration-ai-assisted",
+        "basedOn": "based-on-current-tested-source",
+        "status": "implemented-verified",
+        "acceptanceDate": "2026-10-28",
+        "acceptanceReport": "Doc/Records/Current/验收总览.json",
+        "featureIds": [
+          "dual-contracts"
+        ],
+        "summary": "本次重写生成器和数据源接口，隔离cfg绑定、保留强类型Bean/枚举并补齐原文本GetAllKeys及子接口生成等占位；真实已编译两端分别比对485节点。"
+      },
+      "needsAuthorConfirmation": false,
+      "features": [
+        {
+          "id": "dual-contracts",
+          "title": "共同接口与Editor/Game双端生成",
+          "designOrigin": "original-user-concept",
+          "implementationOrigin": "migration-ai-assisted",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原生成器、Generated/Interfaces与两端Adapters已证明“同一数据契约适配编辑资产和游戏cfg”的原设计，不能把整个接口式架构记为AI新发明。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Editor/EditorPlotAtomDataAdapter.cs",
+                "sourceSha256": "593a6e1bb45a6677ecb2a60ba8806805760c95c526be9d50ca87587a7a9a7082",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Game/GamePlotAtomDataAdapter.cs",
+                "sourceSha256": "13ce81fbb6305e55a4b1c0c63fcaec1d464c7a0108b3bcc848fdc015576068a8",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Interfaces/IPlotAtomData.cs",
+                "sourceSha256": "08b6233275301096cff272dc02e237f70049c43865274fc7b76c0f92a441bafd",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Interfaces/IPlotDataBase.cs",
+                "sourceSha256": "b2987f7b5687229caa61a8e9060c9a71a0b9ad642228292574b561fecaeadb1f",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotEditorTools/PlotDataStructureGenerator.cs",
+                "sourceSha256": "57e328f2e0d36cc2bb27238c8f6dc56d52fa9164d81d4d61eef9f7182f86992b",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 阶段12增加显式beanType、有界嵌套叶成员布局、循环/缺失引用校验及生成/Excel/Luban链路。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "migration-ai-assisted",
+            "status": "implemented-verified",
+            "summary": "本次重写生成器和数据源接口，隔离cfg绑定、保留强类型Bean/枚举并补齐原文本GetAllKeys及子接口生成等占位；真实已编译两端分别比对485节点。",
+            "basedOn": "based-on-current-tested-source",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs",
+              "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+              "Packages/com.plotweave.core/Runtime/DataContracts/PlotValueSources.cs",
+              "Packages/com.plotweave.core/Runtime/DataContracts/AuthoringPlotValueSource.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Editor/Generation/PlotDataStructureGenerator.cs",
+                "testedSha256": "b2120e9aa1aa309b78536a524eedef459d1a4e8d1450bf3c0a57f7cbeaee654a",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/DataContracts/PlotDataContracts.cs",
+                "testedSha256": "fc8f86cb082a42e3cdae7fa10103910587826fcb5d1348ccddf07d78edd796d6",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/DataContracts/PlotValueSources.cs",
+                "testedSha256": "6726e5bf1e5535093a3b24256cd7fd4e7860c5987e890430ef2a9a5000dfe33a",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/DataContracts/AuthoringPlotValueSource.cs",
+                "testedSha256": "6e1f268845e9f1d8f59d0947b509ebac22ed8f5c8073c378b27d2a1944859d40",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "generation",
+          "types": [
+            "PlotDataStructureGenerator",
+            "IPlotDataBase",
+            "IPlotValueSource",
+            "AuthoringPlotValueSource"
+          ],
+          "classIds": [
+            "PlotDataStructureGenerator",
+            "IPlotDataBase",
+            "IPlotValueSource",
+            "AuthoringPlotValueSource"
+          ]
+        }
+      ],
+      "types": [
+        "PlotDataStructureGenerator",
+        "IPlotDataBase",
+        "IPlotValueSource",
+        "AuthoringPlotValueSource"
+      ],
+      "classIds": [
+        "PlotDataStructureGenerator",
+        "IPlotDataBase",
+        "IPlotValueSource",
+        "AuthoringPlotValueSource"
+      ]
+    },
+    {
+      "id": "exchange",
+      "title": "六表与Luban链路",
+      "designOrigin": "original-user-concept",
+      "implementationOrigin": "migration-ai-assisted",
+      "originalConcept": {
+        "classification": "original-user-concept",
+        "summary": "原PlotExcelTools已有枚举/Bean/表头/行/文本/通用表的双向交换，用户所述“asset逆回表格再编表”有原结构依据。；原链路设计使用Excel→Luban→cfg及Game适配器；原游戏完整Luban配置未随剧情工具直接迁入。",
+        "attributionIsClaimBased": true,
+        "sourceMappings": [
+          "Assets/Editor/PlotEditor/PlotEditorDataToExcel/PlotEditorDataToExcel.cs",
+          "Assets/PlotEditor/PlotEditorTools/PlotExcelTools.cs",
+          "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Game/GamePlotAtomDataAdapter.cs",
+          "Assets/PlotEditor/PlotEditorTools/PlotDataStructureGenerator.cs"
+        ]
+      },
+      "currentImplementation": {
+        "classification": "migration-ai-assisted",
+        "basedOn": "historical-full-plus-current-targeted-evidence",
+        "status": "implemented-with-historical-and-targeted-evidence",
+        "acceptanceDate": "2026-10-28",
+        "acceptanceReport": "Doc/Records/Current/验收总览.json",
+        "featureIds": [
+          "six-table-roundtrip",
+          "luban-chain",
+          "live-input-snapshot",
+          "workspace-exchange-binding"
+        ],
+        "summary": "本次独立实现六表读取、写回、导入计划、备份事务及显式空列表/列顺序保留；23工作簿逐格重建、485节点严格往返已验收。；本次新增独立Luban4.10.2配置/schema适配、编译/失败记录、二进制Reader、AOT保留和完整数据播放器；完整二进制摘要与作者快照一致。 阶段19增加工作副本快照和当前工作区交换绑定，本轮定向记录已归档；表格只验证入口同工作区回调替身，没有执行导入/导出提交。",
+        "targetedVerification": {
+          "status": "verified-targeted-scope",
+          "record": "Doc/Records/Current/制作闭环验收.json",
+          "testRunId": "89249f7ecbc94392a2b07bedb4d3ac5e",
+          "workflowRunId": "8d52e2003ea246bdbc728e657192a242",
+          "passed": 23,
+          "failed": 0,
+          "fullSuiteRerun": false,
+          "scope": "当前工作副本输入、内嵌试跑、刷新、停靠和等比适配；表格仅同工作区入口回调替身"
+        }
+      },
+      "needsAuthorConfirmation": false,
+      "features": [
+        {
+          "id": "six-table-roundtrip",
+          "title": "Asset与六表双向交换",
+          "designOrigin": "original-user-concept",
+          "implementationOrigin": "migration-ai-assisted",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原PlotExcelTools已有枚举/Bean/表头/行/文本/通用表的双向交换，用户所述“asset逆回表格再编表”有原结构依据。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/Editor/PlotEditor/PlotEditorDataToExcel/PlotEditorDataToExcel.cs",
+                "sourceSha256": "1efb5e866a5fc3f1d31ee36af2b6070100a68610eb622a33addfdb018c09776e",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "原空入口现转接实际六表导入导出；真实编译另由生成配置执行。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotEditorTools/PlotExcelTools.cs",
+                "sourceSha256": "f6b14d32b20bfa01398b71627a46cb51b0ba8fc9efaf1dd9147b4d472d215d51",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "保留原六表交换；独立适配Luban4并执行真实编译，生成代码、二进制与游戏适配器进入共享Core。原游戏缺失的Luban配置未复制。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "migration-ai-assisted",
+            "status": "implemented-validation-pending",
+            "summary": "本次独立实现六表读取、写回、导入计划、备份事务及显式空列表/列顺序保留；23工作簿逐格重建、485节点严格往返已验收。",
+            "basedOn": "current-source-with-historical-evidence-stage20-pending",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Editor/Excel/PlotAuthoringExcel.cs",
+              "Packages/com.plotweave.core/Editor/Excel/PlotExcelExchange.cs",
+              "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Editor/Excel/PlotAuthoringExcel.cs",
+                "testedSha256": "27ac82f38d366b4750f138350c53b038bf173e15e94293beeff71145e71d816b",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelExchange.cs",
+                "testedSha256": "75dfac5c15be48b836a5ce2ea9a9f987b263bbbcc33d4ebcce430c1aad257a3c",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs",
+                "testedSha256": "cf60834e21474a1cc9d9871bce34a532b9f29e2f9529429f4de1a91f6cec3aa7",
+                "matchesCurrentFile": false,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [
+              "原空Test只是一个入口；不能由该空体推断原Excel工具整体没有实现。",
+              "阶段19已通过输入/内嵌预览定向验收；没有重跑完整编辑事务或六表导入/导出提交。",
+              "阶段20改变部分相关源码；40项定向集合与最小视口策略已通过，支持与非支持尺寸分别记录。原记录按其源摘要保留，不替代相关功能的完整回归。"
+            ],
+            "historicalStatus": "implemented-verified",
+            "changedSinceHistoricalAcceptance": [
+              "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs"
+            ],
+            "targetedVerification": {
+              "status": "verified-targeted-scope",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "89249f7ecbc94392a2b07bedb4d3ac5e",
+              "workflowRunId": "8d52e2003ea246bdbc728e657192a242",
+              "passed": 23,
+              "failed": 0,
+              "fullSuiteRerun": false,
+              "scope": "当前工作副本输入、内嵌试跑、刷新、停靠和等比适配；表格仅同工作区入口回调替身"
+            },
+            "changedSinceLatestEvidence": [
+              "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs"
+            ],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "exchange",
+          "types": [
+            "PlotAuthoringExcel",
+            "PlotExcelExchange",
+            "PlotExcelWindow"
+          ],
+          "classIds": [
+            "PlotAuthoringExcel",
+            "PlotExcelExchange",
+            "PlotExcelWindow"
+          ]
+        },
+        {
+          "id": "luban-chain",
+          "title": "真实Luban编译与游戏数据读取",
+          "designOrigin": "original-user-concept",
+          "implementationOrigin": "migration-ai-assisted",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原链路设计使用Excel→Luban→cfg及Game适配器；原游戏完整Luban配置未随剧情工具直接迁入。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/HotUpdate/UI/PlotPlayerUI/Generated/Adapters/Game/GamePlotAtomDataAdapter.cs",
+                "sourceSha256": "13ce81fbb6305e55a4b1c0c63fcaec1d464c7a0108b3bcc848fdc015576068a8",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "由三组实际生成的9份契约/适配器覆盖，快照与测试见阶段02；不复制原cfg绑定。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotEditorTools/PlotDataStructureGenerator.cs",
+                "sourceSha256": "57e328f2e0d36cc2bb27238c8f6dc56d52fa9164d81d4d61eef9f7182f86992b",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 阶段12增加显式beanType、有界嵌套叶成员布局、循环/缺失引用校验及生成/Excel/Luban链路。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotEditorTools/PlotExcelTools.cs",
+                "sourceSha256": "f6b14d32b20bfa01398b71627a46cb51b0ba8fc9efaf1dd9147b4d472d215d51",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "保留原六表交换；独立适配Luban4并执行真实编译，生成代码、二进制与游戏适配器进入共享Core。原游戏缺失的Luban配置未复制。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "migration-ai-assisted",
+            "status": "implemented-verified",
+            "summary": "本次新增独立Luban4.10.2配置/schema适配、编译/失败记录、二进制Reader、AOT保留和完整数据播放器；完整二进制摘要与作者快照一致。",
+            "basedOn": "based-on-current-tested-source",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Editor/Luban/PlotLubanSchema.cs",
+              "Packages/com.plotweave.core/Editor/Luban/PlotLubanPipeline.cs",
+              "Packages/com.plotweave.core/Runtime/Playback/PlotLubanTableReader.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Editor/Luban/PlotLubanSchema.cs",
+                "testedSha256": "c823c0887b8273b5228492fd3d1dfd6257d365277aacb0e2f3c52415ab746331",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/Luban/PlotLubanPipeline.cs",
+                "testedSha256": "db92570b1de904fd6e4adac89d87206b3896c8227999f1fd1ff793f789ed40c9",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Playback/PlotLubanTableReader.cs",
+                "testedSha256": "2ed13e267b34367febc48649f602b453643b5d7733dc5dc9ff98baf57da4c90c",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [
+              "独立Luban4工具链和本次AOT保留/构建验收属于当前工程化工作，不是原已验证状态。"
+            ],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "exchange",
+          "types": [
+            "PlotLubanSchema",
+            "PlotLubanPipeline",
+            "PlotLubanTableReader"
+          ],
+          "classIds": [
+            "PlotLubanSchema",
+            "PlotLubanPipeline",
+            "PlotLubanTableReader"
+          ]
+        },
+        {
+          "id": "live-input-snapshot",
+          "title": "当前工作副本的无保存播放快照",
+          "module": "exchange",
+          "designOrigin": "original-user-concept",
+          "implementationOrigin": "new-ai-assisted-extension",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "即时录入后试跑是原制作场景目标；原实现刷新作者数据缓存，不能据此声称原版已有当前隔离事务覆盖算法。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": []
+          },
+          "currentImplementation": {
+            "classification": "new-ai-assisted-extension",
+            "status": "implemented-verified-targeted-scope",
+            "summary": "新增Compile(PlotEditingSession)：以当前工作节点及文本覆盖已保存工作区快照，校验身份并复制数据；预览不保存资产。",
+            "basedOn": "current-source-and-targeted-native-evidence",
+            "sources": [
+              "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackCompiler.cs"
+            ],
+            "sourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackCompiler.cs",
+                "currentSha256": "26ca90e315de4f3af3fd0bc462701f5a430b9f575a1d2516db46f7d7374eb506",
+                "evidenceType": "saved-source-only"
+              }
+            ],
+            "validationRecord": "Doc/阶段19_制作输入与内嵌试跑.md",
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Editor/Playback/PlotPlaybackCompiler.cs",
+                "testedSha256": "26ca90e315de4f3af3fd0bc462701f5a430b9f575a1d2516db46f7d7374eb506",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-29阶段19定向工作流；非全量回归",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json"
+              }
+            ],
+            "limits": [
+              "历史277项及Windows/Android构建没有重跑；本轮证据仅覆盖阶段19范围。",
+              "表格仅测试原UI入口的同工作区回调替身；未提交导入/导出或验证工作簿内容往返。",
+              "草稿冲突与跳转引用完整性问题仍开放。"
+            ],
+            "acceptanceDate": "2026-10-29",
+            "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+            "targetedVerification": {
+              "status": "verified-targeted-scope",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "89249f7ecbc94392a2b07bedb4d3ac5e",
+              "workflowRunId": "8d52e2003ea246bdbc728e657192a242",
+              "passed": 23,
+              "failed": 0,
+              "fullSuiteRerun": false,
+              "scope": "当前工作副本输入、内嵌试跑、刷新、停靠和等比适配；表格仅同工作区入口回调替身"
+            },
+            "latestScopedVerification": {
+              "status": "verified-targeted-scope",
+              "scope": "startup-and-authoring-layout-minimum1024x600",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "2c628143a7474bc4b85a42a616ae2d3d",
+              "layoutRunId": "ffbfb7408529466a82d04ebe8ed752d9",
+              "passed": 40,
+              "failed": 0,
+              "minimumViewport": {
+                "width": 1024,
+                "height": 600,
+                "policy": "Desktop authoring workspace requires at least 1024x600. Smaller viewports are diagnostic only and are not supported."
+              },
+              "supportedSizeCount": 4,
+              "unsupportedSizeCount": 2,
+              "supportedChecksPassed": 152,
+              "totalMatrixChecks": 228,
+              "allSizesPassed": false,
+              "fullSuiteRerun": false,
+              "sourceCheck": {
+                "recordedSourcesMatch": true,
+                "recordedSourceCount": 256,
+                "packageSources": 173,
+                "unrecordedPackageSources": 0
+              },
+              "featureCoveredTypes": [
+                "PlotWeave.Authoring.Playback.PlotPlaybackCompiler"
+              ]
+            },
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "原整体作者自述和结构证据支持设计脉络；当前AI协作实现另记，不认定逐类百分比。",
+          "types": [
+            "PlotPlaybackCompiler"
+          ],
+          "classIds": [
+            "PlotPlaybackCompiler"
+          ]
+        },
+        {
+          "id": "workspace-exchange-binding",
+          "title": "制作页绑定当前工作区的显式表格交换",
+          "module": "exchange",
+          "designOrigin": "new-ai-assisted-extension",
+          "implementationOrigin": "new-ai-assisted-extension",
+          "originalConcept": {
+            "classification": "new-ai-assisted-extension",
+            "summary": "原版具有Asset与表格双向交换；本轮制作页上下文绑定、未保存处理与导入后重载回调属于当前新增接线。",
+            "attributionBasis": "explicit-host-contract-or-new-work",
+            "sourceMappings": []
+          },
+          "currentImplementation": {
+            "classification": "new-ai-assisted-extension",
+            "status": "implemented-partially-revalidated",
+            "summary": "OpenFor绑定当前PlotAuthoringProject，导出/检查/提交前处理未保存输入，导入后重新读取；Excel需显式导入/导出，不随输入自动同步。",
+            "basedOn": "current-source-and-targeted-native-evidence",
+            "sources": [
+              "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs"
+            ],
+            "sourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs",
+                "currentSha256": "d9dd8f1616ccbed64361155e89ef375ab02ae849e832baac16dd5b95df88c235",
+                "evidenceType": "saved-source-only"
+              }
+            ],
+            "validationRecord": "Doc/阶段19_制作输入与内嵌试跑.md",
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Editor/Excel/PlotExcelWindow.cs",
+                "testedSha256": "d9dd8f1616ccbed64361155e89ef375ab02ae849e832baac16dd5b95df88c235",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-29阶段19定向工作流；非全量回归",
+                "acceptanceReport": "Doc/Records/Current/制作闭环验收.json"
+              }
+            ],
+            "limits": [
+              "历史277项及Windows/Android构建没有重跑；本轮证据仅覆盖阶段19范围。",
+              "表格仅测试原UI入口的同工作区回调替身；未提交导入/导出或验证工作簿内容往返。",
+              "草稿冲突与跳转引用完整性问题仍开放。"
+            ],
+            "acceptanceDate": "2026-10-29",
+            "acceptanceReport": "Doc/Records/Current/制作闭环验收.json",
+            "targetedVerification": {
+              "status": "verified-targeted-scope",
+              "record": "Doc/Records/Current/制作闭环验收.json",
+              "testRunId": "89249f7ecbc94392a2b07bedb4d3ac5e",
+              "workflowRunId": "8d52e2003ea246bdbc728e657192a242",
+              "passed": 23,
+              "failed": 0,
+              "fullSuiteRerun": false,
+              "scope": "原UI入口同工作区回调替身；真实PlotExcelWindow的导出/导入未在本轮执行"
+            },
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "原整体作者自述和结构证据支持设计脉络；当前AI协作实现另记，不认定逐类百分比。",
+          "types": [
+            "PlotExcelWindow"
+          ],
+          "classIds": [
+            "PlotExcelWindow"
+          ]
+        }
+      ],
+      "types": [
+        "PlotAuthoringExcel",
+        "PlotExcelExchange",
+        "PlotExcelWindow",
+        "PlotLubanSchema",
+        "PlotLubanPipeline",
+        "PlotLubanTableReader",
+        "PlotPlaybackCompiler"
+      ],
+      "classIds": [
+        "PlotAuthoringExcel",
+        "PlotExcelExchange",
+        "PlotExcelWindow",
+        "PlotLubanSchema",
+        "PlotLubanPipeline",
+        "PlotLubanTableReader",
+        "PlotPlaybackCompiler"
+      ]
+    },
+    {
+      "id": "playback",
+      "title": "共享播放、分支与事件",
+      "designOrigin": "original-user-concept",
+      "implementationOrigin": "migration-ai-assisted",
+      "originalConcept": {
+        "classification": "original-user-concept",
+        "summary": "原IPlotPlayer文件、Factory、Core及EditorPlotPlayerUI/PlotPlayerUI体现了共享核心、服务装配和两端宿主意图；原服务内部仍有模式分支及具体游戏耦合。；原Branch、动作/表情和背景SetType数据结构及表现职责已存在；档案指出原Core未消费Branch，一些动作与表情为空实现。",
+        "attributionIsClaimBased": true,
+        "sourceMappings": [
+          "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+          "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI.cs",
+          "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI_NodeClass.cs",
+          "Assets/PlotEditor/PlotComponent/Scripts/EditorPlotPlayerUI.cs",
+          "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomDataHeaderAsset.cs",
+          "Assets/PlotEditor/PlotEditorDataClasses/PlotEventJsonData.cs",
+          "Assets/PlotEditor/PlotEditorDataClasses/PlotEventsJsonContainer.cs"
+        ]
+      },
+      "currentImplementation": {
+        "classification": "migration-ai-assisted",
+        "basedOn": "based-on-current-tested-source",
+        "status": "implemented-verified",
+        "acceptanceDate": "2026-10-28",
+        "acceptanceReport": "Doc/Records/Current/验收总览.json",
+        "featureIds": [
+          "shared-player",
+          "branches-effects",
+          "event-scheduler"
+        ],
+        "summary": "本次重新实现Core、Host、View及数据/资源/池/文本/环境接口边界，原UGUI和资源以新资产重建；Asset与完整Luban两路各连续播放51节点。；本次补入等待选择/Choose、回调失效隔离及可替换的参考动作、表情、背景过渡；保留原数据设计，新增完整可执行行为。"
+      },
+      "needsAuthorConfirmation": false,
+      "features": [
+        {
+          "id": "shared-player",
+          "title": "共享播放核心与表现/资源服务",
+          "designOrigin": "original-user-concept",
+          "implementationOrigin": "migration-ai-assisted",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原IPlotPlayer文件、Factory、Core及EditorPlotPlayerUI/PlotPlayerUI体现了共享核心、服务装配和两端宿主意图；原服务内部仍有模式分支及具体游戏耦合。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+                "sourceSha256": "a8c96963c4303a107e897278f757aada2e3955929a2acdda64fe63fb088ef0cf",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "源文件实际同时容纳六项服务、环境和Factory。 扩展到章节目录、选中状态、原1503/1504协议语义边界；生产传输实现与服务器实际联调不在已验证结论内。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI.cs",
+                "sourceSha256": "7e9895a424c688a416c6c90a5e19b666b77e72a222d729a6a1897bf76d605034",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "主线/日常、加载、结算确认、幂等重试、进度与返回UI迁成接口及离线可运行示例；正式服务器协议由接入方实现。 扩展到章节目录、选中状态、原1503/1504协议语义边界；生产传输实现与服务器实际联调不在已验证结论内。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI_NodeClass.cs",
+                "sourceSha256": "ec62e24e75342954611487f04c1395a18286b4c866019723675d7935b65a9d80",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "共享Core、TMP、幕布、剧院；补齐原未消费的Branch、动作/表情与背景过渡，参考演出可替换。 原布局/资源重建已加入；当前运行画面检查及范围见 Doc/Records/Current/验收总览.json 的visuals及其报告。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotComponent/Scripts/EditorPlotPlayerUI.cs",
+                "sourceSha256": "88734674136df06feb82e09fa04ae7f34d92dc1d0d521f517b4f71e08d614605",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "制作面板按钮通过同一Host/Core播放。 原布局/资源重建已加入；当前运行画面检查及范围见 Doc/Records/Current/验收总览.json 的visuals及其报告。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "migration-ai-assisted",
+            "status": "implemented-verified",
+            "summary": "本次重新实现Core、Host、View及数据/资源/池/文本/环境接口边界，原UGUI和资源以新资产重建；Asset与完整Luban两路各连续播放51节点。",
+            "basedOn": "based-on-current-tested-source",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+              "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerHost.cs",
+              "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.cs",
+              "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerServices.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerCore.cs",
+                "testedSha256": "321cab59e492227e5a57585d79d3620800f2e3bffa1d22dd9c530994d496fdf5",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerHost.cs",
+                "testedSha256": "6fc3414c22e09a7e0109592d2aa90586ae2c55daf463eb63bf5218bf4cd0f980",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.cs",
+                "testedSha256": "f5b5c3fc3fe4af4b3c11c06e081c6ddf55794851803f3363ebffc103a6a59cf1",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerServices.cs",
+                "testedSha256": "6c4c15efab8d34f5b56d1889c8b8c2acac888fef7481a328c9cb18485f159861",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [
+              "接口式方向是原设计；当前更完整的解耦、取消/暂停隔离和错误状态不应追溯成原实现已全部具备。"
+            ],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "playback",
+          "types": [
+            "PlotPlayerCore",
+            "PlotPlayerHost",
+            "PlotPlayerView",
+            "IPlotResourceLoader",
+            "IPlotObjectPool",
+            "IPlotTextProcessor",
+            "IPlotRuntimeEnvironment"
+          ],
+          "classIds": [
+            "PlotPlayerCore",
+            "PlotPlayerHost",
+            "PlotPlayerView",
+            "IPlotResourceLoader",
+            "IPlotObjectPool",
+            "IPlotTextProcessor",
+            "IPlotRuntimeEnvironment"
+          ]
+        },
+        {
+          "id": "branches-effects",
+          "title": "分支消费、动作表情和背景过渡补齐",
+          "designOrigin": "original-user-concept",
+          "implementationOrigin": "new-ai-assisted-extension",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原Branch、动作/表情和背景SetType数据结构及表现职责已存在；档案指出原Core未消费Branch，一些动作与表情为空实现。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+                "sourceSha256": "a8c96963c4303a107e897278f757aada2e3955929a2acdda64fe63fb088ef0cf",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "源文件实际同时容纳六项服务、环境和Factory。 扩展到章节目录、选中状态、原1503/1504协议语义边界；生产传输实现与服务器实际联调不在已验证结论内。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI_NodeClass.cs",
+                "sourceSha256": "ec62e24e75342954611487f04c1395a18286b4c866019723675d7935b65a9d80",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "共享Core、TMP、幕布、剧院；补齐原未消费的Branch、动作/表情与背景过渡，参考演出可替换。 原布局/资源重建已加入；当前运行画面检查及范围见 Doc/Records/Current/验收总览.json 的visuals及其报告。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotTypeAseetClasses/PlotAtomDataHeaderAsset.cs",
+                "sourceSha256": "af670e36b92e3a9efd56e7ec06aa16f412e479b2df11678e34c67081a916ee56",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": " 阶段12增加显式beanType、有界嵌套叶成员布局、循环/缺失引用校验及生成/Excel/Luban链路。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "new-ai-assisted-extension",
+            "status": "implemented-verified",
+            "summary": "本次补入等待选择/Choose、回调失效隔离及可替换的参考动作、表情、背景过渡；保留原数据设计，新增完整可执行行为。",
+            "basedOn": "based-on-current-tested-source",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerChoices.cs",
+              "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.Actions.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerChoices.cs",
+                "testedSha256": "9481e5ead27aef868fdc372937961c8db4c4f92afba7134e2797850d4dc72ebb",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Playback/PlotPlayerView.Actions.cs",
+                "testedSha256": "7c96b28d5a00861a7f054b7a3fe409c02b50bb27a04fce4c9506a3c52472f659",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [
+              "新增参考演出不是原游戏全部商业美术/动画效果的逐像素复现。"
+            ],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "playback",
+          "types": [
+            "PlotPlayerView"
+          ],
+          "classIds": [
+            "PlotPlayerView"
+          ]
+        },
+        {
+          "id": "event-scheduler",
+          "title": "事件载体、回调与可取消调度",
+          "designOrigin": "original-user-concept",
+          "implementationOrigin": "new-ai-assisted-extension",
+          "originalConcept": {
+            "classification": "original-user-concept",
+            "summary": "原EventJson/PlotEventsJsonContainer已有事件与回调ID载体；原未接入主链的回调不应描述为原已运行调度系统。",
+            "attributionBasis": "user-statement-plus-source-structure",
+            "sourceMappings": [
+              {
+                "source": "Assets/PlotEditor/PlotEditorDataClasses/PlotEventJsonData.cs",
+                "sourceSha256": "08788743efce9bb9b5be1c753f399522a3651ef7ec18c64e07fc2571a4fe4996",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "数据载体和回调ID保留；补齐原未接通的可取消调度器，-1根事件、非负回调ID、深度优先顺序、等待、变量、信号及表现。"
+              },
+              {
+                "source": "Assets/PlotEditor/PlotEditorDataClasses/PlotEventsJsonContainer.cs",
+                "sourceSha256": "8b27a7a88217b2c7fbda978297d2a87ea86438303c6195968cd2ebc6e7a6f294",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "数据载体和回调ID保留；补齐原未接通的可取消调度器，-1根事件、非负回调ID、深度优先顺序、等待、变量、信号及表现。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "new-ai-assisted-extension",
+            "status": "implemented-verified",
+            "summary": "本次补入事件轨道、可取消调度器、wait/set/signal、按序回调及循环/深度/预算约束，制作和播放进入同一链。",
+            "basedOn": "based-on-current-tested-source",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/Playback/PlotEventScheduler.cs",
+              "Packages/com.plotweave.core/Runtime/Authoring/PlotNodeEventTrackAsset.cs",
+              "Packages/com.plotweave.core/Editor/Playback/PlotEventTrackEditor.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Playback/PlotEventScheduler.cs",
+                "testedSha256": "cdc795d56bb71930770377171242a46acaf5341cf60b8d4f81f1f9976412ddfa",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Authoring/PlotNodeEventTrackAsset.cs",
+                "testedSha256": "35b24792b4ff7b895d1ebad2ce130c6b977e6e8044faa037540df6770419cdc9",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/Playback/PlotEventTrackEditor.cs",
+                "testedSha256": "332e2de348aa8d469bfe5a534b2a9d411158c30c071f104e27ec5bf99689e3ba",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "playback",
+          "types": [
+            "PlotEventScheduler",
+            "PlotNodeEventTrackAsset",
+            "PlotEventTrackEditor"
+          ],
+          "classIds": [
+            "PlotEventScheduler",
+            "PlotNodeEventTrackAsset",
+            "PlotEventTrackEditor"
+          ]
+        }
+      ],
+      "types": [
+        "PlotPlayerCore",
+        "PlotPlayerHost",
+        "PlotPlayerView",
+        "IPlotResourceLoader",
+        "IPlotObjectPool",
+        "IPlotTextProcessor",
+        "IPlotRuntimeEnvironment",
+        "PlotEventScheduler",
+        "PlotNodeEventTrackAsset",
+        "PlotEventTrackEditor"
+      ],
+      "classIds": [
+        "PlotPlayerCore",
+        "PlotPlayerHost",
+        "PlotPlayerView",
+        "IPlotResourceLoader",
+        "IPlotObjectPool",
+        "IPlotTextProcessor",
+        "IPlotRuntimeEnvironment",
+        "PlotEventScheduler",
+        "PlotNodeEventTrackAsset",
+        "PlotEventTrackEditor"
+      ]
+    },
+    {
+      "id": "chapters",
+      "title": "章节、进度与奖励",
+      "designOrigin": "unknown-needs-confirmation",
+      "implementationOrigin": "migration-ai-assisted",
+      "originalConcept": {
+        "classification": "unknown-needs-confirmation",
+        "summary": "原PlotMianUI/PlotChapterUI、数据管理器和接口已存在章节/小节/锁定/已读/跳过等职责；现有对话没有逐项确认这些外围游戏UI与管理器的个人作者归属。；原章节奖励数据和奖励UI职责存在，UIItemPlotRewards的构造/Get/Recycle等为空；原完整道具库/背包不是剧情包可直接归属的功能。",
+        "attributionIsClaimBased": true,
+        "sourceMappings": [
+          "Assets/HotUpdate/UI/PlotMianUI/IChapterData.cs",
+          "Assets/HotUpdate/UI/PlotMianUI/PlotMianUI.cs",
+          "Assets/HotUpdate/UI/PlotMianUI/PlotMianUI_NodeClass.cs",
+          "Assets/HotUpdate/UI/PlotChapterUI/IPlotData.cs",
+          "Assets/HotUpdate/UI/PlotChapterUI/PlotChapterUI.cs",
+          "Assets/HotUpdate/UI/PlotChapterUI/PlotChapterUI_NodeClass.cs",
+          "Assets/HotUpdate/UI/PlotSkipTop/PlotSkipTop.cs",
+          "Assets/HotUpdate/MainAssemble/DataManager/PlotProgressDataMgr.cs",
+          "Assets/HotUpdate/MainAssemble/DataManager/PlotDataMgr.cs",
+          "Assets/HotUpdate/UI/UIComponent/UIItemClass/UIItemPlotRewards.cs",
+          "Assets/HotUpdate/UI/Public/PropNodeClass.cs"
+        ]
+      },
+      "currentImplementation": {
+        "classification": "migration-ai-assisted",
+        "basedOn": "based-on-current-tested-source",
+        "status": "implemented-verified",
+        "acceptanceDate": "2026-10-28",
+        "acceptanceReport": "Doc/Records/Current/验收总览.json",
+        "featureIds": [
+          "campaign-browser",
+          "reward-ledger"
+        ],
+        "summary": "本次迁为独立目录、会话和宿主；修复非连续ID排序、可见卡片点击、布局/奖励几何、返回标题和跳过语义，13次真实点击和3次返回通过。；本次提供奖励绑定、虚拟项复用及离线进度/奖励/回执原子账本；首次完成与重看不重复发放有测试和真实UI验收。"
+      },
+      "needsAuthorConfirmation": true,
+      "features": [
+        {
+          "id": "campaign-browser",
+          "title": "章节、小节、进度与跳过浏览",
+          "designOrigin": "unknown-needs-confirmation",
+          "implementationOrigin": "migration-ai-assisted",
+          "originalConcept": {
+            "classification": "unknown-needs-confirmation",
+            "summary": "原PlotMianUI/PlotChapterUI、数据管理器和接口已存在章节/小节/锁定/已读/跳过等职责；现有对话没有逐项确认这些外围游戏UI与管理器的个人作者归属。",
+            "attributionBasis": "source-structure-only-author-not-established",
+            "sourceMappings": [
+              {
+                "source": "Assets/HotUpdate/UI/PlotMianUI/IChapterData.cs",
+                "sourceSha256": "8f90c26fd46da5db8fd30aca86d0ef27ba4729242dc72a7a1adc1f3a76f3862b",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "IPlotCampaignChapter保留ID/Name/PlotIDs语义；不再引用原cfg类型。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/PlotMianUI/PlotMianUI.cs",
+                "sourceSha256": "adacab6d7028e367d7cbcc5cc339ce83f1f0a16265e142c3fc4efa3698f51bf6",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "原主线/日常章节列表、进度、锁定与返回在独立浏览器接线；场景装配与最终画面验收分开记录。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/PlotMianUI/PlotMianUI_NodeClass.cs",
+                "sourceSha256": "30a21f8621ddb3982fea2ee11125b45e82ec01b5abbe45b9a5c1da396da5a658",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "PlotBackLoadCtrl、PlotItemNodeData、PlotItemNode的缩放过渡、交错布局、缩略图、日期与进度职责迁入新宿主/虚拟列表。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/PlotChapterUI/IPlotData.cs",
+                "sourceSha256": "cd6e70d0bc21be1079ad21e2964f57292a9d0d07617666cf77487a702c015c02",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "IPlotCampaignEpisode保留ID/Name/Desc语义；静态cfg属性或中性值源经同一Reader读取。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/PlotChapterUI/PlotChapterUI.cs",
+                "sourceSha256": "a7270157c6a972c0f0fd2a04788c8f5ef07270878871e47be572b05f8c75f910",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "章节背景、标题/简介、小节/奖励列表、开始与返回接线；结算和重试独立为章节会话。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/PlotChapterUI/PlotChapterUI_NodeClass.cs",
+                "sourceSha256": "2fdd7121d4f01d405de57c0b55b11d49849c5707be483cf8bdc18d5a85e18327",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "BeginStoryBtn和StoryScrollRectWrap按配置顺序选择小节，消除ID+1及i-1的空/负选择问题。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/PlotSkipTop/PlotSkipTop.cs",
+                "sourceSha256": "c059171a74f33c689cf9150a10b63eae38ca5439d43460434c17c03975ceed3b",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "取消恢复原暂停状态，确认调用Core.Skip且仅完成一次；SkipKey从章节内容传递。旧占位文本不被视为已接数据。"
+              },
+              {
+                "source": "Assets/HotUpdate/MainAssemble/DataManager/PlotProgressDataMgr.cs",
+                "sourceSha256": "564ebabf228fb438daba091f6b70dc9e07969365f8e1c73482a4bd9950bc1eb9",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "主线/日常进度、章节按序小节查询和百分比迁入独立模型；旧数值游标通过ImportLegacyProgress导入。"
+              },
+              {
+                "source": "Assets/HotUpdate/MainAssemble/DataManager/PlotDataMgr.cs",
+                "sourceSha256": "39090c883e68656ecbbf8c53646c7c4f5cd5481708b6e40bdee28a90620ddb64",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "原当前章节/小节/新读标记及cfg查询拆为目录、宿主选中状态和后端；原GameCtrl/DataManager大类不整体复制。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "migration-ai-assisted",
+            "status": "implemented-verified",
+            "summary": "本次迁为独立目录、会话和宿主；修复非连续ID排序、可见卡片点击、布局/奖励几何、返回标题和跳过语义，13次真实点击和3次返回通过。",
+            "basedOn": "based-on-current-tested-source",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+              "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+              "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+              "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacySkipController.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+                "testedSha256": "0b05c3e08401674d8580eea66634bcc9261b33cd4923b0802ed78f8787b4911d",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotChapterSession.cs",
+                "testedSha256": "daa30808ed9484d62bd1551f1456ec493d6022be6fd7da2c2f15c5c7886f14f7",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+                "testedSha256": "d2d5eca03239511f13af3b19ddb9c9733c7bf904e8fa35a999ec6562dcbe563f",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacySkipController.cs",
+                "testedSha256": "f5cadd20009ddeb22b82ebe45b9c8d05c9c47f7ec685ecd6ee637f53fb5f8406",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": true,
+          "authorConfirmation": "待本人确认该子系统原始设计/编码的具体贡献；此项只影响来源归属，不表示功能未实现。",
+          "module": "chapters",
+          "types": [
+            "PlotCampaignCatalog",
+            "PlotChapterSession",
+            "PlotLegacyCampaignHost",
+            "PlotLegacySkipController"
+          ],
+          "classIds": [
+            "PlotCampaignCatalog",
+            "PlotChapterSession",
+            "PlotLegacyCampaignHost",
+            "PlotLegacySkipController"
+          ]
+        },
+        {
+          "id": "reward-ledger",
+          "title": "首次奖励、重看与离线原子账本",
+          "designOrigin": "unknown-needs-confirmation",
+          "implementationOrigin": "new-ai-assisted-extension",
+          "originalConcept": {
+            "classification": "unknown-needs-confirmation",
+            "summary": "原章节奖励数据和奖励UI职责存在，UIItemPlotRewards的构造/Get/Recycle等为空；原完整道具库/背包不是剧情包可直接归属的功能。",
+            "attributionBasis": "source-structure-only-author-not-established",
+            "sourceMappings": [
+              {
+                "source": "Assets/HotUpdate/UI/PlotChapterUI/PlotChapterUI.cs",
+                "sourceSha256": "a7270157c6a972c0f0fd2a04788c8f5ef07270878871e47be572b05f8c75f910",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "章节背景、标题/简介、小节/奖励列表、开始与返回接线；结算和重试独立为章节会话。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/UIComponent/UIItemClass/UIItemPlotRewards.cs",
+                "sourceSha256": "d49bb78982f7669ad37cc906aa2bde472b597054008a7a828c438eaf237950f8",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "原构造/Get/Recycle为空，Init仅调用基类；替代为奖励绑定与虚拟项复用。道具名称、图标、品质属于可注入展示数据，原完整道具库不随剧情包迁入。"
+              },
+              {
+                "source": "Assets/HotUpdate/MainAssemble/DataManager/PlotProgressDataMgr.cs",
+                "sourceSha256": "564ebabf228fb438daba091f6b70dc9e07969365f8e1c73482a4bd9950bc1eb9",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "主线/日常进度、章节按序小节查询和百分比迁入独立模型；旧数值游标通过ImportLegacyProgress导入。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/Public/PropNodeClass.cs",
+                "sourceSha256": "58a77540283bb275024a4c4f8ae96b54af457163e36f0496e23d40f3ccbdda77",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "只审计PropNode_Award。数量、可注入图标与详情已有新绑定；原全局QualitybgPath、道具说明与背包服务属于接入边界，不能写成整份道具系统迁移完成。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "new-ai-assisted-extension",
+            "status": "implemented-verified",
+            "summary": "本次提供奖励绑定、虚拟项复用及离线进度/奖励/回执原子账本；首次完成与重看不重复发放有测试和真实UI验收。",
+            "basedOn": "based-on-current-tested-source",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+              "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+              "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignProgressStore.cs",
+                "testedSha256": "2ad35e67d9843b5ee058bf4b14fa7311db374e441d9b8273d8af535b6bcf0b91",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+                "testedSha256": "d2d5eca03239511f13af3b19ddb9c9733c7bf904e8fa35a999ec6562dcbe563f",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyVirtualList.cs",
+                "testedSha256": "4d8758c895a8091d8413bfa13fa2d6fb7209bd8254aac408831e1feb1fca84a1",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [
+              "本地奖励账本不是生产服务端发奖系统；原道具名称/图标/品质/背包须宿主提供。"
+            ],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": true,
+          "authorConfirmation": "待本人确认该子系统原始设计/编码的具体贡献；此项只影响来源归属，不表示功能未实现。",
+          "module": "chapters",
+          "types": [
+            "PlotCampaignProgressStore",
+            "PlotLegacyVirtualList",
+            "PlotLegacyCampaignHost"
+          ],
+          "classIds": [
+            "PlotCampaignProgressStore",
+            "PlotLegacyVirtualList",
+            "PlotLegacyCampaignHost"
+          ]
+        }
+      ],
+      "types": [
+        "PlotCampaignCatalog",
+        "PlotChapterSession",
+        "PlotLegacyCampaignHost",
+        "PlotLegacySkipController",
+        "PlotCampaignProgressStore",
+        "PlotLegacyVirtualList"
+      ],
+      "classIds": [
+        "PlotCampaignCatalog",
+        "PlotChapterSession",
+        "PlotLegacyCampaignHost",
+        "PlotLegacySkipController",
+        "PlotCampaignProgressStore",
+        "PlotLegacyVirtualList"
+      ]
+    },
+    {
+      "id": "integration",
+      "title": "宿主接入、工程化与交付边界",
+      "designOrigin": "external-host-contract",
+      "implementationOrigin": "new-ai-assisted-extension",
+      "originalConcept": {
+        "classification": "external-host-contract",
+        "summary": "原剧情依赖游戏网络/登录、GameCtrl、DataManager和服务端回包；这属于宿主项目契约，不能等同于独立工具的内置服务器。；原外围通用UI、道具/品质、背包和区域系统来自游戏宿主；原源码索引限定只审计剧情相关类型。",
+        "attributionIsClaimBased": true,
+        "sourceMappings": [
+          "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+          "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI.cs",
+          "Assets/HotUpdate/MainAssemble/DataManager/PlotProgressDataMgr.cs",
+          "Assets/HotUpdate/UI/UIComponent/UIItemClass/UIItemPlotRewards.cs",
+          "Assets/HotUpdate/UI/Public/Public_NodeClass.cs",
+          "Assets/HotUpdate/UI/Public/PropNodeClass.cs"
+        ]
+      },
+      "currentImplementation": {
+        "classification": "new-ai-assisted-extension",
+        "basedOn": "based-on-current-tested-source",
+        "status": "verified-with-external-and-device-boundaries",
+        "acceptanceDate": "2026-10-28",
+        "acceptanceReport": "Doc/Records/Current/验收总览.json",
+        "featureIds": [
+          "network-transport",
+          "host-presentations",
+          "verification-engineering",
+          "public-reference",
+          "mobile-validation",
+          "publication"
+        ],
+        "summary": "本次独立边界保留1503初始化/1504结算及主0日1语义，验证按配置顺序的完成前缀与不确定回包处理；生产Transport尚未注入。；当前提供道具展示/解锁回调及传输边界，本地示例可运行；具体生产库和权限数据留给宿主注入，不能标成核心缺失也不能标成已接通。"
+      },
+      "needsAuthorConfirmation": false,
+      "features": [
+        {
+          "id": "network-transport",
+          "title": "1503/1504语义桥与生产传输",
+          "designOrigin": "external-host-contract",
+          "implementationOrigin": "migration-ai-assisted",
+          "originalConcept": {
+            "classification": "external-host-contract",
+            "summary": "原剧情依赖游戏网络/登录、GameCtrl、DataManager和服务端回包；这属于宿主项目契约，不能等同于独立工具的内置服务器。",
+            "attributionBasis": "explicit-host-contract-or-new-work",
+            "sourceMappings": [
+              {
+                "source": "Assets/HotUpdate/UI/PlotPlayerUI/IPlotPlayer.cs",
+                "sourceSha256": "a8c96963c4303a107e897278f757aada2e3955929a2acdda64fe63fb088ef0cf",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "源文件实际同时容纳六项服务、环境和Factory。 扩展到章节目录、选中状态、原1503/1504协议语义边界；生产传输实现与服务器实际联调不在已验证结论内。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/PlotPlayerUI/PlotPlayerUI.cs",
+                "sourceSha256": "7e9895a424c688a416c6c90a5e19b666b77e72a222d729a6a1897bf76d605034",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "主线/日常、加载、结算确认、幂等重试、进度与返回UI迁成接口及离线可运行示例；正式服务器协议由接入方实现。 扩展到章节目录、选中状态、原1503/1504协议语义边界；生产传输实现与服务器实际联调不在已验证结论内。"
+              },
+              {
+                "source": "Assets/HotUpdate/MainAssemble/DataManager/PlotProgressDataMgr.cs",
+                "sourceSha256": "564ebabf228fb438daba091f6b70dc9e07969365f8e1c73482a4bd9950bc1eb9",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "主线/日常进度、章节按序小节查询和百分比迁入独立模型；旧数值游标通过ImportLegacyProgress导入。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "migration-ai-assisted",
+            "status": "external-injection",
+            "summary": "本次独立边界保留1503初始化/1504结算及主0日1语义，验证按配置顺序的完成前缀与不确定回包处理；生产Transport尚未注入。",
+            "basedOn": "based-on-current-tested-source",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotLegacyNetworkChapterBackend.cs",
+                "testedSha256": "202772ef3b90004ba7710eca41400164d490aa18c8e198c51b741123ded004e8",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [
+              "只验证受控传输；尚未实际登录、连接生产服务器或验证生产端幂等行为。"
+            ],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "integration",
+          "types": [
+            "PlotLegacyNetworkChapterBackend",
+            "IPlotLegacyStoryTransport"
+          ],
+          "classIds": [
+            "PlotLegacyNetworkChapterBackend",
+            "IPlotLegacyStoryTransport"
+          ]
+        },
+        {
+          "id": "host-presentations",
+          "title": "道具库、背包与区域权限注入",
+          "designOrigin": "external-host-contract",
+          "implementationOrigin": "external-host-contract",
+          "originalConcept": {
+            "classification": "external-host-contract",
+            "summary": "原外围通用UI、道具/品质、背包和区域系统来自游戏宿主；原源码索引限定只审计剧情相关类型。",
+            "attributionBasis": "explicit-host-contract-or-new-work",
+            "sourceMappings": [
+              {
+                "source": "Assets/HotUpdate/UI/UIComponent/UIItemClass/UIItemPlotRewards.cs",
+                "sourceSha256": "d49bb78982f7669ad37cc906aa2bde472b597054008a7a828c438eaf237950f8",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "原构造/Get/Recycle为空，Init仅调用基类；替代为奖励绑定与虚拟项复用。道具名称、图标、品质属于可注入展示数据，原完整道具库不随剧情包迁入。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/Public/Public_NodeClass.cs",
+                "sourceSha256": "417eeb27b12c79069e664277b5a3c91e7221475714c04f52533db39e7452c423",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "只审计ReturnBtn、ButtonExtend、SelectLevelMenuBase、PlotItemSelect；返回/选择/锁定/已读/池化职责迁入浏览器，其他战斗/背包/装备组件不在剧情范围内。"
+              },
+              {
+                "source": "Assets/HotUpdate/UI/Public/PropNodeClass.cs",
+                "sourceSha256": "58a77540283bb275024a4c4f8ae96b54af457163e36f0496e23d40f3ccbdda77",
+                "mappingEvidence": "Doc/Records/Current/源码对应索引.json",
+                "note": "只审计PropNode_Award。数量、可注入图标与详情已有新绑定；原全局QualitybgPath、道具说明与背包服务属于接入边界，不能写成整份道具系统迁移完成。"
+              }
+            ]
+          },
+          "currentImplementation": {
+            "classification": "external-host-contract",
+            "status": "external-injection",
+            "summary": "当前提供道具展示/解锁回调及传输边界，本地示例可运行；具体生产库和权限数据留给宿主注入，不能标成核心缺失也不能标成已接通。",
+            "basedOn": "based-on-current-tested-source",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+              "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Legacy/PlotLegacyCampaignHost.cs",
+                "testedSha256": "d2d5eca03239511f13af3b19ddb9c9733c7bf904e8fa35a999ec6562dcbe563f",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Runtime/Chapters/PlotCampaignCatalog.cs",
+                "testedSha256": "0b05c3e08401674d8580eea66634bcc9261b33cd4923b0802ed78f8787b4911d",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [
+              "不宣称整份战斗、背包、装备或生产权限系统已迁移。"
+            ],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "integration",
+          "types": [
+            "PlotCampaignItemPresentation",
+            "PlotLegacyCampaignHost",
+            "IPlotCampaignProgress"
+          ],
+          "classIds": [
+            "PlotCampaignItemPresentation",
+            "PlotLegacyCampaignHost",
+            "IPlotCampaignProgress"
+          ]
+        },
+        {
+          "id": "verification-engineering",
+          "title": "测试、重建工具、源码摘要和平台构建",
+          "designOrigin": "new-ai-assisted-extension",
+          "implementationOrigin": "new-ai-assisted-extension",
+          "originalConcept": {
+            "classification": "new-ai-assisted-extension",
+            "summary": "没有可用于把本次277测试、自动验收桥、资源重建工具和构建恢复工具归入原个人实现的证据。",
+            "attributionBasis": "explicit-host-contract-or-new-work",
+            "sourceMappings": []
+          },
+          "currentImplementation": {
+            "classification": "new-ai-assisted-extension",
+            "status": "implemented-validation-pending",
+            "summary": "本次AI协作补入批量语义迁移、43布局重建、原生测试/真实UI点击、精确源码SHA/快照、双平台构建与设置恢复记录；这些是本次工程化证据。",
+            "basedOn": "current-source-with-historical-evidence-stage20-pending",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyUiMigration.cs",
+              "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyFullBuildVerification.cs",
+              "Packages/com.plotweave.core/Tests/Editor/PlotVerificationBridge.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyUiMigration.cs",
+                "testedSha256": "dc69da415ad3887a77d1f17891ed3ca9df586b4c63e432a20c91e745ac4fad03",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyFullBuildVerification.cs",
+                "testedSha256": "43b0a8b7a94d250721dd1189d9e8723b99315b862b82a9fe680eec93309ad0e4",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Tests/Editor/PlotVerificationBridge.cs",
+                "testedSha256": "aa1ded984cd968c880d76f281ff69dcce127aac6c171b3f4422f51ad79597aea",
+                "matchesCurrentFile": false,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [
+              "测试和构建数证明被测范围，不证明个人作者比例、生产规模或全部目标设备运行。",
+              "阶段19已改变其中部分源码，历史通过记录保留，但当前工作流须按阶段19重新验收。",
+              "阶段20改变部分相关源码；40项定向集合与最小视口策略已通过，支持与非支持尺寸分别记录。原记录按其源摘要保留，不替代相关功能的完整回归。"
+            ],
+            "historicalStatus": "implemented-verified",
+            "changedSinceHistoricalAcceptance": [
+              "Packages/com.plotweave.core/Tests/Editor/PlotVerificationBridge.cs"
+            ],
+            "changedSinceLatestEvidence": [
+              "Packages/com.plotweave.core/Tests/Editor/PlotVerificationBridge.cs"
+            ],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "integration",
+          "types": [
+            "PlotLegacyUiMigration",
+            "PlotLegacyFullBuildVerification",
+            "PlotVerificationBridge"
+          ],
+          "classIds": [
+            "PlotLegacyUiMigration",
+            "PlotLegacyFullBuildVerification",
+            "PlotVerificationBridge"
+          ]
+        },
+        {
+          "id": "public-reference",
+          "title": "独立合成Stage18评审示例",
+          "designOrigin": "new-ai-assisted-extension",
+          "implementationOrigin": "new-ai-assisted-extension",
+          "originalConcept": {
+            "classification": "new-ai-assisted-extension",
+            "summary": "公开合成示例是本次为独立候选版新建，不是原游戏剧情或原美术的个人创作证明。",
+            "attributionBasis": "explicit-host-contract-or-new-work",
+            "sourceMappings": []
+          },
+          "currentImplementation": {
+            "classification": "new-ai-assisted-extension",
+            "status": "implemented-verified",
+            "summary": "新合成4章/6小节/9节点、模板与资源；27次真实点击、5次返回与9张截图验证主线/日常、锁定、分支、奖励、重看与跳过。",
+            "basedOn": "based-on-current-tested-source",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Editor/Playback/PlotCampaignReferenceExample.cs",
+              "Packages/com.plotweave.core/Editor/Playback/PlotCampaignReferencePreviewVerification.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Editor/Playback/PlotCampaignReferenceExample.cs",
+                "testedSha256": "39aaaebf29d3990d6eb33b44491cf5ed36f1ecea0b50772b6463db190b9d0f39",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              },
+              {
+                "path": "Packages/com.plotweave.core/Editor/Playback/PlotCampaignReferencePreviewVerification.cs",
+                "testedSha256": "b47022f9c289b378d5c154f500756ce23274c3bc7a7b4aa8249ecd52f93856d0",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [
+              "本地完整9场景构建含原内容，不作为公开发布物；公开演示应使用该合成示例。"
+            ],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "integration",
+          "types": [
+            "PlotCampaignReferenceExample",
+            "PlotCampaignReferencePreviewVerification"
+          ],
+          "classIds": [
+            "PlotCampaignReferenceExample",
+            "PlotCampaignReferencePreviewVerification"
+          ]
+        },
+        {
+          "id": "mobile-validation",
+          "title": "移动平台构建与真机边界",
+          "designOrigin": "new-ai-assisted-extension",
+          "implementationOrigin": "new-ai-assisted-extension",
+          "originalConcept": {
+            "classification": "new-ai-assisted-extension",
+            "summary": "本次移动构建自动化不能作为原版已经有Android/iOS真机验证的证明。",
+            "attributionBasis": "explicit-host-contract-or-new-work",
+            "sourceMappings": []
+          },
+          "currentImplementation": {
+            "classification": "new-ai-assisted-extension",
+            "status": "implemented-device-validation-pending",
+            "summary": "Windows64和Android IL2CPP/ARM64各9场景构建通过，0错误0警告，设置及平台恢复检查通过；Android/iOS真机均待验证。",
+            "basedOn": "based-on-current-tested-source",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [
+              "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyFullBuildVerification.cs"
+            ],
+            "testedSourceEvidence": [
+              {
+                "path": "Packages/com.plotweave.core/Editor/Legacy/PlotLegacyFullBuildVerification.cs",
+                "testedSha256": "43b0a8b7a94d250721dd1189d9e8723b99315b862b82a9fe680eec93309ad0e4",
+                "matchesCurrentFile": true,
+                "evidenceScope": "2026-10-28历史验收快照"
+              }
+            ],
+            "limits": [
+              "构建通过不等于安装、性能、触控或设备兼容性验收；iOS真机未验收。"
+            ],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "integration",
+          "types": [
+            "PlotLegacyFullBuildVerification"
+          ],
+          "classIds": [
+            "PlotLegacyFullBuildVerification"
+          ]
+        },
+        {
+          "id": "publication",
+          "title": "公开发布与项目许可证",
+          "designOrigin": "external-host-contract",
+          "implementationOrigin": "external-host-contract",
+          "originalConcept": {
+            "classification": "external-host-contract",
+            "summary": "是否公开发布及选择许可证属于项目维护决策，不是原类设计的完成度。",
+            "attributionBasis": "explicit-host-contract-or-new-work",
+            "sourceMappings": []
+          },
+          "currentImplementation": {
+            "classification": "external-host-contract",
+            "status": "public-candidate",
+            "summary": "已创建GitHub仓库 https://github.com/VerchielTJ/PlotWeave，自有代码采用MIT；第三方许可继续保留。本副本是公开提交候选，同步状态以仓库提交记录为准。",
+            "basedOn": "public-distribution-metadata",
+            "acceptanceDate": "2026-10-28",
+            "acceptanceReport": "Doc/Records/Current/验收总览.json",
+            "sources": [],
+            "testedSourceEvidence": [],
+            "limits": [
+              "发布与许可是维护决策，不作为核心实现完成度；历史含私有输入的验证不能直接当作公开副本验收。"
+            ],
+            "publicValidationScope": "以下SHA用于比较随包文件与历史本地快照，不表示公开副本已重新执行对应测试。",
+            "repository": "https://github.com/VerchielTJ/PlotWeave",
+            "license": "MIT"
+          },
+          "needsAuthorConfirmation": false,
+          "authorConfirmation": "模块思想与原整体作者自述、原结构相符；未核验逐行作者或原AI输出分布。",
+          "module": "integration",
+          "types": [],
+          "classIds": []
+        }
+      ],
+      "types": [
+        "PlotLegacyNetworkChapterBackend",
+        "IPlotLegacyStoryTransport",
+        "PlotCampaignItemPresentation",
+        "PlotLegacyCampaignHost",
+        "IPlotCampaignProgress",
+        "PlotLegacyUiMigration",
+        "PlotLegacyFullBuildVerification",
+        "PlotVerificationBridge",
+        "PlotCampaignReferenceExample",
+        "PlotCampaignReferencePreviewVerification"
+      ],
+      "classIds": [
+        "PlotLegacyNetworkChapterBackend",
+        "IPlotLegacyStoryTransport",
+        "PlotCampaignItemPresentation",
+        "PlotLegacyCampaignHost",
+        "IPlotCampaignProgress",
+        "PlotLegacyUiMigration",
+        "PlotLegacyFullBuildVerification",
+        "PlotVerificationBridge",
+        "PlotCampaignReferenceExample",
+        "PlotCampaignReferencePreviewVerification"
+      ]
+    }
+  ],
+  "authorConfirmationQuestions": [
+    {
+      "id": "original-module-authorship",
+      "question": "原章节浏览、进度、奖励UI和生产接入层中，哪些确由你独立设计/实现，哪些沿用同事或原项目基础？",
+      "featureIds": [
+        "campaign-browser",
+        "reward-ledger",
+        "network-transport",
+        "host-presentations"
+      ],
+      "blocksImplementationClaim": false
+    },
+    {
+      "id": "original-ai-scope",
+      "question": "如需更精确的个人贡献叙述，请逐项确认原版AI辅助的工作；没有记录时保留未知，不按80/20分摊每个类。",
+      "featureIds": [
+        "schema-types",
+        "nested-beans",
+        "node-assets",
+        "authoring-ui",
+        "dual-contracts",
+        "six-table-roundtrip",
+        "luban-chain",
+        "shared-player",
+        "branches-effects",
+        "event-scheduler",
+        "campaign-browser",
+        "reward-ledger",
+        "network-transport",
+        "host-presentations",
+        "verification-engineering",
+        "public-reference",
+        "mobile-validation",
+        "publication"
+      ],
+      "blocksImplementationClaim": false
+    }
+  ],
+  "publicExport": {
+    "originalSha256": "a7a3f8d00655a6717b5fb1cf6ee8efcfceb1bb51b16e785d9a89b238688cde05",
+    "note": "公开整理副本：省略本地原布局截图及本机根路径；未重新执行历史验收。"
+  },
+  "publication": {
+    "repository": "https://github.com/VerchielTJ/PlotWeave",
+    "license": "MIT",
+    "status": "public-candidate",
+    "thirdPartyLicensesRetained": true
+  }
+}
